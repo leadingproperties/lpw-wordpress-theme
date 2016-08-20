@@ -1,0 +1,234 @@
+//
+// Modals
+// --------------------------------------------------
+
+// .modal-open      - body class for killing the scroll
+// .modal           - container to scroll within
+// .modal-dialog    - positioning shell for the actual modal
+// .modal-content   - actual modal w/ bg and corners and shit
+
+// Kill the scroll on the body
+.modal-open {
+  overflow: hidden;
+}
+
+// Container that the modal scrolls within
+.modal {
+  display: none;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: $z-index-modal;
+  -webkit-overflow-scrolling: touch;
+
+  // Prevent Chrome on Windows from adding a focus outline. For details, see
+  // https://github.com/twbs/bootstrap/pull/10951.
+  outline: 0;
+
+  // When fading in the modal, animate it to slide down
+  &.fade .modal-dialog {
+    @include translate(0, -25%);
+    @include transition-transform(0.3s ease-out);
+  }
+  &.in .modal-dialog { @include translate(0, 0) }
+}
+.modal-open .modal {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+// Shell div to position the modal with bottom padding
+.modal-dialog {
+  position: relative;
+  width: auto;
+  margin: 10px;
+  color: $text-dark-color;
+  .modal-large & {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    width: auto;
+    margin: 0;
+    z-index: $z-index-modal + 10;
+  }
+  @media (min-width: $container-width-1) {
+    .request-form-modal & {
+      width: 350px;
+      margin: 50px auto;
+    }
+  }
+  @media (min-width: $screen760) {
+    .modal-large & {
+      top: 50px;
+      left: 50px;
+      right: 50px;
+      bottom: 50px;
+    }
+  }
+  @media (min-width: $container-width-2) {
+    .request-form-modal & {
+      width: 660px;
+    }
+  }
+}
+
+
+// Actual modal
+.modal-content {
+  position: relative;
+  background-clip: padding-box;
+  background: #fff;
+  padding: 20px;
+  // Remove focus outline from opened modal
+  outline: 0;
+  .modal-large & {
+    height: 100%;
+    padding: 40px 10px 10px 10px;
+  }
+  .contact-modal &, .offmarket-request & {
+    &::before {
+      position: absolute;
+      left: 20px;
+      top: -14px;
+      font-size: 20px;
+      padding: 12.5px;
+      border-radius: 50%;
+      background: $color-red;
+      color: #fff;
+      @include square(45px);
+      @extend .icon;
+    }
+  }
+  .contact-modal & {
+    &::before {
+      content: "\e7da";
+    }
+  }
+ .offmarket-request & {
+    &::before {
+      content: "\e66b";
+      line-height: .8;
+    }
+  }
+  @media (min-width: $container-width-1) {
+    .request-form-modal & {
+      padding: 30px;
+    }
+    .contact-modal &, .offmarket-request & {
+      &::before {
+        left: 30px;
+        top: -25px;
+      }
+    }
+  }
+  @media (min-width: $screen760) {
+    .modal-large & {
+      padding-top: 45px;
+    }
+  }
+}
+
+// Modal background
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: #333;
+  z-index: $z-index-modal-background;
+  // Fade for backdrop
+  &.fade { @include opacity(0); }
+  &.in { @include opacity(.85); }
+}
+
+// Modal header
+// Top section of the modal w/ title and dismiss
+.modal-header {
+  position: relative;
+  padding-bottom: 13px;
+  border-bottom: 1px solid #f3f3f3;
+  padding-right: 70px;
+  .modal-title {
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 1.375;
+    font-size: 16px;
+  }
+  .contact-modal &, .offmarket-request & {
+    padding-top: 25px;
+  }
+  @media (min-width: $container-width-1) {
+    .request-form-modal & {
+      padding-bottom: 20px;
+      .modal-title {
+        font-size: 18px;
+      }
+    }
+    .contact-modal &, .offmarket-request & {
+      padding-top: 5px;
+    }
+  }
+  @media (min-width: $container-width-2) {
+    padding-right: 240px;
+  }
+}
+.modal-close {
+  position: absolute;
+  right: -5px;
+  top: -5px;
+  background: none;
+  padding: 0;
+  border: none;
+  &::after {
+    font-size: 30px;
+  }
+  .modal-large & {
+    line-height: 30px;
+    right: 7px;
+    top: 5px;
+    &::after {
+      margin-left: 7px;
+      vertical-align: middle;
+      font-size: 30px;
+    }
+  }
+  @media (min-width: $container-width-1) {
+    top: -10px;
+    &::after {
+      font-size: 40px;
+    }
+  }
+  @media (min-width: $screen760) {
+    .modal-large & {
+    font-size: 16px;
+    line-height: 40px;
+    top: 1px;
+      &::after {
+        font-size: 40px;
+      }
+    }
+  }
+}
+
+
+// Modal body
+// Where all modal content resides (sibling of .modal-header and .modal-footer)
+.modal-body {
+  position: relative;
+  padding-top: 20px;
+}
+
+// Measure scrollbar width for padding body during modal show/hide
+.modal-scrollbar-measure {
+  position: absolute;
+  top: -9999px;
+  width: 50px;
+  height: 50px;
+  overflow: scroll;
+}

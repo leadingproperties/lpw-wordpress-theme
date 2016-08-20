@@ -1,0 +1,206 @@
+.objects-list-wrapper {
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+.object-item {
+  position: relative;
+  width: 100%;
+  padding: 0 10px;
+  margin: 0 auto 20px;
+  font-size: 12px;
+  .add-favorite-button {
+    position: absolute;
+    z-index: $z-index-fav-btn;
+    right: 0;
+    top: 19px;
+    @include size(50px, 30px);
+    background: rgba(51,51,51,.8);
+    color: #fff;
+    font-size: 20px;
+    padding: 2px 6px;
+    &::before {
+      line-height: 25px;
+    }
+
+    @include rtl {
+      text-align: left;
+    }
+  }
+  .rent-price {
+    position: absolute;
+    z-index: $z-index-fav-btn;
+    left: 0;
+    top: 19px;
+    height: 30px;
+    max-width: 75%;
+    background: rgba(red($color-red), green($color-red), blue($color-red), .9);
+    font-size: 9px;
+    line-height: 1.3;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 5px 5px 5px 15px;
+    @include text-overflow();
+    font-weight: bold;
+    > span {
+      display: inline-block;
+    }
+    .price-num {
+      font-size: 16px;
+      letter-spacing: normal;
+      font-weight: normal;
+    }
+  }
+  @media (min-width: $screen370) {
+    width: $object-width;
+    height: 300px;
+    overflow: hidden;
+    &.rent-item {
+      height: 330px;
+    }
+    .rent-price {
+      max-width: $object-width - 55;
+    }
+  }
+  @media (min-width: 2 * $object-width) {
+    float: left;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+.object-inner-wrapper {
+  border: 1px solid $border-color;
+  background: #fff;
+}
+.object-thumbnail {
+  position: relative;
+  a.object-thumbnail-holder {
+    display: block;
+  }
+  @media (min-width: $screen370) {
+    height: 205px;
+    overflow: hidden;
+    img {
+      width: 100%;
+    }
+  }
+}
+.object-info-holder {
+  padding: 12px 10px;
+  overflow: hidden;
+  @media (min-width: $screen370) {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+.info-address-holder {
+  .info-address {
+    a {
+      color: #999;
+      display: inline-block;
+      padding: 2px 7px 2px 0;
+      position: relative;
+      margin-right: 4px;
+      line-height: 1;
+      &::after {
+        position: absolute;
+        content: "";
+        top: 3px;
+        right: 0;
+        height: 11px;
+        border-left: 1px solid #ccc;
+      }
+      &:last-child {
+        margin-right: 0;
+        &::after {
+          display: none;
+        }
+      }
+    }
+    @media (min-width: $screen370) {
+      height: 23px;
+      a {
+        max-width: 110px;
+        height: 100%;
+        padding-top: 3px;
+        padding-bottom: 3px;
+        line-height: 1.428571429;
+        @include text-overflow();
+        &::after {
+          height: 14px;
+          top: 4px;
+        }
+      }
+    }
+  }
+}
+.info-title {
+  font-size: 14px;
+  margin: 3px 0 4px;
+  @media (min-width: $screen370) {
+    font-size: 16px;
+    height: 22px;
+    @include text-overflow();
+  }
+}
+.info-details {
+  margin: 0;
+}
+.min-days  {
+  margin-bottom: 3px;
+}
+.info-details, .min-days  {
+  @media (min-width: $screen370) {
+    height: 17px;
+    @include text-overflow();
+  }
+}
+ul.rent-details {
+  margin: 0 0 3px;
+  padding: 0;
+  list-style: none;
+  li {
+    display: inline-block;
+    line-height: 1.667;
+    position: relative;
+    margin-right: 4px;
+    padding-right: 7px;
+    &.area, &.rooms {
+      &::after {
+        position: absolute;
+        content: "";
+        top: 4px;
+        right: 0;
+        height: 13px;
+        border-left: 1px solid #ccc;
+      }
+    }
+    &.icon {
+      padding-right: 0;
+      margin-right: 6px;
+      &::before {
+        position: relative;
+        margin-right: 5px;
+        font-size: 15px;
+        vertical-align: middle;
+      }
+      &.icon-bathroom::before {
+        top: -1px;
+      }
+      &.icon-person::before {
+        top: -2px;
+      }
+    }
+  }
+  @media (min-width: $screen370) {
+    height: 20px;
+    @include text-overflow();
+  }
+}
+.add-favorite-button {
+  display: block;
+  cursor: pointer;
+  &:hover, &.in-favorites {
+    color: $color-red;
+  }
+}

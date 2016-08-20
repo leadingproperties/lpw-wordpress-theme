@@ -1,0 +1,33 @@
+.static-page-404 {
+  padding-top: 60px;
+  padding-bottom: 65px;
+  @media (min-width: $sp560) {
+    padding-bottom: 75px;
+  }
+}
+.err-404-title {
+  font-size: 48px;
+  color: $color-red;
+  line-height: 1.25;
+  margin-bottom: 50px;
+  @media (min-width: $sp560) {
+    font-size: 72px;
+  }
+}
+.err-404-msg {
+  max-width: 805px;
+  h2 {
+    line-height: 1.25;
+    margin-bottom: 15px;
+    font-size: 20px;
+  }
+  a {
+    text-decoration: underline;
+  }
+  @media (min-width: $sp560) {
+    font-size: 16px;
+    h2 {
+      font-size: 24px;
+    }
+  }
+}

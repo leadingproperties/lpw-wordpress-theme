@@ -1,0 +1,12 @@
+.loader {
+  margin: 0 0 30px;
+  text-align: center;
+  span {
+    font-size: 30px;
+    display: inline-block;
+    @include square(33px);
+    &::before {
+      @include make-linicon("\e8dd");
+    }
+  }
+}

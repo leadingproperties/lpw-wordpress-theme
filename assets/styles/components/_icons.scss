@@ -1,0 +1,225 @@
+/* Socionic */
+
+@font-face {
+  font-family: "socicon";
+  src:url("../fonts/socicon.eot");
+  src:url("../fonts/socicon.eot?#iefix") format("embedded-opentype"),
+  url("../fonts/socicon.woff") format("woff"),
+  url("../fonts/socicon.ttf") format("truetype"),
+  url("../fonts/socicon.svg#socicon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "linearicons";
+  src:    url('../fonts/icomoon.eot?xrdl5e');
+  src:    url('../fonts/icomoon.eot?xrdl5e#iefix') format('embedded-opentype'),
+  url('../fonts/icomoon.ttf?xrdl5e') format('truetype'),
+  url('../fonts/icomoon.woff?xrdl5e') format('woff'),
+  url('../fonts/icomoon.svg?xrdl5e#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+.soc-icon::before {
+  font-family: "socicon" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon::before,
+.sp-menu a::before,
+.menu-icon::after,
+.btn-close::after,
+.btn-single-close::after,
+.pdf-link::before,
+.floating-bar a::before,
+.sp-input-wrap::before,
+.add-favorite-button::before,
+.tag-remove::before,
+.tag-remove-all::before,
+.seo-toggle::before,
+.bx-controls-direction a::before,
+.carousel-control::before,
+.similar-search-container::before {
+  font-family: 'Linearicons';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  transform: translate(0, 0);
+  /* Enable Ligatures ================ */
+  -webkit-font-feature-settings: "liga";
+  -moz-font-feature-settings: "liga=1";
+  -moz-font-feature-settings: "liga";
+  -ms-font-feature-settings: "liga" 1;
+  -o-font-feature-settings: "liga";
+  font-feature-settings: "liga";
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-radar::before {
+  content: "\e77f";
+}
+.filter-toggle::before {
+  content: "\e936";
+}
+.btn-map-open::before,
+.map-lg-menu a::before,
+.menu-map-lg::after {
+  content: "\e782";
+}
+
+.icon-bedroom::before {
+  content: "\e608";
+}
+.icon-bathroom::before {
+  content: "\e606";
+}
+.icon-person::before {
+  content: "\e728";
+}
+.icon-child::before {
+  content: "\e729";
+}
+.icon-pet::before {
+  content: "\e832";
+}
+.icon-month::before {
+  content: "\e789";
+}
+.icon-day::before {
+  content: "\e788";
+}
+.icon-checkmark-circle::before {
+  content: "\e959";
+}
+.icon-cross-circle::before {
+  content: "\e95a";
+}
+.fav-count-field::before,
+.favorites-menu a::before,
+.menu-favorites::after,
+.add-favorite-button::before,
+.floating-bar .favorites-link::before {
+  content: "\e68c";
+}
+.off-market-menu a::before,
+.menu-offmarket::after,
+.floating-bar .off-market-link::before {
+  content: "\e66b";
+}
+.btn-single-close::after,
+.btn-close::after,
+.tag-remove::before {
+  content: "\e92a";
+}
+.tag-remove-all::before, .clear-filters-btn::before {
+  content: "\e794";
+}
+.sp-input-wrap::before ,
+.floating-bar .search-link::before {
+  content: "\e922";
+}
+.request-link::before {
+  content: "\e7da";
+}
+.to-top-link::before {
+  content: "\e941";
+}
+.pdf-link::before {
+  content: "\e6d4";
+}
+.seo-toggle {
+  &::before {
+    padding-left: 2px;
+    padding-right: 2px;
+    content: "\e801";
+  }
+  &.collapsed {
+    &::before {
+      content: "\e9e9";
+    }
+  }
+}
+.object-prev a::before,
+.object-prev button::before,
+.bx-controls-direction a.bx-prev::before,
+.carousel-control.left::before {
+  content: "\e93b";
+}
+.object-next a::before,
+.object-next button::before,
+.bx-controls-direction a.bx-next::before,
+.carousel-control.right::before {
+  content: "\e93c";
+}
+.regions-menu a::before,
+.map-toggle::before,
+.menu-region::after {
+  content: "\e884";
+}
+.terms-link::before {
+  content: "\e6dc";
+}
+.icon-photos::before {
+  content: "\e711";
+}
+.icon-description::before {
+  content: "\e6d9";
+}
+.icon-attorney::before {
+  content: "\e6d1";
+}
+.icon-rocket::before {
+  content: "\e837";
+}
+.ac-mobile::before,
+.contact-phone::before {
+  content: "\e7a6";
+}
+.ac-mail::before,
+.contact-email::before {
+    content: "\e697";
+}
+.fb-icon::before {
+  content: "\e041";
+}
+.twitter-icon::before {
+  content: "\e040";
+}
+.ln-icon::before {
+  content: "\e049";
+}
+.gplus-icon::before {
+  content: "\e042";
+}
+.instagram-icon::before {
+  content: "\e057";
+}
+.email-icon::before {
+  content: "\e01f";
+}
+.icon-viber::before {
+  content: "\e071";
+}
+.icon-whatsapp::before {
+  content: "\e01b";
+}
+.icon-telegram::before {
+  content: "\e06e";
+}
+.icon-skype::before {
+  content: "\e046";
+}
+.icon-mail::before {
+  content: "\e01f";
+}

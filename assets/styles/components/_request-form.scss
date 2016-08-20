@@ -1,0 +1,210 @@
+/*Request form*/
+
+.request-form {
+  fieldset {
+    padding: 16px 0 0;
+    position: relative;
+    border: none;
+    margin: 0;
+    &::before {
+      position: absolute;
+      top: 0;
+      left: if($rtl, auto, 0);
+      right: if($rtl, 0, auto);
+      direction: ltr;
+      color: $color-green;
+      font-size: 12px;
+      line-height: 1;
+      content: attr(data-count) ".";
+    }
+  }
+  label.request-form-label {
+    display: block;
+    margin-bottom: 10px;
+    position: relative;
+  }
+  .request-phone-group {
+    .request-form-label {
+      padding-right: 75px;
+      @include rtl(){
+        padding-right: 0;
+        padding-left: 75px;
+      }
+    }
+    .contact-icon {
+      color: #999;
+      font-size: 16px;
+      position: absolute;
+      top: -3px;
+      right: 0;
+      @include rtl(){
+        right: auto;
+        left: 0;
+      }
+      i {
+        margin-left: 8px;
+      }
+    }
+
+  }
+  .input-group {
+    position: relative;
+    margin-bottom: 15px;
+    &.soc-icon {
+      &::before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 40px;
+        height: 100%;
+        color: #999;
+        font-size: 20px;
+        line-height: 35px;
+        text-align: center;
+      }
+      .text-input {
+        padding-left: 40px;
+      }
+    }
+  }
+  .text-input {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    line-height: 17px;
+    &.has-error {
+      border-color: $color-red;
+    }
+  }
+  input.text-input {
+    height: 35px;
+  }
+  textarea.text-input {
+    min-height: 100px;
+    padding-top: 13px;
+    padding-bottom: 13px;
+  }
+  .btn-submit {
+    width: 100%;
+    padding-top: 11.5px;
+    padding-bottom: 11.5px;
+  }
+  .disclaimer-note {
+    font-size: 12px;
+    color: #999;
+    p {
+      margin: 0;
+    }
+    a {
+      color: inherit;
+      text-decoration: underline;
+    }
+  }
+  .request-form-row {
+    @include clearfix();
+  }
+  @media (min-width: $container-width-1) {
+    label.request-form-label {
+      font-size: 16px;
+    }
+    .input-group {
+      margin-bottom: 20px;
+      &.soc-icon {
+        &::before {
+          line-height: 47px;
+          width: 45px;
+        }
+        .text-input {
+          padding-left: 45px;
+        }
+      }
+    }
+    input.text-input {
+      height: 45px;
+      line-height: 27px;
+    }
+    .btn-submit {
+      font-size: 16px;
+      padding-top: 15.5px;
+      padding-bottom: 15.5px;
+    }
+  }
+  @media (min-width: $container-width-2) {
+    .disclaimer-note {
+      p {
+        line-height: 1.5;
+        padding: 0 12px;
+      }
+    }
+    .request-form-footer {
+      .input-group {
+        margin-bottom: 0;
+      }
+    }
+    .request-form-row {
+      > div {
+        position: relative;
+        float: left;
+        width: 50%;
+        &:first-child {
+          padding-right: 10px;
+        }
+        &:last-child {
+          padding-left: 10px;
+          &.soc-icon::before {
+            left: 10px;
+          }
+        }
+      }
+    }
+  }
+}
+.request-form-message {
+  display: none;
+  p {
+    margin: 0;
+  }
+}
+.phone-group-wrap {
+  position: relative;
+}
+
+
+
+.select2-dropdown.phone-code-dropdown {
+  background: transparent;
+  .select2-results__options {
+    background: #f2f2f2;
+    padding: 5px;
+    border: 1px solid #d9d9d9 !important;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    .select2-results__option {
+      padding: 5px 6px;
+      color: #999;
+      line-height: 20px;
+      span {
+        display: inline-block;
+        color: $text-dark-color;
+        &.flag {
+          margin-right: 8px;
+          vertical-align: middle;
+        }
+      }
+      &:hover, &.select2-results__option--highlighted {
+        background: #e6e6e6;
+      }
+    }
+    @media (min-width: $container-width-1) {
+      .select2-results__option {
+        padding-left: 7px;
+        padding-right: 7px;
+      }
+    }
+  }
+  @media (min-width: $container-width-2) {
+    max-width: 290px;
+  }
+}
+.select2-container--default .phone-code-dropdown .select2-results > .select2-results__options {
+  max-height: 160px;
+}

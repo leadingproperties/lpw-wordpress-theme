@@ -1,0 +1,39 @@
+.btn {
+  display: inline-block;
+  margin-bottom: 0; // For input.btn
+  text-align: center;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+.btn-close {
+  text-decoration: none;
+  cursor: pointer;
+  &:hover, &:focus, &:active {
+    text-decoration: none;
+  }
+}
+.btn-green {
+  background: $color-green;
+  color: #fff;
+  &:hover, &:active, &.active {
+    background: #88b55b;
+  }
+}
+.btn-red {
+  background: $color-red;
+  color: #fff;
+  &:hover, &:active, &.active {
+    background: #de553a;
+  }
+}
+.btn-white {
+  background: #fff;
+  color: #333;
+  &:hover, &:active, &.active {
+    background: #f2f2f2;
+  }
+}

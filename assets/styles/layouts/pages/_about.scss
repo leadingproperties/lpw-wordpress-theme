@@ -1,0 +1,93 @@
+
+
+.about-intro {
+  max-width: 805px;
+}
+.office-box {
+  position: relative;
+  width: 100%;
+  color: $text-color;
+  margin-bottom: 35px;
+  font-size: 12px;
+  address {
+    line-height: 1.667;
+  }
+  .office-photo {
+    margin-bottom: 20px;
+    img {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+  .office-title {
+    font-size: 16px;
+    line-height: 1.563;
+    color: $text-dark-color;
+    margin: 0 0 3px;
+  }
+  @media (min-width: $sp560) {
+    width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 45px;
+  }
+  @media (min-width: $sp1130) {
+    float: left;
+    margin-left: 0;
+    margin-right: 50px;
+    margin-bottom: 40px;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+.team-box {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 40px;
+  width: 235px;
+  color: $text-color;
+  font-size: 12px;
+  .team-photo {
+    margin-bottom: 20px;
+  }
+  .team-location {
+    margin-bottom: 5px;
+  }
+  .team-name {
+    font-size: 16px;
+    line-height: 1.875;
+    color: $text-dark-color;
+    margin: 0;
+  }
+  .team-contact {
+    line-height: 1.667;
+    margin-bottom: 5px;
+    a {
+      color: inherit;
+    }
+  }
+  .contact-icon {
+    display: inline-block;
+    i {
+      margin-right: 5px;
+      font-style: normal;
+    }
+  }
+  @media (min-width: $sp560) {
+    float: left;
+    margin-left: 0;
+    margin-right: 50px;
+  }
+  @media (min-width: $sp560) and  (max-width: $sp1130 - 1) {
+    &:nth-child(2n) {
+      margin-right: 0;
+    }
+  }
+  @media (min-width: $sp1130) {
+    &:nth-child(4n) {
+      margin-right: 0;
+    }
+  }
+}

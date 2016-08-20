@@ -1,0 +1,169 @@
+.alert {
+  position: relative;
+  width: 100%;
+  a {
+    color: inherit;
+    text-decoration: underline;
+    &.alert-close {
+      text-decoration: none;
+      position: absolute;
+      top: 9px;
+      right: 12px;
+      z-index: $z-index-alert + 1;
+      font-size: 20px;
+      text-align: center;
+    }
+  }
+  &.alert-danger {
+    color: #fff;
+    background: $color-red-transparent;
+  }
+  .cookie-msg & {
+    padding: 10px 75px 5px 0;
+    a {
+      &.alert-close {
+        right: 0;
+        color: #fff;
+        display: block;
+        @include square(40px);
+        padding: 8px 0 12px;
+        background: $color-red;
+      }
+    }
+    @media (min-width: $screen370) {
+      padding: 20px 85px 15px 10px;
+      a {
+        &.alert-close {
+          top: 20px;
+          right: 10px;
+          @include square(45px);
+          padding-top: 10px;
+          padding-bottom: 14px;
+        }
+      }
+    }
+    @media (min-width: $container-width-2) {
+      width: $container-width-2 - 2 * $container-padding;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 0;
+      padding-right: 75px;
+      a {
+        &.alert-close {
+          right: 0;
+        }
+      }
+    }
+    @media (min-width: $screen1280) {
+      padding: 25px 85px 20px 0;
+      a {
+        &.alert-close {
+         @include square(50px);
+          padding-top: 14px;
+          padding-bottom: 16px;
+        }
+      }
+    }
+  }
+  .off-marker-alert & {
+    padding: 20px 45px 10px 15px;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 100%;
+    z-index: $z-index-alert;
+    &::before {
+      position: absolute;
+      top: -10px;
+      right: 50%;
+      margin-right: -10px;
+      content: "";
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 0 10px 10px 10px;
+      border-color: transparent transparent $color-red-transparent transparent;
+    }
+    p {
+      line-height: 1.786;
+    }
+    @media (min-width: $screen370) {
+      width: $object-width - 20;
+      right: 50%;
+      margin-right: - ($object-width - 20 ) / 2;
+    }
+    @media (min-width: $screen760) {
+      right: 0;
+      margin: 0;
+      width: 300px;
+      &::before {
+       right: 50px;
+      }
+    }
+  }
+}
+.off-marker-alert {
+  display: none;
+  position: relative;
+  float: left;
+  top: 15px;
+  height: 0;
+  width: 100%;
+  @extend .clearfix;
+}
+.cookie-msg {
+  background: #d9d9d9;
+  color: #333;
+  font-size: 12px;
+  display: none;
+  @media (min-width: $container-width-1) {
+    font-size: 14px;
+  }
+}
+.favorites-confirmation-message {
+  padding-top: 20px;
+  padding-bottom: 30px;
+  color: #fff;
+  background: $color-red-transparent;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: $z-index-alert;
+  line-height: 1.786;
+  text-align: center;
+  display: none;
+  &.open {
+    display: block;
+  }
+    p {
+      max-width: 205px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  .favorites-button-wrap {
+    .btn-fav-confirm {
+      padding: 6.5px 5px;
+      width: 140px;
+      &:first-child {
+        margin-right: 14px;
+      }
+    }
+  }
+  @media (min-width: $container-width-1) {
+    padding-top: 30px;
+    padding-bottom: 40px;
+    font-size: 16px;
+    line-height: 1.563;
+    p {
+      max-width: none;
+      margin-bottom: 22px;
+    }
+    .favorites-button-wrap {
+      .btn-fav-confirm {
+        padding: 15px 10px;
+        width: 165px;
+      }
+    }
+  }
+}

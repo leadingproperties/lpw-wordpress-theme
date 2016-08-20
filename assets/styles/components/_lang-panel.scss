@@ -1,0 +1,224 @@
+.lang-toggle {
+  position: relative;
+  padding-top: 18px;
+  padding-bottom: 18px;
+  &::before {
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    z-index: $z-index-lp;
+    width: 100%;
+    content: "";
+    border-bottom: 2px solid #fff;
+    visibility: visible;
+    @include transition-property(visibility);
+    @include transition-duration(.35s);
+    @include transition-timing-function(ease);
+  }
+  &.collapsed {
+    &::before {
+      visibility: hidden;
+    }
+  }
+}
+span[class^="lang-"],
+span[class*=" lang-"] {
+  display: inline-block;
+  width: 18px;
+  height: $flag-height;
+  background-image: url("../images/lang_flags_sprite.svg");
+  background-repeat: no-repeat;
+  .lang-option-wrapper &, .lang-toggle & {
+    border: 1px solid #e6e6e6;
+    width: 20px;
+    height: $flag-height + 2;
+  }
+}
+.lang {
+  &-en {
+    background-position: center (-$flag-height);
+  }
+  &-de {
+    background-position: center (-$flag-height * 2);
+  }
+  &-it {
+    background-position: center (-$flag-height * 3);
+  }
+  &-es {
+    background-position: center (-$flag-height * 4);
+  }
+  &-pt {
+    background-position: center (-$flag-height * 5);
+  }
+  &-fr {
+    background-position: center (-$flag-height * 6);
+  }
+  &-zh {
+    background-position: center (-$flag-height * 7);
+  }
+  &-ja {
+    background-position: center (-$flag-height * 8);
+  }
+  &-ko {
+    background-position: center (-$flag-height * 9);
+  }
+  &-th {
+    background-position: center (-$flag-height * 10);
+  }
+  &-ar {
+    background-position: center (-$flag-height * 11);
+  }
+  &-he {
+    background-position: center (-$flag-height * 12);
+  }
+  &-da {
+    background-position: center (-$flag-height * 13);
+  }
+  &-nb {
+    background-position: center (-$flag-height * 14);
+  }
+  &-sv {
+    background-position: center (-$flag-height * 15);
+  }
+  &-tr {
+    background-position: center (-$flag-height * 16);
+  }
+  &-cs {
+    background-position: center (-$flag-height * 17);
+  }
+  &-ur {
+    background-position: center (-$flag-height * 18);
+  }
+  &-hi {
+    background-position: center (-$flag-height * 19);
+  }
+  &-ca {
+    background-position: center (-$flag-height * 20);
+  }
+  &-nl {
+    background-position: center (-$flag-height * 21);
+  }
+  &-fi {
+    background-position: center (-$flag-height * 22);
+  }
+  &-vi {
+    background-position: center (-$flag-height * 23);
+  }
+  &-bg {
+    background-position: center (-$flag-height * 24);
+  }
+  &-pl {
+    background-position: center (-$flag-height * 25);
+  }
+  &-lv {
+    background-position: center (-$flag-height * 26);
+  }
+  &-hr {
+    background-position: center (-$flag-height * 27);
+  }
+  &-et {
+    background-position: center (-$flag-height * 28);
+  }
+  &-is {
+    background-position: center (-$flag-height * 29);
+  }
+  &-sr {
+    background-position: center (-$flag-height * 30);
+  }
+  &-hu {
+    background-position: center (-$flag-height * 31);
+  }
+  &-ro {
+    background-position: center (-$flag-height * 32);
+  }
+  &-lt {
+    background-position: center (-$flag-height * 33);
+  }
+  &-uk {
+    background-position: center (-$flag-height * 34);
+  }
+  &-sk {
+    background-position: center (-$flag-height * 35);
+  }
+  &-sl {
+    background-position: center (-$flag-height * 36);
+  }
+  &-el {
+    background-position: center (-$flag-height * 37);
+  }
+  &-id {
+    background-position: center (-$flag-height * 38);
+  }
+  &-ind {
+    background-position: center (-$flag-height * 38);
+  }
+  &-ms {
+    background-position: center (-$flag-height * 39);
+  }
+  &-tl {
+    background-position: center (-$flag-height * 40);
+  }
+  &-fil {
+    background-position: center (-$flag-height * 40);
+  }
+  &-tc {
+    //not sure about this one - Traditional Chinese
+    background-position: center (-$flag-height * 41);
+  }
+
+}
+.section-lang-lists {
+  background: #fff;
+}
+.lang-panel-row {
+  margin: 0 auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  @include clearfix();
+  @media (max-width: $container-width-2) {
+    width: $object-width;
+  }
+  @media (min-width: $screen1280) {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+}
+.lang-option-wrapper {
+  font-size: 12px;
+  width: 50%;
+  position: relative;
+  float: left;
+  padding: 0 10px;
+  height: 30px;
+  a {
+    padding: 8px 0;
+    display: block;
+    line-height: 1.16666;
+    text-decoration: none;
+    color: #808080;
+    @include text-overflow();
+    span {
+      margin: if($rtl, 0 0 0 7px, 0 7px 0 0);
+      vertical-align: bottom;
+    }
+    &:hover {
+      color: $link-color;
+    }
+  }
+  @media (min-width: $screen370) {
+    font-size: 14px;
+    a {
+      padding-top: 7px;
+      padding-bottom: 7px;
+      span {
+        margin: if($rtl, 0 0 0 14px, 0 14px 0 0);
+      }
+    }
+  }
+  @media (min-width: $container-width-2) {
+    width: 25%;
+  }
+  @media (min-width: $container-width-3) {
+    width: 16.666666%;
+  }
+}

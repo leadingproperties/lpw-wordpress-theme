@@ -1,0 +1,80 @@
+/* Colors */
+
+$text-color:                  #999 !default;
+$text-dark-color:             #333 !default;
+$link-color:                  $text-dark-color !default;
+$background-color:            #f3f3f3 !default;
+$border-color:                #e6e6e6 !default;
+$color-red:                   #eb5b3e !default;
+$color-red-transparent:       rgba(red($color-red), green($color-red), blue($color-red), .95) !default;
+$color-green:                 #92c361 !default;
+
+/* Type */
+
+
+$font-size-h1:                24px !default;
+$font-size-h2:                20px !default;
+$font-size-h3:                18px !default;
+$font-size-h4:                16px !default;
+$font-size-h5:                14px !default;
+$font-size-h6:                12px !default;
+
+/* Side Menu */
+$menu-width:                  280px !default;
+$menu-width370:               330px !default;
+$menu-width760:               370px !default;
+
+/* Lang panel */
+
+$flag-height:                  12px !default;
+
+/* Breakpoints */
+
+$object-width:                  370px !default;
+$container-padding:             10px !default;
+
+$container-width-1:             $object-width !default; //370px
+$container-width-2:             2 * $object-width !default; //720px
+$container-width-3:             3 * $object-width !default; //1070px
+$container-width-4:             4 * $object-width !default; // 1420px
+$container-width-5:             5 * $object-width !default; // 1770px
+$container-width-6:             6 * $object-width !default; // 2220px
+
+$screen320:                     320px !default;;
+$screen370:                     370px !default;
+$screen760:                     760px !default;
+$screen1280:                    1280px !default;
+$screen1920:                    1920px !default;
+
+/*Static page breakpoints*/
+$sp560:                          560px !default;
+$sp1130:                         1130px !default;
+
+$searchfiield1280:               720px !default;
+
+
+
+$top-col-width370:               100px !default;
+$top-menu-width740:              $container-width-2 - 2 * $top-col-width370 - 2 * $container-padding !default;
+$top-menu-width1070:             $container-width-3 -  $top-col-width370 - 2 * $container-padding !default;
+
+/* z-indexes */
+
+$z-index-lp:                    90 !default;
+$z-index-menu-overlay:          1400 !default;
+$z-index-side-menu:             1500 !default;
+$z-index-menu-close:            1510 !default;
+$z-index-filter-toggle:         100 !default;
+$z-index-fav-btn:               100 !default;
+$z-index-autocomplete:          1200 !default;
+$z-index-filters:               1350 !default;
+$z-index-fbar:                  1325 !default;
+$z-index-alert:                 1300 !default;
+$zindex-tooltip:                1000 !default;
+$z-index-single-object:         1600 !default;
+$z-index-modal-background:      1650 !default;
+$z-index-modal:                 1700 !default;
+
+
+
+$tooltip-arrow-width:           10px !default;

@@ -1,0 +1,20 @@
+* {
+  &:focus {
+    outline: none;
+  }
+}
+html.side-menu-open, html.overflow-height {
+  height: 100%;
+  body, .wrap {
+    height: 100%;
+  }
+}
+.site-content {
+  background-color: $background-color;
+}
+.half-opaque {
+  opacity: .5;
+}
+.half-opaque, a.cursor-default {
+  cursor: default;
+}

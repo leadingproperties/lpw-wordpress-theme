@@ -1,0 +1,12 @@
+.clearfix {
+  @include clearfix();
+}
+.text-hide {
+  @include text-hide();
+}
+.text-red {
+  color: $color-red;
+}
+.text-green {
+  color: $color-green;
+}

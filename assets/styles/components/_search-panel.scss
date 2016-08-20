@@ -1,0 +1,221 @@
+.sp-container {
+  position: relative;
+}
+.search-panel-wrap {
+  background: #fff;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+  @media (min-width: $screen370) {
+    margin-bottom: 30px;
+  }
+}
+.sp-search-field {
+  padding-right: 45px;
+  position: relative;
+  max-width: 720px;
+}
+.sp-input-wrap {
+  position: relative;
+  &::before {
+    font-size: 20px;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    margin-top: -12px;
+    z-index: 100;
+    color: #333;
+    padding: 2px;
+  }
+}
+.sp-input {
+  padding-right: 45px;
+  text-indent: 2px;
+}
+.sp-search-dropdown {
+  display: none;
+  border: 1px solid #D9D9D9;
+  position: absolute;
+  z-index: $z-index-autocomplete;
+  top: 44px;
+  left: 0;
+  width: 100%;
+  padding: 5px;
+  margin: 0;
+  background: #fff;
+  list-style: none;
+  max-height: 175px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  li {
+    padding: 10px;
+    color: #999;
+    text-decoration: none;
+    overflow: hidden;
+    text-indent: 2px;
+    @include text-overflow();
+    span {
+      color: #333;
+    }
+    &:hover, &.active {
+      background: #f2f2f2;
+    }
+    &.sp-not-found {
+      background: #fff;
+      color: $color-red;
+      padding-top: 5.5px;
+      padding-bottom: 5.5px;
+    }
+  }
+  @media (min-width: $screen370) {
+    font-size: 16px;
+  }
+}
+a.filter-toggle {
+  display: block;
+  position: absolute;
+  z-index: $z-index-filter-toggle;
+  top: 0;
+  right: 0;
+  text-decoration: none;
+  @include square(40px);
+  border: 1px solid #D9D9D9;
+  background: #fff;
+  text-align: center;
+  cursor: pointer;
+  &::before {
+    font-size: 20px;
+    margin-top: 8px;
+    display: block;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -ms-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    transition: all .3s ease;
+  }
+  &.active {
+    background: #f2f2f2;
+    &::before {
+      -moz-transform: rotate(45deg);
+      -webkit-transform: rotate(45deg);
+      -o-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      transform: rotate(45deg);
+    }
+  }
+}
+.sp-menu {
+  display: none;
+  width: if($map, (3 * $top-col-width370), $top-col-width370);
+  float: right;
+  position: relative;
+  font-size: 16px;
+  text-align: left;
+  sup {
+    top: -.6em;
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    float: left;
+    li {
+      float: left;
+      width: $top-col-width370;
+      border-width: 0 1px 0 0;
+      border-style: solid;
+      border-color: $border-color;
+      position: relative;
+      display: none;
+      a {
+        text-decoration: none;
+        height: 50px;
+        display: block;
+        position: relative;
+        padding: 10px 1px 10px 67px;
+        &::before {
+          position: absolute;
+          left: 50%;
+          top: 10px;
+          margin-left: -16px;
+          font-size: 30px;
+          padding: 0 2px;
+        }
+      }
+      &:first-child {
+        border-width: 0 1px 0 1px;
+        display: block;
+      }
+      &.off-market-menu {
+        a::before {
+          margin-left: -15px;
+        }
+        sup {
+          left: -5px;
+        }
+      }
+    }
+  }
+  @media (min-width: $container-width-3) {
+    width: 3 * $top-col-width370;
+    ul {
+      li {
+        display: block;
+      }
+    }
+  }
+}
+
+@media (min-width: $screen370) {
+  .sp-search-field {
+    padding-right: 55px;
+  }
+  .sp-input-wrap {
+    &::before {
+      font-size: 30px;
+      margin-top: -17px;
+    }
+  }
+  .sp-input {
+    padding-right: 55px;
+  }
+  .sp-search-dropdown {
+    top: 54px;
+  }
+  a.filter-toggle {
+    @include square(50px);
+    &::before {
+      font-size: 30px;
+    }
+  }
+}
+@media (min-width: $container-width-2) {
+  .sp-search-field {
+    float: left;
+    width: if($map, $container-width-2 - ( 3 * $top-col-width370 + 2 * $container-padding ), $container-width-2 - ( $top-col-width370 + 2 * $container-padding ));
+    padding-right: 65px;
+  }
+  .sp-search-dropdown {
+    width: if($map, $container-width-2 - 385, $container-width-2 - 285);
+    border-top: 0;
+    top: 100%;
+  }
+  a.filter-toggle {
+    right: 10px;
+  }
+  .sp-menu {
+    display: block;
+  }
+  @media (min-width: $container-width-3) {
+    .sp-search-field {
+      width: $container-width-2;
+      padding-right: 55px;
+    }
+    .sp-search-dropdown {
+      width: $container-width-2 - 75;
+    }
+    a.filter-toggle {
+      right: 0;
+    }
+  }
+}
