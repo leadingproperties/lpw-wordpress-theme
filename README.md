@@ -9,3 +9,9 @@
 2. Dashboard -> Options
 - API: Enter API key and URL
 - Pages: assign pages to show rent/sale/favorites/etc.
+
+3. Dashboard -> Appearance -> Menus
+- Create new menu (Menu name: Top as example), and assign it to primary navigation.
+- Then drag and drop pages you need to menu. 
+    _NOTE: Buy/Rent in meny by default, do not add them._
+ 
