@@ -138,7 +138,7 @@ if( !function_exists('acf_add_local_field_group') ):
 					'class' => '',
 					'id' => '',
 				),
-				'default_value' => 'https://api-mylpw.herokuapp.com/v1/',
+				'default_value' => 'https://lpw-public-api.herokuapp.com/',
 				'placeholder' => '',
 			),
 			array (
