@@ -1,0 +1,4 @@
+gulpfile.js
+vendors
+bower_components
+assets/scripts/lodash.js
