@@ -214,6 +214,18 @@ class LP_ObjectList {
     }
 
     /**
+     * Return LP Objects in array format
+     *
+     * @since 1.0
+     * @access public
+     * @return array
+     */
+
+    public function get_objects_array() {
+        return json_decode($this->get_api_objects());
+    }
+
+    /**
      * Get general object info
      *
      * @since 1.0

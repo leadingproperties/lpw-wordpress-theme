@@ -10,7 +10,13 @@ use Lprop\Tags;
  */
 function body_class($classes) {
   // Add page slug if it doesn't exist
-  if (is_page() && !(is_page_template('page-buy.php') || is_page_template('page-rent.php') || is_page_template('page-favorites.php'))) {
+  if (is_page() && !(is_page_template('page-buy.php') ||
+                     is_page_template('page-rent.php') ||
+                     is_page_template('page-favorites.php') ||
+                     is_page_template('page-favorites-rent.php') ||
+                     is_page_template('page-object.php')
+	  )
+  ) {
     if (!in_array(basename(get_permalink()), $classes)) {
       $classes[] = basename(get_permalink());
 	  $classes[] = 'page-static';
@@ -24,6 +30,8 @@ function body_class($classes) {
 		$classes[] = 'page-favorites';
 	} elseif(is_page_template('page-favorites-rent.php')) {
 		$classes[] = 'page-favorites-rent';
+	} elseif(is_page_template('page-object.php')) {
+		$classes[] = 'page-single-object';
 	}
 
   return $classes;

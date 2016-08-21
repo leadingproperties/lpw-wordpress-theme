@@ -580,7 +580,7 @@
                     for (i = 0; i < data.parameters.images.length; i++) {
                         indClass = ( i === 0 ) ? 'active' : '';
                         objectHtml += '<div class="item ' + indClass + '">' +
-                            '<img src="' + data.parameters.images[i] + '" alt="...">' +
+                            '<img src="' + data.parameters.images[i] + '" alt="' + title + '">' +
                             '</div>';
                     }
                     objectHtml += '</div>';
@@ -669,7 +669,7 @@
                             objectHtml += '&nbsp;-&nbsp;' + data.parameters.price.max;
                         }
                     }
-                    objectHtml += '&nbsp;' + data.parameters.price.currency;
+                    objectHtml += '&nbsp;' + data.parameters.price.currency + '</p>';
                     objectHtml += '<p class="object-code icon">' + data.code + '</p>' +
                         '</div>';
                 } else if( type === 'rent' ) {
@@ -681,7 +681,7 @@
                         if(data.property_rent.rent_long.on_demand === true || _.isNull(data.property_rent.rent_long.monthly_rate)) {
                             objectHtml += 'on request*';
                         } else if(!_.isNull(data.property_rent.rent_long.monthly_rate)) {
-                            objectHtml += data.property_rent.rent_long.monthly_rate + ' ' + data.property_rent.rent_long.currency_code + '*';
+                            objectHtml += data.property_rent.rent_long.monthly_rate + '&nbsp;' + data.property_rent.rent_long.currency_code + '*';
                         }
                         objectHtml += '</p>';
                         objectHtml += '<hr>';
@@ -706,14 +706,14 @@
                                 }
                             } else {
                                 if(!_.isNull(data.property_rent.rent_long.deposit)) {
-                                    objectHtml += data.property_rent.rent_long.deposit + ' ' + data.property_rent.rent_long.currency_code + '; ';
+                                    objectHtml += data.property_rent.rent_long.deposit + '&nbsp;' + data.property_rent.rent_long.currency_code + '; ';
                                 } else {
                                     objectHtml += 'on request; ';
                                 }
                             }
                         }
 
-                        objectHtml += 'comission: ';
+                        objectHtml += 'commission: ';
                         if(data.property_rent.rent_long.commission_on_demand === true) {
                             objectHtml += 'on request; ';
                         } else {
@@ -815,7 +815,7 @@
                             }
                         }
 
-                        objectHtml += 'comission: ';
+                        objectHtml += 'commission: ';
                         if(data.property_rent.rent_short.commission_on_demand === true) {
                             objectHtml += 'on request; ';
                         } else {
@@ -905,7 +905,7 @@
                     objectHtml += '</li>';
                 }
                 if (!_.isNull(data.features.building_storeys) && (!_.isNull(data.features.building_storeys.min) || !_.isNull(data.features.building_storeys.max))) {
-                    objectHtml += '<li>building storeys</li>';
+                    objectHtml += '<li>c</li>';
                     objectHtml += '<li>';
                     if (!_.isNull(data.features.building_storeys.min)) {
                         objectHtml += data.features.building_storeys.min;
