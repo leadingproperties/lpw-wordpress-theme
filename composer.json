@@ -1,9 +1,9 @@
 {
-  "name": "lpw-wordpress-theme",
+  "name": "leadingproperties/lpw-wordpress-theme",
   "type": "wordpress-theme",
   "license": "MIT",
   "description": "LPW custom Wordpress theme",
-  "homepage": "https://roots.io/sage/",
+  "homepage": "https://leadingproperties.com",
   "authors": [
     {
       "name": "alevgal",
