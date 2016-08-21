@@ -144,10 +144,10 @@
 									_e('Price on demand', 'leadindprops');
 								} else {
 									if($objects_obj->parameters->price->min) {
-										echo $objects_obj->parameters->price->min;
+										echo number_format($objects_obj->parameters->price->min, 0, ".", " ");
 									}
 									if($objects_obj->parameters->price->max) {
-										echo '&nbsp;-&nbsp;' . $objects_obj->parameters->price->max;
+										echo '&nbsp;-&nbsp;' . number_format($objects_obj->parameters->price->max, 0, ".", " ");
 									}
 									echo '&nbsp;' . $objects_obj->parameters->price->currency;
 								} ?>
@@ -161,7 +161,7 @@
 									if($objects_obj->property_rent->rent_long->on_demand) {
 										echo __('on request', 'leadingprops') . '*';
 									} elseif($objects_obj->property_rent->rent_long->monthly_rate) {
-										echo $objects_obj->property_rent->rent_long->monthly_rate . '&nbsp;' . $objects_obj->property_rent->rent_long->currency_code . '*';
+										echo  number_format($objects_obj->property_rent->rent_long->monthly_rate, 0, ".", " ") . '&nbsp;' . $objects_obj->property_rent->rent_long->currency_code . '*';
 									}
 								echo '</p>';
 								echo '<hr>';
@@ -185,7 +185,7 @@
 											}
 										} else {
 											if($objects_obj->property_rent->rent_long->deposit) {
-												echo $objects_obj->property_rent->rent_long->deposit . '&nbsp;' . $objects_obj->property_rent->rent_long->currency_code . '; ';
+												echo number_format($objects_obj->property_rent->rent_long->deposit, 0, ".", " ") . '&nbsp;' . $objects_obj->property_rent->rent_long->currency_code . '; ';
 											} else {
 												echo __('on request', 'leadingprops') . '; ';
 											}
@@ -203,7 +203,7 @@
 										}
 									} else {
 										if($objects_obj->property_rent->rent_long->commission) {
-											echo $objects_obj->property_rent->rent_long->commission . '&nbsp;' . $objects_obj->property_rent->rent_long->currency_code . '; ';
+											echo number_format($objects_obj->property_rent->rent_long->commission, 0, ".", " ") . '&nbsp;' . $objects_obj->property_rent->rent_long->currency_code . '; ';
 										} else {
 											echo __('on request', 'leadingprops') . '; ';
 										}
@@ -220,15 +220,15 @@
                                       <li class="heading">' . __('low season', 'leadingprops') . '</li>
                                       <li>1 ' .__('day', 'leadingprops') . '</li>
                                       <li>';
-								echo ($objects_obj->property_rent->rent_short->ls_daily_rate) ? $objects_obj->property_rent->rent_short->ls_daily_rate : '&mdash;';
+								echo ($objects_obj->property_rent->rent_short->ls_daily_rate) ? number_format($objects_obj->property_rent->rent_short->ls_daily_rate, 0, ".", " ")  : '&mdash;';
 								echo '</li>
 								      <li>1 ' . __('week', 'leadingprops') . '</li>
 								      <li>';
-								echo ($objects_obj->property_rent->rent_short->ls_weekly_rate) ? $objects_obj->property_rent->rent_short->ls_weekly_rate : '&mdash;';
+								echo ($objects_obj->property_rent->rent_short->ls_weekly_rate) ? number_format($objects_obj->property_rent->rent_short->ls_weekly_rate, 0, ".", " ")  : '&mdash;';
 								echo '</li>
 								      <li>1 ' . __('month', 'leadingprops') . '</li>
 								      <li>';
-								echo ($objects_obj->property_rent->rent_short->ls_monthly_rate) ? $objects_obj->property_rent->rent_short->ls_monthly_rate : '&mdash;';
+								echo ($objects_obj->property_rent->rent_short->ls_monthly_rate) ? number_format($objects_obj->property_rent->rent_short->ls_monthly_rate, 0, ".", " ")  : '&mdash;';
 								echo '</li>
 								      </ul>';
 
@@ -237,15 +237,15 @@
                                       <li class="heading">' . __('medium season', 'leadingprops') . '</li>
                                       <li class="hidden-760">1 ' .__('day', 'leadingprops') . '</li>
                                       <li>';
-								echo ($objects_obj->property_rent->rent_short->ms_daily_rate) ? $objects_obj->property_rent->rent_short->ms_daily_rate : '&mdash;';
+								echo ($objects_obj->property_rent->rent_short->ms_daily_rate) ? number_format($objects_obj->property_rent->rent_short->ms_daily_rate, 0, ".", " ")  : '&mdash;';
 								echo '</li>
 									  <li class="hidden-760">1 ' . __('week', 'leadingprops') . '</li>
 									  <li>';
-								echo ($objects_obj->property_rent->rent_short->ms_weekly_rate) ? $objects_obj->property_rent->rent_short->ms_weekly_rate : '&mdash;';
+								echo ($objects_obj->property_rent->rent_short->ms_weekly_rate) ? number_format($objects_obj->property_rent->rent_short->ms_weekly_rate, 0, ".", " ")  : '&mdash;';
 								echo '</li>
 									  <li class="hidden-760">1 ' . __('month', 'leadingprops') . '</li>
 									  <li>';
-								echo ($objects_obj->property_rent->rent_short->ms_monthly_rate) ? $objects_obj->property_rent->rent_short->ms_monthly_rate : '&mdash;';
+								echo ($objects_obj->property_rent->rent_short->ms_monthly_rate) ? number_format($objects_obj->property_rent->rent_short->ms_monthly_rate, 0, ".", " ") : '&mdash;';
 								echo '</li>
 									 </ul>';
 
@@ -254,15 +254,15 @@
                                       <li class="heading">' . __('hight season', 'leadingprops') . '</li>
                                       <li class="hidden-760">1 ' .__('day', 'leadingprops') . '</li>
                                       <li>';
-								echo ($objects_obj->property_rent->rent_short->hs_daily_rate) ? $objects_obj->property_rent->rent_short->hs_daily_rate : '&mdash;';
+								echo ($objects_obj->property_rent->rent_short->hs_daily_rate) ? number_format($objects_obj->property_rent->rent_short->hs_daily_rate, 0, ".", " ")  : '&mdash;';
 								echo '</li>
 									  <li class="hidden-760">1 ' . __('week', 'leadingprops') . '</li>
 									  <li>';
-								echo ($objects_obj->property_rent->rent_short->hs_weekly_rate) ? $objects_obj->property_rent->rent_short->hs_weekly_rate : '&mdash;';
+								echo ($objects_obj->property_rent->rent_short->hs_weekly_rate) ? number_format($objects_obj->property_rent->rent_short->hs_weekly_rate, 0, ".", " ")  : '&mdash;';
 								echo '</li>
 									  <li class="hidden-760">1 ' . __('month', 'leadingprops') . '</li>
 									  <li>';
-								echo ($objects_obj->property_rent->rent_short->hs_monthly_rate) ? $objects_obj->property_rent->rent_short->hs_monthly_rate : '&mdash;';
+								echo ($objects_obj->property_rent->rent_short->hs_monthly_rate) ? number_format($objects_obj->property_rent->rent_short->hs_monthly_rate, 0, ".", " ")  : '&mdash;';
 								echo '</li>
 									 </ul>
 									 </div>';
@@ -381,7 +381,7 @@
 						echo '</li>';
 					}
 					if($objects_obj->features->building_storeys && ($objects_obj->features->building_storeys->min || $objects_obj->features->building_storeys->max)) {
-						echo '<li>' . __('building_storeys', 'leadingprops') . '</li>';
+						echo '<li>' . __('building storeys', 'leadingprops') . '</li>';
 						echo '<li>';
 						if($objects_obj->features->building_storeys->min) {
 							echo $objects_obj->features->building_storeys->min;

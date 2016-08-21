@@ -10,6 +10,18 @@
  * always reference jQuery with $, even when in .noConflict() mode.
  * ======================================================================== */
 
+Number.prototype.formatMoney = function(c, d, t){
+    var n = this,
+        c = (isNaN(c = Math.abs(c))) ? 2 : c,
+        d = d == undefined ? " " : d,
+        t = t == undefined ? "," : t,
+        s = n < 0 ? "-" : "",
+        i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "",
+        j = (j = i.length) > 3 ? j % 3 : 0;
+    return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
+};
+
+
 (function($) {
     // Helper functions
     var Helpers = {
@@ -663,10 +675,10 @@
                         objectHtml += 'Price on demand';
                     } else {
                         if (!_.isNull(data.parameters.price.min)) {
-                            objectHtml += data.parameters.price.min;
+                            objectHtml += data.parameters.price.min.formatMoney(0, ',', ' ');
                         }
                         if (!_.isNull(data.parameters.price.max)) {
-                            objectHtml += '&nbsp;-&nbsp;' + data.parameters.price.max;
+                            objectHtml += '&nbsp;-&nbsp;' + data.parameters.price.max.formatMoney(0, ',', ' ');
                         }
                     }
                     objectHtml += '&nbsp;' + data.parameters.price.currency + '</p>';
@@ -681,7 +693,7 @@
                         if(data.property_rent.rent_long.on_demand === true || _.isNull(data.property_rent.rent_long.monthly_rate)) {
                             objectHtml += 'on request*';
                         } else if(!_.isNull(data.property_rent.rent_long.monthly_rate)) {
-                            objectHtml += data.property_rent.rent_long.monthly_rate + '&nbsp;' + data.property_rent.rent_long.currency_code + '*';
+                            objectHtml += data.property_rent.rent_long.monthly_rate.formatMoney(0, ',', ' ') + '&nbsp;' + data.property_rent.rent_long.currency_code + '*';
                         }
                         objectHtml += '</p>';
                         objectHtml += '<hr>';
@@ -706,7 +718,7 @@
                                 }
                             } else {
                                 if(!_.isNull(data.property_rent.rent_long.deposit)) {
-                                    objectHtml += data.property_rent.rent_long.deposit + '&nbsp;' + data.property_rent.rent_long.currency_code + '; ';
+                                    objectHtml += data.property_rent.rent_long.deposit.formatMoney(0, ',', ' ') + '&nbsp;' + data.property_rent.rent_long.currency_code + '; ';
                                 } else {
                                     objectHtml += 'on request; ';
                                 }
@@ -742,15 +754,15 @@
                                       '<li class="heading">low season</li>' +
                                       '<li>1 day</li>';
                         objectHtml += '<li>';
-                        objectHtml += (!_.isNull(data.property_rent.rent_short.ls_daily_rate)) ? data.property_rent.rent_short.ls_daily_rate : '&mdash;';
+                        objectHtml += (!_.isNull(data.property_rent.rent_short.ls_daily_rate)) ? data.property_rent.rent_short.ls_daily_rate.formatMoney(0, ',', ' ') : '&mdash;';
                         objectHtml += '</li>';
                         objectHtml += '<li>1 week</li>';
                         objectHtml += '<li>';
-                        objectHtml += (!_.isNull(data.property_rent.rent_short.ls_weekly_rate)) ? data.property_rent.rent_short.ls_weekly_rate : '&mdash;';
+                        objectHtml += (!_.isNull(data.property_rent.rent_short.ls_weekly_rate)) ? data.property_rent.rent_short.ls_weekly_rate.formatMoney(0, ',', ' ') : '&mdash;';
                         objectHtml += '</li>';
                         objectHtml += '<li>1 month</li>';
                         objectHtml += '<li>';
-                        objectHtml += (!_.isNull(data.property_rent.rent_short.ls_monthly_rate)) ? data.property_rent.rent_short.ls_monthly_rate : '&mdash;';
+                        objectHtml += (!_.isNull(data.property_rent.rent_short.ls_monthly_rate)) ? data.property_rent.rent_short.ls_monthly_rate.formatMoney(0, ',', ' ') : '&mdash;';
                         objectHtml += '</li>';
                         objectHtml += '</ul>';
 
@@ -759,15 +771,15 @@
                                       '<li class="heading">medium season</li>' +
                                       '<li class="hidden-760">1 day</li>';
                         objectHtml += '<li>';
-                        objectHtml += (!_.isNull(data.property_rent.rent_short.ms_daily_rate)) ? data.property_rent.rent_short.ms_daily_rate : '&mdash;';
+                        objectHtml += (!_.isNull(data.property_rent.rent_short.ms_daily_rate)) ? data.property_rent.rent_short.ms_daily_rate.formatMoney(0, ',', ' ') : '&mdash;';
                         objectHtml += '</li>';
                         objectHtml += '<li class="hidden-760">1 week</li>';
                         objectHtml += '<li>';
-                        objectHtml += (!_.isNull(data.property_rent.rent_short.ms_weekly_rate)) ? data.property_rent.rent_short.ms_weekly_rate : '&mdash;';
+                        objectHtml += (!_.isNull(data.property_rent.rent_short.ms_weekly_rate)) ? data.property_rent.rent_short.ms_weekly_rate.formatMoney(0, ',', ' ') : '&mdash;';
                         objectHtml += '</li>';
                         objectHtml += '<li class="hidden-760">1 month</li>';
                         objectHtml += '<li>';
-                        objectHtml += (!_.isNull(data.property_rent.rent_short.ms_monthly_rate)) ? data.property_rent.rent_short.ms_monthly_rate : '&mdash;';
+                        objectHtml += (!_.isNull(data.property_rent.rent_short.ms_monthly_rate)) ? data.property_rent.rent_short.ms_monthly_rate.formatMoney(0, ',', ' ') : '&mdash;';
                         objectHtml += '</li>';
                         objectHtml += '</ul>';
 
@@ -776,15 +788,15 @@
                                       '<li class="heading">high season</li>' +
                                       '<li class="hidden-760">1 day</li>';
                         objectHtml += '<li>';
-                        objectHtml += (!_.isNull(data.property_rent.rent_short.hs_daily_rate)) ? data.property_rent.rent_short.hs_daily_rate : '&mdash;';
+                        objectHtml += (!_.isNull(data.property_rent.rent_short.hs_daily_rate)) ? data.property_rent.rent_short.hs_daily_rate.formatMoney(0, ',', ' ') : '&mdash;';
                         objectHtml += '</li>';
                         objectHtml += '<li class="hidden-760">1 week</li>';
                         objectHtml += '<li>';
-                        objectHtml += (!_.isNull(data.property_rent.rent_short.hs_weekly_rate)) ? data.property_rent.rent_short.hs_weekly_rate : '&mdash;';
+                        objectHtml += (!_.isNull(data.property_rent.rent_short.hs_weekly_rate)) ? data.property_rent.rent_short.hs_weekly_rate.formatMoney(0, ',', ' ') : '&mdash;';
                         objectHtml += '</li>';
                         objectHtml += '<li class="hidden-760">1 month</li>';
                         objectHtml += '<li>';
-                        objectHtml += (!_.isNull(data.property_rent.rent_short.hs_monthly_rate)) ? data.property_rent.rent_short.hs_monthly_rate : '&mdash;';
+                        objectHtml += (!_.isNull(data.property_rent.rent_short.hs_monthly_rate)) ? data.property_rent.rent_short.hs_monthly_rate.formatMoney(0, ',', ' ') : '&mdash;';
                         objectHtml += '</li>';
                         objectHtml += '</ul>';
                         objectHtml += '</div>' +
@@ -905,7 +917,7 @@
                     objectHtml += '</li>';
                 }
                 if (!_.isNull(data.features.building_storeys) && (!_.isNull(data.features.building_storeys.min) || !_.isNull(data.features.building_storeys.max))) {
-                    objectHtml += '<li>c</li>';
+                    objectHtml += '<li>building storeys</li>';
                     objectHtml += '<li>';
                     if (!_.isNull(data.features.building_storeys.min)) {
                         objectHtml += data.features.building_storeys.min;
@@ -1172,10 +1184,10 @@
                             objectHtml += '<span>Price on demand</span>&nbsp;';
                         } else {
                             if (!_.isNull(object.parameters.price.min)) {
-                                objectHtml += '<span>' + object.parameters.price.min + '</span>';
+                                objectHtml += '<span>' + object.parameters.price.min.formatMoney(0, ', ', ' ') + '</span>';
                             }
                             if (!_.isNull(object.parameters.price.max)) {
-                                objectHtml += '&nbsp;&mdash;&nbsp;<span>' + object.parameters.price.max + '</span>';
+                                objectHtml += '&nbsp;&mdash;&nbsp;<span>' + object.parameters.price.max.formatMoney(0, ',', ' ') + '</span>';
                             }
                             objectHtml += '&nbsp;<span>' + object.parameters.price.currency + '</span></span>';
                         }
