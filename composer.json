@@ -2,7 +2,7 @@
   "name": "leadingproperties/lpw-wordpress-theme",
   "type": "wordpress-theme",
   "license": "MIT",
-  "version": "0.1",
+  "version": "1.0.0",
   "description": "LPW custom Wordpress theme",
   "homepage": "https://leadingproperties.com",
   "authors": [
