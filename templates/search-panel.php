@@ -6,15 +6,6 @@
 			<div class="sp-input-wrap">
 				<input id="sp-search" type="text" class="sp-input text-input dropdown-trigger" placeholder="<?php _e('Address or reference number', 'leadingprops'); ?>">
 			</div>
-			<ul class="sp-search-dropdown">
-				<li><span>Lorem Ipsum</span> dolor sit</li>
-				<li class="active"><span>Lorem Ipsum</span> dolor sit</li>
-				<li><span>Lorem Ipsum</span> dolor sitdolor sitdolor sitdolor sitdolor sitdolor sitdolor sitdolor sit</li>
-				<li><span>Lorem Ipsum</span> dolor sit</li>
-				<li><span>Lorem Ipsum</span> dolor sit</li>
-				<li><span>Lorem Ipsum</span> dolor sit</li>
-				<li><span>Lorem Ipsum</span> dolor sit</li>
-			</ul><!-- /.sp-search-dropdown -->
 			<a href="#" class="filter-toggle tooltip-type-search icon" data-toggle="tooltip" data-placement="bottom" title="Advanced Search"><span class="sr-only">Filter</span></a>
 			<?php if( is_page_template('page-buy.php') ) {
 				get_template_part('templates/filter', 'sale');
