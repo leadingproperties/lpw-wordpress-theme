@@ -147,7 +147,7 @@ class LP_ObjectList {
             if ( isset( $this->args['short_rent'] ) ) {
                 $url .= '&short_rent=' . $this->args['short_rent'];
             }
-            if ( isset( $this->args['persons'] ) ) {
+            if ( isset( $this->args['persons'] ) && !empty( $this->args['persons'] ) ) {
                 $url .= '&persons=' . $this->args['persons'];
             }
             if ( isset( $this->args['child_friendly'] ) ) {
@@ -157,8 +157,7 @@ class LP_ObjectList {
                 $url .= '&pets_allowed=' . $this->args['pets_allowed'];
             }
         }
-
-
+       // echo $url; die();
         $curl_options = [
             CURLOPT_URL => $url,
             CURLOPT_HTTPHEADER => [

@@ -10,3 +10,30 @@
 .text-green {
   color: $color-green;
 }
+.hidden-760 {
+  @media (min-width: $screen760) {
+    display: none;
+  }
+}
+.visible-760 {
+  display: none;
+  @media (min-width: $screen760) {
+    display: block;
+  }
+}
+ul.list-dash {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  li {
+    position: relative;
+    padding-left: 18px;
+    &::before {
+      position: absolute;
+      content: "\2014";
+      left: 0;
+      top: 0;
+    }
+  }
+}
+

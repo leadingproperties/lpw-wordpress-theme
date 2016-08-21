@@ -35,12 +35,25 @@ $lp_settings['use_shortener'] = get_field('use_google_shortener', 'option');
 $lp_settings['site_title'] = get_bloginfo('name');
 $lp_settings['sale_page'] = get_field('sale', 'option');
 $lp_settings['rent_page'] = get_field('rent', 'option');
-$lp_settings['property_page'] = get_field('single_object', 'option');
-
+$lp_settings['property_page_id'] = get_field('single_object', 'option');
+$lp_settings['property_page'] = get_page_link($lp_settings['property_page_id']);
+ //echo get_post_field('post_name', $objectPageId);
 
 $objects = new LP_ObjectList();
 
 $lp_settings['object_info'] = $objects->get_objects_info();
+
+add_action('init', 'lp_rewrite_rule');
+function lp_rewrite_rule(){
+	global $lp_settings;
+
+	add_rewrite_rule( '^' . get_post_field('post_name', $lp_settings['property_page_id']) . '/([^/]*)/?', 'index.php?page_id=' . $lp_settings['property_page_id'] . '&object_slug=$matches[1]', 'top' );
+	flush_rewrite_rules();
+	add_filter( 'query_vars', function( $vars ){
+		$vars[] = 'object_slug';
+		return $vars;
+	} );
+}
 
 
 function get_social_links() {
