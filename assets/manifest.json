@@ -2,6 +2,7 @@
   "dependencies": {
     "main.js": {
       "files": [
+        "scripts/Autocomplete.js",
         "scripts/main.js"
       ],
       "main": true
@@ -18,15 +19,13 @@
       ]
     },
     "lodash.js": {
-      "files": [
-        "scripts/lodash.js"
-      ]
+      "bower": ["lodash"]
     },
     "jquery.js": {
       "bower": ["jquery"]
     }
   },
   "config": {
-    "devUrl": "http://wp-lp.loc"
+    "devUrl": "http://localhost:5000"
   }
 }

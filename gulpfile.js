@@ -189,6 +189,7 @@ gulp.task('styles', ['wiredep'], function() {
 gulp.task('scripts', ['jshint'], function() {
   var merged = merge();
   manifest.forEachDependency('js', function(dep) {
+    console.log(dep);
     merged.add(
       gulp.src(dep.globs, {base: 'scripts'})
         .pipe(jsTasks(dep.name))
