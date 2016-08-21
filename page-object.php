@@ -22,7 +22,7 @@
 ?>
 <?php if(!isset($objects_obj->error)) :
 	$object_type = (isset($objects_obj->slug_type) && $objects_obj->slug_type === 'PropertyObject') ? 'sale' : 'rent';
-	$object_class = ($object_type === 'sale') ? ' object-sale' : 'object-rent';
+	$object_class = ($object_type === 'sale') ? ' object-sale' : ' object-rent';
 	$object_title = ($object_type === 'sale') ? $objects_obj->description->title : $objects_obj->description->rent_title;
 
 	?>
