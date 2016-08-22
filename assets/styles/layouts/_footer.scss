@@ -82,22 +82,9 @@
         display: block;
         text-decoration: none;
         color: $text-color;
-        font-size: 8px;
-        @include clearfix();
-        h1 {
-          font-size: 10px;
-          color: $text-dark-color;
-          margin: 0;
-        }
-        p {
-          margin: 2px 0 0;
-        }
-        img {
-          display: block;
-          float: left;
-          @include square(30px);
-          margin-right: 6px;
-        }
+        @include size(111px, 40px);
+        background: url('../images/powered_by_lpw_logo.svg') 0 0 no-repeat;
+        background-size: cover;
       }
     }
   }

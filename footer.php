@@ -34,9 +34,6 @@
 		   </div><!-- /.social-links -->
 		   <div class="legal-protection">
 			   <a href="https://www.leadingproperties.com/">
-				   <img src="<?php echo get_template_directory_uri(); ?>/dist/images/leadingproperties.svg" alt="The Leading Properties of the World">
-				   <p>Powered by</p>
-				   <h1>The Leading Properties of the World</h1>
 			   </a>
 		   </div><!-- /.legal-protection -->
 	   </div>

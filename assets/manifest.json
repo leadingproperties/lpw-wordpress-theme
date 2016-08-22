@@ -4,9 +4,6 @@
       "files": [
         "scripts/main.js"
       ],
-      "vendor": [
-        "modules/Autocomplite.js"
-      ],
       "main": true
     },
     "main.css": {
