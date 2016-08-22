@@ -43,6 +43,49 @@ function setup() {
 add_action('after_setup_theme', __NAMESPACE__ . '\\setup');
 
 /**
+ * Rewrite rule for single object page
+ */
+
+add_action('init', __NAMESPACE__ . '\\lp_rewrite_rule');
+function lp_rewrite_rule(){
+	global $lp_settings;
+
+	add_rewrite_rule( '^' . get_post_field('post_name', $lp_settings['property_page_id']) . '/([^/]*)/?', 'index.php?page_id=' . $lp_settings['property_page_id'] . '&object_slug=$matches[1]', 'top' );
+	flush_rewrite_rules();
+	add_filter( 'query_vars', function( $vars ){
+		$vars[] = 'object_slug';
+		return $vars;
+	} );
+}
+
+/**
+ * Template redirect for autocomplete script
+ */
+add_action('init', __NAMESPACE__ . '\\autocomplete_rewrite_rules');
+
+function autocomplete_rewrite_rules() {
+	add_rewrite_rule( '^autocomplete?', 'index.php?is_autocomplete=1', 'top' );
+	flush_rewrite_rules();
+
+	add_filter( 'query_vars', function( $vars ){
+		$vars[] = 'is_autocomplete';
+		return $vars;
+	} );
+
+	add_filter('template_include', function($template) {
+		if(get_query_var('is_autocomplete', false)) {
+			$new_template = get_template_directory() . '/lib/objects/autocomplete.php';
+			if(file_exists($new_template)) {
+				$template = $new_template;
+			}
+		}
+		return $template;
+
+	}, 1000, 1);
+}
+
+
+/**
  * Register sidebars
  */
 function widgets_init() {
@@ -68,8 +111,15 @@ function assets() {
   if (is_single() && comments_open() && get_option('thread_comments')) {
     wp_enqueue_script('comment-reply');
   }
+  if(is_page_template('page-buy.php') || is_page_template('page-rent.php')) {
+	  /*TODO: Change API key*/
+	 wp_enqueue_script('google-map', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyB9AMFYWn5z8QYptnbetxXckrldFpsZyGA&libraries=places', null, true);
+	 wp_register_script('sage/js', Assets\asset_path('scripts/main.js'), ['jquery', 'lodash', 'google-map'], null, true);
+  } else {
+	  wp_register_script('lprop/js', Assets\asset_path('scripts/main.js'), ['jquery', 'lodash'], null, true);
+  }
   wp_enqueue_script('lodash', Assets\asset_path('scripts/lodash.js'), [], null, true);
-  wp_register_script('sage/js', Assets\asset_path('scripts/main.js'), ['jquery', 'lodash'], null, true);
+  wp_enqueue_script('lprop/js');
   $data = [
 	  'siteTitle'   => $lp_settings['site_title'],
 	  'homeUrl' => home_url('/'),

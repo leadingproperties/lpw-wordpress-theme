@@ -157,7 +157,7 @@ class LP_ObjectList {
                 $url .= '&pets_allowed=' . $this->args['pets_allowed'];
             }
         }
-       // echo $url; die();
+
         $curl_options = [
             CURLOPT_URL => $url,
             CURLOPT_HTTPHEADER => [
@@ -251,10 +251,10 @@ class LP_ObjectList {
      * Check if string is JSON
      *
      * @since 1.0
-     * @access private
+     * @access public
      * @return bool
      */
-    private function isJson($string) {
+    static public function isJson($string) {
         json_decode($string);
         return (json_last_error() == JSON_ERROR_NONE);
     }

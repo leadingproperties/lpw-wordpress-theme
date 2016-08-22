@@ -43,18 +43,6 @@ $objects = new LP_ObjectList();
 
 $lp_settings['object_info'] = $objects->get_objects_info();
 
-add_action('init', 'lp_rewrite_rule');
-function lp_rewrite_rule(){
-	global $lp_settings;
-
-	add_rewrite_rule( '^' . get_post_field('post_name', $lp_settings['property_page_id']) . '/([^/]*)/?', 'index.php?page_id=' . $lp_settings['property_page_id'] . '&object_slug=$matches[1]', 'top' );
-	flush_rewrite_rules();
-	add_filter( 'query_vars', function( $vars ){
-		$vars[] = 'object_slug';
-		return $vars;
-	} );
-}
-
 
 function get_social_links() {
 	$fb_link = get_field('facebook_link', 'option');
