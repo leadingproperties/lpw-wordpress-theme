@@ -13,8 +13,8 @@
 Number.prototype.formatMoney = function(c, d, t){
     var n = this,
         c = (isNaN(c = Math.abs(c))) ? 2 : c,
-        d = d == undefined ? " " : d,
-        t = t == undefined ? "," : t,
+        d = d === undefined ? " " : d,
+        t = t === undefined ? "," : t,
         s = n < 0 ? "-" : "",
         i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "",
         j = (j = i.length) > 3 ? j % 3 : 0;
@@ -398,8 +398,9 @@ Number.prototype.formatMoney = function(c, d, t){
                 _.pull(favorites, id);
             }
             localStorage.setItem(storageName, favorites.join());
-
-            $this.setCounters(favorites);
+            if( category !== 'single' ) {
+                $this.setCounters(favorites);
+            }
 
             if($this.sharing) {
                 $this.sharing.setUrls(favorites);
@@ -408,7 +409,6 @@ Number.prototype.formatMoney = function(c, d, t){
             if( favorites.length === 0 ) {
                 localStorage.removeItem(storageName);
                 if($this.type === 'favorites') {
-                    window.location.href = 'http://wp-lp.loc/rent/';
                     if( category === 'sale' ) {
                         Helpers.goToLocation(LpData.salePage);
                     } else {
@@ -456,10 +456,23 @@ Number.prototype.formatMoney = function(c, d, t){
                     }
                 }
         };
+        this.markButton = function(favorites) {
+            var btn = $('.add-favorite-button'),
+                id = btn.data('id');
+            if(_.includes(favorites, id)) {
+                btn.addClass('in-favorites').data('action', 'remove');
+            } else {
+                btn.data('action', 'add');
+            }
+        };
         this.init = function() {
             $(window).on('load.lprop', function() {
                 var favorites = Helpers.getFavorites(category);
                 $this.setCounters(favorites);
+
+                if( $this.type === 'single' ) {
+                    $this.markButton(favorites);
+                }
 
                 if( $this.type === 'favorites' ) {
                     if(favorites.length === 0) {
@@ -1402,6 +1415,66 @@ Number.prototype.formatMoney = function(c, d, t){
           var objects = new ObjectList('favorites', 'rent');
           objects.init();
           FloatingBar.init();
+      }
+    },
+    'page_single_object': {
+      init: function() {
+          var singleObjectStyles = (function() {
+              var docElem = $('html'),
+                  container = $( '.single-object-container' ),
+                  didScroll = false,
+                  siteFooter = $('.site-footer'),
+                  changeFooterOn = siteFooter.offset().top,
+                  changeHeaderOn = container.offset().top;
+              function init() {
+                  $(window).on('load', function (event) {
+                      scrollPage();
+                  });
+                  $(window).on( 'scroll', function( event ) {
+                      changeHeaderOn = container.offset().top;
+                      changeFooterOn = siteFooter.offset().top;
+                      if( !didScroll ) {
+                          didScroll = true;
+                          scrollPage();
+                      }
+                  });
+              }
+              function scrollPage() {
+                  var sy = scrollY(),
+                      syf = scrollYFooter();
+                  if ( sy >= changeHeaderOn ) {
+                      container.addClass( 'fixed-header' );
+                  }
+                  else {
+                      container.removeClass( 'fixed-header' );
+                  }
+                  if($('.single-object-footer').is(":visible")) {
+                      if (syf <= changeFooterOn) {
+                          container.addClass('fixed-footer');
+                      } else {
+                          container.removeClass('fixed-footer');
+                      }
+                  }
+                  didScroll = false;
+              }
+              function scrollY() {
+                  return window.pageYOffset || docElem.scrollTop;
+              }
+              function scrollYFooter() {
+                  return (window.pageYOffset + window.innerHeight);
+              }
+              init();
+          })();
+          function getCategory() {
+              var container = $('.single-object-container');
+              if(container.hasClass('object-rent')) {
+                  return 'rent';
+              }
+                  return 'sale';
+          }
+          var favorites = new Favorites('single', getCategory());
+          favorites.init();
+
       }
     }
   };

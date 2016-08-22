@@ -111,7 +111,7 @@ add_action('wp_footer', 'get_floating_bar', 5);
   function s3_logo_path ( $image_id ) {
     $s3meta = get_post_meta( get_field('logo', 'option'), 'amazonS3_info', true );
     if ($s3meta == ''){
-      return wp_get_attachment_image_url( $image_id);
+      return wp_get_attachment_image_url( $image_id, 'logo');
     }
     else {
       return 'http://'.$s3meta['bucket'].'.s3.amazonaws.com/'.$s3meta['key'];
