@@ -1516,7 +1516,7 @@ Number.prototype.formatMoney = function(c, d, t){
                                 objectHtml += '<span>' + object.parameters.price.min.formatMoney(0, ', ', ' ') + '</span>';
                             }
                             if (!_.isNull(object.parameters.price.max)) {
-                                objectHtml += '&nbsp;&mdash;&nbsp;<span>' + object.parameters.price.max.formatMoney(0, ',', ' ') + '</span>';
+                                objectHtml += '&nbsp;&ndash;&nbsp;<span>' + object.parameters.price.max.formatMoney(0, ',', ' ') + '</span>';
                             }
                             objectHtml += '&nbsp;<span>' + object.parameters.price.currency + '</span></span>';
                         }
@@ -1527,7 +1527,7 @@ Number.prototype.formatMoney = function(c, d, t){
                             objectHtml += '<span>' + object.parameters.rooms.min + '</span>';
                         }
                         if (!_.isNull(object.parameters.rooms.max)) {
-                            objectHtml += '&nbsp;&mdash;&nbsp;<span>' + object.parameters.rooms.max + '</span>';
+                            objectHtml += '&nbsp;&ndash;&nbsp;<span>' + object.parameters.rooms.max + '</span>';
                         }
                         if (!_.isNull(object.parameters.rooms.min) || !_.isNull(object.parameters.rooms.max)) {
                             objectHtml += '&nbsp;rooms';
@@ -1539,7 +1539,7 @@ Number.prototype.formatMoney = function(c, d, t){
                             objectHtml += '<span>' + object.parameters.area.min + '</span>';
                         }
                         if (!_.isNull(object.parameters.area.max)) {
-                            objectHtml += '&nbsp;&mdash;&nbsp;<span>' + object.parameters.area.max + '</span>';
+                            objectHtml += '&nbsp;&ndash;&nbsp;<span>' + object.parameters.area.max + '</span>';
                         }
                         if (!_.isNull(object.parameters.area.min) || !_.isNull(object.parameters.area.max)) {
                             objectHtml += '&nbsp;m<sup>2</sup>';
