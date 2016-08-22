@@ -333,11 +333,8 @@ Number.prototype.formatMoney = function(c, d, t){
         console.error('getPlaceDetailsError');
     };
 
-    var autoComplete = new AutoComplete(
-        LpData.homeUrl + 'autocomplete',
-        '#sp-search'
-    );
-    console.log(autoComplete);
+
+
 
     // Helper functions
 
@@ -593,7 +590,268 @@ Number.prototype.formatMoney = function(c, d, t){
         }
     };
 
-    /*Object Hsare Bar*/
+    function Single() {
+        var $this = this;
+        this.postContainer = $('.blog-list-wrapper');
+        this.isModalExists = function() {
+            return $('.single-post-modal').length;
+        };
+        this.closeModal = function(ev) {
+            ev.preventDefault();
+            $('.single-post-modal').remove();
+            $('html').removeClass('overflow-height');
+            if( Helpers.isHhistoryApiAvailable()) {
+                window.history.pushState(null, null, $this.location);
+            }
+        };
+        this.renderHtml = function(postData) {
+            $('html').addClass('overflow-height');
+
+            if( $this.isModalExists() === 0 ) {
+                var postHtml = '<div class="single-post-container single-post-modal">' +
+                    '<header class="single-post-header">' +
+                    '<div class="single-post-wrap">' +
+                    '<button type="button" class="btn btn-single-close"><span>Close</span></button>' +
+                    '<div class="social-sharing"><ul>' +
+                    '<li class="label">Share</li>' +
+                    '<li><a href="mailto:?subject=' + postData.post.title + '&body=' + postData.post.link + '" class="soc-icon email-icon"></a></li>' +
+                    '<li><a href="https://www.facebook.com/sharer/sharer.php?u=' + postData.post.url + '" target="_blank" class="soc-icon fb-icon"></a></li>' +
+                    '<li><a href="https://twitter.com/intent/tweet?text=' + postData.post.share_title + '&url=' + postData.post.url + '&via=leadingpro" target="_blank" class="soc-icon twitter-icon"></a></li>' +
+                    '<li><a href="https://www.linkedin.com/shareArticle?mini=true&url=' + postData.post.url + '&title=' + postData.post.share_title + '&summary=' + postData.post.excerpt + '" target="_blank" class="soc-icon ln-icon"></a></li>' +
+                    '<li><a href="https://plus.google.com/share?url=' + postData.post.url + '" target="_blank" class="soc-icon gplus-icon"></a></li>' +
+                    '</ul>' +
+                    '</div>' +
+                    '</div>' +
+                    '</header><!-- /.single-post-header -->' +
+                    '<div class="single-post-content">' +
+                    '<div class="single-post-content-inner">' +
+                    '<div class="single-post-thumbnail">' +
+                    '<img src="' + postData.post.image + '" alt="' + postData.post.title + '" class="img-responsive">' +
+                    '</div>' +
+                    '<div class="single-post-details"><h1 class="single-post-title" itemprop="headline">' + postData.post.title + '</h1>' +
+                    '<div class="entry-meta main-entry-meta">' +
+                    '<time class="updated" datetime="' + postData.post.dates.format + '">' + postData.post.dates.view + '</time>' +
+                    '<span class="post-tags">' + postData.post.tag + '</span></div>' +
+                    '<div class="entry-content" itemprop="articleBody">' + postData.post.content + '</div><!-- /.entry-content -->' +
+                    '</div><!-- /.single-post-details --></div><!-- /.single-post-content-inner --></div><!-- /.single-post-content -->';
+                if(postData.adj.length > 0 ) {
+                    postHtml += '<div class="adjacent-posts-container blog-list-wrapper"><div class="container"><div class="row">';
+                    $.each(postData.adj, function(idx, val) {
+                        postHtml += '<article id="post-' + val.id + '" class="blog-item adjacent-item" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">' +
+                            '<div class="blog-inner-wrapper">' +
+                            '<div class="blog-thumbnail" itemprop="image" itemscope itemtype="http://schema.org/ImageObject">' +
+                            '<a href="' + val.link + '" class="blog-thumbnail-holder open-post-modal" data-id="' + val.id + '">' +
+                            '<img src="' + val.image + '" alt="' + val.title + '" class="img-responsive">' +
+                            '</a></div>' +
+                            '<div class="blog-info-holder">' +
+                            '<h2 class="info-title" itemprop="headline"><a href="' + val.link + '">' + val.title + '</a></h2>' +
+                            '<div class="entry-meta">' +
+                            '<time class="updated" datetime="' + val.dates.format + '">' + val.dates.view + '</time>' +
+                            '<span class="post-tags">' + val.tag + '</span></div>' +
+                            '</div></div></article><!-- /.blog-item -->';
+                    });
+                    postHtml += '</div></div></div>';
+                }
+                postHtml += '<div class="single-object-backdrop"></div></article><!-- /.single-post-container -->';
+
+                $this.postContainer.append(postHtml);
+            } else {
+                $('.single-post-modal .email-icon').attr("href", 'mailto:?subject=' + postData.post.title + '&body=' + postData.post.link);
+                $('.single-post-modal .fb-icon').attr("href", 'https://www.facebook.com/sharer/sharer.php?u=' + postData.post.url);
+                $('.single-post-modal .twitter-icon').attr("href", 'https://twitter.com/intent/tweet?text=' + postData.post.share_title + '&url=' + postData.post.url + '&via=leadingpro');
+                $('.single-post-modal .ln-icon').attr("href", 'https://www.linkedin.com/shareArticle?mini=true&url=' + postData.post.url + '&title=' + postData.post.share_title + '&summary=' + postData.post.excerpt);
+                $('.single-post-modal .gplus-icon').attr("href", 'https://plus.google.com/share?url=' + postData.post.url);
+                $('.single-post-thumbnail img').attr("src", postData.post.image)
+                    .attr("alt", postData.post.title);
+                $('.single-post-thumbnail a').attr("src", postData.post.link);
+                $('.single-post-title').text(postData.post.title);
+                $('.main-entry-meta .updated').attr("datetime", postData.post.dates.format).text(postData.post.dates.view);
+                $('.main-entry-meta .post-tags').html(postData.post.tag);
+                $('entry-content').html(postData.post.content);
+                $('.adjacent-item').each(function(idx) {
+                    if(postData.adj[idx] !== 'undefined') {
+                        $(this).attr("id", 'post-' + postData.adj[idx].id)
+                            .find('.blog-thumbnail-holder')
+                            .attr("href", postData.adj[idx].link)
+                            .data("id", postData.adj[idx].id)
+                            .find("img")
+                            .attr("src", postData.adj[idx].image)
+                            .attr("alt", postData.adj[idx].title);
+                        $(this).find('.info-title a')
+                            .attr("href", postData.adj[idx].link)
+                            .data("id", postData.adj[idx].id)
+                            .text(postData.adj[idx].title);
+                        $(this).find('.updated').attr("datetime", postData.adj[idx].dates.format).text(postData.adj[idx].dates.view);
+                        $(this).find('.post-tags').html(postData.adj[idx].tag);
+
+                    }
+                });
+            }
+        };
+        this.getSinglePost = function(ev) {
+            ev.preventDefault();
+            var data = {
+                'action' : 'do_ajax',
+                'fn' : 'get_single_post'
+            };
+            $this.showLoader(true);
+            if(ev.type === 'click') {
+                var url = $(this).attr('href');
+                data.type = 'id';
+                data.id = $(this).data('id');
+            } else {
+                data.type = 'slug';
+                data.id = window.location.pathname;
+            }
+            $.ajax({
+                url: LpData.ajaxUrl,
+                dataType : 'json',
+                method: 'post',
+                data : data,
+                success : function(data){
+                    if(typeof data === 'object' ){
+                        $this.renderHtml(data);
+                        if(url !== $this.location){
+                            if( Helpers.isHhistoryApiAvailable() && 'click' === ev.type) {
+                                window.history.pushState(null, null, url);
+                            }
+                        }
+                    } else {}
+                },
+                error : function (error){
+                    console.error(error);
+                },
+                complete: function() {
+                    $this.showLoader(false);
+                }
+            });
+
+        };
+        this.testPopstste = function(ev) {
+            if( $this.isModalExists && window.location.pathname === $this.location) {
+                $('.btn-single-close').trigger('click.lprop');
+            } else {
+                $this.getSinglePost(ev);
+            }
+        };
+        this.showLoader = function(state) {
+            if(state) {
+                $('<div class="post-overlay loader"><span class="spin"></span></div>').appendTo($this.postContainer);
+            } else {
+                $('.post-overlay').remove();
+            }
+        };
+        this.eventListeners = function() {
+            this.postContainer.on('click.lprop', '.open-post-modal', $this.getSinglePost);
+            $(window).on('popstate', $this.testPopstste);
+            this.postContainer.on('click.lprop', '.btn-single-close', $this.closeModal);
+            this.postContainer.on('click.lprop', '.single-object-backdrop', $this.closeModal);
+        };
+        this.init = function() {
+            this.location = window.location.pathname;
+            this.eventListeners();
+        };
+    }
+    function Blog() {
+        var $this = this;
+        this.postContainer = $('.blog-list-wrapper > .container > .row');
+        this.perPage = LpData.perPage;
+        this.totalPosts = LpData.totalPost;
+        this.loader = $('.loader');
+        this.lastItem = function() {
+            return $('.blog-item').last();
+        };
+        this.tag = LpData.tag;
+        this.didScroll = false;
+        this.onPage =  $('.blog-item').length;
+        this.renderHtml = function(postdata) {
+            var postHtml = '';
+            $.each(postdata, function(idx, val) {
+                postHtml += '<article id="post-' + val.id + '" class="blog-item" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">' +
+                    '<div class="blog-inner-wrapper">' +
+                    '<div class="blog-thumbnail" itemprop="image" itemscope itemtype="http://schema.org/ImageObject">' +
+                    '<meta itemprop="contentUrl" content="' + val.image + '">' +
+                    '<a href="' + val.link + '" class="blog-thumbnail-holder open-post-modal" data-id="' + val.id + '">' +
+                    '<img src="' + val.image + '" alt="' + val.title + '" class="img-responsive" itemprop="contentUrl">' +
+                    '</a></div>' +
+                    '<div class="blog-info-holder">' +
+                    '<h2 class="info-title" itemprop="headline"><a href="' + val.link + '" class="open-post-modal" data-id="' + val.id + '">' + val.title + '</a></h2>' +
+                    '<div class="entry-meta">' +
+                    '<time class="updated" datetime="' + val.dates.format + '">' + val.dates.view + '</time>' +
+                    val.tag + '</div>' +
+                    '</div></div></article><!-- /.blog-item -->';
+            });
+            $this.postContainer.append(postHtml);
+        };
+        this.getPosts = function() {
+            $this.loader.show();
+            var data = {
+                'action' : 'do_ajax',
+                'fn' : 'get_blog_posts',
+                'offset' : $this.onPage,
+                'posts_per_page': $this.perPage
+            };
+            if( $this.tag ) {
+                data.tag = $this.tag;
+            }
+            $.when(
+                $.ajax({
+                    url: LpData.ajaxUrl,
+                    dataType : 'json',
+                    method: 'post',
+                    data: data,
+                    success : function(data){
+                        if(data.length !== 'undefined' && data.length > 0 ){
+                            $this.onPage += data.length;
+                            $this.renderHtml(data);
+                        } else {
+
+                        }
+
+                    },
+                    error : function (error){
+                        console.error(error);
+                    },
+                    complete: function() {
+                        $this.loader.hide();
+                    }
+                })
+            ).then(function(){
+                    if(  $this.onPage < $this.totalPosts ) {
+                        if(Helpers.isElementIntoView($this.lastItem())) {
+                            $this.getPosts();
+                        }
+                        $this.didScroll = false;
+                    } else {
+                        $(window).off('scroll.lprop', $this.getPosts);
+                        $(window).off('load.lprop', $this.getPosts);
+                        $(window).off('resize.lprop', $this.getPosts);
+                    }
+                });
+        };
+        this.scrollPage = function() {
+            if (Helpers.isElementIntoView($this.lastItem()) && !$this.didScroll) {
+                $this.didScroll = true;
+                $this.getPosts();
+            }
+        };
+        this.eventListeners = function() {
+            if( this.onPage < this.totalPosts) {
+                $(window).on('scroll.lprop', $this.scrollPage);
+
+                if (Helpers.isElementIntoView($this.lastItem())) {
+                    $(window).on('load.lprop', $this.getPosts);
+                    $(window).on('resize.lprop', $this.getPosts);
+                }
+            }
+        };
+        this.init = function() {
+            this.eventListeners();
+        };
+    }
+
+
+    /*Object Shaare Bar*/
 
     function ObjectShareBar() {
         var shareLinks = $('.favorites-sharing a'),
@@ -1401,6 +1659,11 @@ Number.prototype.formatMoney = function(c, d, t){
             filter = new FilterMenu(type, category),
             singleObject = new SingleObject(this);
 
+        var autoComplete = new AutoComplete(
+            LpData.homeUrl + 'autocomplete',
+            '#sp-search'
+        );
+
         this.lastItem = function() {
             return $('.object-item').last();
         };
@@ -1792,7 +2055,107 @@ Number.prototype.formatMoney = function(c, d, t){
           favorites.init();
 
       }
-    }
+    },
+  'blog_list': {
+      init: function() {
+          var blog = new Blog(),
+              single = new Single();
+          blog.init();
+          single.init();
+          FloatingBar.init();
+
+          $('.tooltip-sharing').tooltip({
+              html: true,
+              placement: 'bottom',
+              template: '<div class="tooltip tooltip-sharing" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div><a href="#" class="tooltip-close btn-close"></a></div>',
+              trigger: 'manual'
+          });
+          var showSharingTooltips = function() {
+              var shown = false,
+                  sharingTop = $('.tooltip-sharing-top'),
+                  sharingBottom = $('.tooltip-sharing-bottom');
+              function showSharingTooltips(start, end, el) {
+                  setTimeout(function(){
+                      el.tooltip('show');
+                      setTimeout(function() {
+                          el.tooltip('destroy');
+                      }, end);
+                  }, start);
+              }
+              function init() {
+                  if(sharingTop.length === 0 || sharingBottom.length === 0) { return false; }
+                  /*show top sharing tooltip */
+                  $(document).ready(function(){
+                      showSharingTooltips(3000, 10000, sharingTop);
+                      /* check if bottom in to view*/
+                      shown = Helpers.isElementIntoView(sharingBottom);
+                  });
+                  $('body').on('click', '.tooltip-close', function(ev){
+                      ev.preventDefault();
+                      $(this).closest('.tooltip').siblings('.tooltip-sharing').tooltip('destroy');
+                  });
+                  if(!shown) {
+                      $(window).on('scroll', function() {
+                          if(!shown) {
+                              shown = Helpers.isElementIntoView(sharingBottom);
+                              if(shown) {
+                                  showSharingTooltips(1000, 10000, $(sharingBottom));
+                              }
+                          }
+                      });
+                  }
+              }
+
+              init();
+          }();
+      }
+  },
+
+  'single_post': {
+      init: function() {
+          // JavaScript to be fired on the about us page
+          var singleObjectStyles = (function() {
+              var docElem = $('html'),
+                  container = $( '.single-post-container' ),
+                  didScroll = false,
+                  changeHeaderOn = container.offset().top;
+              function scrollY() {
+                  return window.pageYOffset || docElem.scrollTop;
+              }
+              function scrollPage() {
+                  var sy = scrollY();
+
+                  if ( sy >= changeHeaderOn ) {
+                      container.addClass( 'fixed-header' );
+                  }
+                  else {
+                      container.removeClass( 'fixed-header' );
+                  }
+
+                  didScroll = false;
+              }
+              function init() {
+                  $(window).on('load.lprop', function (event) {
+                      scrollPage();
+                  });
+                  $(window).on( 'scroll.lprop', function( event ) {
+                      changeHeaderOn = container.offset().top;
+                      if( !didScroll ) {
+                          didScroll = true;
+                          scrollPage();
+                      }
+                  });
+              }
+              init();
+          })();
+
+          if( Helpers.isHhistoryApiAvailable() ) {
+              $(window).on('popstate', function(ev) {
+                  window.location.reload();
+              });
+          }
+      }
+  }
   };
 
   // The routing fires all common scripts, followed by the page specific scripts.

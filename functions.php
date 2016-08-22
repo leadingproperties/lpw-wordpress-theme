@@ -7,6 +7,7 @@ $sage_includes = [
   'lib/titles.php',    // Page titles
   'lib/customizer.php', // Theme customizer
   'lib/nav.php',         //Walker nav
+  'lib/blog.php',       //Blog functions
   'lib/conditional_tags.php',
   'lib/objects/objects.php',
   'lib/acf/acf.php',

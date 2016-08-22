@@ -22,6 +22,9 @@ function body_class($classes) {
 	  $classes[] = 'page-static';
     }
   }
+	if(is_archive() || is_home()) {
+		$classes[]  = 'blog-list';
+	}
 	if( is_page_template('page-buy.php') ) {
 		$classes[] = 'page-sales';
 	} elseif( is_page_template('page-rent.php') ) {

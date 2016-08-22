@@ -29,6 +29,8 @@ function setup() {
   // http://codex.wordpress.org/Function_Reference/set_post_thumbnail_size
   // http://codex.wordpress.org/Function_Reference/add_image_size
   add_theme_support('post-thumbnails');
+  set_post_thumbnail_size(350, 205, true);
+  add_image_size('featured', 700, 410, true);
   add_image_size('logo', 350, 90, true);
 
 
@@ -114,12 +116,12 @@ function assets() {
   if(is_page_template('page-buy.php') || is_page_template('page-rent.php')) {
 	  /*TODO: Change API key*/
 	 wp_enqueue_script('google-map', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyB9AMFYWn5z8QYptnbetxXckrldFpsZyGA&libraries=places', null, true);
-	 wp_register_script('sage/js', Assets\asset_path('scripts/main.js'), ['jquery', 'lodash', 'google-map'], null, true);
+	 wp_register_script('lprop/js', Assets\asset_path('scripts/main.js'), ['jquery', 'lodash', 'google-map'], null, true);
   } else {
 	  wp_register_script('lprop/js', Assets\asset_path('scripts/main.js'), ['jquery', 'lodash'], null, true);
   }
   wp_enqueue_script('lodash', Assets\asset_path('scripts/lodash.js'), [], null, true);
-  wp_enqueue_script('lprop/js');
+  $count_posts = wp_count_posts('post');
   $data = [
 	  'siteTitle'   => $lp_settings['site_title'],
 	  'homeUrl' => home_url('/'),
@@ -127,10 +129,18 @@ function assets() {
 	  'useShortener' => $lp_settings['use_shortener'],
 	  'salePage'    => $lp_settings['sale_page'],
 	  'rentPage'    => $lp_settings['rent_page'],
-	  'propertyPage'    => $lp_settings['property_page']
+	  'propertyPage'    => $lp_settings['property_page'],
+	  'totalPost' => $count_posts->publish,
+	  'perPage' => get_option('posts_per_page')
   ];
-  wp_localize_script('sage/js', 'LpData', $data);
-  wp_enqueue_script('sage/js');
+	if(is_tag()) {
+		$tag_id = get_query_var('tag_id');
+		$tag = get_tags( ['include' => $tag_id] );
+		$data['tag'] = $tag_id;
+		$data['totalPost'] = $tag[0]->count;
+	}
+  wp_localize_script('lprop/js', 'LpData', $data);
+  wp_enqueue_script('lprop/js');
 }
 add_action('wp_enqueue_scripts', __NAMESPACE__ . '\\assets', 100);
 

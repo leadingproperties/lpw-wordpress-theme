@@ -1,0 +1,287 @@
+.adjacent-posts-container {
+  .container {
+    max-width: $container-width-2;
+    position: relative;
+    z-index: 10;
+    padding-top: 30px;
+  }
+}
+
+.single-post-container {
+  &.single-post-modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    min-height: 100%;
+    background: rgba(242,242,242,.95);
+    z-index: $z-index-single-object;
+    padding-top: 70px;
+    padding-bottom: 80px;
+    overflow-y: auto;
+  }
+  &.fixed-header {
+    padding-top: 70px;
+  }
+
+  @media (min-width: $container-width-1) {
+    &.single-post-modal, &.fixed-header {
+      padding-top: 70px;
+    }
+  }
+  @media (min-width: $screen760) {
+    padding-bottom: 0;
+    &.single-post-modal {
+      padding-top: 80px;
+      padding-bottom: 0;
+    }
+    &.fixed-header {
+      padding-top: 70px;
+    }
+  }
+}
+
+.single-post-wrap {
+  margin-left: auto;
+  margin-right: auto;
+  @include clearfix();
+  @media (min-width: $container-width-1) {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  @media (min-width: $screen760) {
+    width: 720px;
+  }
+}
+.single-post-header {
+  height: 60px;
+  padding: 10px 10px;
+  background: rgba(229,229,229,.85);
+  margin-bottom: 10px;
+  .single-post-modal &, .fixed-header & {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+  .single-post-modal & {
+    z-index: $z-index-single-object + 100;
+  }
+  .fixed-header & {
+    z-index: $z-index-modal-background - 10;
+  }
+  .social-sharing {
+    float: left;
+    ul li {
+      vertical-align: middle;
+      .single-post-modal & {
+        margin-right: 5px;
+      }
+      &.label {
+        display: none;
+        line-height: 50px;
+        font-size: 16px;
+        margin-right: 7px;
+        height: 53px;
+        color: $text-dark-color;
+        position: relative;
+        top: 2px;
+        .single-post-modal & {
+          margin-right: 10px;
+        }
+      }
+    }
+
+  }
+
+  .btn-single-close {
+    background: transparent;
+    font-size: 14px;
+    border: 1px solid #d9d9d9;
+    @include square(40px);
+    float: right;
+    line-height: 40px;
+    padding: 0;
+    span {
+      display: none;
+    }
+    &::after {
+      font-size: 30px;
+      vertical-align: middle;
+      position: relative;
+      top: -2px;
+    }
+    &:hover {
+      background: rgba(255,255,255,.5);
+    }
+  }
+  @media (min-width: $container-width-1) {
+    padding-left: 15px;
+    padding-right: 15px;
+    .btn-single-close {
+      width: auto;
+      padding-left: 14px;
+      padding-right: 12px;
+      span {
+        display: inline;
+      }
+      &::after {
+        padding-left: 12px;
+      }
+    }
+  }
+  @media (min-width: $screen760) {
+    height: 70px;
+    .social-sharing {
+      ul {
+        font-size: 20px;
+        li {
+          a {
+            @include square(50px);
+            line-height: 50px;
+          }
+          &.label {
+            display: inline-block;
+          }
+        }
+      }
+    }
+    .btn-single-close {
+      font-size: 16px;
+      margin-left: 10px;
+      height: 50px;
+      line-height: 50px;
+      &::after {
+        font-size: 40px;
+      }
+    }
+  }
+}
+.single-post-content {
+  padding: 0 10px;
+  .single-post-content-inner {
+    background: #fff;
+    border: 1px solid #e6e6e6;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+  }
+  .single-post-thumbnail {
+    a {
+      display: block;
+    }
+    img {
+      width: 100%;
+    }
+  }
+  .single-post-details {
+    color: $text-dark-color;
+    padding: 24px 20px 20px;
+  }
+  .single-post-locations {
+    margin: 0 0 15px;
+    padding: 0;
+    list-style: none;
+    li {
+      font-size: 12px;
+      color: $text-color;
+      line-height: 2.083;
+      display: inline-block;
+      margin: if($rtl, 0 0 0 7px, 0 7px 0 0);
+      text-indent: -3px;
+      &:last-child {
+        margin-right: 0 !important;
+      }
+      a {
+        color: inherit;
+        &::before {
+          content: "\e77a";
+          color: $color-red;
+          font-size: 15px;
+          margin-right: 5px;
+          vertical-align: middle;
+          @include rtl(){
+            margin-right: 0;
+            margin-left: 5px;
+          }
+        }
+      }
+      .link-underline {
+        border-bottom: 2px solid #d0d0d0;
+      }
+    }
+  }
+  .single-post-title {
+    font-size: 16px;
+    line-height: 1.375;
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+  .entry-meta {
+    margin-bottom: 20px;
+    color: $text-color;
+  }
+
+  @media (min-width: $container-width-1) {
+    font-size: 16px;
+    .single-post-thumbnail {
+      padding: 10px 10px 0;
+    }
+    .single-post-details {
+      padding: 35px 30px 40px;
+    }
+    .single-post-title {
+      font-size: 20px;
+    }
+    .entry-meta {
+      margin-bottom: 30px;
+    }
+
+  }
+  @media (min-width: $screen760) {
+    padding-left: 15px;
+    padding-right: 15px;
+    .single-post-content-inner {
+      width: 720px;
+    }
+    .single-slider {
+      width: 700px;
+    }
+    .single-post-details {
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+
+  }
+}
+
+.single-post-footer {
+  text-align: center;
+  background: rgba(229,229,229,.85);
+  padding: 10px;
+  height: 80px;
+  .single-post-modal &, .fixed-footer & {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: $z-index-single-object + 100;
+  }
+  .single-post-modal & {
+    z-index: $z-index-single-object + 100;
+  }
+  .fixed-footer & {
+    z-index: $z-index-modal-background - 10;
+  }
+  .btn-detailed-link {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    max-width: 300px;
+  }
+
+  @media (min-width: $screen760) {
+    display: none;
+  }
+}
