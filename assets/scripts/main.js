@@ -337,6 +337,7 @@ Number.prototype.formatMoney = function(c, d, t){
         LpData.homeUrl + 'autocomplete',
         '#sp-search'
     );
+    console.log(autoComplete);
 
     // Helper functions
 
@@ -868,8 +869,6 @@ Number.prototype.formatMoney = function(c, d, t){
                 return false;
             }
         }
-
-
 
         this.renderSingleHtml = function(data)  {
             $('html').addClass('overflow-height');
@@ -1459,15 +1458,15 @@ Number.prototype.formatMoney = function(c, d, t){
                     }
                     if( object.property_rent.short_rent === true ) {
                         if(!_.isNull(object.property_rent.rent_short.sort_price.day)) {
-                            rentPrice = '<span class="price-num">' + parseInt(object.property_rent.rent_short.sort_price.day) + ' </span>' + object.property_rent.rent_short.sort_price.currency_code + '&nbsp;/&nbsp;day';
+                            rentPrice = '<span class="price-num">' + object.property_rent.rent_short.sort_price.day.formatMoney(0, ',', ' ') + ' </span>' + object.property_rent.rent_short.sort_price.currency_code + '&nbsp;/&nbsp;day';
                         } else if(!_.isNull(object.property_rent.rent_short.sort_price.month)) {
-                            rentPrice = '<span class="price-num">' + parseInt(object.property_rent.rent_short.sort_price.month) + ' </span>' + object.property_rent.rent_short.sort_price.currency_code + '&nbsp;/&nbsp;month';
+                            rentPrice = '<span class="price-num">' + object.property_rent.rent_short.sort_price.month.formatMoney(0, ',', ' ') + ' </span>' + object.property_rent.rent_short.sort_price.currency_code + '&nbsp;/&nbsp;month';
                         }
                     } else if( object.property_rent.long_rent === true ) {
                         if(!_.isNull(object.property_rent.rent_long.sort_price.month)) {
-                            rentPrice = '<span class="price-num">' + parseInt(object.property_rent.rent_long.sort_price.month) + ' </span>' + object.property_rent.rent_long.sort_price.currency_code + '&nbsp;/&nbsp;month';
+                            rentPrice = '<span class="price-num">' + object.property_rent.rent_long.sort_price.month.formatMoney(0, ',', ' ') + ' </span>' + object.property_rent.rent_long.sort_price.currency_code + '&nbsp;/&nbsp;month';
                         } else if(!_.isNull(object.property_rent.rent_long.sort_price.day)) {
-                            rentPrice = '<span class="price-num">' + parseInt(object.property_rent.rent_long.sort_price.day) + ' </span>' + object.property_rent.rent_long.sort_price.currency_code + '&nbsp;/&nbsp;day';
+                            rentPrice = '<span class="price-num">' + object.property_rent.rent_long.sort_price.day.formatMoney(0, ',', ' ') + ' </span>' + object.property_rent.rent_long.sort_price.currency_code + '&nbsp;/&nbsp;day';
                         }
                     }
                 }
