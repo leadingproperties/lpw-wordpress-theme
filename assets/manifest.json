@@ -3,6 +3,8 @@
     "main.js": {
       "files": [
         "scripts/Autocomplete.js",
+        "scripts/Map.js",
+        "scripts/vp-instances.js",
         "scripts/main.js"
       ],
       "main": true
