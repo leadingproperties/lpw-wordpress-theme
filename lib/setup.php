@@ -69,6 +69,7 @@ function assets() {
   }
   wp_enqueue_script('googleMaps', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDBl0253HX1_qDH62g3ITxxZq2HUTZj6w0&signed_in=true&libraries=places&language=en', [], null, true);
   wp_enqueue_script('lodash', Assets\asset_path('scripts/lodash.js'), [], null, true);
+  wp_enqueue_script('js-marker-clusterer', Assets\asset_path('/scripts/js-marker-clusterer.js'), ['jquery', 'googleMaps'], null, true);
   wp_register_script('sage/js', Assets\asset_path('scripts/main.js'), ['jquery', 'lodash', 'googleMaps'], null, true);
   $data = [
 	  'siteTitle'   => $lp_settings['site_title'],

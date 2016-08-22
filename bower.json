@@ -11,7 +11,8 @@
     "select2": "4.0.3",
     "lodash": "~4.15.0",
     "intl-tel-input": "8.5.2",
-    "bootstrap3-typeahead": "~4.0.1"
+    "bootstrap3-typeahead": "~4.0.1",
+    "js-marker-clusterer": "*"
   },
   "overrides": {
     "bootstrap-sass": {

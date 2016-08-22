@@ -1,5 +1,7 @@
 (function($){
 	"use strict";
+	window.lpw = window.lpw || {};
+	window.lpw.AutoComplete = AutoComplete;
 
 	/**
 	 * AutoComplete
@@ -213,6 +215,48 @@
 	};
 
 	/**
+	 * Setter для autocompleteSelected. Так же ложит текст в инпут автокомплита.
+	 *
+	 * @param item {Object} - объект с google координатами или ответом апи на автокомплит, подготовленные для запроса объектов (см. вызовы метода setSelected)
+	 * @param inputText {string} - строка для показа в инпуте
+	 */
+	AutoComplete.prototype.setSelected = function(item, inputText) {
+		this.autocompleteSelected = item;
+		if(inputText){
+			this.jqInput.val(inputText).change();
+		}
+	};
+
+	/**
+	 * Возвращает отформатированный и сокращенный адрес, который содержит только компоненты в var order;
+	 *
+	 * @param place - https://developers.google.com/maps/documentation/javascript/3.exp/reference#PlaceResult
+	 * @returns {string}
+	 */
+	AutoComplete.prototype.getPlaceText = function (place){
+		var order = [
+			    "country",
+			    "administrative_area_level_1",
+			    "locality"
+		    ],
+		    parts = [];
+		_.forEach(
+			order, function(target){
+				var piece = _.find(
+					place.address_components, function(component){
+						return _.includes(component.types, target);
+					}
+				);
+
+				if(piece && piece.long_name){
+					parts.push(piece.long_name);
+				}
+			}
+		);
+		return parts.join(", ");
+	};
+
+	/**
 	 * Success Callback для askAPI.
 	 * Если есть ответ с совпадениями, то отдаем в Typeahead. Если нет - делаем запрос к GoogleAPI
 	 *
@@ -273,16 +317,16 @@
 	};
 
 	/**
+	 * Callback для метода afterSelect typeahead (см. метод attachTypeAheadPlugin)
 	 *
 	 * @param item
 	 */
 	AutoComplete.prototype.afterSelect = function(item) {
-		console.debug('afterSelect', item);
 		if(item && item.payload){ //ответ от АПИ
-			this.autocompleteSelected = {
-				l_id: item.property_object._id,
-				l_type: item.property_object.type
-			};
+			this.setSelected({
+				l_id: item.payload.property_object._id,
+				l_type: item.payload.property_object.type
+			}, item.payload.property_object.name);
 		}
 		else if(item && item.place_id){ // ответ от гугла
 			this.getPlaceDetails(item.place_id)
@@ -298,7 +342,7 @@
 	 * @param place - https://developers.google.com/maps/documentation/javascript/3.exp/reference#PlaceResult
 	 */
 	AutoComplete.prototype.getPlaceDetailsSuccess = function(place) {
-		this.autocompleteSelected = this.getCoordinatesFromGooglePlace(place);
+		this.setSelected(this.getCoordinatesFromGooglePlace(place), this.getPlaceText(place));
 	};
 
 	/**
@@ -309,9 +353,4 @@
 	AutoComplete.prototype.getPlaceDetailsError = function(status) {
 		console.error('getPlaceDetailsError');
 	};
-
-	var autoComplete = new AutoComplete(
-		'http://localhost:8000/fixtures/autocomplete-answer-api.json',
-		'#sp-search'
-	);
 })(jQuery);

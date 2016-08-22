@@ -3,6 +3,8 @@
     "main.js": {
       "files": [
         "scripts/Autocomplete.js",
+        "scripts/Map.js",
+        "scripts/vp-instances.js",
         "scripts/main.js"
       ],
       "main": true
@@ -23,6 +25,9 @@
     },
     "jquery.js": {
       "bower": ["jquery"]
+    },
+    "js-marker-clusterer.js": {
+      "bower": ["js-marker-clusterer"]
     }
   },
   "config": {
