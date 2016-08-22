@@ -25,7 +25,7 @@ unset($file, $filepath);
 
 /* Global Settings */
 global $lp_settings;
-$lp_settings['logo'] = wp_get_attachment_image_url(get_field('logo', 'option'), 'logo');
+$lp_settings['logo'] = s3_logo_path(get_field('logo', 'option'));
 $lp_settings['contact_phone'] = get_field('contact_phone', 'option');
 $lp_settings['contact_email'] = get_field('contact_email', 'option');
 $lp_settings['favorites'] = esc_url(get_field('sale_favorites', 'option'));
@@ -104,3 +104,16 @@ function get_floating_bar() {
 }
 
 add_action('wp_footer', 'get_floating_bar', 5);
+
+/**
+ *  S3 Logo path
+ */
+  function s3_logo_path ( $image_id ) {
+    $s3meta = get_post_meta( get_field('logo', 'option'), 'amazonS3_info', true );
+    if ($s3meta == ''){
+      return wp_get_attachment_image_url( $image_id);
+    }
+    else {
+      return 'http://'.$s3meta['bucket'].'.s3.amazonaws.com/'.$s3meta['key'];
+    }
+  }
