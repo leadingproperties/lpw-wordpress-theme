@@ -20,6 +20,14 @@ function ajax_handler() {
 		case 'get_single_post':
 			$output = ajax_get_single_post($_REQUEST['id'], $_REQUEST['type']);
 			break;
+		case 'get_suggestions': {
+			if(isset($_GET['query']) && !empty($_GET['query'])) {
+				$output = ajax_get_suggestions( $_GET['query'] );
+			} else {
+				$output = '';
+			}
+			break;
+		}
 		default :
 			$output = 'No function specified, check your jQuery.ajax() call';
 			break;
@@ -163,4 +171,8 @@ function ajax_get_single_post($id, $type) {
 		return false;
 	}
 
+}
+function ajax_get_suggestions($query) {
+	$return = new LP_ObjectList(['query' => $query]);
+	return $return->get_json_objects();
 }
