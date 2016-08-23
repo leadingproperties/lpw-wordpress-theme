@@ -1385,11 +1385,69 @@ Number.prototype.formatMoney = function(c, d, t){
             filter = new FilterMenu(type, category),
             singleObject = new SingleObject(this);
 
-        var autoComplete = new AutoComplete(
-            LpData.homeUrl + 'autocomplete',
-            '#sp-search'
-        );
+        function resetObjects() {
+            $this.objectContainer.html('');
+            $this.args.page = 1;
+        }
 
+        function clearAutoSearch() {
+            if($this.args.ids) {
+                delete $this.args.ids;
+            }
+            if($this.args.location_point) {
+                delete $this.args.location_point;
+            }
+            if($this.args.location_shape) {
+                delete $this.args.location_shape;
+            }
+        }
+
+        this.autoSearch = function(data) {
+            resetObjects();
+            clearAutoSearch();
+            if(data.l_id) {
+                $this.args.ids = [data.l_id];
+            } else {
+                if (data.location_point) {
+                    $this.args.location_point = {};
+                    if (data.location_point.country_code) {
+                        $this.args.location_point.country_code = data.location_point.country_code;
+                    }
+                    if (data.location_point.lat) {
+                        $this.args.location_point.lat = data.location_point.lat;
+                    }
+                    if (data.location_point.lon) {
+                        $this.args.location_point.lon = data.location_point.lon;
+                    }
+                }
+                if (data.location_shape) {
+                    $this.args.location_shape = {};
+                    if(data.location_shape.country_code) {
+                        $this.args.location_shape.country_code = data.location_shape.country_code;
+                    }
+                    if (data.location_shape.bottom_left && data.location_shape.bottom_left.lat && data.location_shape.bottom_left.lon) {
+                        $this.args.location_shape.bottom_left = {
+                            lat: data.location_shape.bottom_left.lat,
+                            lon: data.location_shape.bottom_left.lon
+                        };
+                    }
+                    if (data.location_shape.top_right && data.location_shape.top_right.lat && data.location_shape.top_right.lon) {
+                        $this.args.location_shape.top_right = {
+                            lat: data.location_shape.top_right.lat,
+                            lon: data.location_shape.top_right.lon
+                        };
+                    }
+                }
+            }
+            $this.getObjects();
+        };
+        if(type === 'list') {
+            var autoComplete = new window.lpw.AutoComplete(
+                LpData.ajaxUrl,
+                '#sp-search',
+                $this.autoSearch
+            );
+        }
         this.lastItem = function() {
             return $('.object-item').last();
         };
@@ -1408,10 +1466,7 @@ Number.prototype.formatMoney = function(c, d, t){
             for_sale: ( category === 'sale' ),
             for_rent: ( category === 'rent' )
         };
-        function resetObjects() {
-            $this.objectContainer.html('');
-            $this.args.page = 1;
-        }
+
         this.renderHTML = function(objects) {
             var objectHtml = '',
                 title,

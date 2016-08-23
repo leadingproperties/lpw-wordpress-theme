@@ -11,10 +11,12 @@
 	 */
 	function AutoComplete(
 		apiPath,
-		inputSelectorString
+		inputSelectorString,
+		callback
 	){
 		this.apiPath = apiPath;
 		this.jqInput = $(inputSelectorString);
+		this.callback = callback;
 
 		this.autocompleteSelected = null;
 		this.errors = {
@@ -51,7 +53,7 @@
 				item: '<li><a href="#" role="option"></a></li>',
 				afterSelect: $this.afterSelect.bind($this),
 				source: function(query, process){
-					$this.askAPI(query)
+					$this.askAPI(query, process)
 						.done($this.askAPISuccess.bind($this, query, process))
 						.fail($this.askAPIError.bind($this, query, process));
 				}
@@ -69,7 +71,12 @@
 		return $.ajax(
 			{
 				url: this.apiPath,
-				data: {query: query}
+				data: {
+					query: query,
+					dataType: 'json',
+					action: 'do_ajax',
+					fn: 'get_suggestions'
+				}
 			}
 		);
 	};
@@ -225,6 +232,9 @@
 		if(inputText){
 			this.jqInput.val(inputText).change();
 		}
+		if(item) {
+			this.callback(item);
+		}
 	};
 
 	/**
@@ -267,8 +277,10 @@
 	 * @param jqXHR - см. аргументы jQuery.ajax.success
 	 */
 	AutoComplete.prototype.askAPISuccess = function(query, processCallback, data, textStatus, jqXHR){
-		if(data.options && data.options.length > 0){
-			var items = this.getParsedAPIAnswer(data.options);
+		//console.debug(typeof jqXHR.responseText);
+		var jsonData = JSON.parse(data);
+		if(jsonData.options && jsonData.options.length > 0){
+			var items = this.getParsedAPIAnswer(jsonData.options);
 			processCallback(items);
 		}else{
 			this.askGoogleAPI(query)
