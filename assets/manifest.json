@@ -2,6 +2,9 @@
   "dependencies": {
     "main.js": {
       "files": [
+        "scripts/Autocomplete.js",
+        "scripts/Map.js",
+        "scripts/vp-instances.js",
         "scripts/main.js"
       ],
       "main": true
@@ -18,15 +21,16 @@
       ]
     },
     "lodash.js": {
-      "files": [
-        "scripts/lodash.js"
-      ]
+      "bower": ["lodash"]
     },
     "jquery.js": {
       "bower": ["jquery"]
+    },
+    "js-marker-clusterer.js": {
+      "bower": ["js-marker-clusterer"]
     }
   },
   "config": {
-    "devUrl": "http://wp-lp.loc"
+    "devUrl": "http://localhost:5000"
   }
 }
