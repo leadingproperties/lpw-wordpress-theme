@@ -44,7 +44,7 @@ $lp_settings['property_page'] = get_page_link($lp_settings['property_page_id']);
 
 $objects = new LP_ObjectList();
 $counters = $objects->get_global_counters();
-$lp_settings['c'] = [
+$lp_settings['counters'] = [
 	'for_sale' => ($counters['global_counters']['for_sale']) ? $counters['global_counters']['for_sale'] : '',
 	'for_rent' => ($counters['global_counters']['for_rent']) ? $counters['global_counters']['for_rent'] : '',
 	'commercial' => ($counters['global_counters']['commercial']) ? $counters['global_counters']['commercial'] : ''
