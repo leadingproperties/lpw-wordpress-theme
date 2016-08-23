@@ -61,33 +61,6 @@ function lp_rewrite_rule(){
 }
 
 /**
- * Template redirect for autocomplete script
- */
-add_action('init', __NAMESPACE__ . '\\autocomplete_rewrite_rules');
-
-function autocomplete_rewrite_rules() {
-	add_rewrite_rule( '^autocomplete?', 'index.php?is_autocomplete=1', 'top' );
-	flush_rewrite_rules();
-
-	add_filter( 'query_vars', function( $vars ){
-		$vars[] = 'is_autocomplete';
-		return $vars;
-	} );
-
-	add_filter('template_include', function($template) {
-		if(get_query_var('is_autocomplete', false)) {
-			$new_template = get_template_directory() . '/lib/objects/autocomplete.php';
-			if(file_exists($new_template)) {
-				$template = $new_template;
-			}
-		}
-		return $template;
-
-	}, 1000, 1);
-}
-
-
-/**
  * Register sidebars
  */
 function widgets_init() {
@@ -115,7 +88,7 @@ function assets() {
   }
   if(is_page_template('page-buy.php') || is_page_template('page-rent.php')) {
 	  /*TODO: Change API key*/
-	 wp_enqueue_script('google-map', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyB9AMFYWn5z8QYptnbetxXckrldFpsZyGA&libraries=places', null, true);
+	 wp_enqueue_script('google-map', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyB9AMFYWn5z8QYptnbetxXckrldFpsZyGA&libraries=places&language=en', null, true);
       wp_enqueue_script('js-marker-clusterer', Assets\asset_path('/scripts/js-marker-clusterer.js'), ['jquery', 'google-map'], null, true);
 	 wp_register_script('lprop/js', Assets\asset_path('scripts/main.js'), ['jquery', 'lodash', 'google-map', 'js-marker-clusterer'], null, true);
   } else {
