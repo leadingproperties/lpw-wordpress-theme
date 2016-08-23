@@ -107,6 +107,7 @@ function assets() {
 	  'totalPost' => $count_posts->publish,
 	  'perPage' => get_option('posts_per_page')
   ];
+	$data['totalObjects'] = (is_page_template('page-buy.php')) ? $lp_settings['counters']['for_sale'] : $lp_settings['counters']['for_rent'];
 	if(is_tag()) {
 		$tag_id = get_query_var('tag_id');
 		$tag = get_tags( ['include' => $tag_id] );
