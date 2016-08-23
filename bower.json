@@ -9,7 +9,10 @@
   "dependencies": {
     "bootstrap-sass": "3.3.6",
     "select2": "4.0.3",
-    "bootstrap3-typeahead": "4.0.1"
+    "lodash": "~4.15.0",
+    "intl-tel-input": "8.5.2",
+    "bootstrap3-typeahead": "~4.0.1",
+    "js-marker-clusterer": "*"
   },
   "overrides": {
     "bootstrap-sass": {
@@ -31,11 +34,6 @@
     "select2": {
       "main": [
         "./dist/js/select2.full.js"
-      ]
-    },
-    "bootstrap3-typeahead": {
-      "main": [
-        "bootstrap3-typeahead.js"
       ]
     }
   }
