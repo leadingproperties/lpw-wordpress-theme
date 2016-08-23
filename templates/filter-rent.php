@@ -14,15 +14,15 @@
 			<div class="sp-filters-group filter-type">
 				<span class="sp-group-title"><?php _e('Property type', 'leadingprops'); ?></span>
 				<div class="sp-checkbox">
-					<input id="apartments" type="checkbox" value="1" name="type">
+					<input id="apartments" class="property_type" type="checkbox" value="1" name="type">
 					<label for="apartments"><?php _e('Apartments', 'leadingprops'); ?></label>
 				</div>
 				<div class="sp-checkbox">
-					<input id="houses" type="checkbox" value="2" name="type">
+					<input id="houses" class="property_type" type="checkbox" value="2" name="type">
 					<label for="houses"><?php _e('Houses', 'leadingprops'); ?></label>
 				</div>
 				<div class="sp-checkbox">
-					<input id="commercial" type="checkbox" value="3" name="type">
+					<input id="commercial" class="property_type" type="checkbox" value="3" name="type">
 					<label for="commercial"><?php _e('Commercial Properties', 'leadingprops'); ?></label>
 				</div>
 			</div>
@@ -31,23 +31,23 @@
 					<div class="sp-checkboxes">
 						<span class="sp-group-title"><?php _e('Rooms', 'leadingprops'); ?></span>
 						<div class="sp-checkbox">
-							<input id="one" type="checkbox" name="rooms" value="1">
+							<input id="one" class="filter-room" type="checkbox" name="rooms" value="1">
 							<label for="one">1</label>
 						</div>
 						<div class="sp-checkbox">
-							<input id="two" type="checkbox" name="rooms" value="1">
+							<input id="two" class="filter-room" type="checkbox" name="rooms" value="2">
 							<label for="two">2</label>
 						</div>
 						<div class="sp-checkbox">
-							<input id="three" type="checkbox" name="rooms" value="1">
+							<input id="three" class="filter-room" type="checkbox" name="rooms" value="3">
 							<label for="three">3</label>
 						</div>
 						<div class="sp-checkbox">
-							<input id="four" type="checkbox" name="rooms" value="1">
+							<input id="four" class="filter-room" type="checkbox" name="rooms" value="4">
 							<label for="four">4</label>
 						</div>
 						<div class="sp-checkbox">
-							<input id="five" type="checkbox" name="rooms" value="1">
+							<input id="five" class="filter-room" type="checkbox" name="rooms" value="5">
 							<label for="five">5+</label>
 						</div>
 					</div>
@@ -56,10 +56,10 @@
 					<div class="filter-area-group">
 						<span class="sp-group-title"><?php _e('Area, m', 'leadingprops'); ?><sup>2</sup></span>
 						<label for="area-min" class="sr-only"><?php _e('Area min', 'leadingprops'); ?></label>
-						<input type="number" class="filter-input area-input" id="area-min" placeholder="min">
+						<input type="number" min="0" class="filter-input area-input" id="area-min" placeholder="min">
 						&nbsp;&ndash;&nbsp;
 						<label for="area-max" class="sr-only"><?php _e('Area max', 'leadingprops'); ?></label>
-						<input type="number" class="filter-input area-input" id="area-max" placeholder="max">
+						<input type="number" min="0" class="filter-input area-input" id="area-max" placeholder="max">
 					</div>
 				</div>
 			</div>
@@ -67,7 +67,7 @@
 				<div class="sp-filters-group filter-persons">
 					<span class="sp-group-title"><?php _e('Persons', 'leadingprops'); ?></span>
 					<label for="persons-max" class="sr-only"><?php _e('Persons max', 'leadingprops'); ?></label>
-					<input type="number" class="filter-input area-input" id="persons-max" placeholder="max">
+					<input type="number" min="0" class="filter-input area-input" id="persons-max" placeholder="max">
 				</div>
 				<div class="sp-filters-group filter-conditions">
 					<div class="sp-checkbox">
@@ -84,10 +84,10 @@
 				<div class="filter-price-group">
 					<span class="sp-group-title"><?php _e('Price', 'leadingprops'); ?></span>
 					<label for="price-min" class="sr-only"><?php _e('Price min', 'leadingprops'); ?></label>
-					<input type="text" class="filter-input price-input" id="price-min" placeholder="min">
+					<input type="number" min="0" class="filter-input price-input" id="price-min" placeholder="min">
 					&nbsp;&ndash;&nbsp;
 					<label for="price-max" class="sr-only"><?php _e('Price max', 'leadingprops'); ?></label>
-					<input type="text" class="filter-input price-input" id="price-max" placeholder="max">
+					<input type="number" min="0" class="filter-input price-input" id="price-max" placeholder="max">
 					<label for="price-currency" class="sr-only"><?php _e('Currency', 'leadingprops'); ?></label>
 					<div class="rent-select-wrap">
 						<select name="price[currency]" id="price-currency" class="price-input price-select">

@@ -25,10 +25,10 @@
 					<div class="filter-price-group">
 						<span class="sp-group-title"><?php _e('Price', 'leadingprops'); ?></span>
 						<label for="price-min" class="sr-only"><?php _e('Price min', 'leadingprops'); ?></label>
-						<input type="text" class="filter-input price-input" id="price-min" name="price[min]" placeholder="min">
+						<input type="number" min="0" class="filter-input price-input" id="price-min" name="price[min]" placeholder="min">
 						&nbsp;&ndash;&nbsp;
 						<label for="price-max" class="sr-only"><?php _e('Price max'); ?></label>
-						<input type="text" class="filter-input price-input" id="price-max" name="price[max]" placeholder="max">
+						<input type="number" min="0" class="filter-input price-input" id="price-max" name="price[max]" placeholder="max">
 						<label for="price-currency" class="sr-only"><?php _e('Currency', 'leadingprops'); ?></label>
 						<div class="price-select-wrap">
 							<select name="price[currency]" id="price-currency" class="price-input price-select">
@@ -47,10 +47,10 @@
 					<div class="filter-area-group">
 						<span class="sp-group-title"><?php _e('Area, m<sup>2</sup>', 'leadingprops'); ?></span>
 						<label for="area-min" class="sr-only"><?php _e('Area min', 'leadingprops'); ?></label>
-						<input type="number" class="filter-input area-input" id="area-min" placeholder="min" name="area[min]">
+						<input type="number" min="0" class="filter-input area-input" id="area-min" placeholder="min" name="area[min]">
 						&nbsp;&ndash;&nbsp;
 						<label for="area-max" class="sr-only"><?php _e('Area max', 'leadingprops'); ?></label>
-						<input type="number" class="filter-input area-input" id="area-max" placeholder="max" name="area[max]">
+						<input type="number" min="0" class="filter-input area-input" id="area-max" placeholder="max" name="area[max]">
 					</div>
 				</div>
 			</div>
