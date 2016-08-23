@@ -10,11 +10,9 @@
 	 * @constructor
 	 */
 	function AutoComplete(
-		apiPath,
 		inputSelectorString,
 		callback
-	){
-		this.apiPath = apiPath;
+	) {
 		this.jqInput = $(inputSelectorString);
 		this.callback = callback;
 
@@ -70,7 +68,7 @@
 	AutoComplete.prototype.askAPI = function(query){
 		return $.ajax(
 			{
-				url: this.apiPath,
+				url: LpData.ajaxUrl,
 				data: {
 					query: query,
 					dataType: 'json',

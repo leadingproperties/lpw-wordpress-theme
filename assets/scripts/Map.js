@@ -8,26 +8,26 @@
 	/**
 	 * Карта
 	 * @param geoPointsAPIPath {String} - uri to geo points controller
-	 * @param isRent {Boolean} - станица с объктами для аренды или нет (меняется максимально допустимый зум)
+	 * @param category {String} - category: rent/sale
 	 * @param autoComplete - экземпляр класса AutoComplete
 	 * @constructor
 	 */
 	function Map(
-		geoPointsAPIPath,
-	    isRent,
+		mapModal,
+	    category,
 	    autoComplete
 	){
-		this.geoPointsAPIPath = geoPointsAPIPath;
-		this.isRent = isRent;
+		var $this = this;
+		this.mapModal = $(mapModal);
+		this.category = category;
 		this.autoComplete = autoComplete;
 
-
+		this.geopointsError = false;
 		this.points = null;
 		this.markerCluster = null;
 
 		this.mapOptions = {
 			zoom: 3,
-			maxZoom: isRent ? 18 : 8,
 			scrollwheel: false,
 			center: new google.maps.LatLng(49.1651567,4.0557516),
 			mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -36,7 +36,6 @@
 		//опции для js-marker-clusterer
 		this.markerClusterOptions = {
 			gridSize: 40,
-			maxZoom: isRent ? 18 : 8,
 			imagePath: 'https://s3-eu-west-1.amazonaws.com/test-website-v3/images/m',
 			minimumClusterSize: 1,
 			styles: [
@@ -73,16 +72,31 @@
 			]
 		};
 
-		//инит карты
-		this.map = new google.maps.Map(
-			document.getElementById('map-canvas'),
-			this.mapOptions
-		);
+		if(this.category === 'sale') {
+			this.mapOptions.maxZoom = this.markerClusterOptions.maxZoom = 8;
+		} else if(this.category === 'rent') {
+			this.mapOptions.maxZoom = this.markerClusterOptions.maxZoom = 18;
+		}
 
+		this.mapModal.on('shown.bs.modal', function() {
+			if(!$this.map) {
+				//инит карты
+
+				$this.map = new google.maps.Map(
+					document.getElementById('map-canvas'),
+					$this.mapOptions
+				);
+				if(!$this.geopointsError) {
+					$this.getGeoPointsSuccess($this.geoPoints);
+				}
+			} else {
+				google.maps.event.trigger($this.map, "idle");
+			}
+		});
 		//запрашиваем геопоинты
 		this.getGeoPoints()
-			.done(this.getGeoPointsSuccess.bind(this))
 			.fail(this.getGeoPointsError.bind(this));
+
 	}
 
 	/**
@@ -107,7 +121,6 @@
 				)
 			);
 		}
-
 		//создаем инстанс MarkerClusterer
 		this.markerCluster = new MarkerClusterer(this.map, markers, this.markerClusterOptions);
 
@@ -132,9 +145,10 @@
 						coordinates.location_shape = shape;
 					}
 					$this.autoComplete.setSelected(coordinates, $this.autoComplete.getPlaceText(place));
-					google.maps.event.trigger($this.map, "resize"); //иногда пропадают кластеры - так что пинаем чтобы перерендерить
+					//google.maps.event.trigger($this.map, "idle"); //иногда пропадают кластеры - так что пинаем чтобы перерендерить // Moved to modal event listentr
 				});
 			}
+		this.mapModal.modal('hide');
 		}
 	};
 
@@ -165,7 +179,15 @@
 	 * @returns {Promise}
 	 */
 	Map.prototype.getGeoPoints = function() {
-		return $.get(this.geoPointsAPIPath);
+		var $this = this;
+		var data = {
+			action: 'do_ajax',
+			fn: 'get_geopoints',
+			type: this.category
+		};
+		return $.get(LpData.ajaxUrl, data, function(data) {
+			$this.geoPoints = data;
+		});
 	};
 
 	/**
@@ -188,8 +210,9 @@
 	 * ]
 	 */
 	Map.prototype.getGeoPointsSuccess = function(answer) {
-		if(answer.points && answer.points.length > 0){
-			this.points = answer.points;
+		var jsonData = (answer) ? JSON.parse(answer) : false;
+		if(jsonData.points && jsonData.points.length > 0){
+			this.points = jsonData.points;
 			this.setupMarkerCluster();
 		}
 	};
@@ -199,6 +222,7 @@
 	 * @param error
 	 */
 	Map.prototype.getGeoPointsError = function(error) {
+		this.geopointsError = true;
 		console.log('getGeoPointsError', error);
 	};
 

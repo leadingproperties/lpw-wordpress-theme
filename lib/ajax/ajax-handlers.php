@@ -20,14 +20,22 @@ function ajax_handler() {
 		case 'get_single_post':
 			$output = ajax_get_single_post($_REQUEST['id'], $_REQUEST['type']);
 			break;
-		case 'get_suggestions': {
+		case 'get_suggestions':
 			if(isset($_GET['query']) && !empty($_GET['query'])) {
-				$output = ajax_get_suggestions( $_GET['query'] );
+				$output = ajax_get_suggestions( [
+					'query' => $_GET['query'],
+					'type' => 'get_suggestions'
+				] );
 			} else {
 				$output = '';
 			}
 			break;
-		}
+		case 'get_geopoints':
+			$output = ajax_get_geopoints([
+				'type' => $_REQUEST['type'],
+				'action' => 'get_geopoints'
+			]);
+			break;
 		default :
 			$output = 'No function specified, check your jQuery.ajax() call';
 			break;
@@ -44,9 +52,7 @@ function ajax_get_objects($args) {
 	if(isset($args['fn'])) {
 		unset($args['fn']);
 	}
-	if(isset($args['action'])) {
-		unset($args['action']);
-	}
+	$args['action'] = 'get_objects';
 	$objects = new LP_ObjectList($args);
 	return $objects->get_json_objects();
 }
@@ -172,7 +178,11 @@ function ajax_get_single_post($id, $type) {
 	}
 
 }
-function ajax_get_suggestions($query) {
-	$return = new LP_ObjectList(['query' => $query]);
+function ajax_get_suggestions($args) {
+	$return = new LP_ObjectList($args);
+	return $return->get_json_objects();
+}
+function ajax_get_geopoints($args) {
+	$return = new LP_ObjectList($args);
 	return $return->get_json_objects();
 }

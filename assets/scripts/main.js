@@ -1317,36 +1317,38 @@ Number.prototype.formatMoney = function(c, d, t){
                 method: 'post',
                 data : data,
                 success : function(data){
-                    if( typeof data === 'object' ) {
-                        $this.prevLink = prevObjectLink(data.id);
-                        $this.nextLink = nextObjectLink(data.id);
-                        if(data.id === objectlist.triggerId ) {
-                            objectlist.getObjects(function() {
+                    if( !_.isEmpty(data) ) {
+                        if(data.error) {
+                            console.log(data.error);
+                        } else {
+                            $this.prevLink = prevObjectLink(data.id);
+                            $this.nextLink = nextObjectLink(data.id);
+                            if (data.id === objectlist.triggerId) {
+                                objectlist.getObjects(function () {
+                                    $this.renderSingleHtml(data);
+                                    if (url !== $this.location) {
+                                        if (Helpers.isHhistoryApiAvailable() && 'click' === ev.type) {
+                                            window.history.pushState(null, null, url);
+                                        }
+                                    }
+                                });
+                            } else {
                                 $this.renderSingleHtml(data);
                                 if (url !== $this.location) {
                                     if (Helpers.isHhistoryApiAvailable() && 'click' === ev.type) {
                                         window.history.pushState(null, null, url);
                                     }
                                 }
-                                $this.showLoader(false);
-                            });
-                        } else {
-                            $this.renderSingleHtml(data);
-                            if (url !== $this.location) {
-                                if (Helpers.isHhistoryApiAvailable() && 'click' === ev.type) {
-                                    window.history.pushState(null, null, url);
-                                }
                             }
-                            $this.showLoader(false);
-
                         }
-
                     }
+
                 },
                 error : function (error){
                     console.error(error);
                 },
                 complete: function() {
+                    $this.showLoader(false);
                 }
             });
 
@@ -1419,6 +1421,13 @@ Number.prototype.formatMoney = function(c, d, t){
                     if (data.location_point.lon) {
                         $this.args.location_point.lon = data.location_point.lon;
                     }
+                    if($this.lpwGoogleMap.map && $this.lpwGoogleMap.map instanceof google.maps.Map ) {
+                        $this.lpwGoogleMap.map.setCenter({lat: data.location_point.lat, lng: data.location_point.lon});
+                        $this.lpwGoogleMap.map.setZoom(9);
+                    } else if($this.lpwGoogleMap.mapOptions) {
+                        $this.lpwGoogleMap.mapOptions.center = new google.maps.LatLng(data.location_point.lat,data.location_point.lon);
+                        $this.lpwGoogleMap.mapOptions.zoom = 10;
+                    }
                 }
                 if (data.location_shape) {
                     $this.args.location_shape = {};
@@ -1442,10 +1451,14 @@ Number.prototype.formatMoney = function(c, d, t){
             $this.getObjects();
         };
         if(type === 'list') {
-            var autoComplete = new window.lpw.AutoComplete(
-                LpData.ajaxUrl,
+            this.autoComplete = new window.lpw.AutoComplete(
                 '#sp-search',
                 $this.autoSearch
+            );
+            this.lpwGoogleMap = new window.lpw.Map(
+                '#map-modal',
+                category,
+                $this.autoComplete
             );
         }
         this.lastItem = function() {
@@ -1456,7 +1469,7 @@ Number.prototype.formatMoney = function(c, d, t){
         this.favoritesIds = $this.favorites.favoritesIds;
         this.objectContainer = $('#object-list');
         this.onPage = 0;
-        this.totalObjects = 99999; /*todo get total objects */
+        this.totalObjects = parseInt(LpData.totalObjects);
         this.didScroll = false;
         this.triggerId = 0;
         this.args = {
@@ -1630,7 +1643,9 @@ Number.prototype.formatMoney = function(c, d, t){
                     data: data,
                     success: function (data) {
                         if( !_.isEmpty(data) ) {
-                            if (_.isArray(data.property_objects)) {
+                            if (data.error) {
+                                console.log(data.errorMessage);
+                            } else if (_.isArray(data.property_objects)) {
                                 $this.args.page++;
                                 $this.onPage += data.property_objects.length;
                                 $this.totalObjects = data.total;
@@ -1646,11 +1661,8 @@ Number.prototype.formatMoney = function(c, d, t){
                                             callback(data);
                                         }
                                     });
+                            }
 
-                            }
-                            else if (data.error) {
-                                console.log(data.errorMessage);
-                            }
                         }
                     },
                     error: function (error) {

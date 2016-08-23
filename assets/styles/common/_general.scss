@@ -9,6 +9,9 @@ html.side-menu-open, html.overflow-height {
     height: 100%;
   }
 }
+a {
+  cursor: pointer;
+}
 .site-content {
   background-color: $background-color;
 }
