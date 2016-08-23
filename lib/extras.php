@@ -55,23 +55,26 @@ function lp_menu_static_links ( $items, $args ) {
 	global $lp_settings;
 	$return = '';
     if ($args->theme_location === 'primary_navigation') {
+	    $sp_class = (is_page_template('page-buy.php')) ? ' active' : '';
+	    $rp_class = (is_page_template('page-rent.php')) ? ' active' : '';
 
 
 	    if($args->container) {
-		    $return .= '<li><a class="menu-link" href="' . esc_url(get_field('sale', 'option')) . '">' . __('Buy', 'leadingprops');
-		    $return .= ' <sup class="text-red"></sup>';
+		    $return .= '<li><a class="menu-link' . $sp_class . '" href="' . esc_url(get_field('sale', 'option')) . '">' . __('Buy', 'leadingprops');
+		    $return .= ' <sup class="text-red">' . $lp_settings['counters']['for_sale'] . '</sup>';
 
 		    $return .= '</a></li>';
-		    $return .= '<li><a class="menu-link" href="' . esc_url(get_field('rent', 'option')) . '"">' . __('Rent', 'leadingprops') . '  <sup class="text-red">0</sup></a></li>';
+		    $return .= '<li><a class="menu-link' . $rp_class . '" href="' . esc_url(get_field('rent', 'option')) . '"">' . __('Rent', 'leadingprops');
+		    $return .= '  <sup class="text-red">' . $lp_settings['counters']['for_rent'] . '</sup></a></li>';
 		    $return .= $items;
 	    } else {
-		    $return .= '<li><a class="menu-link" href="' . esc_url(home_url('/')) . '">' . __('Buy', 'leadingprops') . ' <sup class="text-red"></sup></a></li>';
-		    $return .= '<li><a class="menu-link" href="#">' . __('Rent', 'leadingprops') . '  <sup class="text-red"></sup></a></li>';
+		    $return .= '<li><a class="menu-link' . $sp_class . '" href="' . esc_url(home_url('/')) . '">' . __('Buy', 'leadingprops') . ' <sup class="text-red">' . $lp_settings['counters']['for_sale'] . '</sup></a></li>';
+		    $return .= '<li><a class="menu-link' . $rp_class . '" href="#">' . __('Rent', 'leadingprops') . '  <sup class="text-red">' . $lp_settings['counters']['for_rent'] . '</sup></a></li>';
 		    $return .= $items;
 		    $return .= '<li class="divider"></li>';
-		    $return .= '<li><a class="menu-link menu-icon menu-region" href="#">' . __('Select region', 'leadingprops') . '</a></li>';
+		    $return .= '<li><a class="menu-link menu-icon menu-region" data-toggle="modal" data-target="#map-modal">' . __('Select region', 'leadingprops') . '</a></li>';
 		    $return .= '<li><a class="menu-link menu-icon menu-favorites" href="' . $lp_settings['favorites'] . '">' . __('Favorites', 'leadingprops') . ' <sup class="text-red"></sup></a></li>';
-		    $return .= '<li><a class="menu-link menu-icon menu-offmarket" href="' . $lp_settings['off-market'] . '">' . __('Off-market', 'leadingprops') . ' <sup class="text-red"></sup></a></li>';
+		    $return .= '<li><a class="menu-link menu-icon menu-offmarket half-opaque">' . __('Off-market', 'leadingprops') . ' <sup class="text-red"></sup></a></li>';
 		    $return .= '<li class="divider"></li>';
 	    }
     } elseif($args->theme_location === 'footer_navigation') {
