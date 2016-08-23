@@ -172,7 +172,7 @@ gulp.task('styles', ['wiredep'], function() {
     var cssTasksInstance = cssTasks(dep.name);
     if (!enabled.failStyleTask) {
       cssTasksInstance.on('error', function(err) {
-        console.error(err.message);
+      //  console.error(err.message);
         this.emit('end');
       });
     }
@@ -189,7 +189,7 @@ gulp.task('styles', ['wiredep'], function() {
 gulp.task('scripts', ['jshint'], function() {
   var merged = merge();
   manifest.forEachDependency('js', function(dep) {
-    console.log(dep);
+  //  console.log(dep);
     merged.add(
       gulp.src(dep.globs, {base: 'scripts'})
         .pipe(jsTasks(dep.name))
