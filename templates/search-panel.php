@@ -15,9 +15,9 @@
 		</div><!-- /.sp-search-field-->
 		<nav class="sp-menu">
 			<ul>
-				<li class="regions-menu"><a class="menu-link" href="#"></a></li>
+				<li class="regions-menu"><a class="menu-link" data-toggle="modal" data-target="#map-modal"></a></li>
 				<li class="favorites-menu tooltip-type-1" data-toggle="tooltip" data-placement="bottom" title="<?php _e('Favorite Properties', 'leadingprops'); ?>"><a class="menu-link" href="<?php if( is_page_template('page-buy.php' ) ) { echo $lp_settings['favorites']; } else { echo $lp_settings['favorites_rent']; } ?>"><sup class="text-red"></sup></a></li>
-				<li class="off-market-menu tooltip-type-1" data-toggle="tooltip" data-placement="bottom" title="<?php _e('Off-Market Properties', 'leadingprops'); ?>"><a class="menu-link" href="<?php echo $lp_settings['off-market']; ?>"><sup class="text-red"></sup></a></li>
+				<li class="off-market-menu tooltip-type-1" data-toggle="tooltip" data-placement="bottom" title="<?php _e('Off-Market Properties', 'leadingprops'); ?>"><a class="menu-link half-opaque"><sup class="text-red"></sup></a></li>
 			</ul>
 		</nav><!-- /.favorites-menu -->
 		<div class="off-marker-alert">
