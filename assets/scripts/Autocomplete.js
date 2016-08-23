@@ -278,7 +278,7 @@
 	 */
 	AutoComplete.prototype.askAPISuccess = function(query, processCallback, data, textStatus, jqXHR){
 		//console.debug(typeof jqXHR.responseText);
-		var jsonData = JSON.parse(data);
+		var jsonData = (data) ? JSON.parse(data) : false;
 		if(jsonData.options && jsonData.options.length > 0){
 			var items = this.getParsedAPIAnswer(jsonData.options);
 			processCallback(items);
