@@ -103,59 +103,83 @@ class LP_ObjectList {
      */
 
     public function get_api_objects() {
-        $url = $this->api_url . $this->args['lang'] . '/property_objects/';
-        if(isset($this->args['slug'])) {
-            $url .= $this->args['slug'];
+        if($this->error) {
+            return json_encode(['error' => true, 'errorMessage' => $this->error_message]);
+        }
+        if( isset($this->args['query']) ) {
+            $url = $this->api_url . '/suggest?q=' . urlencode($this->args['query']);
         } else {
-            $url .= '?page=' . $this->args['page'] . '&for_sale=' . $this->args['for_sale'] . '&for_rent=' . $this->args['for_rent'];
-            if ( isset( $this->args['ids'] ) && is_array( $this->args['ids'] ) ) {
-                foreach ( $this->args['ids'] as $id ) {
-                    $url .= '&' . 'ids[]=' . (int) $id;
+            $url = $this->api_url . $this->args['lang'] . '/property_objects/';
+            if ( isset( $this->args['slug'] ) ) {
+                $url .= $this->args['slug'];
+            } else {
+                $url .= '?page=' . $this->args['page'] . '&for_sale=' . $this->args['for_sale'] . '&for_rent=' . $this->args['for_rent'];
+                if ( isset( $this->args['ids'] ) && is_array( $this->args['ids'] ) ) {
+                    foreach ( $this->args['ids'] as $id ) {
+                        $url .= '&' . 'ids[]=' . (int) $id;
+                    }
                 }
-            }
-            $url .= '&per_page=' . $this->args['per_page'];
-            if ( isset( $this->args['area'] ) && is_array( $this->args['area'] ) ) {
-                foreach ( $this->args['area'] as $k => $v ) {
-                    if ( $v !== '' ) {
-                        $url .= '&area[' . $k . ']=' . $v;
+                $url .= '&per_page=' . $this->args['per_page'];
+                if ( isset( $this->args['area'] ) && is_array( $this->args['area'] ) ) {
+                    foreach ( $this->args['area'] as $k => $v ) {
+                        if ( $v !== '' ) {
+                            $url .= '&area[' . $k . ']=' . $v;
+                        }
+                    }
+                }
+                if ( isset( $this->args['price'] ) && is_array( $this->args['price'] ) ) {
+                    foreach ( $this->args['price'] as $k => $v ) {
+                        if ( $v !== '' ) {
+                            $url .= '&price[' . $k . ']=' . $v;
+                        }
+                    }
+                }
+                if ( isset( $this->args['property_types'] ) && is_array( $this->args['property_types'] ) ) {
+                    foreach ( $this->args['property_types'] as $v ) {
+                        $url .= '&property_types[]=' . $v;
+                    }
+                }
+                if ( isset( $this->args['rooms'] ) && is_array( $this->args['rooms'] ) ) {
+                    foreach ( $this->args['rooms'] as $v ) {
+                        $url .= '&rooms[]=' . $v;
+                    }
+                }
+                if ( isset( $this->args['hd_photos'] ) ) {
+                    $url .= '&hd_photos=' . $this->args['hd_photos'];
+                }
+                if ( isset( $this->args['long_rent'] ) ) {
+                    $url .= '&long_rent=' . $this->args['long_rent'];
+                }
+                if ( isset( $this->args['short_rent'] ) ) {
+                    $url .= '&short_rent=' . $this->args['short_rent'];
+                }
+                if ( isset( $this->args['persons'] ) && ! empty( $this->args['persons'] ) ) {
+                    $url .= '&persons=' . $this->args['persons'];
+                }
+                if ( isset( $this->args['child_friendly'] ) ) {
+                    $url .= '&child_friendly=' . $this->args['child_friendly'];
+                }
+                if ( isset( $this->args['child_friendly'] ) ) {
+                    $url .= '&pets_allowed=' . $this->args['pets_allowed'];
+                }
+                if(isset($this->args['location_point']) && is_array($this->args['location_point'])) {
+                    foreach ($this->args['location_point'] as $k => $v) {
+                        $url .= '&location_point[' . $k . ']=' . $v;
+                    }
+                }
+                if(isset($this->args['location_shape']) && is_array($this->args['location_shape'])) {
+                    foreach ($this->args['location_shape'] as $key => $value) {
+                        if(is_array($value)) {
+                            foreach($value as $k => $v) {
+                                $url .= '&location_shape[' . $key . '][' .  $k . ']=' . $v;
+                            }
+                        } else {
+                            $url .= '&location_shape[' . $key . ']=' . $value;
+                        }
                     }
                 }
             }
-            if ( isset( $this->args['price'] ) && is_array( $this->args['price'] ) ) {
-                foreach ( $this->args['price'] as $k => $v ) {
-                    if ( $v !== '' ) {
-                        $url .= '&price[' . $k . ']=' . $v;
-                    }
-                }
-            }
-            if ( isset( $this->args['property_types'] ) && is_array( $this->args['property_types'] ) ) {
-                foreach ( $this->args['property_types'] as $v ) {
-                    $url .= '&property_types[]=' . $v;
-                }
-            }
-            if ( isset( $this->args['rooms'] ) && is_array( $this->args['rooms'] ) ) {
-                foreach ( $this->args['rooms'] as $v ) {
-                    $url .= '&rooms[]=' . $v;
-                }
-            }
-            if ( isset( $this->args['hd_photos'] ) ) {
-                $url .= '&hd_photos=' . $this->args['hd_photos'];
-            }
-            if ( isset( $this->args['long_rent'] ) ) {
-                $url .= '&long_rent=' . $this->args['long_rent'];
-            }
-            if ( isset( $this->args['short_rent'] ) ) {
-                $url .= '&short_rent=' . $this->args['short_rent'];
-            }
-            if ( isset( $this->args['persons'] ) && !empty( $this->args['persons'] ) ) {
-                $url .= '&persons=' . $this->args['persons'];
-            }
-            if ( isset( $this->args['child_friendly'] ) ) {
-                $url .= '&child_friendly=' . $this->args['child_friendly'];
-            }
-            if ( isset( $this->args['child_friendly'] ) ) {
-                $url .= '&pets_allowed=' . $this->args['pets_allowed'];
-            }
+
         }
 
         $curl_options = [
@@ -223,6 +247,18 @@ class LP_ObjectList {
 
     public function get_objects_array() {
         return json_decode($this->get_api_objects());
+    }
+
+    /**
+     * Get suggestions for autocomlete
+     *
+     * @since 1.0
+     * @access public
+     * @return string
+     */
+
+    public function get_suggestions() {
+
     }
 
     /**
