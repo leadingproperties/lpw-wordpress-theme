@@ -19,5 +19,6 @@
 	</div>
 
 <?php
+	get_template_part('templates/modal', 'map');
 	get_footer();
 

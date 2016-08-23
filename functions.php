@@ -26,23 +26,29 @@ unset($file, $filepath);
 
 /* Global Settings */
 global $lp_settings;
-$lp_settings['logo'] = s3_logo_path(get_field('logo', 'option'));
-$lp_settings['contact_phone'] = get_field('contact_phone', 'option');
-$lp_settings['contact_email'] = get_field('contact_email', 'option');
-$lp_settings['favorites'] = esc_url(get_field('sale_favorites', 'option'));
-$lp_settings['favorites_rent'] = esc_url(get_field('rent_favorites', 'option'));
-$lp_settings['off-market'] = esc_url(home_url('/off-market/'));
-$lp_settings['use_shortener'] = get_field('use_google_shortener', 'option');
-$lp_settings['site_title'] = get_bloginfo('name');
-$lp_settings['sale_page'] = get_field('sale', 'option');
-$lp_settings['rent_page'] = get_field('rent', 'option');
-$lp_settings['property_page_id'] = get_field('single_object', 'option');
+$lp_settings = [
+	'logo' => s3_logo_path(get_field('logo', 'option')),
+	'contact_phone' => get_field('contact_phone', 'option'),
+	'contact_email' => get_field('contact_email', 'option'),
+	'favorites' => esc_url(get_field('sale_favorites', 'option')),
+	'favorites_rent' => esc_url(get_field('rent_favorites', 'option')),
+	'off-market' => esc_url(home_url('/off-market/')),
+	'use_shortener' => get_field('use_google_shortener', 'option'),
+	'site_title' => get_bloginfo('name'),
+	'sale_page' => get_field('sale', 'option'),
+	'rent_page' => get_field('rent', 'option'),
+	'property_page_id' => get_field('single_object', 'option')
+];
 $lp_settings['property_page'] = get_page_link($lp_settings['property_page_id']);
  //echo get_post_field('post_name', $objectPageId);
 
 $objects = new LP_ObjectList();
-
-$lp_settings['object_info'] = $objects->get_objects_info();
+$counters = $objects->get_global_counters();
+$lp_settings['c'] = [
+	'for_sale' => ($counters['global_counters']['for_sale']) ? $counters['global_counters']['for_sale'] : '',
+	'for_rent' => ($counters['global_counters']['for_rent']) ? $counters['global_counters']['for_rent'] : '',
+	'commercial' => ($counters['global_counters']['commercial']) ? $counters['global_counters']['commercial'] : ''
+];
 
 
 function get_social_links() {
