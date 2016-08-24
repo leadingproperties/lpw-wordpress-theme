@@ -1,157 +1,48 @@
-.static-page-content {
-  color: $text-dark-color;
-}
-.static-page-container {
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 0 20px;
-  @include clearfix();
-  @media (min-width: $sp560) {
-    width: 560px;
-  }
-  @media (min-width: $sp1130) {
-    width: 1130px;
-  }
-}
-.static-page-row {
-  @include clearfix();
-}
-.st-section-top {
-  line-height: 1.571;
-  .static-page-container {
-    padding-top: 35px;
-    padding-bottom: 55px;
-    .static-page-ap & {
-      padding-top: 40px;
-      padding-bottom: 40px;
-    }
-  }
-  h1 {
-    font-size: 20px;
-    line-height: 1.25;
-    margin-bottom: 20px;
-  }
-  p {
-    margin-bottom: 20px;
-  }
-  a.terms-link {
-    font-size: 14px;
-    span {
-      text-decoration: underline;
-    }
-    &::before {
-      font-size: 20px;
-      vertical-align: sub;
-      margin-right: 7px;
-    }
-  }
-  @media (min-width: $sp560) {
-    font-size: 16px;
-    .static-page-container {
-      padding-top: 60px;
-      padding-bottom: 75px;
-      .static-page-ap & {
-        padding-bottom: 65px;
+.page-static {
+  .page-header, .entry-content {
+    .container {
+      @media (min-width: $container-width-1) and (max-width: $container-width-2) {
+        width: $object-width;
+        margin-left: auto;
+        margin-right: auto;
       }
     }
   }
 }
-.st-section-middle {
-  background: #fff;
-  .st-section-title {
-    font-size: 30px;
-    line-height: 1.333;
-    margin: -31px 0 45px;
-    .static-page-ap & {
-      max-width: 315px;
-      margin-bottom: 50px;
-    }
-  }
-  @media (min-width: $sp560) {
-    .st-section-title {
-      font-size: 48px;
-      margin-top: -49px;
-      margin-bottom: 42px;
-      .static-page-ap & {
-        max-width: 520px;
-      }
-    }
-  }
-  @media (min-width: $sp1130) {
-    .st-section-title {
-      .static-page-ap & {
-        max-width: none;
-      }
-    }
-  }
-}
-.st-section-bottom {
+.page-header {
   background: $color-red;
   color: #fff;
-  padding-top: 32px;
-  padding-bottom: 25px;
-  .static-page-ap & {
-    padding-bottom: 29px;
+  padding-top: 24px;
+  padding-bottom: 29px;
+  margin-bottom: 20px;
+  h1 {
+    font-size: 30px;
   }
-  font-size: 14px;
-  a {
-    color: inherit;
-  }
-  h2 {
-    font-size: 20px;
-    line-height: 1.25;
-    margin-top: 0;
-    margin-bottom: 10px;
-    .static-page-ap & {
-      margin-bottom: 4px;
+  @media (min-width: $container-width-1) {
+    padding-top: 29px;
+    padding-bottom: 34px;
+    margin-bottom: 30px;
+    h1 {
+      font-size: 36px;
     }
   }
-  ul.about-contacts {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    position: relative;
-    @include clearfix();
-    li {
-      float: left;
-      margin-bottom: 10px;
-      padding-left: 24px;
-      position: relative;
-      margin-right: 17px;
-      line-height: 20px;
-      &::before {
-        position: absolute;
-        top: 0;
-        left: -3px;
-        font-size: 20px;
-      }
-
-      &.ac-mail {
-        padding-left: 29px;
-        &::before {
-          left: 0;
-        }
-      }
-    }
+}
+.entry-content {
+  color: $text-dark-color;
+  padding-top: 5px;
+  padding-bottom: 30px;
+  h1, h2 {
+    margin-bottom: 15px;
   }
-  @media (min-width: $sp560) {
+  @media (min-width: $container-width-1) {
+    padding-top: 15px;
+    padding-bottom: 40px;
     font-size: 16px;
-    padding-top: 38px;
-    h2 {
+    h1, h2 {
       font-size: 24px;
-      margin-bottom: 14px;
-      .static-page-ap & {
-        margin-bottom: 9px;
-      }
     }
-    ul.about-contacts {
-      li {
-        padding-left: 26px;
-        &.ac-mail {
-          padding-left: 31px;
-        }
-      }
+    h3, h4 {
+      font-size: 20px;
     }
   }
 }

@@ -2,8 +2,6 @@
   get_template_part('templates/head');
   get_header();
 ?>
-<?php // get_template_part('templates/panel', 'blog'); ?>
-
 <?php if (!have_posts()) : ?>
   <div class="no-matches">
     <div class="container">
@@ -23,6 +21,5 @@
   <div class="loader">
     <span class="spin"></span>
   </div>
-<?php // get_template_part('templates/panel', 'blog-footer'); ?>
 <?php
 get_footer();

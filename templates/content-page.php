@@ -1,2 +1,6 @@
-<?php the_content(); ?>
-<?php wp_link_pages(['before' => '<nav class="page-nav"><p>' . __('Pages:', 'sage'), 'after' => '</p></nav>']); ?>
+<div class="entry-content">
+	<div class="container">
+		<?php the_content(); ?>
+	</div>
+</div>
+
