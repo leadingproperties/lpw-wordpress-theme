@@ -1,14 +1,14 @@
-
-
-.about-intro {
-  max-width: 805px;
+.offices-row {
+  padding-top: 30px;
 }
 .office-box {
   position: relative;
   width: 100%;
   color: $text-color;
-  margin-bottom: 35px;
+  margin-bottom: 30px;
   font-size: 12px;
+  padding-left: 10px;
+  padding-right: 10px;
   address {
     line-height: 1.667;
   }
@@ -25,32 +25,31 @@
     color: $text-dark-color;
     margin: 0 0 3px;
   }
-  @media (min-width: $sp560) {
-    width: 520px;
+  @media (min-width: $container-width-1) {
+    width: $object-width;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 45px;
-  }
-  @media (min-width: $sp1130) {
-    float: left;
-    margin-left: 0;
-    margin-right: 50px;
     margin-bottom: 40px;
-    &:last-child {
-      margin-right: 0;
-    }
   }
+  @media (min-width: $container-width-2) {
+    float: left;
+  }
+}
+.agents-row {
+  padding-top: 30px;
 }
 .team-box {
   position: relative;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 40px;
-  width: 235px;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 100%;
   color: $text-color;
   font-size: 12px;
   .team-photo {
-    margin-bottom: 20px;
+    margin: 0 auto 20px;
   }
   .team-location {
     margin-bottom: 5px;
@@ -75,19 +74,10 @@
       font-style: normal;
     }
   }
-  @media (min-width: $sp560) {
-    float: left;
-    margin-left: 0;
-    margin-right: 50px;
+  @media (min-width: $container-width-1) {
+    width: $object-width;
   }
-  @media (min-width: $sp560) and  (max-width: $sp1130 - 1) {
-    &:nth-child(2n) {
-      margin-right: 0;
-    }
-  }
-  @media (min-width: $sp1130) {
-    &:nth-child(4n) {
-      margin-right: 0;
-    }
+  @media (min-width: $container-width-2) {
+    float: left;;
   }
 }

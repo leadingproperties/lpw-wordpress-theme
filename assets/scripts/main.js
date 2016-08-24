@@ -92,6 +92,9 @@ Number.prototype.formatMoney = function(c, d, t){
             return e.parentNode && this.hasParentClass( e.parentNode, classname );
         },
         equalheight: function(container){
+            if(container) {
+                container = '.eqh';
+            }
 
             var currentTallest = 0,
                 currentRowStart = 0,
@@ -1851,7 +1854,7 @@ Number.prototype.formatMoney = function(c, d, t){
 
       }
     },
-  'blog_list': {
+    'blog_list': {
       init: function() {
           var blog = new Blog(),
               single = new Single();
@@ -1905,8 +1908,7 @@ Number.prototype.formatMoney = function(c, d, t){
           }();
       }
   },
-
-  'single_post': {
+    'single_post': {
       init: function() {
           // JavaScript to be fired on the about us page
           var singleObjectStyles = (function() {
@@ -1950,7 +1952,13 @@ Number.prototype.formatMoney = function(c, d, t){
               });
           }
       }
-  }
+  },
+    'page_static': {
+        init: function() {
+            $(window).on('load', Helpers.equalheight);
+            $(window).on('resize', Helpers.equalheight);
+        }
+    }
   };
 
   // The routing fires all common scripts, followed by the page specific scripts.
