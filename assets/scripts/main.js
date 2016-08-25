@@ -1410,10 +1410,10 @@ Number.prototype.formatMoney = function(c, d, t){
         this.autoSearch = function(data) {
             resetObjects();
             clearAutoSearch();
-            if(data.l_id) {
+            if(data && data.l_id) {
                 $this.args.ids = [data.l_id];
             } else {
-                if (data.location_point) {
+                if (data && data.location_point) {
                     $this.args.location_point = {};
                     if (data.location_point.country_code) {
                         $this.args.location_point.country_code = data.location_point.country_code;
@@ -1432,7 +1432,7 @@ Number.prototype.formatMoney = function(c, d, t){
                         $this.lpwGoogleMap.mapOptions.zoom = 10;
                     }
                 }
-                if (data.location_shape) {
+                if (data && data.location_shape) {
                     $this.args.location_shape = {};
                     if(data.location_shape.country_code) {
                         $this.args.location_shape.country_code = data.location_shape.country_code;

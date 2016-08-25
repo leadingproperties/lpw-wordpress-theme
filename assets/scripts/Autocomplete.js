@@ -50,10 +50,16 @@
 				menu: '<ul class="sp-search-dropdown" role="listbox"></ul>',
 				item: '<li><a href="#" role="option"></a></li>',
 				afterSelect: $this.afterSelect.bind($this),
+				minLength: 0,
 				source: function(query, process){
-					$this.askAPI(query, process)
-						.done($this.askAPISuccess.bind($this, query, process))
-						.fail($this.askAPIError.bind($this, query, process));
+					if(query && query.length > 0){
+						$this.askAPI(query)
+							.done($this.askAPISuccess.bind($this, query, process))
+							.fail($this.askAPIError.bind($this, query, process));
+					}else{
+						$this.autocompleteSelected = null;
+						$this.callback();
+					}
 				}
 			}
 		);
