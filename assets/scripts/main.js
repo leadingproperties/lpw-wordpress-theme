@@ -313,7 +313,8 @@ Number.prototype.formatMoney = function(c, d, t){
             });
             this.searchLink.on('click', function(ev) {
                 ev.preventDefault();
-                FilterMenu.openFilter();
+                $('.filter-toggle').addClass('active').tooltip('destroy');
+                $('.sp-filters').addClass('open');
                 that.scrollTo(0, 1000, 200);
             });
         }
