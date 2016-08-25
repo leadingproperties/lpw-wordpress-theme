@@ -5,6 +5,7 @@
         "scripts/Contactform.js",
         "scripts/Autocomplete.js",
         "scripts/Map.js",
+        "scripts/Tags.js",
         "scripts/main.js"
       ],
       "main": true
