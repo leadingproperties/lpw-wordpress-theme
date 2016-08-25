@@ -36,6 +36,9 @@ function ajax_handler() {
 				'action' => 'get_geopoints'
 			]);
 			break;
+        case 'get_tags':
+            $output = ajax_build_tags($_REQUEST);
+            break;
 		default :
 			$output = 'No function specified, check your jQuery.ajax() call';
 			break;
@@ -185,4 +188,9 @@ function ajax_get_suggestions($args) {
 function ajax_get_geopoints($args) {
 	$return = new LP_ObjectList($args);
 	return $return->get_json_objects();
+}
+
+function ajax_build_tags($args){
+    $tags = new \LPW\Tags($args);
+    return $tags->get_tags_html($args);
 }
