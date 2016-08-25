@@ -25,6 +25,10 @@
   }
   a.logo-link {
     display: block;
+    width: 350px;
+    img {
+      max-height: 90px;
+    }
   }
   .contacts {
     display: none;
@@ -73,10 +77,6 @@
     a.logo-link {
       display: inline-block;
       vertical-align: middle;
-      width: 350px;
-      img {
-        max-height: 90px;
-      }
     }
     .contacts {
       display: inline-block;
