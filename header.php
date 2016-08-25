@@ -15,8 +15,13 @@
 					<header class="site-header" role="banner">
 						<div class="logo container">
 							<a class="logo-link" href="<?php echo esc_url(home_url('/')); ?>">
+								<?php $logoHeight = get_field('logo_max_height', 'option');  ?>
 								<?php if($logo = wp_get_attachment_image_url(get_field('logo', 'option'), 'logo')) {
-									echo '<img src="' . $logo . '" alt="' . get_bloginfo('name') . '" >';
+									echo '<img src="' . $logo . '" alt="' . get_bloginfo('name') . '"';
+										if($logoHeight) {
+											echo ' style="max-height: ' . $logoHeight . ' px;"';
+										}
+									echo '>';
 								} else {
 									bloginfo('name');
 								} ?>
