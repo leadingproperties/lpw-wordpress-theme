@@ -1807,6 +1807,9 @@ Number.prototype.formatMoney = function(c, d, t){
         // JavaScript to be fired on all pages
           SidebarMenuEffects.init();
 
+          $('.menu-buy a').append(' <sup class="text-red">' + LpData.totalSale + '</sup>');
+          $('.menu-rent a').append(' <sup class="text-red">' + LpData.totalRent + '</sup>');
+
           $('body').on('click.lprop', '.alert-close', function(ev) {
               ev.preventDefault();
               var target = $(this).data('target');

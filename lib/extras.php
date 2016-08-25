@@ -60,12 +60,12 @@ function lp_menu_static_links ( $items, $args ) {
 
 
 	    if($args->container) {
-		    $return .= '<li><a class="menu-link' . $sp_class . '" href="' . esc_url(get_field('sale', 'option')) . '">' . __('Buy', 'leadingprops');
-		    $return .= ' <sup class="text-red">' . $lp_settings['counters']['for_sale'] . '</sup>';
+		 //   $return .= '<li><a class="menu-link' . $sp_class . '" href="' . esc_url(get_field('sale', 'option')) . '">' . __('Buy', 'leadingprops');
+		 //   $return .= ' <sup class="text-red">' . $lp_settings['counters']['for_sale'] . '</sup>';
 
-		    $return .= '</a></li>';
-		    $return .= '<li><a class="menu-link' . $rp_class . '" href="' . esc_url(get_field('rent', 'option')) . '"">' . __('Rent', 'leadingprops');
-		    $return .= '  <sup class="text-red">' . $lp_settings['counters']['for_rent'] . '</sup></a></li>';
+		 //   $return .= '</a></li>';
+		 //   $return .= '<li><a class="menu-link' . $rp_class . '" href="' . esc_url(get_field('rent', 'option')) . '"">' . __('Rent', 'leadingprops');
+		 //   $return .= '  <sup class="text-red">' . $lp_settings['counters']['for_rent'] . '</sup></a></li>';
 		    $return .= $items;
 	    } else {
 		    $return .= '<li><a class="menu-link' . $sp_class . '" href="' . esc_url(home_url('/')) . '">' . __('Buy', 'leadingprops') . ' <sup class="text-red">' . $lp_settings['counters']['for_sale'] . '</sup></a></li>';

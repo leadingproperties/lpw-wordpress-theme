@@ -93,7 +93,9 @@ function assets() {
 	  'propertyPage'    => $lp_settings['property_page'],
 	  'totalPost' => $count_posts->publish,
 	  'perPage' => get_option('posts_per_page'),
-	  'lang'    => $lp_settings['lang']
+	  'lang'    => $lp_settings['lang'],
+	  'totalSale' => $lp_settings['counters']['for_sale'],
+	  'totalRent'   => $lp_settings['counters']['for_rent']
   ];
 	$data['totalObjects'] = (is_page_template('page-buy.php')) ? $lp_settings['counters']['for_sale'] : $lp_settings['counters']['for_rent'];
 	if(is_tag()) {
