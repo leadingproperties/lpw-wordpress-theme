@@ -35,6 +35,12 @@
       "main": [
         "./dist/js/select2.full.js"
       ]
+    },
+    "intl-tel-input": {
+      "main": [
+        "./build/js/intlTelInput.js",
+        "./build/js/utils.js"
+      ]
     }
   }
 }

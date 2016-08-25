@@ -88,6 +88,11 @@
     padding-top: 11.5px;
     padding-bottom: 11.5px;
   }
+  .btn-submit[disabled] {
+    opacity: .85;
+    background: #ccc;
+    cursor: not-allowed;
+  }
   .disclaimer-note {
     font-size: 12px;
     color: #999;

@@ -2,6 +2,7 @@
   "dependencies": {
     "main.js": {
       "files": [
+        "scripts/Contactform.js",
         "scripts/Autocomplete.js",
         "scripts/Map.js",
         "scripts/main.js"

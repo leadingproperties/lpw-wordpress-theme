@@ -27,7 +27,7 @@ unset($file, $filepath);
 /* Global Settings */
 global $lp_settings;
 $lp_settings = [
-	'logo' => lwp_get_image(get_field('logo', 'option'), 'logo'),
+	'logo' => wp_get_attachment_image_url(get_field('logo', 'option'), 'logo'), //lwp_get_image(get_field('logo', 'option'), 'logo'),
 	'contact_phone' => get_field('contact_phone', 'option'),
 	'contact_email' => get_field('contact_email', 'option'),
 	'favorites' => esc_url(get_field('sale_favorites', 'option')),
@@ -82,15 +82,15 @@ function get_social_links() {
 function get_floating_bar() {
 	global $lp_settings;
 	$return = '';
-	if(is_front_page() || Tags\is_favorites()) {
+	if(is_page_template('page-buy.php') || is_page_template('page-buy.rent') || is_page_template('page-favorites.php') || is_page_template('page-favorites-rent.php') ) {
 		$return = ' <nav class="floating-bar" role="navigation"><div class="container">
         <ul>';
-		if ( !Tags\is_favorites() ) {
+		if ( !(is_page_template('page-favorites.php') || is_page_template('page-favorites-rent.php')) ) {
 			$return .= '<li><a href="#" class="search-link"></a></li>
 			            <li><a href="' . $lp_settings['favorites'] . '" class="favorites-link"><sup></sup></a></li>
-			            <li><a href="#" class="off-market-link" data-toggle="modal" data-target=".offmarket-request"><sup></sup></a></li>';
+			            <li><a href="#" class="off-market-link half-opaque" data-type="off_market"><sup></sup></a></li>';
 		}
-		$return .= '<li><a href="#" class="request-link" data-toggle="modal" data-target=".contact-modal"></a></li>
+		$return .= '<li><a href="#" class="request-link" data-toggle="modal" data-type="default" data-target=".contact-modal"></a></li>
             <li><a href="#" class="to-top-link"></a></li>
         </ul></div>
     </nav>';
@@ -112,3 +112,16 @@ add_action('wp_footer', 'get_floating_bar', 5);
       return 'http://'.$s3meta['bucket'].'.s3.amazonaws.com/'.$s3meta['key'];
     }
   }
+
+/**
+ * Add CF modals
+ */
+function add_cf_modals() {
+	if(is_page_template('page-buy.php') || is_page_template('page-rent.php') || is_page_template('page-favorites.php') || is_page_template('page-favorites-rent.php') || is_page_template('page-object.php')) {
+		get_template_part('templates/form', 'contact');
+		get_template_part('templates/form', 'request');
+		get_template_part('templates/form', 'offmarket');
+	}
+
+}
+add_action('wp_footer', 'add_cf_modals');

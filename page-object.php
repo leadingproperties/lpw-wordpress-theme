@@ -30,7 +30,7 @@
 		<header class="single-object-header">
 			<div class="single-object-wrap">
 				<div class="detailed-link-wrap">
-					<a href="#" class="btn btn-green btn-detailed-link" data-toggle="modal" data-target=".single-object-request">
+					<a href="#" class="btn btn-green btn-detailed-link" data-toggle="modal" data-target=".single-object-request" data-type="single_property" data-object-type="<?= $object_type; ?>" data-id="<?= $objects_obj->id; ?>" data-code="<? $objects_obj->code; ?>">
 						<span><?php _e('Get detailed information', 'leadingprops'); ?></span>
 					</a>
 				</div>
@@ -430,7 +430,9 @@
 			</div>
 		</div><!-- /.similar-object-search -->
 		<footer class="single-object-footer">
-			<a href="#" class="btn btn-green btn-detailed-link" data-toggle="modal" data-target=".single-object-request"><span>Get detailed information</span></a>
+			<a href="#" class="btn btn-green btn-detailed-link" data-toggle="modal" data-target=".single-object-request" data-type="single_property" data-object-type="<?= $object_type; ?>" data-id="<?= $objects_obj->id; ?>" data-code="<? $objects_obj->code; ?>">
+				<span><?php _e('Get detailed information', 'leadingprops'); ?></span>
+			</a>
 		</footer>
 
 	</div><!-- /.single-object-container -->

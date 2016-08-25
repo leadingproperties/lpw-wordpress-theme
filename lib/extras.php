@@ -74,7 +74,7 @@ function lp_menu_static_links ( $items, $args ) {
 		    $return .= '<li class="divider"></li>';
 		    $return .= '<li><a class="menu-link menu-icon menu-region" data-toggle="modal" data-target="#map-modal">' . __('Select region', 'leadingprops') . '</a></li>';
 		    $return .= '<li><a class="menu-link menu-icon menu-favorites" href="' . $lp_settings['favorites'] . '">' . __('Favorites', 'leadingprops') . ' <sup class="text-red"></sup></a></li>';
-		    $return .= '<li><a class="menu-link menu-icon menu-offmarket half-opaque">' . __('Off-market', 'leadingprops') . ' <sup class="text-red"></sup></a></li>';
+		    $return .= '<li><a class="menu-link menu-icon menu-offmarket half-opaque" data-type="off_market">' . __('Off-market', 'leadingprops') . ' <sup class="text-red"></sup></a></li>';
 		    $return .= '<li class="divider"></li>';
 	    }
     } elseif($args->theme_location === 'footer_navigation') {

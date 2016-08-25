@@ -36,6 +36,9 @@ function ajax_handler() {
 				'action' => 'get_geopoints'
 			]);
 			break;
+		case 'contact_form':
+			$output = ajax_contsct_form($_REQUEST);
+			break;
 		default :
 			$output = 'No function specified, check your jQuery.ajax() call';
 			break;
@@ -186,3 +189,12 @@ function ajax_get_geopoints($args) {
 	$return = new LP_ObjectList($args);
 	return $return->get_json_objects();
 }
+
+function ajax_contsct_form($args) {
+	if(isset($args['fn'])) {
+		unset($args['fn']);
+	}
+	$args['action'] = 'request_form';
+	$return = new LP_ObjectList($args);
+	return $return->send_request_form();
+};

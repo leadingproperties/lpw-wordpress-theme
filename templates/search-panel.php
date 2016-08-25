@@ -21,9 +21,9 @@
 			</ul>
 		</nav><!-- /.favorites-menu -->
 		<div class="off-marker-alert">
-			<div class="alert alert-danger" style="display: block">
-				<a href="#" class="alert-close btn-close"></a>
-				<p><?php _e('We have found Off-Market properties that may fit your search criteria', 'leadingprops'); ?>. <a href="#" data-toggle="modal" data-target=".offmarket-request"><?php _e('Request information', 'leadingprops'); ?></a></p>
+			<div class="alert alert-danger">
+				<a href="#" class="alert-close btn-close" data-target=".off-marker-alert"></a>
+				<p><?php _e('We have found Off-Market properties that may fit your search criteria', 'leadingprops'); ?>. <a href="#" data-toggle="modal" data-target=".offmarket-request" data-type="off_market"><?php _e('Request information', 'leadingprops'); ?></a></p>
 			</div>
 		</div>
 	</div><!-- /.container -->

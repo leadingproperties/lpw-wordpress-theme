@@ -269,6 +269,57 @@ class LP_ObjectList {
         }
     }
 
+    public function send_request_form() {
+        $url = $this->api_url . '/request';
+        $return = '';
+        $data = [
+            'first_name' => ($this->args['first_name']) ? $this->args['first_name'] : '',
+            'last_name' => ($this->args['last_name']) ? $this->args['last_name'] : '',
+            'phone' => ($this->args['phone']) ? $this->args['phone'] : '',
+            'email' => ($this->args['email']) ? $this->args['email'] : '',
+            'skype' => $this->args['skype'] ? $this->args['skype'] : '',
+            'question'  => $this->args['question'] ? $this->args['question'] : '',
+            'form_type' => $this->args['form_type']
+        ];
+        if(isset($this->args['is_rent'])) {
+            $data['is_rent'] = $this->args['is_rent'];
+        }
+        $content = json_encode($data);
+
+        $curl = curl_init($url);
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HTTPHEADER,
+            [
+                "Content-type: application/json",
+                'Authorization: Token token=' . $this->token
+            ]);
+        curl_setopt($curl, CURLOPT_POST, true);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $content);
+
+        $json_response = curl_exec($curl);
+
+        $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+        if ( $status !== 200 ) {
+            $return = json_encode([
+                'success' => true,
+                'type'  => 'red',
+                'message'   => __('An error was occurred. Please try again later.', 'leadingprops'),
+                'status' => $status
+            ]);
+        } else {
+             /*$return = [
+                'success' => true,
+                'type'  => 'green',
+                'message'   => __('Thank you, request was received. We will send detailed information about the object, including plans, prices and review information soon ', 'leadingprops')
+            ];*/
+            $return = $json_response;
+        }
+        curl_close($curl);
+
+        return $return;
+    }
+
     /**
      * Check if string is JSON
      *

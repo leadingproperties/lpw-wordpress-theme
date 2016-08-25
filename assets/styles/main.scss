@@ -22,10 +22,10 @@ $rtl:  false !default;
 @import "components/tooltips";
 @import "components/modal";
 @import "components/map";
-@import "../../bower_components/select2/src/scss/core.scss";
 @import "components/carousel";
-@import "../../bower_components/intl-tel-input/src/css/intlTelInput";
 @import "common/helpars";
+@import "vendor/select2/core";
+@import "vendor/intlTelInput/intlTelInput";
 
 @import "layouts/header";
 @import "components/lang-panel";
