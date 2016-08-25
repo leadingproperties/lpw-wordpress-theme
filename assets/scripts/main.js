@@ -1533,7 +1533,7 @@ Number.prototype.formatMoney = function(c, d, t){
           location: false
         };
         this.args = {
-            lang: 'en',
+            lang: LpData.lang,
             page: 1,
             per_page: 9,
             for_sale: ( category === 'sale' ),

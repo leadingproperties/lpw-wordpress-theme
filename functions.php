@@ -37,7 +37,8 @@ $lp_settings = [
 	'site_title' => get_bloginfo('name'),
 	'sale_page' => get_field('sale', 'option'),
 	'rent_page' => get_field('rent', 'option'),
-	'property_page_id' => get_field('single_object', 'option')
+	'property_page_id' => get_field('single_object', 'option'),
+	'lang' => lpw_get_current_lang()
 ];
 $lp_settings['property_page'] = get_page_link($lp_settings['property_page_id']);
  //echo get_post_field('post_name', $objectPageId);
@@ -50,6 +51,13 @@ $lp_settings['counters'] = [
 	'commercial' => ($counters['global_counters']['commercial']) ? $counters['global_counters']['commercial'] : ''
 ];
 
+function lpw_get_current_lang() {
+	if(function_exists('qtranxf_getLanguage')) {
+		return qtranxf_getLanguage();
+	} else {
+		return 'en';
+	}
+}
 
 function get_social_links() {
 	$fb_link = get_field('facebook_link', 'option');

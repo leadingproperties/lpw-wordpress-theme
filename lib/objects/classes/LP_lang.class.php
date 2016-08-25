@@ -253,10 +253,32 @@ class LP_lang {
 
 	public function __construct() {
 		add_action('lang_panel', [&$this, 'lang_panel_html']);
-	//	add_action('init', [&$this, 'rewrite_rules']);
-	//	add_action('query_vars', [$this, 'set_query_vars']);
 	}
 	public function lang_panel_html() {
+		global $q_config;
+		if(is_404()) $url = get_option('home'); else $url = '';
+		$output = '<section id="lang-panel" class="section-lang-lists collapse language-chooser">'.PHP_EOL;
+		$output .= '<div class="lang-panel-row container">'.PHP_EOL;
+		$output .= '<div class="row">'.PHP_EOL;
+
+		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+		if(is_plugin_active('qtranslate-x/qtranslate.php')) {
+
+			foreach(qtranxf_getSortedLanguages() as $language) {
+				$classes = ['lang-'.$language];
+				$alt = $q_config['language_name'][$language].' ('.$language.')';
+				$output .= '<div class="lang-option-wrapper">'.PHP_EOL;
+				$output .= '<a href="'.qtranxf_convertURL($url, $language, false, true) . '"';
+				$output .= ' hreflang="'.$language.'"';
+				$output .= ' title="'.$alt.'"';
+				$output .= '><span class="'. implode(' ', $classes) . '"></span>' . $q_config['language_name'][$language] . '</a>';
+				$output .= '</div>' .PHP_EOL;
+			}
+		}
+		$output .= '</div>'.PHP_EOL;
+		$output .= '</div>'.PHP_EOL;
+		$output .= '</section>'.PHP_EOL;
+		/*
 		$output = '';
 		$output .= '<section id="lang-panel" class="section-lang-lists collapse">';
 		$output .= '<div class="lang-panel-row container">';
@@ -266,7 +288,7 @@ class LP_lang {
 			$output .= '<a href="' . $lang['url'] . '"><span class="lang-' . $lang['wrapper_class'] . '"></span>' . $lang['title'] . '</a>';
 			$output .= '</div>';
 		}
-		$output .= '</div></div></section>';
+		$output .= '</div></div></section>'; */
 		echo $output;
 	}
 	public function rewrite_rules() {

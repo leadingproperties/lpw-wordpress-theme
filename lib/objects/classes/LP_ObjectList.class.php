@@ -277,10 +277,16 @@ class LP_ObjectList {
             'last_name' => ($this->args['last_name']) ? $this->args['last_name'] : '',
             'phone' => ($this->args['phone']) ? $this->args['phone'] : '',
             'email' => ($this->args['email']) ? $this->args['email'] : '',
-            'skype' => $this->args['skype'] ? $this->args['skype'] : '',
-            'question'  => $this->args['question'] ? $this->args['question'] : '',
+            'skype' => ($this->args['skype']) ? $this->args['skype'] : '',
+            'question'  => ($this->args['question']) ? $this->args['question'] : '',
             'form_type' => $this->args['form_type']
         ];
+        if($this->args['property_id']) {
+            $data['property_id'] = $this->args['property_id'];
+        }
+        if($this->args['property_code']) {
+            $data['property_code'] = $this->args['property_code'];
+        }
         if(isset($this->args['is_rent'])) {
             $data['is_rent'] = $this->args['is_rent'];
         }
