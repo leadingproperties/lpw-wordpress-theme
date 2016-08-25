@@ -165,6 +165,9 @@ class LP_ObjectList {
                             $url .= '&location_point[' . $k . ']=' . $v;
                         }
                     }
+                    if(isset($this->args['order_by']['order'])) {
+                        $url .= '&order_by[order]=' . $this->args['order_by']['order'];
+                    }
                     if(isset($this->args['location_shape']) && is_array($this->args['location_shape'])) {
                         foreach ($this->args['location_shape'] as $key => $value) {
                             if(is_array($value)) {

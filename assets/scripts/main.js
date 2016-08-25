@@ -166,7 +166,6 @@ Number.prototype.formatMoney = function(c, d, t){
     function FilterMenu(type, catogory) {
         var $this = this,
             container = $('.sp-filters'),
-            filterSorting = $('.sorting-select'),
             filterToggleBtn = $('.filter-toggle'),
             filterCloseBtn = $('.filter-close'),
             filterCurrency = $('#price-currency'),
@@ -175,6 +174,7 @@ Number.prototype.formatMoney = function(c, d, t){
                 template: '<div class="tooltip tooltip-search" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>',
                 delay: { "show": 200, "hide": 300 }
             };
+        this.filterSorting = $('.sorting-select');
         this.filterForm = $('#filter-form');
         this.getValues = function() {
             var price = {
@@ -252,7 +252,7 @@ Number.prototype.formatMoney = function(c, d, t){
         }
 
         this.init = function() {
-                filterSorting.select2({
+                this.filterSorting.select2({
                     minimumResultsForSearch: Infinity,
                     containerCssClass : "sorting-select",
                     dropdownCssClass: "sorting-select-dropdown",
@@ -1795,6 +1795,16 @@ Number.prototype.formatMoney = function(c, d, t){
                     $this.getObjects();
                 }
             });
+            filter.filterSorting.on('change', function() {
+                var val = $(this).val();
+                if(val !== 'false') {
+                    $this.args.order_by = {
+                        order: val
+                    }
+                }
+                resetObjects();
+                $this.getObjects();
+            });
         };
         this.init = function () {
             $this.favorites.init();
@@ -1818,8 +1828,8 @@ Number.prototype.formatMoney = function(c, d, t){
         // JavaScript to be fired on all pages
           SidebarMenuEffects.init();
 
-          $('.menu-buy a').append(' <sup class="text-red">' + LpData.totalSale + '</sup>');
-          $('.menu-rent a').append(' <sup class="text-red">' + LpData.totalRent + '</sup>');
+          $('.menu .menu-buy a').append(' <sup class="text-red">' + LpData.totalSale + '</sup>');
+          $('.menu .menu-rent a').append(' <sup class="text-red">' + LpData.totalRent + '</sup>');
 
           $('body').on('click.lprop', '.alert-close', function(ev) {
               ev.preventDefault();

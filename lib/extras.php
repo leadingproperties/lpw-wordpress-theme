@@ -68,8 +68,8 @@ function lp_menu_static_links ( $items, $args ) {
 		 //   $return .= '  <sup class="text-red">' . $lp_settings['counters']['for_rent'] . '</sup></a></li>';
 		    $return .= $items;
 	    } else {
-		    $return .= '<li><a class="menu-link' . $sp_class . '" href="' . esc_url(home_url('/')) . '">' . __('Buy', 'leadingprops') . ' <sup class="text-red">' . $lp_settings['counters']['for_sale'] . '</sup></a></li>';
-		    $return .= '<li><a class="menu-link' . $rp_class . '" href="#">' . __('Rent', 'leadingprops') . '  <sup class="text-red">' . $lp_settings['counters']['for_rent'] . '</sup></a></li>';
+		   // $return .= '<li><a class="menu-link' . $sp_class . '" href="' . esc_url(home_url('/')) . '">' . __('Buy', 'leadingprops') . ' <sup class="text-red">' . $lp_settings['counters']['for_sale'] . '</sup></a></li>';
+		   // $return .= '<li><a class="menu-link' . $rp_class . '" href="#">' . __('Rent', 'leadingprops') . '  <sup class="text-red">' . $lp_settings['counters']['for_rent'] . '</sup></a></li>';
 		    $return .= $items;
 		    $return .= '<li class="divider"></li>';
 		    $return .= '<li><a class="menu-link menu-icon menu-region" data-toggle="modal" data-target="#map-modal">' . __('Select region', 'leadingprops') . '</a></li>';
@@ -78,8 +78,8 @@ function lp_menu_static_links ( $items, $args ) {
 		    $return .= '<li class="divider"></li>';
 	    }
     } elseif($args->theme_location === 'footer_navigation') {
-	    $return .= '<li><a href="' . esc_url(home_url('/')) . '">' . __('Buy', 'leadingprops') . '</a></li>';
-	    $return .= '<li><a href="#">' . __('Rent', 'leadingprops') . '</a></li>';
+	   // $return .= '<li><a href="' . esc_url(home_url('/')) . '">' . __('Buy', 'leadingprops') . '</a></li>';
+	   // $return .= '<li><a href="#">' . __('Rent', 'leadingprops') . '</a></li>';
 	    $return .= $items;
     }
     return $return;
