@@ -1,4 +1,7 @@
 .sorting-wrapper {
+  .page-sales &, .page-rent & {
+    display: none;
+  }
   margin-bottom: 20px;
   .sorting-field {
     margin-bottom: 10px;

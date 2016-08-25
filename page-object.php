@@ -4,10 +4,13 @@
  */
 ?>
 <?php
+	global $lp_settings;
 	$object_slug = get_query_var('object_slug', false);
+
 	$objects_obj = new StdClass;
 	if($object_slug) {
 		$objects = new LP_ObjectList([
+			'lang' => $lp_settings['lang'],
 			'slug'  => $object_slug
 		]);
 		$objects_obj = $objects->get_objects_array();
@@ -15,6 +18,7 @@
 		$objects_obj->error = true;
 		$objects_obj->errorMessage  = 'Nothing found';
 	}
+
 ?>
 <?php
 	get_template_part('templates/head');

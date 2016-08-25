@@ -12,6 +12,8 @@
 		this.autoComplete = autoCompleteInstance;
 		this.filterForm = filterFormInstance;
 
+		this.soptingPanel = $('.sorting-wrapper');
+
 		this.jQTagsField = $('#panel-tags');
 
 		this.attachListeners();
@@ -88,7 +90,12 @@
 	};
 
 	Tags.prototype.getTagsSuccess = function(answer) {
-		this.jQTagsField.html(answer);
+		if(answer && answer !== '0') {
+			this.jQTagsField.html(answer);
+			this.soptingPanel.show();
+		} else {
+			this.soptingPanel.hide();
+		}
 	};
 
 	Tags.prototype.getTagsError = function(error) {

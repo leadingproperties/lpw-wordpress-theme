@@ -54,7 +54,7 @@ add_action('init', __NAMESPACE__ . '\\lp_rewrite_rule');
 function lp_rewrite_rule(){
 	global $lp_settings;
 
-	add_rewrite_rule( '^' . get_post_field('post_name', $lp_settings['property_page_id']) . '/([^/]*)/?', 'index.php?page_id=' . $lp_settings['property_page_id'] . '&object_slug=$matches[1]', 'top' );
+	add_rewrite_rule( '^([^/]*)/?' . get_post_field('post_name', $lp_settings['property_page_id']) . '/([^/]*)/?', 'index.php?page_id=' . $lp_settings['property_page_id'] . '&object_slug=$matches[2]', 'top' );
 	flush_rewrite_rules();
 	add_filter( 'query_vars', function( $vars ){
 		$vars[] = 'object_slug';

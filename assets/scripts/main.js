@@ -166,6 +166,7 @@ Number.prototype.formatMoney = function(c, d, t){
     function FilterMenu(type, catogory) {
         var $this = this,
             container = $('.sp-filters'),
+            filterSorting = $('.sorting-select'),
             filterToggleBtn = $('.filter-toggle'),
             filterCloseBtn = $('.filter-close'),
             filterCurrency = $('#price-currency'),
@@ -251,6 +252,12 @@ Number.prototype.formatMoney = function(c, d, t){
         }
 
         this.init = function() {
+                filterSorting.select2({
+                    minimumResultsForSearch: Infinity,
+                    containerCssClass : "sorting-select",
+                    dropdownCssClass: "sorting-select-dropdown",
+                    width: "100%"
+                });
             if( type === 'list' ) {
                 filterCurrency.select2({
                     minimumResultsForSearch: Infinity,
@@ -1448,48 +1455,53 @@ Number.prototype.formatMoney = function(c, d, t){
         this.autoSearch = function(data, silent) {
             resetObjects();
             clearAutoSearch();
-            if(data && data.l_id) {
-                $this.args.ids = [data.l_id];
-                $this.usedFilters.location = false;
-            } else {
-                if(data.location_point || data.location_shape) {
-                    $this.usedFilters.location = true;
-                }
-	            if (data && data.location_point) {
-                    $this.args.location_point = {};
-                    if (data.location_point.country_code) {
-                        $this.args.location_point.country_code = data.location_point.country_code;
+            if(data) {
+                if (data.l_id) {
+                    $this.args.ids = [data.l_id];
+                    $this.usedFilters.location = false;
+                } else {
+                    if (data.location_point || data.location_shape) {
+                        $this.usedFilters.location = true;
                     }
-                    if (data.location_point.lat) {
-                        $this.args.location_point.lat = data.location_point.lat;
+                    if (data && data.location_point) {
+                        $this.args.location_point = {};
+                        if (data.location_point.country_code) {
+                            $this.args.location_point.country_code = data.location_point.country_code;
+                        }
+                        if (data.location_point.lat) {
+                            $this.args.location_point.lat = data.location_point.lat;
+                        }
+                        if (data.location_point.lon) {
+                            $this.args.location_point.lon = data.location_point.lon;
+                        }
+                        if ($this.lpwGoogleMap.map && $this.lpwGoogleMap.map instanceof google.maps.Map) {
+                            $this.lpwGoogleMap.map.setCenter({
+                                lat: data.location_point.lat,
+                                lng: data.location_point.lon
+                            });
+                            $this.lpwGoogleMap.map.setZoom(9);
+                        } else if ($this.lpwGoogleMap.mapOptions) {
+                            $this.lpwGoogleMap.mapOptions.center = new google.maps.LatLng(data.location_point.lat, data.location_point.lon);
+                            $this.lpwGoogleMap.mapOptions.zoom = 10;
+                        }
                     }
-                    if (data.location_point.lon) {
-                        $this.args.location_point.lon = data.location_point.lon;
-                    }
-                    if($this.lpwGoogleMap.map && $this.lpwGoogleMap.map instanceof google.maps.Map ) {
-                        $this.lpwGoogleMap.map.setCenter({lat: data.location_point.lat, lng: data.location_point.lon});
-                        $this.lpwGoogleMap.map.setZoom(9);
-                    } else if($this.lpwGoogleMap.mapOptions) {
-                        $this.lpwGoogleMap.mapOptions.center = new google.maps.LatLng(data.location_point.lat,data.location_point.lon);
-                        $this.lpwGoogleMap.mapOptions.zoom = 10;
-                    }
-                }
-                if (data && data.location_shape) {
-                    $this.args.location_shape = {};
-                    if(data.location_shape.country_code) {
-                        $this.args.location_shape.country_code = data.location_shape.country_code;
-                    }
-                    if (data.location_shape.bottom_left && data.location_shape.bottom_left.lat && data.location_shape.bottom_left.lon) {
-                        $this.args.location_shape.bottom_left = {
-                            lat: data.location_shape.bottom_left.lat,
-                            lon: data.location_shape.bottom_left.lon
-                        };
-                    }
-                    if (data.location_shape.top_right && data.location_shape.top_right.lat && data.location_shape.top_right.lon) {
-                        $this.args.location_shape.top_right = {
-                            lat: data.location_shape.top_right.lat,
-                            lon: data.location_shape.top_right.lon
-                        };
+                    if (data && data.location_shape) {
+                        $this.args.location_shape = {};
+                        if (data.location_shape.country_code) {
+                            $this.args.location_shape.country_code = data.location_shape.country_code;
+                        }
+                        if (data.location_shape.bottom_left && data.location_shape.bottom_left.lat && data.location_shape.bottom_left.lon) {
+                            $this.args.location_shape.bottom_left = {
+                                lat: data.location_shape.bottom_left.lat,
+                                lon: data.location_shape.bottom_left.lon
+                            };
+                        }
+                        if (data.location_shape.top_right && data.location_shape.top_right.lat && data.location_shape.top_right.lon) {
+                            $this.args.location_shape.top_right = {
+                                lat: data.location_shape.top_right.lat,
+                                lon: data.location_shape.top_right.lon
+                            };
+                        }
                     }
                 }
             }
@@ -1824,12 +1836,7 @@ Number.prototype.formatMoney = function(c, d, t){
               template: '<div class="tooltip tooltip-search" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>',
               delay: { "show": 200, "hide": 300 }
           });
-          $('#sorting').select2({
-              minimumResultsForSearch: Infinity,
-              containerCssClass : "sorting-select",
-              dropdownCssClass: "sorting-select-dropdown",
-              width: "100%"
-          });
+
       },
       finalize: function() {
         // JavaScript to be fired on all pages, after page specific JS is fired
