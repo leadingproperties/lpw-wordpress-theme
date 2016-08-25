@@ -6,7 +6,7 @@
 			<div class="sp-input-wrap">
 				<input id="sp-search" type="text" class="sp-input text-input dropdown-trigger" placeholder="<?php _e('Address or reference number', 'leadingprops'); ?>">
 			</div>
-			<a href="#" class="filter-toggle tooltip-type-search icon" data-toggle="tooltip" data-placement="bottom" title=""<?php _e('Advanced Search', 'leadingprops'); ?>"><span class="sr-only">Filter</span></a>
+			<a href="#" class="filter-toggle tooltip-type-search icon" data-toggle="tooltip" data-placement="bottom" title="<?php _e('Advanced Search', 'leadingprops'); ?>"><span class="sr-only">Filter</span></a>
 			<?php if( is_page_template('page-buy.php') ) {
 				get_template_part('templates/filter', 'sale');
 			} elseif( is_page_template('page-rent.php') ) {

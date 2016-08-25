@@ -1813,6 +1813,15 @@ Number.prototype.formatMoney = function(c, d, t){
               $(target).hide();
           });
 
+          $('.tooltip-type-1').tooltip({
+              html: true,
+              delay: { "show": 200, "hide": 300 }
+          });
+          /*Search tooltip */
+          $('.tooltip-type-search').tooltip({
+              template: '<div class="tooltip tooltip-search" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>',
+              delay: { "show": 200, "hide": 300 }
+          });
           $('#sorting').select2({
               minimumResultsForSearch: Infinity,
               containerCssClass : "sorting-select",
