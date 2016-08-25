@@ -1452,7 +1452,7 @@ Number.prototype.formatMoney = function(c, d, t){
                 $this.args.ids = [data.l_id];
                 $this.usedFilters.location = false;
             } else {
-                if(data.location_point || data.location_shape) {
+                if(data && (data.location_point || data.location_shape)) {
                     $this.usedFilters.location = true;
                 }
 	            if (data && data.location_point) {
