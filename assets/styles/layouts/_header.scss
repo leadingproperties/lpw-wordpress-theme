@@ -28,7 +28,6 @@
   }
   .contacts {
     display: none;
-    float: right;
     color: $text-dark-color;
     line-height: 30px;
     padding-top: 10px;
@@ -72,10 +71,15 @@
   }
   @media (min-width: $container-width-3) {
     a.logo-link {
-      float: left;
+      display: inline-block;
+      vertical-align: middle;
+      width: 350px;
     }
     .contacts {
-      display: block;
+      display: inline-block;
+      vertical-align: middle;
+      width: $container-width-3 - 380;
+      text-align: right;
     }
   }
 }

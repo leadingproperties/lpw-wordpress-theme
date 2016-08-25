@@ -82,6 +82,7 @@ function get_social_links() {
 		if($inst_link) {
 			$return .= '<li><a href="' . $inst_link . '" target="_blank" class="soc-icon instagram-icon"></a></li>';
 		}
+		$return .= '</ul>';
 	 endif;
 	return $return;
 }

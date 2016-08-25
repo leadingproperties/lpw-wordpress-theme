@@ -29,9 +29,11 @@
 		<?php endif; ?>
       </div><!-- /.address -->
 	   <div class="footer-dt">
-		   <div class="social-links">
-			   <?php echo get_social_links(); ?>
-		   </div><!-- /.social-links -->
+		   <?php if($social) : ?>
+			   <div class="social-links">
+				   <?= $social; ?>
+			   </div><!-- /.social-links -->
+		   <?php endif; ?>
 		   <div class="legal-protection">
 			   <a href="https://www.leadingproperties.com/">
 			   </a>
