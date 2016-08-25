@@ -230,15 +230,12 @@
 	 *
 	 * @param item {Object} - объект с google координатами или ответом апи на автокомплит, подготовленные для запроса объектов (см. вызовы метода setSelected)
 	 * @param inputText {string} - строка для показа в инпуте
+	 * @param ignoreCallback {Boolean} - используется при сбросе всех тэгов, т.к. делаем триггер на form submit
 	 */
-	AutoComplete.prototype.setSelected = function(item, inputText) {
+	AutoComplete.prototype.setSelected = function(item, inputText, ignoreCallback) {
 		this.autocompleteSelected = item;
-		if(inputText){
-			this.jqInput.val(inputText).change();
-		}
-		if(item) {
-			this.callback(item);
-		}
+		this.jqInput.val(inputText || '').change();
+		this.callback(item, ignoreCallback);
 	};
 
 	/**
