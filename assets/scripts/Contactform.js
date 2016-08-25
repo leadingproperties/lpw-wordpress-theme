@@ -87,6 +87,7 @@
 						skype: $this.skype.val(),
 						question: $this.message.val(),
 						form_type: $this.type,
+						locale: LpData.lang,
 						action: 'do_ajax',
 						fn: 'contact_form'
 					};

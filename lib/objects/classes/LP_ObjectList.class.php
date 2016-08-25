@@ -279,7 +279,8 @@ class LP_ObjectList {
             'email' => ($this->args['email']) ? $this->args['email'] : '',
             'skype' => ($this->args['skype']) ? $this->args['skype'] : '',
             'question'  => ($this->args['question']) ? $this->args['question'] : '',
-            'form_type' => $this->args['form_type']
+            'form_type' => $this->args['form_type'],
+            'locale'    => ($this->args['locale']) ? $this->args['locale'] : 'en'
         ];
         if($this->args['property_id']) {
             $data['property_id'] = $this->args['property_id'];
