@@ -30,13 +30,6 @@
     img {
       max-height: 90px;
     }
-    @media (min-width: $container-width-1) {
-      a.logo-link {
-        width: 350px;
-        margin-left: auto;
-        margin-right: auto;
-      }
-    }
   }
   .contacts {
     display: none;
@@ -79,6 +72,13 @@
       &:first-child {
         margin-right: 25px;
       }
+    }
+  }
+  @media (min-width: $container-width-1) {
+    a.logo-link {
+      width: 350px;
+      margin-left: auto;
+      margin-right: auto;
     }
   }
   @media (min-width: $container-width-3) {

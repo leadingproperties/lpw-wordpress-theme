@@ -1393,6 +1393,7 @@ Number.prototype.formatMoney = function(c, d, t){
         function resetObjects() {
             $this.objectContainer.html('');
             $this.args.page = 1;
+            $this.onPage = 0;
         }
 
         function setOffmarker(count) {
