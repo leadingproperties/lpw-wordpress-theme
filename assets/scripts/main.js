@@ -186,9 +186,7 @@ Number.prototype.formatMoney = function(c, d, t){
                     return this.value;
                 }).get(),
                 values = {};
-            if($('#quality').is(':checked')) {
-                values.hd_photos = true;
-            }
+            values.hd_photos = $('#quality').is(':checked');
             if(area.min || area.max) {
                 values.area = {};
                 if (area.min) {
@@ -197,6 +195,8 @@ Number.prototype.formatMoney = function(c, d, t){
                 if (area.max) {
                     values.area.max = area.max;
                 }
+            }else{
+                values.area = null;
             }
             if(price.min || price.max) {
                 values.price = {};
@@ -207,30 +207,18 @@ Number.prototype.formatMoney = function(c, d, t){
                     values.price.max = price.max;
                 }
                 values.price.currency = $('#price-currency').val();
+            }else{
+                values.price = null;
             }
-            if(!_.isEmpty(property_types)) {
-                values.property_types = property_types;
-            }
-            if(!_.isEmpty(rooms)) {
-                values.rooms = rooms;
-            }
+
+            values.property_types = _.isEmpty(property_types) ? null : property_types;
+            values.rooms = _.isEmpty(rooms) ? null : rooms;
             if( catogory === 'rent' ) {
-                var persons_max = $('#persons-max').val();
-                if($('#long-term').is(':checked')) {
-                    values.long_rent = true;
-                }
-                if($('#short-term').is(':checked')) {
-                    values.short_rent = true;
-                }
-                if(persons_max) {
-                    values.persons = persons_max;
-                }
-                if($('#child-friendly').is(':checked')) {
-                    values.child_friendly = true;
-                }
-                if($('#pets-allowed').is(':checked')) {
-                    values.pets_allowed = true;
-                }
+                values.persons = $('#persons-max').val() || null;
+                values.short_rent = $('#short-term').is(':checked');
+                values.long_rent = $('#long-term').is(':checked');
+                values.child_friendly = $('#child-friendly').is(':checked');
+                values.pets_allowed = $('#pets-allowed').is(':checked');
                 if(price.min || price.max) {
                     values.price.period = $('#price-period').val();
                 }
@@ -1407,7 +1395,7 @@ Number.prototype.formatMoney = function(c, d, t){
             }
         }
 
-        this.autoSearch = function(data) {
+        this.autoSearch = function(data, silent) {
             resetObjects();
             clearAutoSearch();
             if(data && data.l_id) {
@@ -1451,7 +1439,10 @@ Number.prototype.formatMoney = function(c, d, t){
                     }
                 }
             }
-            $this.getObjects();
+
+            if(!silent){
+                $this.getObjects();
+            }
         };
         if(type === 'list') {
             this.autoComplete = new window.lpw.AutoComplete(
@@ -1462,6 +1453,11 @@ Number.prototype.formatMoney = function(c, d, t){
                 '#map-modal',
                 category,
                 $this.autoComplete
+            );
+            this.tags = new window.lpw.Tags(
+                LpData.ajaxUrl,
+                $this.autoComplete,
+                filter.filterForm
             );
         }
         this.lastItem = function() {
@@ -1637,6 +1633,8 @@ Number.prototype.formatMoney = function(c, d, t){
             loader.show();
             data = $this.args;
 
+            $this.tags.buildTags(data);
+
             data.action = 'do_ajax';
             data.fn = 'get_objects';
                 $.ajax({
@@ -1717,6 +1715,7 @@ Number.prototype.formatMoney = function(c, d, t){
                     _.forEach(args, function (value, key) {
                         $this.args[key] = value;
                     });
+                    $this.args = _.pickBy($this.args);
                     resetObjects();
                     $this.getObjects();
                 }
