@@ -50,10 +50,16 @@
 				menu: '<ul class="sp-search-dropdown" role="listbox"></ul>',
 				item: '<li><a href="#" role="option"></a></li>',
 				afterSelect: $this.afterSelect.bind($this),
+				minLength: 0,
 				source: function(query, process){
-					$this.askAPI(query, process)
-						.done($this.askAPISuccess.bind($this, query, process))
-						.fail($this.askAPIError.bind($this, query, process));
+					if(query && query.length > 0){
+						$this.askAPI(query)
+							.done($this.askAPISuccess.bind($this, query, process))
+							.fail($this.askAPIError.bind($this, query, process));
+					}else{
+						$this.autocompleteSelected = null;
+						$this.callback();
+					}
 				}
 			}
 		);
@@ -224,15 +230,12 @@
 	 *
 	 * @param item {Object} - объект с google координатами или ответом апи на автокомплит, подготовленные для запроса объектов (см. вызовы метода setSelected)
 	 * @param inputText {string} - строка для показа в инпуте
+	 * @param ignoreCallback {Boolean} - используется при сбросе всех тэгов, т.к. делаем триггер на form submit
 	 */
-	AutoComplete.prototype.setSelected = function(item, inputText) {
+	AutoComplete.prototype.setSelected = function(item, inputText, ignoreCallback) {
 		this.autocompleteSelected = item;
-		if(inputText){
-			this.jqInput.val(inputText).change();
-		}
-		if(item) {
-			this.callback(item);
-		}
+		this.jqInput.val(inputText || '').change();
+		this.callback(item, ignoreCallback);
 	};
 
 	/**

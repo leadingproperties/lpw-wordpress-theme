@@ -1,14 +1,5 @@
 <section class="sorting-wrapper container">
-	<div class="sorting-field tags">
-		<ul class="tag-list">
-			<li>Lorem <sup>59</sup> <span class="tag-remove"></span></li>
-			<li>Lorem <sup>59</sup> <span class="tag-remove"></span></li>
-			<li>Lorem <sup>59</sup> <span class="tag-remove"></span></li>
-			<li>Lorem <sup>59</sup> <span class="tag-remove"></span></li>
-			<li>Lorem <sup>59</sup> <span class="tag-remove"></span></li>
-			<li><span class="tag-remove-all"></span></li>
-		</ul>
-	</div>
+	<div class="sorting-field tags" id="panel-tags"></div>
 	<div class="sorting-field sorting">
 		<label for="sorting" class="sr-only"><?php _e('Sort', 'leadingprops'); ?></label>
 		<select class="sorting-select" id="sorting">

@@ -39,6 +39,9 @@ function ajax_handler() {
 		case 'contact_form':
 			$output = ajax_contsct_form($_REQUEST);
 			break;
+        case 'get_tags':
+            $output = ajax_build_tags($_REQUEST);
+            break;
 		default :
 			$output = 'No function specified, check your jQuery.ajax() call';
 			break;
@@ -198,3 +201,8 @@ function ajax_contsct_form($args) {
 	$return = new LP_ObjectList($args);
 	return $return->send_request_form();
 };
+
+function ajax_build_tags($args){
+    $tags = new \LPW\Tags($args);
+    return $tags->get_tags_html($args);
+}

@@ -8,6 +8,7 @@
 	get_template_part('templates/head');
 	get_header();
 	get_template_part('templates/search', 'panel');
+	get_template_part('templates/sorting', 'panel');
 ?>
 	<section class="objects-list-wrapper">
 		<div class="container">
