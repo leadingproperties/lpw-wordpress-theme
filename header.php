@@ -15,8 +15,8 @@
 					<header class="site-header" role="banner">
 						<div class="logo container">
 							<a class="logo-link" href="<?php echo esc_url(home_url('/')); ?>">
-								<?php if($lp_settings['logo']) {
-									echo '<img src="' . $lp_settings['logo'] . '" alt="' . get_bloginfo('name') . '" >';
+								<?php if($logo = wp_get_attachment_image_url(get_field('logo', 'option'), 'logo')) {
+									echo '<img src="' . $logo . '" alt="' . get_bloginfo('name') . '" >';
 								} else {
 									bloginfo('name');
 								} ?>

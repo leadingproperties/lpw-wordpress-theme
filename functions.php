@@ -27,7 +27,6 @@ unset($file, $filepath);
 /* Global Settings */
 global $lp_settings;
 $lp_settings = [
-	'logo' => wp_get_attachment_image_url(get_field('logo', 'option'), 'logo'), //lwp_get_image(get_field('logo', 'option'), 'logo'),
 	'contact_phone' => get_field('contact_phone', 'option'),
 	'contact_email' => get_field('contact_email', 'option'),
 	'favorites' => esc_url(get_field('sale_favorites', 'option')),
