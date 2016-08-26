@@ -1850,6 +1850,8 @@ Number.prototype.formatMoney = function(c, d, t){
               delay: { "show": 200, "hide": 300 }
           });
 
+          var pdf = new window.lpw.Pdf();
+
       },
       finalize: function() {
         // JavaScript to be fired on all pages, after page specific JS is fired
