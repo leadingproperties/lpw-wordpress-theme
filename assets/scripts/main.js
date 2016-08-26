@@ -1805,7 +1805,7 @@ Number.prototype.formatMoney = function(c, d, t){
                 if(val !== 'false') {
                     $this.args.order_by = {
                         order: val
-                    }
+                    };
                 }
                 resetObjects();
                 $this.getObjects();

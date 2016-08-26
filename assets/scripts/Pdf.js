@@ -58,7 +58,8 @@
 		var ajaxData = {
 			    action: 'do_ajax',
 			    fn: 'get_pdf',
-			    property_id: id
+			    property_id: id,
+				lang: LpData.lang
 		    },
 			$this = this;
 
