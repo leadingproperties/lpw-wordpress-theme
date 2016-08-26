@@ -105,6 +105,15 @@ class LP_ObjectList {
                     $url .= '/property_objects/rent_geo_points';
                 }
                 break;
+            case 'get_pdf':
+                $url .= $this->args['lang'] . '/pdf/';
+                if($this->args['property_id']) {
+                    $url .= $this->args['property_id'];
+                }
+                if($this->args['for_rent']) {
+                    $url .= '?for_rent=true';
+                }
+                break;
             default:
 
                 $url .= $this->args['lang'] . '/property_objects/';

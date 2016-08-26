@@ -42,6 +42,9 @@ function ajax_handler() {
         case 'get_tags':
             $output = ajax_build_tags($_REQUEST);
             break;
+		case 'get_pdf':
+			$output = ajax_get_pdf($_REQUEST);
+			break;
 		default :
 			$output = 'No function specified, check your jQuery.ajax() call';
 			break;
@@ -205,4 +208,9 @@ function ajax_contsct_form($args) {
 function ajax_build_tags($args){
     $tags = new \LPW\Tags($args);
     return $tags->get_tags_html($args);
+}
+function ajax_get_pdf($args) {
+	$args['action'] = 'get_pdf';
+	$return = new LP_ObjectList($args);
+	return $return->get_json_objects();
 }
