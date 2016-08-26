@@ -64,6 +64,21 @@
   .first & {
     padding-bottom: 20px;
   }
+  .info-title {
+    font-size: 14px;
+    margin: 0 0 10px;
+    @media (min-width: $container-width-1) {
+      font-size: 16px;
+    }
+    @media (min-width: $container-width-2) {
+      font-size: 16px;
+      .first & {
+        font-size: 20px;
+        margin-bottom: 15px;
+        height: 28px;
+      }
+    }
+  }
   @media (min-width: $screen370) {
     padding-left: 0;
     padding-right: 0;
@@ -74,21 +89,7 @@
     }
   }
 }
-.info-title {
-  font-size: 14px;
-  margin: 0 0 10px;
-  @media (min-width: $container-width-1) {
-    font-size: 16px;
-  }
-  @media (min-width: $container-width-2) {
-    font-size: 16px;
-    .first & {
-      font-size: 20px;
-      margin-bottom: 15px;
-      height: 28px;
-    }
-  }
-}
+
 .entry-meta {
   border-top: 1px solid transparent;
   border-bottom: 1px solid transparent;

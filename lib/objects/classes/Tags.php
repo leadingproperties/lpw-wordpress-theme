@@ -89,7 +89,7 @@ class Tags
     function get_autocomplete_tag_html($autocomplete_data, $counters){
         $autocomplete_tag_html = '';
         if($autocomplete_data){
-            $autocomplete_tag_html = '<li>' . $autocomplete_data['text'] . '<sup>' . ($autocomplete_data['data']['l_id'] ? 1 : $counters['geo_location']['doc_count']) . '</sup> <span class="tag-remove" data-tag_type="autocomplete"></span></li>';
+            $autocomplete_tag_html = '<li>' . $autocomplete_data['text'] . ' <sup>' . ($autocomplete_data['data']['l_id'] ? 1 : $counters['geo_location']['doc_count']) . '</sup> <span class="tag-remove" data-tag_type="autocomplete"></span></li>';
         }
         return $autocomplete_tag_html;
     }
@@ -127,7 +127,7 @@ class Tags
     function get_hq_photos_tag_html($bool, $counters){
         $hq_photos_tag_html = '';
         if($bool){
-            $hq_photos_tag_html = '<li>HQ photos <sup>' . $counters['hd_photos']['doc_count'] . '</sup> <span class="tag-remove" data-tag_type="quality" data-tag_data="quality"></span></li>';
+            $hq_photos_tag_html = '<li>' . __('HQ photos', 'ledingprops') . ' <sup>' . $counters['hd_photos']['doc_count'] . '</sup> <span class="tag-remove" data-tag_type="quality" data-tag_data="quality"></span></li>';
         }
         return $hq_photos_tag_html;
     }
