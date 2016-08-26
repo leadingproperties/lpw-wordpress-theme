@@ -6,6 +6,7 @@
         "scripts/Autocomplete.js",
         "scripts/Map.js",
         "scripts/Tags.js",
+        "scripts/Pdf.js",
         "scripts/main.js"
       ],
       "main": true
