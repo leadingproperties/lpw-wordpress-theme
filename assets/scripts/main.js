@@ -1705,7 +1705,9 @@ Number.prototype.formatMoney = function(c, d, t){
             loader.show();
             data = $this.args;
 
-            $this.tags.buildTags(data);
+            if( type === 'list') {
+                $this.tags.buildTags(data);
+            }
 
             data.action = 'do_ajax';
             data.fn = 'get_objects';
