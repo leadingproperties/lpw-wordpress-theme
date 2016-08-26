@@ -876,6 +876,7 @@ Number.prototype.formatMoney = function(c, d, t){
                 a2f_class = '';
                 a2f_action = 'add';
             }
+            var dataType = type === 'rent' ? ' data-is_rent="true"' : '';
 
             if( isModalExists() ) {
                 $('.single-object-modal').remove();
@@ -889,7 +890,7 @@ Number.prototype.formatMoney = function(c, d, t){
                     '</div>' +
                     '<button type="button" class="btn btn-single-close">Close</button>' +
                     '<ul class="single-object-menu">' +
-                    '<li><a href="#" class="pdf-link"><sup class="text-red">PDF</sup></a></li>' +
+                    '<li><a href="#" data-id="' + data.id + '"' + dataType + ' class="pdf-link"><sup class="text-red">PDF</sup></a></li>' +
                     '<li><a href="#" class="add-favorite-button' + a2f_class + '"  data-action="' + a2f_action + '"  data-id="' + data.id + '"></a></li>' +
                     '</ul>' +
                     '</div>' +

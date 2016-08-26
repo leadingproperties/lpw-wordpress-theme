@@ -39,7 +39,7 @@
 					</a>
 				</div>
 				<ul class="single-object-menu">
-					<li><a href="#" class="pdf-link"><sup class="text-red">PDF</sup></a></li>
+					<li><a href="#" data-id="<?= $objects_obj->id; ?>"<?php if($object_type === 'rent') { echo 'data-is_rent="true"'; } ?>  class="pdf-link"><sup class="text-red">PDF</sup></a></li>
 					<li><a href="#" class="add-favorite-button" data-id="<?= $objects_obj->id ?>"></a></li>
 				</ul>
 			</div>
