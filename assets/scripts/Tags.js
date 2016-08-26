@@ -16,24 +16,8 @@
 
 		this.jQTagsField = $('#panel-tags');
 
-		this.url = window.location.protocol + '//' + window.location.hostname + window.location.pathname;
-
 		this.attachListeners();
 	}
-
-	Tags.prototype.setUrl = function(params) {
-		var query = '?filter=',
-		    excluded = ['action', 'fn', 'page', 'per_page', 'for_sale', 'for_rent', 'lang', 'action'];
-		params = _.omit(params, excluded);
-		if(!_.isEmpty(params)) {
-			params = JSON.stringify(params);
-			query += encodeURIComponent(params);
-			window.history.pushState(null, null, this.url + query);
-
-		} else {
-			window.history.pushState(null, null, this.url);
-		}
-	};
 
 	Tags.prototype.attachListeners = function() {
 		this.jQTagsField.on('click', '.tag-remove, .tag-remove-all', this.onTagRemove.bind(this));
@@ -82,8 +66,7 @@
 		}
 	};
 
-	Tags.prototype.buildTags = function(params) {
-		this.setUrl(params);
+	Tags.prototype.buildTags = function(params, eventType) {
 		this.getTags(params).done(this.getTagsSuccess.bind(this)).fail(this.getTagsError.bind(this));
 	};
 

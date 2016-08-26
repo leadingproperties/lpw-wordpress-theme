@@ -24,9 +24,6 @@ Number.prototype.formatMoney = function(c, d, t){
 
 (function($) {
 
-    // Helper functions
-
-
     var Helpers = {
         // Check if element is visible in screen
         isElementIntoView: function(elem) {
@@ -83,7 +80,7 @@ Number.prototype.formatMoney = function(c, d, t){
                 return false;
             }
         },
-    // Check if parent element has class
+        // Check if parent element has class
         hasParentClass: function( e, classname ) {
             if(e === document) { return false; }
             if( $(e).hasClass( classname ) ) {
@@ -105,7 +102,8 @@ Number.prototype.formatMoney = function(c, d, t){
 
                 $el = $(this);
                 $($el).height('auto');
-                topPostion = $el.position().top;
+                var topPostion = $el.position().top,
+                    currentDiv;
 
                 if (currentRowStart !== topPostion) {
                     for (currentDiv = 0 ; currentDiv < rowDivs.length ; currentDiv++) {
@@ -139,6 +137,7 @@ Number.prototype.formatMoney = function(c, d, t){
             return decodeURIComponent(results[2].replace(/\+/g, " "));
         }
     };
+
     /* Off canvas Menu */
     var SidebarMenuEffects = {
         container: $( 'html' ),
@@ -208,24 +207,44 @@ Number.prototype.formatMoney = function(c, d, t){
             if(values.price) {
                 if(values.price.min) {
                     filterInp.price.min.val(values.price.min);
+                } else {
+                    filterInp.price.min.val(undefined);
                 }
                 if(values.price.max) {
                     filterInp.price.max.val(values.price.max);
+                } else {
+                    filterInp.price.min.val(undefined);
                 }
                 if(values.price.currency) {
                     filterInp.price.currency.val(values.price.currency).trigger("change");
+                } else {
+                    filterInp.price.currency.val(1).trigger("change");
                 }
                 if(values.price.period) {
                     filterInp.price.period.val(values.price.period).trigger("change");
+                } else {
+                    filterInp.price.period.val("day").trigger("change");
                 }
+            } else {
+                filterInp.price.min.val(undefined);
+                filterInp.price.min.val(undefined);
+                ilterInp.price.currency.val(1).trigger("change");
+                filterInp.price.period.val("day").trigger("change");
             }
             if(values.area) {
                 if(values.area.min) {
                     filterInp.area.min.val(values.area.min);
+                } else {
+                    filterInp.area.min.val(undefined);
                 }
                 if(values.area.max) {
                     filterInp.area.max.val(values.area.max);
+                } else {
+                    filterInp.area.max.val(undefined);
                 }
+            } else {
+                filterInp.area.min.val(undefined);
+                filterInp.area.max.val(undefined);
             }
             if(values.property_types && _.isArray(values.property_types)) {
                 _.forEach(values.property_types, function(value) {
@@ -233,6 +252,8 @@ Number.prototype.formatMoney = function(c, d, t){
                         return this.value === value;
                     }).prop("checked", true);
                 });
+            } else {
+                filterInp.property_types.prop("checked", false)
             }
             if(values.rooms && _.isArray(values.rooms)) {
                 _.forEach(values.rooms, function(value) {
@@ -240,24 +261,38 @@ Number.prototype.formatMoney = function(c, d, t){
                         return this.value === value;
                     }).prop("checked", true);
                 });
+            } else {
+                filterInp.rooms.prop("checked", false);
             }
             if(values.hd_photos) {
                 filterInp.hd_photos.prop('checked', true);
+            } else {
+                filterInp.hd_photos.prop('checked', false);
             }
             if(values.persons) {
                 filterInp.persons.val(values.persons);
+            } else {
+                filterInp.persons.val(undefined);
             }
             if(values.long_rent) {
                 filterInp.long_rent.prop('checked', true);
+            } else {
+                filterInp.long_rent.prop('checked', false);
             }
             if(values.short_rent) {
-                filterInp.short_rent.prop('checked', true);
+                filterInp.long_rent.prop('checked', true);
+            } else {
+                filterInp.long_rent.prop('checked', false);
             }
             if(values.child_friendly) {
                 filterInp.child_friendly.prop('checked', true);
+            } else {
+                filterInp.child_friendly.prop('checked', false);
             }
             if(values.pets_allowed) {
                 filterInp.pets_allowed.prop('checked', true);
+            } else {
+                filterInp.pets_allowed.prop('checked', false);
             }
 
         };
@@ -1445,10 +1480,12 @@ Number.prototype.formatMoney = function(c, d, t){
 
         };
         this.testPopstste = function(ev) {
-            if( isModalExists() && window.location.pathname === $this.location) {
-                $('.btn-single-close').trigger('click.lprop');
-            } else if(window.location.href.search(LpData.propertyPage) !== -1) {
-                $this.getSingleObject(ev);
+            if(window.location.href.search(LpData.propertyPage) !== -1) {
+                if (isModalExists() && window.location.pathname === $this.location) {
+                    $('.btn-single-close').trigger('click.lprop');
+                } else {
+                    $this.getSingleObject(ev);
+                }
             }
         };
         this.showLoader = function(state) {
@@ -1539,6 +1576,45 @@ Number.prototype.formatMoney = function(c, d, t){
             if($this.args.location_shape) {
                 delete $this.args.location_shape;
             }
+        }
+        function clearFilters() {
+            if($this.args.price) {
+                delete $this.args.price;
+            }
+            if($this.args.rooms) {
+                delete $this.args.rooms;
+            }
+            if($this.args.area) {
+                delete $this.args.area;
+            }
+            if($this.args.property_types) {
+                delete $this.args.property_types;
+            }
+            if($this.args.rooms) {
+                delete $this.args.rooms;
+            }
+            if($this.args.hd_photos) {
+                delete $this.args.hd_photos;
+            }
+            if($this.args.persons) {
+                delete $this.args.persons;
+            }
+            if($this.args.long_rent) {
+                delete $this.args.long_rent;
+            }
+            if($this.args.short_rent) {
+                delete $this.args.short_rent;
+            }
+            if($this.args.child_friendly) {
+                delete $this.args.child_friendly;
+            }
+            if($this.args.pets_allowed) {
+                delete $this.args.pets_allowed;
+            }
+        }
+        function clearAllFilters() {
+            clearAutoSearch();
+            clearFilters();
         }
 
         this.autoSearch = function(data, silent) {
@@ -1786,13 +1862,15 @@ Number.prototype.formatMoney = function(c, d, t){
             return r;
 
         };
-        this.getObjects = function (callback) {
+        this.getObjects = function (callback, eventType) {
+
 
             loader.show();
             data = $this.args;
 
             if( type === 'list') {
                 $this.tags.buildTags(data);
+                $this.setUrls(data, eventType);
             }
 
             data.action = 'do_ajax';
@@ -1860,8 +1938,12 @@ Number.prototype.formatMoney = function(c, d, t){
                 $this.getObjects();
             }
         };
-        this.onLoadCheck = function() {
-            var query = Helpers.getParameterByName('filter');
+        this.onLoadCheck = function(ev) {
+            var query = Helpers.getParameterByName('filter'),
+                eventtype = ev.type;
+                if(eventtype === 'popstate' && (window.location.href.search(LpData.propertyPage) === -1)) {
+                    clearAllFilters();
+                }
             if(query) {
                 try {
                     query = JSON.parse(query);
@@ -1871,14 +1953,16 @@ Number.prototype.formatMoney = function(c, d, t){
                         });
                         $this.args = _.pickBy($this.args);
                         resetObjects();
-                        $this.getObjects();
+                        $this.getObjects(null, eventtype);
                         filter.setValues(query);
                     }
                 } catch(e) {
                     console.log(e);
                 }
+            } else {
+                resetObjects();
+                $this.getObjects(null, eventtype);
             }
-            $this.getObjects();
         };
         this.setEventListeners = function () {
             $('.off-market-menu a').on('click.lprop', function() {
@@ -1929,6 +2013,23 @@ Number.prototype.formatMoney = function(c, d, t){
 
         };
     }
+    ObjectList.prototype.setUrls = function(data, eventtype) {
+      var url = window.location.protocol + '//' + window.location.hostname + window.location.pathname,
+          excluded = ['action', 'fn', 'page', 'per_page', 'for_sale', 'for_rent', 'lang', 'action'];
+        data = _.omit(data, excluded);
+        if(!_.isEmpty(data)) {
+            data = JSON.stringify(data);
+                console.log(eventtype);
+            if(eventtype !== 'popstate') {
+                console.log('this is not popstse');
+                window.history.pushState(null, null, url + '?filter=' + encodeURIComponent(data));
+            }
+
+        } else {
+            window.history.pushState(null, null, url);
+        }
+    };
+
 
 
   // Use this variable to set up the common and page specific functions. If you
