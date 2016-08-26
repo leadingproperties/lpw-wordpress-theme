@@ -128,6 +128,15 @@ Number.prototype.formatMoney = function(c, d, t){
             ev.preventDefault();
 
             $('.offmarket-request').modal('show');
+        },
+        getParameterByName: function(name, url) {
+            if (!url) { url = window.location.href; }
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+            if (!results) { return null ; }
+            if (!results[2]) { return ''; }
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
         }
     };
     /* Off canvas Menu */
@@ -173,26 +182,104 @@ Number.prototype.formatMoney = function(c, d, t){
             tooltipOpt = {
                 template: '<div class="tooltip tooltip-search" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>',
                 delay: { "show": 200, "hide": 300 }
+            },
+            filterInp = {
+                price: {
+                    min: $('#price-min'),
+                    max: $('#price-max'),
+                    currency: filterCurrency,
+                    period: filterPeriod
+                },
+                area:  {
+                    min: $('#area-min'),
+                    max: $('#area-max')
+                },
+                property_types: $('.property_type'),
+                rooms: $('.filter-room'),
+                hd_photos: $('#quality'),
+                persons: $('#persons-max'),
+                short_rent: $('#short-term'),
+                long_rent: $('#long-term'),
+                child_friendly: $('#child-friendly'),
+                pets_allowed: $('#pets-allowed')
+
             };
+        this.setValues = function(values) {
+            if(values.price) {
+                if(values.price.min) {
+                    filterInp.price.min.val(values.price.min);
+                }
+                if(values.price.max) {
+                    filterInp.price.max.val(values.price.max);
+                }
+                if(values.price.currency) {
+                    filterInp.price.currency.val(values.price.currency).trigger("change");
+                }
+                if(values.price.period) {
+                    filterInp.price.period.val(values.price.period).trigger("change");
+                }
+            }
+            if(values.area) {
+                if(values.area.min) {
+                    filterInp.area.min.val(values.area.min);
+                }
+                if(values.area.max) {
+                    filterInp.area.max.val(values.area.max);
+                }
+            }
+            if(values.property_types && _.isArray(values.property_types)) {
+                _.forEach(values.property_types, function(value) {
+                    filterInp.property_types.filter(function() {
+                        return this.value === value;
+                    }).prop("checked", true);
+                });
+            }
+            if(values.rooms && _.isArray(values.rooms)) {
+                _.forEach(values.rooms, function(value) {
+                    filterInp.rooms.filter(function() {
+                        return this.value === value;
+                    }).prop("checked", true);
+                });
+            }
+            if(values.hd_photos) {
+                filterInp.hd_photos.prop('checked', true);
+            }
+            if(values.persons) {
+                filterInp.persons.val(values.persons);
+            }
+            if(values.long_rent) {
+                filterInp.long_rent.prop('checked', true);
+            }
+            if(values.short_rent) {
+                filterInp.short_rent.prop('checked', true);
+            }
+            if(values.child_friendly) {
+                filterInp.child_friendly.prop('checked', true);
+            }
+            if(values.pets_allowed) {
+                filterInp.pets_allowed.prop('checked', true);
+            }
+
+        };
         this.filterSorting = $('.sorting-select');
         this.filterForm = $('#filter-form');
         this.getValues = function() {
             var price = {
-                  min: $('#price-min').val(),
-                  max: $('#price-max').val()
+                  min: filterInp.price.min.val(),
+                  max: filterInp.price.max.val()
                 },
                 area = {
-                    min: $('#area-min').val(),
-                    max: $('#area-max').val()
+                    min: filterInp.area.min.val(),
+                    max: filterInp.area.max.val()
                 },
-                property_types = $('.property_type:checked').map(function() {
+                property_types = filterInp.property_types.filter(':checked').map(function() {
                     return this.value;
                 }).get(),
-                rooms = $('.filter-room:checked').map(function() {
+                rooms = filterInp.rooms.filter(':checked').map(function() {
                     return this.value;
                 }).get(),
                 values = {};
-            values.hd_photos = $('#quality').is(':checked');
+            values.hd_photos = filterInp.hd_photos.is(':checked');
             if(area.min || area.max) {
                 values.area = {};
                 if (area.min) {
@@ -212,21 +299,20 @@ Number.prototype.formatMoney = function(c, d, t){
                 if(price.max) {
                     values.price.max = price.max;
                 }
-                values.price.currency = $('#price-currency').val();
+                values.price.currency = filterInp.price.currency.val();
             }else{
                 values.price = null;
             }
-
             values.property_types = _.isEmpty(property_types) ? null : property_types;
             values.rooms = _.isEmpty(rooms) ? null : rooms;
             if( catogory === 'rent' ) {
-                values.persons = $('#persons-max').val() || null;
-                values.short_rent = $('#short-term').is(':checked');
-                values.long_rent = $('#long-term').is(':checked');
-                values.child_friendly = $('#child-friendly').is(':checked');
-                values.pets_allowed = $('#pets-allowed').is(':checked');
+                values.persons = filterInp.persons.val() || null;
+                values.short_rent = filterInp.short_rent.is(':checked');
+                values.long_rent = filterInp.long_rent.is(':checked');
+                values.child_friendly = filterInp.child_friendly.is(':checked');
+                values.pets_allowed = filterInp.pets_allowed.is(':checked');
                 if(price.min || price.max) {
-                    values.price.period = $('#price-period').val();
+                    values.price.period = filterInp.price.period.val();
                 }
             }
             return values;
@@ -1760,7 +1846,7 @@ Number.prototype.formatMoney = function(c, d, t){
                         } else {
                             $this.triggerId = 0;
                             $(window).off('scroll.lprop', $this.getObjects);
-                            $(window).off('load.lprop', $this.getObjects);
+                            $(window).off('load.lprop', $this.onLoadCheck);
                             $(window).off('resize.lprop', $this.getObjects);
                         }
                     }
@@ -1768,10 +1854,31 @@ Number.prototype.formatMoney = function(c, d, t){
 
         };
         this.scrollPage = function() {
+
             if ( _.isEmpty($this.lastItem()) || !$this.didScroll && Helpers.isElementIntoView($this.lastItem()) ) {
                 $this.didScroll = true;
                 $this.getObjects();
             }
+        };
+        this.onLoadCheck = function() {
+            var query = Helpers.getParameterByName('filter');
+            if(query) {
+                try {
+                    query = JSON.parse(query);
+                    if(!_.isEmpty(query)) {
+                        _.forEach(query, function (value, key) {
+                            $this.args[key] = value;
+                        });
+                        $this.args = _.pickBy($this.args);
+                        resetObjects();
+                        $this.getObjects();
+                        filter.setValues(query);
+                    }
+                } catch(e) {
+                    console.log(e);
+                }
+            }
+            $this.getObjects();
         };
         this.setEventListeners = function () {
             $('.off-market-menu a').on('click.lprop', function() {
@@ -1779,9 +1886,9 @@ Number.prototype.formatMoney = function(c, d, t){
             });
             if( this.onPage < this.totalObjects) {
                 $(window).on('scroll.lprop', $this.scrollPage);
-
+                $(window).on('popstate', $this.onLoadCheck);
                 if (_.isEmpty($this.lastItem()) || Helpers.isElementIntoView($this.lastItem())) {
-                    $(window).on('load.lprop', $this.getObjects);
+                    $(window).on('load.lprop', $this.onLoadCheck);
                     $(window).on('resize.lprop', $this.getObjects);
                 }
             }
