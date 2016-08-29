@@ -40,7 +40,6 @@ $lp_settings = [
 	'lang' => lpw_get_current_lang()
 ];
 $lp_settings['property_page'] = get_page_link($lp_settings['property_page_id']);
- //echo get_post_field('post_name', $objectPageId);
 
 $objects = new LP_ObjectList();
 $counters = $objects->get_global_counters();
@@ -49,6 +48,12 @@ $lp_settings['counters'] = [
 	'for_rent' => ($counters['global_counters']['for_rent']) ? $counters['global_counters']['for_rent'] : '',
 	'commercial' => ($counters['global_counters']['commercial']) ? $counters['global_counters']['commercial'] : ''
 ];
+
+if(is_page_template('page-object.php')) {
+	echo 'object';
+}
+
+
 
 function lpw_get_current_lang() {
 	if(function_exists('qtranxf_getLanguage')) {

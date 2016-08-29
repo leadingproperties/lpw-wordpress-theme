@@ -66,7 +66,7 @@
 		}
 	};
 
-	Tags.prototype.buildTags = function(params, eventType) {
+	Tags.prototype.buildTags = function(params) {
 		this.getTags(params).done(this.getTagsSuccess.bind(this)).fail(this.getTagsError.bind(this));
 	};
 

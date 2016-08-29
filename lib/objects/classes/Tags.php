@@ -28,7 +28,7 @@ class Tags
         if(count($counters) > 0){
             $format = '<ul class="tag-list">%1$s%2$s%3$s%4$s%5$s%6$s%7$s%8$s%9$s<li><span class="tag-remove-all" data-tag_type="all"></span></li></ul>';
 
-            $autocomplete = $this->get_autocomplete_tag_html($request_data['autocomplete'], $counters);
+            $autocomplete =  $this->get_autocomplete_tag_html($request_data['autocomplete'], $counters);
             $rent_bool_tags = $request_data['raw']['for_rent'] ? $this->get_rent_bool_tags($request_data['raw'], $counters) : '';
             $rent_persons = $request_data['raw']['for_rent'] ? $this->get_rent_persons_tag($request_data['raw']['persons'], $counters) : '';
             $property_type = $this->get_property_type_tags_html($request_data['raw']['property_types'], $counters);

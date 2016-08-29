@@ -228,7 +228,7 @@ Number.prototype.formatMoney = function(c, d, t){
             } else {
                 filterInp.price.min.val(undefined);
                 filterInp.price.min.val(undefined);
-                ilterInp.price.currency.val(1).trigger("change");
+                filterInp.price.currency.val(1).trigger("change");
                 filterInp.price.period.val("day").trigger("change");
             }
             if(values.area) {
@@ -253,7 +253,7 @@ Number.prototype.formatMoney = function(c, d, t){
                     }).prop("checked", true);
                 });
             } else {
-                filterInp.property_types.prop("checked", false)
+                filterInp.property_types.prop("checked", false);
             }
             if(values.rooms && _.isArray(values.rooms)) {
                 _.forEach(values.rooms, function(value) {
@@ -1868,12 +1868,15 @@ Number.prototype.formatMoney = function(c, d, t){
             loader.show();
             data = $this.args;
 
-            if( type === 'list') {
+            data.action = 'do_ajax';
+
+            if( type === 'list' && eventType !== 'scroll' ) {
+
                 $this.tags.buildTags(data);
+
                 $this.setUrls(data, eventType);
             }
 
-            data.action = 'do_ajax';
             data.fn = 'get_objects';
                 $.ajax({
                     url: LpData.ajaxUrl,
@@ -1923,9 +1926,9 @@ Number.prototype.formatMoney = function(c, d, t){
                             $this.didScroll = false;
                         } else {
                             $this.triggerId = 0;
-                            $(window).off('scroll.lprop', $this.getObjects);
+                            $(window).off('scroll.lprop', $this.scrollPage);
                             $(window).off('load.lprop', $this.onLoadCheck);
-                            $(window).off('resize.lprop', $this.getObjects);
+                            $(window).off('resize.lprop', $this.onLoadCheck);
                         }
                     }
                 });
@@ -1935,7 +1938,7 @@ Number.prototype.formatMoney = function(c, d, t){
 
             if ( _.isEmpty($this.lastItem()) || !$this.didScroll && Helpers.isElementIntoView($this.lastItem()) ) {
                 $this.didScroll = true;
-                $this.getObjects();
+                $this.getObjects(null, 'scroll');
             }
         };
         this.onLoadCheck = function(ev) {
@@ -1973,7 +1976,7 @@ Number.prototype.formatMoney = function(c, d, t){
                 $(window).on('popstate', $this.onLoadCheck);
                 if (_.isEmpty($this.lastItem()) || Helpers.isElementIntoView($this.lastItem())) {
                     $(window).on('load.lprop', $this.onLoadCheck);
-                    $(window).on('resize.lprop', $this.getObjects);
+                    $(window).on('resize.lprop', $this.onLoadCheck);
                 }
             }
 
@@ -2015,13 +2018,11 @@ Number.prototype.formatMoney = function(c, d, t){
     }
     ObjectList.prototype.setUrls = function(data, eventtype) {
       var url = window.location.protocol + '//' + window.location.hostname + window.location.pathname,
-          excluded = ['action', 'fn', 'page', 'per_page', 'for_sale', 'for_rent', 'lang', 'action'];
+          excluded = ['action', 'fn', 'page', 'per_page', 'for_sale', 'for_rent', 'lang'];
         data = _.omit(data, excluded);
         if(!_.isEmpty(data)) {
             data = JSON.stringify(data);
-                console.log(eventtype);
             if(eventtype !== 'popstate') {
-                console.log('this is not popstse');
                 window.history.pushState(null, null, url + '?filter=' + encodeURIComponent(data));
             }
 
