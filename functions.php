@@ -31,11 +31,12 @@ $lp_settings = [
 	'contact_email' => get_field('contact_email', 'option'),
 	'favorites' => esc_url(get_field('sale_favorites', 'option')),
 	'favorites_rent' => esc_url(get_field('rent_favorites', 'option')),
-	'off-market' => esc_url(home_url('/off-market/')),
 	'use_shortener' => get_field('use_google_shortener', 'option'),
 	'site_title' => get_bloginfo('name'),
 	'sale_page' => get_field('sale', 'option'),
 	'rent_page' => get_field('rent', 'option'),
+	'sale_share' => get_field('sale_share', 'option'),
+	'rent_share' => get_field('rent_share', 'option'),
 	'property_page_id' => get_field('single_object', 'option'),
 	'lang' => lpw_get_current_lang()
 ];

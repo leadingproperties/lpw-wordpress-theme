@@ -91,6 +91,8 @@ function assets() {
 	  'salePage'    => $lp_settings['sale_page'],
 	  'rentPage'    => $lp_settings['rent_page'],
 	  'propertyPage'    => $lp_settings['property_page'],
+      'saleSharer'  => $lp_settings['sale_share'],
+      'rentSharer'  => $lp_settings['rent_share'],
 	  'totalPost' => $count_posts->publish,
 	  'perPage' => get_option('posts_per_page'),
 	  'lang'    => $lp_settings['lang'],
@@ -98,6 +100,9 @@ function assets() {
 	  'totalRent'   => $lp_settings['counters']['for_rent']
   ];
 	$data['totalObjects'] = (is_page_template('page-buy.php')) ? $lp_settings['counters']['for_sale'] : $lp_settings['counters']['for_rent'];
+    if((is_page_template('page-sharer.php') || is_page_template('page-sharer-rent.php')) && isset($_GET['ids'])) {
+      $data['ids'] = explode('.', $_GET['ids']);
+    }
 	if(is_tag()) {
 		$tag_id = get_query_var('tag_id');
 		$tag = get_tags( ['include' => $tag_id] );

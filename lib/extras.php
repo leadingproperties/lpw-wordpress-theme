@@ -14,7 +14,9 @@ function body_class($classes) {
                      is_page_template('page-rent.php') ||
                      is_page_template('page-favorites.php') ||
                      is_page_template('page-favorites-rent.php') ||
-                     is_page_template('page-object.php')
+                     is_page_template('page-object.php') ||
+                     is_page_template('page-sharer.php') ||
+                     is_page_template('page-sharer-rent.php')
 	  )
   ) {
     if (!in_array(basename(get_permalink()), $classes)) {
@@ -35,6 +37,10 @@ function body_class($classes) {
 		$classes[] = 'page-favorites-rent';
 	} elseif(is_page_template('page-object.php')) {
 		$classes[] = 'page-single-object';
+	} elseif(is_page_template('page-sharer.php')) {
+		$classes[] = 'page-sharer';
+	} elseif(is_page_template('page-sharer-rent.php')) {
+		$classes[] = 'page-sharer-rent';
 	}
 
   return $classes;

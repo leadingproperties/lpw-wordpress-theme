@@ -80,6 +80,11 @@
 
 		if(this.autoComplete.autocompleteSelected){
 			data.autocomplete = this.getAutocompleteData(params);
+		} else if(params.autocomplete) {
+
+			data.autocomplete = params.autocomplete;
+			delete data.raw.autocomplete;
+
 		}
 
 		return $.ajax({

@@ -704,7 +704,7 @@ Number.prototype.formatMoney = function(c, d, t){
 
     /*Object Shaare Bar*/
 
-    function ObjectShareBar() {
+    function ObjectShareBar(type, category) {
         var shareLinks = $('.favorites-sharing a'),
             shEmail = $('.obj-share-email'),
             shFb = $('.obj-share-fb'),
@@ -712,7 +712,7 @@ Number.prototype.formatMoney = function(c, d, t){
             shLn = $('.obj-share-ln'),
             shGp = $('.obj-share-gplus'),
             shInput = $('.fav-link-input'),
-            baseUrl = LpData.homeUrl + 'sharer/?ids=';
+            baseUrl = category === 'sale' ? LpData.saleSharer + '/?ids=' : LpData.rentSharer + '/?ids=';;
         function setValues(url) {
             var urlEnc = encodeURIComponent(url);
             shInput = $('.fav-link-input').val(url);
@@ -774,7 +774,7 @@ Number.prototype.formatMoney = function(c, d, t){
         this.fbLink = $('.favorites-link');
         this.fpCounter = $('.favorite_objects_count');
         this.favoritesIds = Helpers.getFavorites(category);
-        this.sharing =  ( type === 'favorites' ) ? new ObjectShareBar() : false;
+        this.sharing =  ( type === 'favorites' || type === 'share' ) ? new ObjectShareBar(type, category) : false;
         this.setCounters = function(favorites) {
             if($this.type === 'favorites') {
                 $this.fpCounter.text(favorites.length);
@@ -829,7 +829,7 @@ Number.prototype.formatMoney = function(c, d, t){
                 $this.setCounters(favorites);
             }
 
-            if($this.sharing) {
+            if($this.sharing && $this.type !== 'share' ) {
                 $this.sharing.setUrls(favorites);
             }
 
@@ -895,11 +895,14 @@ Number.prototype.formatMoney = function(c, d, t){
         this.init = function() {
             $(window).on('load.lprop', function() {
                 var favorites = Helpers.getFavorites(category);
-                $this.setCounters(favorites);
+                if($this.type !== 'share') {
+                    $this.setCounters(favorites);
+                }
 
-                if( $this.type === 'single' ) {
+                if( $this.type === 'single' || $this.type === 'share' ) {
                     $this.markButton(favorites);
                 }
+
 
                 if( $this.type === 'favorites' ) {
                     if(favorites.length === 0) {
@@ -957,6 +960,7 @@ Number.prototype.formatMoney = function(c, d, t){
             $('html').removeClass('overflow-height');
             if( Helpers.isHhistoryApiAvailable()) {
                 window.history.pushState(null, null, $this.location);
+                objectlist.setUrls(objectlist.args);
             }
         }
 
@@ -1576,6 +1580,7 @@ Number.prototype.formatMoney = function(c, d, t){
             if($this.args.location_shape) {
                 delete $this.args.location_shape;
             }
+            $this.usedFilters.location = false;
         }
         function clearFilters() {
             if($this.args.price) {
@@ -1864,17 +1869,39 @@ Number.prototype.formatMoney = function(c, d, t){
         };
         this.getObjects = function (callback, eventType) {
 
+            var autocomplete = $this.args.autocomplete || null,
+                dataUrl;
 
             loader.show();
             data = $this.args;
-
+            dataUrl = $this.args;
             data.action = 'do_ajax';
+
 
             if( type === 'list' && eventType !== 'scroll' ) {
 
                 $this.tags.buildTags(data);
 
-                $this.setUrls(data, eventType);
+                if($this.tags.autoComplete.autocompleteSelected) {
+                    autocomplete = $this.tags.getAutocompleteData(data);
+                }
+                if(autocomplete) {
+                    if (autocomplete.text) {
+                        dataUrl.autocomplete = {
+                            text: autocomplete.text
+                        };
+                    }
+                    if (autocomplete.data && autocomplete.data.l_id) {
+                        dataUrl.autocomplete = {
+                            data: {
+                                l_id: autocomplete.data.l_id
+                            }
+                        };
+                    }
+                }
+
+
+                $this.setUrls(dataUrl, eventType);
             }
 
             data.fn = 'get_objects';
@@ -1890,6 +1917,8 @@ Number.prototype.formatMoney = function(c, d, t){
                             } else if (_.isArray(data.property_objects)) {
                                 if($this.usedFilters.location === true) {
                                     setOffmarker(data.offmarket);
+                                } else {
+                                    setOffmarker(0);
                                 }
                                 $this.args.page++;
                                 $this.onPage += data.property_objects.length;
@@ -1950,11 +1979,17 @@ Number.prototype.formatMoney = function(c, d, t){
             if(query) {
                 try {
                     query = JSON.parse(query);
+
                     if(!_.isEmpty(query)) {
                         _.forEach(query, function (value, key) {
                             $this.args[key] = value;
                         });
                         $this.args = _.pickBy($this.args);
+                        if(query.autocomplete) {
+                            $this.args.autocomplete = query.autocomplete;
+
+                        }
+
                         resetObjects();
                         $this.getObjects(null, eventtype);
                         filter.setValues(query);
@@ -1964,6 +1999,7 @@ Number.prototype.formatMoney = function(c, d, t){
                 }
             } else {
                 resetObjects();
+                $this.usedFilters.location = false;
                 $this.getObjects(null, eventtype);
             }
         };
@@ -1975,32 +2011,33 @@ Number.prototype.formatMoney = function(c, d, t){
                 $(window).on('scroll.lprop', $this.scrollPage);
                 $(window).on('popstate', $this.onLoadCheck);
                 if (_.isEmpty($this.lastItem()) || Helpers.isElementIntoView($this.lastItem())) {
-                    $(window).on('load.lprop', $this.onLoadCheck);
+                    if(type !== 'share') {
+                        $(window).on('load.lprop', $this.onLoadCheck);
+                    }
                     $(window).on('resize.lprop', $this.onLoadCheck);
                 }
             }
+            if( type === 'list' ) {
+                filter.filterForm.on('submit', function (ev) {
+                    ev.preventDefault();
+                    var args = filter.getValues();
 
-            filter.filterForm.on('submit', function(ev) {
-                ev.preventDefault();
-                var args = filter.getValues();
-
-                if(!_.isEmpty(args)) {
-                    filter.closeFilter();
-                    _.forEach(args, function (value, key) {
-                        $this.args[key] = value;
-                    });
-                    $this.args = _.pickBy($this.args);
-                    resetObjects();
-                    $this.getObjects();
-                }
-            });
+                    if (!_.isEmpty(args)) {
+                        filter.closeFilter();
+                        _.forEach(args, function (value, key) {
+                            $this.args[key] = value;
+                        });
+                        $this.args = _.pickBy($this.args);
+                        resetObjects();
+                        $this.getObjects();
+                    }
+                });
+            }
             filter.filterSorting.on('change', function() {
                 var val = $(this).val();
-                if(val !== 'false') {
                     $this.args.order_by = {
                         order: val
                     };
-                }
                 resetObjects();
                 $this.getObjects();
             });
@@ -2289,6 +2326,15 @@ Number.prototype.formatMoney = function(c, d, t){
         init: function() {
             $(window).on('load', Helpers.equalheight);
             $(window).on('resize', Helpers.equalheight);
+        }
+    },
+    'page_sharer': {
+        init: function() {
+            var objects = new ObjectList('share', 'sale');
+            objects.args.page = 2;
+            objects.onPage = $('.object-item').length;
+            objects.args.ids = LpData.ids;
+            objects.init();
         }
     }
   };
