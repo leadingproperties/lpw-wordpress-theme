@@ -2007,9 +2007,13 @@ Number.prototype.formatMoney = function(c, d, t){
             }
         };
         this.setEventListeners = function () {
-            $('.off-market-menu a').on('click.lprop', function() {
-                $('.off-marker-alert').show();
+            $('.off-market-menu a').on('click.lprop', function(ev) {
+                ev.preventDefault();
+                if(!$(this).hasClass('half-opaque')) {
+                    $('.off-marker-alert').show();
+                }
             });
+
             if( this.onPage < this.totalObjects) {
                 $(window).on('scroll.lprop', $this.scrollPage);
                 $(window).on('popstate', $this.onLoadCheck);
