@@ -178,18 +178,29 @@
   width: $top-menu-width740;
   height: 50px;
   padding: 5px 0;
-  ul {
+  > ul {
     margin: 0;
     padding: 0;
     list-style: none;
     float: left;
-    li {
+    > li {
       float: left;
       display: none;
-      &.active a {
+      &.active > a {
         background: #f2f2f2;
       }
-      a {
+      &.dropdown {
+        margin-right: 5px;
+        &:last-child {
+          margin-right: 0;
+        }
+        > a {
+          border: 1px solid #e6e6e6;
+          padding: 8px 40px 8px 14px;
+          position: relative;
+        }
+      }
+      > a {
         font-size: 16px;
         padding: 9px 15px;
         text-decoration: none;

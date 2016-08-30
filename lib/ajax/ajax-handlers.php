@@ -67,42 +67,14 @@ function ajax_get_objects($args) {
 }
 
 function ajax_get_shorten_url($url) {
-	$api_key = get_field('google_shortener_api', 'option');
-
-
-	if( $api_key ) :
-		$api_url = 'https://www.googleapis.com/urlshortener/v1/url?key=' . $api_key;
-		$content = json_encode([
-			'longUrl' => $url
-		]);
-
-		$curl = curl_init($api_url);
-		curl_setopt($curl, CURLOPT_HEADER, false);
-		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($curl, CURLOPT_HTTPHEADER,
-			["Content-type: application/json"]);
-		curl_setopt($curl, CURLOPT_POST, true);
-		curl_setopt($curl, CURLOPT_POSTFIELDS, $content);
-
-		$response = curl_exec($curl);
-		$header_size = curl_getinfo($curl, CURLINFO_HEADER_SIZE);
-		$body = substr($response, $header_size);
-		curl_close($curl);
-
-		echo $response;
-
-		return $body;
-
-	else :
-		return json_encode(['error' => true, 'error_message' => 'No API key']);
-	endif;
+	return json_encode(get_shorten_url($url));
 }
 
 function get_shorten_url($url) {
 	global $lp_settings;
 
 
-	if( $api_key ) :
+	if( $lp_settings['google_api_key'] ) :
 		$api_url = 'https://www.googleapis.com/urlshortener/v1/url?key=' . $lp_settings['google_api_key'];
 		$content = json_encode([
 			'longUrl' => $url
@@ -120,8 +92,6 @@ function get_shorten_url($url) {
 		$header_size = curl_getinfo($curl, CURLINFO_HEADER_SIZE);
 		$body = substr($response, $header_size);
 		curl_close($curl);
-
-
 
 		return json_decode($response);
 

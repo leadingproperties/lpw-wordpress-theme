@@ -5,7 +5,11 @@
 	<div class="wrap" role="document">
 	<?php if (has_nav_menu('primary_navigation')) : ?>
 		<nav class="side-menu slide-left">
-			<?php wp_nav_menu(['theme_location' => 'primary_navigation', 'container' => false, 'depth' => 1]); ?>
+			<?php wp_nav_menu([
+				'theme_location' => 'primary_navigation',
+				'container' => false,
+				'walker'    => new LP_Nav_Walker()
+			]); ?>
 			<a class="menu-close btn-close"><span class="sr-only"><?php __('Close', 'leadingprops'); ?></span></a>
 		</nav><!-- /.side-menu -->
 	<?php endif; ?>
@@ -44,7 +48,6 @@
 										'theme_location' => 'primary_navigation',
 										'container' => 'nav',
 										'container_class' => 'menu-desktop',
-										'depth' => 1,
 										'walker'    => new LP_Nav_Walker()
 									]);
 									?>

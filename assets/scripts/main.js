@@ -712,7 +712,7 @@ Number.prototype.formatMoney = function(c, d, t){
             shLn = $('.obj-share-ln'),
             shGp = $('.obj-share-gplus'),
             shInput = $('.fav-link-input'),
-            baseUrl = category === 'sale' ? LpData.saleSharer + '/?ids=' : LpData.rentSharer + '/?ids=';
+            baseUrl = category === 'sale' ? LpData.saleSharer + '?ids=' : LpData.rentSharer + '?ids=';
         function setValues(url) {
             var urlEnc = encodeURIComponent(url);
             shInput = $('.fav-link-input').val(url);
@@ -2086,8 +2086,8 @@ Number.prototype.formatMoney = function(c, d, t){
         // JavaScript to be fired on all pages
           SidebarMenuEffects.init();
 
-          $('.menu .menu-buy a').append(' <sup class="text-red">' + LpData.totalSale + '</sup>');
-          $('.menu .menu-rent a').append(' <sup class="text-red">' + LpData.totalRent + '</sup>');
+          $('.menu .menu-buy > a').append(' <sup class="text-red">' + LpData.totalSale + '</sup>');
+          $('.menu .menu-rent > a').append(' <sup class="text-red">' + LpData.totalRent + '</sup>');
 
           $('body').on('click.lprop', '.alert-close', function(ev) {
               ev.preventDefault();
