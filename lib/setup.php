@@ -74,8 +74,8 @@ function assets() {
     wp_enqueue_script('comment-reply');
   }
   if(is_page_template('page-buy.php') || is_page_template('page-rent.php')) {
-	  /*TODO: Change API key*/
-	 wp_enqueue_script('google-map', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyB9AMFYWn5z8QYptnbetxXckrldFpsZyGA&libraries=places&language=en', null, true);
+
+ 	 wp_enqueue_script('google-map', 'https://maps.googleapis.com/maps/api/js?key=' . $lp_settings['google_api_key'] . '&libraries=places&language=en', null, true);
       wp_enqueue_script('js-marker-clusterer', Assets\asset_path('/scripts/js-marker-clusterer.js'), ['jquery', 'google-map'], null, true);
 	 wp_register_script('lprop/js', Assets\asset_path('scripts/main.js'), ['jquery', 'lodash', 'google-map', 'js-marker-clusterer'], null, true);
   } else {

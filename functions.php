@@ -32,6 +32,7 @@ $lp_settings = [
 	'favorites' => esc_url(get_field('sale_favorites', 'option')),
 	'favorites_rent' => esc_url(get_field('rent_favorites', 'option')),
 	'use_shortener' => get_field('use_google_shortener', 'option'),
+	'google_api_key' => (get_field('google_api_key', 'option')) ? get_field('google_api_key', 'option') : 'AIzaSyB9AMFYWn5z8QYptnbetxXckrldFpsZyGA',
 	'site_title' => get_bloginfo('name'),
 	'sale_page' => get_field('sale', 'option'),
 	'rent_page' => get_field('rent', 'option'),
@@ -50,9 +51,9 @@ $lp_settings['counters'] = [
 	'commercial' => ($counters['global_counters']['commercial']) ? $counters['global_counters']['commercial'] : ''
 ];
 
-if(is_page_template('page-object.php')) {
-	echo 'object';
-}
+/*if(is_page_template('page-object.php')) {
+
+}*/
 
 
 

@@ -99,11 +99,11 @@ function ajax_get_shorten_url($url) {
 }
 
 function get_shorten_url($url) {
-	$api_key = get_field('google_shortener_api', 'option');
+	global $lp_settings;
 
 
 	if( $api_key ) :
-		$api_url = 'https://www.googleapis.com/urlshortener/v1/url?key=' . $api_key;
+		$api_url = 'https://www.googleapis.com/urlshortener/v1/url?key=' . $lp_settings['google_api_key'];
 		$content = json_encode([
 			'longUrl' => $url
 		]);

@@ -712,7 +712,7 @@ Number.prototype.formatMoney = function(c, d, t){
             shLn = $('.obj-share-ln'),
             shGp = $('.obj-share-gplus'),
             shInput = $('.fav-link-input'),
-            baseUrl = category === 'sale' ? LpData.saleSharer + '/?ids=' : LpData.rentSharer + '/?ids=';;
+            baseUrl = category === 'sale' ? LpData.saleSharer + '/?ids=' : LpData.rentSharer + '/?ids=';
         function setValues(url) {
             var urlEnc = encodeURIComponent(url);
             shInput = $('.fav-link-input').val(url);
@@ -960,7 +960,10 @@ Number.prototype.formatMoney = function(c, d, t){
             $('html').removeClass('overflow-height');
             if( Helpers.isHhistoryApiAvailable()) {
                 window.history.pushState(null, null, $this.location);
-                objectlist.setUrls(objectlist.args);
+              /*  if(objectlist.type === 'list') {
+                    objectlist.setUrls(objectlist.args);
+                }
+                */
             }
         }
 
@@ -1507,7 +1510,7 @@ Number.prototype.formatMoney = function(c, d, t){
         };
 
         this.init = function() {
-            this.location = window.location.pathname;
+            this.location = window.location.href;
             this.eventListeners();
         };
     }
@@ -1781,7 +1784,7 @@ Number.prototype.formatMoney = function(c, d, t){
                                   '<img class="img-responsive" src="' + object.image + '"  alt="' + title + '">' +
                                   '</a>' +
                                   '<span class="add-favorite-button' + a2f_class + '" data-action="' + a2f_action + '" data-id="' + object.id + '"></span>';
-                    if( category === 'rent' && 'property_rent') {
+                    if( category === 'rent' && object.property_rent) {
                         objectHtml += '<div class="rent-price"><span>' + rentPrice + '</span></div>';
                     }
                     objectHtml += '</div>' +
@@ -2336,7 +2339,16 @@ Number.prototype.formatMoney = function(c, d, t){
             objects.args.ids = LpData.ids;
             objects.init();
         }
-    }
+    },
+    'page_sharer_rent': {
+        init: function() {
+            var objects = new ObjectList('share', 'rent');
+            objects.args.page = 2;
+            objects.onPage = $('.object-item').length;
+            objects.args.ids = LpData.ids;
+            objects.init();
+        }
+     }
   };
 
   // The routing fires all common scripts, followed by the page specific scripts.

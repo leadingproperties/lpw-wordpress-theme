@@ -4,7 +4,7 @@
  */
 ?>
 <?php
-	global $lp_settings;
+	global $lp_settings, $objects_obj;
 	$object_slug = get_query_var('object_slug', false);
 
 	$objects_obj = new StdClass;

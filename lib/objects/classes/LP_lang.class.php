@@ -8,7 +8,7 @@ class LP_lang {
 	 * @access public
 	 * @var array
 	 */
-	public $languages = [
+	/*public $languages = [
 		[
 			'code' => 'en-US',
 			'title' => 'English',
@@ -249,14 +249,19 @@ class LP_lang {
 			'wrapper_class' => 'lt',
 			'url'   => ''
 		]
-	];
+	]; */
 
 	public function __construct() {
 		add_action('lang_panel', [&$this, 'lang_panel_html']);
 	}
+
 	public function lang_panel_html() {
-		global $q_config;
-		if(is_404()) $url = get_option('home'); else $url = '';
+		global $q_config,  $objects_obj, $lp_settings;
+		$url = (is_404()) ? get_option('home') : '';
+		if(is_page_template('page-object.php')) {
+			$url = $lp_settings['property_page'];
+		}
+
 		$output = '<section id="lang-panel" class="section-lang-lists collapse language-chooser">'.PHP_EOL;
 		$output .= '<div class="lang-panel-row container">'.PHP_EOL;
 		$output .= '<div class="row">'.PHP_EOL;
@@ -265,10 +270,15 @@ class LP_lang {
 		if(is_plugin_active('qtranslate-x/qtranslate.php')) {
 
 			foreach(qtranxf_getSortedLanguages() as $language) {
+				$href = $url;
+				if(is_page_template('page-object.php') && isset($objects_obj->slugs->$language)) {
+					$href .= $objects_obj->slugs->$language;
+				}
+
 				$classes = ['lang-'.$language];
 				$alt = $q_config['language_name'][$language].' ('.$language.')';
 				$output .= '<div class="lang-option-wrapper">'.PHP_EOL;
-				$output .= '<a href="'.qtranxf_convertURL($url, $language, false, true) . '"';
+				$output .= '<a href="'.qtranxf_convertURL($href, $language, false, true) . '"';
 				$output .= ' hreflang="'.$language.'"';
 				$output .= ' title="'.$alt.'"';
 				$output .= '><span class="'. implode(' ', $classes) . '"></span>' . $q_config['language_name'][$language] . '</a>';
@@ -278,30 +288,10 @@ class LP_lang {
 		$output .= '</div>'.PHP_EOL;
 		$output .= '</div>'.PHP_EOL;
 		$output .= '</section>'.PHP_EOL;
-		/*
-		$output = '';
-		$output .= '<section id="lang-panel" class="section-lang-lists collapse">';
-		$output .= '<div class="lang-panel-row container">';
-		$output .= '<div class="row">';
-		foreach($this->languages as $lang) {
-			$output .= '<div class="lang-option-wrapper">';
-			$output .= '<a href="' . $lang['url'] . '"><span class="lang-' . $lang['wrapper_class'] . '"></span>' . $lang['title'] . '</a>';
-			$output .= '</div>';
-		}
-		$output .= '</div></div></section>'; */
+
 		echo $output;
 	}
-	public function rewrite_rules() {
-		foreach($this->languages as $lang) {
-			//add_rewrite_rule('^' . $lang['wrapper_class'] . '/([^/]*)/?$', 'index.php?lang=$matches[1]', 'top')
-			add_rewrite_endpoint($lang['wrapper_class'], EP_PERMALINK|EP_PAGES|EP_ROOT|EP_CATEGORIES);
 
-		}
-	}
-	public function set_query_vars($vars) {
-		array_push($vars, 'lang', 'locale');
-		return $vars;
-	}
 }
 
 $lang = new LP_lang();
