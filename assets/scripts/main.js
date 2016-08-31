@@ -1736,7 +1736,6 @@ Number.prototype.formatMoney = function(c, d, t){
 
             _.forEach(objects, function(object, key) {
 
-                console.log(object);
                 if( category === 'sale' ) {
                     title = object.description.title;
                     slug = object.slug;
