@@ -1761,8 +1761,8 @@ Number.prototype.formatMoney = function(c, d, t){
                         }
                     } else if( object.property_rent.long_rent === true ) {
 
-                        if(object.property_rent.rent_long.sort_price.on_demand === true) {
-                            rentPrice = 'on request';
+                        if(object.property_rent.rent_long.on_demand === true) {
+                            rentPrice = '<span class="price-onrequest">on request</span>';
                         } else {
                             if (!_.isNull(object.property_rent.rent_long.sort_price.month)) {
                                 rentPrice = '<span class="price-num">' + object.property_rent.rent_long.sort_price.month.formatMoney(0, ',', ' ') + ' </span>' + object.property_rent.rent_long.sort_price.currency_code + '&nbsp;/&nbsp;month';
