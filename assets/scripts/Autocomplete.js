@@ -264,7 +264,7 @@
 				}
 			}
 		);
-		return parts.join(", ");
+		return parts.join(", ") || place.formatted_address;
 	};
 
 	/**
@@ -354,7 +354,7 @@
 	 * https://developers.google.com/maps/documentation/javascript/3.exp/reference#PlaceResult
 	 * @param place - https://developers.google.com/maps/documentation/javascript/3.exp/reference#PlaceResult
 	 */
-	AutoComplete.prototype.getPlaceDetailsSuccess = function(place) {
+	AutoComplete.prototype.getPlaceDetailsSuccess = function(place) {		;
 		this.setSelected(this.getCoordinatesFromGooglePlace(place), this.getPlaceText(place));
 	};
 
