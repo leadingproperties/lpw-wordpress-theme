@@ -82,6 +82,12 @@ function lp_menu_static_links ( $items, $args ) {
 		    $return .= '<li><a class="menu-link menu-icon menu-favorites" href="' . $lp_settings['favorites'] . '">' . __('Favorites', 'leadingprops') . ' <sup class="text-red"></sup></a></li>';
 		    $return .= '<li><a class="menu-link menu-icon menu-offmarket half-opaque" data-type="off_market">' . __('Off-market', 'leadingprops') . ' <sup class="text-red"></sup></a></li>';
 		    $return .= '<li class="divider"></li>';
+		    if($lp_settings['contact_phone']) {
+			    $return .= '<li><a class="menu-link menu-icon menu-phone">' . $lp_settings['contact_phone'] . '</a></li>';
+		    }
+		    if($lp_settings['contact_email']) {
+			    $return .= '<li><a class="menu-link menu-icon menu-email" href="mailto:' . $lp_settings['contact_email'] . '">' . $lp_settings['contact_email'] . '</a></li>';
+		    }
 	    }
     } elseif($args->theme_location === 'footer_navigation') {
 	   // $return .= '<li><a href="' . esc_url(home_url('/')) . '">' . __('Buy', 'leadingprops') . '</a></li>';

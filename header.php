@@ -1,5 +1,6 @@
 <?php
 	global $lp_settings;
+	$header_style = get_field('header_style', 'option');
 ?>
 <body <?php body_class(); ?>>
 	<div class="wrap" role="document">
@@ -16,8 +17,18 @@
 		<div class="menu-overlay">
 			<div class="site-content">
 				<div class="site-content-inner">
-					<header class="site-header" role="banner">
+					<header class="site-header header-<?= $header_style; ?>" role="banner">
 						<div class="logo container">
+							<?php if( $header_style === 'center') { ?>
+								<div class="contacts contacts-left">
+									<?php
+									if($lp_settings['contact_phone']) {
+										echo '<div class="contact-phone">' . $lp_settings['contact_phone'] . '</div>';
+									}
+									?>
+								</div>
+							<?php } ?>
+
 							<a class="logo-link" href="<?php echo esc_url(home_url('/')); ?>">
 								<?php $logoHeight = get_field('logo_max_height', 'option');  ?>
 								<?php if($logo = wp_get_attachment_image_url(get_field('logo', 'option'), 'logo')) {
@@ -30,9 +41,9 @@
 									bloginfo('name');
 								} ?>
 							</a>
-							<div class="contacts">
+							<div class="contacts contacts-right">
 								<?php
-								if($lp_settings['contact_phone']) {
+								if( $header_style !== 'center' && $lp_settings['contact_phone']) {
 									echo '<div class="contact-phone">' . $lp_settings['contact_phone'] . '</div>';
 								}
 								if($lp_settings['contact_email']) {

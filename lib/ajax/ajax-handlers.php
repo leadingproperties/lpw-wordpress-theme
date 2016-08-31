@@ -5,7 +5,6 @@ add_action('wp_ajax_nopriv_do_ajax', 'ajax_handler');
 
 function ajax_handler() {
 
-
 		switch($_REQUEST['fn']) {
 		case 'get_objects':
 			$output = ajax_get_objects($_REQUEST);

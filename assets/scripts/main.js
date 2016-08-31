@@ -1736,7 +1736,7 @@ Number.prototype.formatMoney = function(c, d, t){
 
             _.forEach(objects, function(object, key) {
 
-
+                console.log(object);
                 if( category === 'sale' ) {
                     title = object.description.title;
                     slug = object.slug;
@@ -1761,10 +1761,15 @@ Number.prototype.formatMoney = function(c, d, t){
                             rentPrice = '<span class="price-num">' + object.property_rent.rent_short.sort_price.month.formatMoney(0, ',', ' ') + ' </span>' + object.property_rent.rent_short.sort_price.currency_code + '&nbsp;/&nbsp;month';
                         }
                     } else if( object.property_rent.long_rent === true ) {
-                        if(!_.isNull(object.property_rent.rent_long.sort_price.month)) {
-                            rentPrice = '<span class="price-num">' + object.property_rent.rent_long.sort_price.month.formatMoney(0, ',', ' ') + ' </span>' + object.property_rent.rent_long.sort_price.currency_code + '&nbsp;/&nbsp;month';
-                        } else if(!_.isNull(object.property_rent.rent_long.sort_price.day)) {
-                            rentPrice = '<span class="price-num">' + object.property_rent.rent_long.sort_price.day.formatMoney(0, ',', ' ') + ' </span>' + object.property_rent.rent_long.sort_price.currency_code + '&nbsp;/&nbsp;day';
+
+                        if(object.property_rent.rent_long.sort_price.on_demand === true) {
+                            rentPrice = 'on request';
+                        } else {
+                            if (!_.isNull(object.property_rent.rent_long.sort_price.month)) {
+                                rentPrice = '<span class="price-num">' + object.property_rent.rent_long.sort_price.month.formatMoney(0, ',', ' ') + ' </span>' + object.property_rent.rent_long.sort_price.currency_code + '&nbsp;/&nbsp;month';
+                            } else if (!_.isNull(object.property_rent.rent_long.sort_price.day)) {
+                                rentPrice = '<span class="price-num">' + object.property_rent.rent_long.sort_price.day.formatMoney(0, ',', ' ') + ' </span>' + object.property_rent.rent_long.sort_price.currency_code + '&nbsp;/&nbsp;day';
+                            }
                         }
                     }
                 }
@@ -2042,9 +2047,15 @@ Number.prototype.formatMoney = function(c, d, t){
             }
             filter.filterSorting.on('change', function() {
                 var val = $(this).val();
+                if(val === false) {
+                    if($this.args.order_by) {
+                        delete $this.args.order_by;
+                    }
+                } else {
                     $this.args.order_by = {
                         order: val
                     };
+                }
                 resetObjects();
                 $this.getObjects();
             });

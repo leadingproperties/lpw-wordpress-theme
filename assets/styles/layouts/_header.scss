@@ -69,8 +69,10 @@
       .contact-phone {
 
       }
-      &:first-child {
-        margin-right: 25px;
+      .header-left & {
+        &:first-child {
+          margin-right: 25px;
+        }
       }
     }
   }
@@ -87,16 +89,31 @@
       vertical-align: middle;
       margin-left: 0;
       margin-right: 0;
-      img {
-        margin-left: 0;
-        margin-right: 0;
+      .header-left & {
+        img {
+          margin-left: 0;
+          margin-right: 0;
+        }
       }
     }
     .contacts {
       display: inline-block;
       vertical-align: middle;
-      width: $container-width-3 - 380;
-      text-align: right;
+    }
+    .header-left & {
+      .contacts {
+        width: $container-width-3 - 380;
+        text-align: right;
+      }
+    }
+    .header-center & {
+      .contacts {
+        width: ($container-width-3 - 380) / 2;
+        &.contacts-right {
+          text-align: right;
+        }
+      }
+
     }
   }
 }

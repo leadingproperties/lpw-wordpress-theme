@@ -182,10 +182,12 @@
 .icon-rocket::before {
   content: "\e837";
 }
+.menu-phone::after,
 .ac-mobile::before,
 .contact-phone::before {
   content: "\e7a6";
 }
+.menu-email::after,
 .ac-mail::before,
 .contact-email::before {
     content: "\e697";

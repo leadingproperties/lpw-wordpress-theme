@@ -60,6 +60,9 @@
     padding: 0;
     list-style: none;
     > li {
+      &.menu-phone a {
+        cursor: default;
+      }
       &.active > a {
         background: #f2f2f2;
       }
@@ -70,7 +73,7 @@
       &.dropdown {
         > a {
           border: 1px solid #e6e6e6;
-          padding: 6px 40px 6px 10px;
+          padding: 6px 40px 6px 9px;
           position: relative;
         }
         .caret {
@@ -184,6 +187,14 @@
             }
           }
         }
+        .dropdown-menu {
+          > li {
+            > a {
+              font-size: 14px;
+              padding: 10px;
+            }
+          }
+        }
       }
     }
     .menu-close {
@@ -198,17 +209,6 @@
   @media (min-width: $screen760) {
     width: $menu-width760;
     padding-right: 80px;
-    > ul {
-
-      .dropdown-menu {
-        > li {
-          > a {
-            font-size: 14px;
-            padding: 10px;
-          }
-        }
-      }
-    }
     .menu-close {
       right: 20px;
     }
