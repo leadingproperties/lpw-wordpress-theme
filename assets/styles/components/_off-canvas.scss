@@ -63,8 +63,11 @@
       &.active > a {
         background: #f2f2f2;
       }
+      margin-bottom: 5px;
+      &:last-child {
+        margin-bottom: 0;
+      }
       &.dropdown {
-        margin-bottom: 5px;
         > a {
           border: 1px solid #e6e6e6;
           padding: 6px 40px 6px 10px;
@@ -165,10 +168,17 @@
     padding-right: 70px;
     > ul {
       > li {
+        &.dropdown {
+          > a {
+            padding: 9px 40px 9px 15px;
+          }
+        }
         > a {
           font-size: 16px;
           padding: 10px 15px;
           &.menu-icon {
+            padding-right: if($rtl, 15px, 35px);
+            padding-left: if($rtl, 35px, 15px);
             &::after {
               top: 12px;
             }
@@ -189,11 +199,7 @@
     width: $menu-width760;
     padding-right: 80px;
     > ul {
-      > li.dropdown {
-        > a {
-          padding: 9px 40px 9px 15px;
-        }
-      }
+
       .dropdown-menu {
         > li {
           > a {

@@ -89,7 +89,7 @@ class Tags
     function get_autocomplete_tag_html($autocomplete_data, $counters){
         $autocomplete_tag_html = '';
         if($autocomplete_data){
-            $autocomplete_tag_html = '<li>' . $autocomplete_data['text'] . ' <sup>' . ($autocomplete_data['data']['l_id'] ? 1 : $counters['geo_location']['doc_count']) . '</sup> <span class="tag-remove" data-tag_type="autocomplete"></span></li>';
+            $autocomplete_tag_html = '<li>' . stripslashes($autocomplete_data['text']) . ' <sup>' . ($autocomplete_data['data']['l_id'] ? 1 : $counters['geo_location']['doc_count']) . '</sup> <span class="tag-remove" data-tag_type="autocomplete"></span></li>';
         }
         return $autocomplete_tag_html;
     }
