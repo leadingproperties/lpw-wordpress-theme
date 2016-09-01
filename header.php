@@ -63,7 +63,7 @@
 									]);
 									?>
 								<?php endif; ?>
-								<div class="map-col"><a href="#" class="map-toggle icon"><span class="sr-only">Select region</span></a></div>
+								<div class="map-col"><a href="#" class="map-toggle icon" data-toggle="modal" data-target="#map-modal"><span class="sr-only">Select region</span></a></div>
 								<div class="menu-col"><a href="#" class="menu-toggle"><span class="sr-only">Menu</span></a></div>
 								<div class="lang-col"><a class="lang-toggle collapsed" data-toggle="collapse" data-target="#lang-panel" aria-expanded="false" aria-controls="lang-panel"><span class="lang-<?= $lp_settings['lang']; ?>"></span></a></div>
 							</div>
