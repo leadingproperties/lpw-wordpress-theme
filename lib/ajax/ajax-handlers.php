@@ -9,6 +9,9 @@ function ajax_handler() {
 		case 'get_objects':
 			$output = ajax_get_objects($_REQUEST);
 			break;
+		case 'get_object':
+			$output = ajax_get_single_object($_REQUEST);
+			break;
 		case 'get_shorten_url':
 			$output = ajax_get_shorten_url($_REQUEST['url']);
 			break;
@@ -62,8 +65,17 @@ function ajax_get_objects($args) {
 		unset($args['fn']);
 	}
 	$args['action'] = 'get_objects';
+
 	$objects = new LP_ObjectList($args);
 	return $objects->get_json_objects();
+}
+function ajax_get_single_object($args) {
+	if(isset($args['fn'])) {
+		unset($args['fn']);
+	}
+	$args['action'] = 'get_objects';
+	return single_object_html($args);
+	//return json_decode(single_object_html($args));
 }
 
 function ajax_get_shorten_url($url) {
@@ -71,11 +83,11 @@ function ajax_get_shorten_url($url) {
 }
 
 function get_shorten_url($url) {
-	global $lp_settings;
+	$api_key = get_field('google_shortener_api', 'option');
 
 
-	if( $lp_settings['google_api_key'] ) :
-		$api_url = 'https://www.googleapis.com/urlshortener/v1/url?key=' . $lp_settings['google_api_key'];
+	if( $api_key ) :
+		$api_url = 'https://www.googleapis.com/urlshortener/v1/url?key=' . $api_key;
 		$content = json_encode([
 			'longUrl' => $url
 		]);
