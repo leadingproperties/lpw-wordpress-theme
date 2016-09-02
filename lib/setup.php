@@ -130,6 +130,7 @@ function lp_activation() {
 if (isset($_GET['activated']) && is_admin()){
     add_action('init', __NAMESPACE__ . '\\create_initial_pages');
     add_action('init', __NAMESPACE__ . '\\set_home_page');
+    add_action('init', __NAMESPACE__ . '\\init_main_menui');
 }
 function create_initial_pages() {
 
@@ -193,3 +194,28 @@ function set_home_page(){
   }
 }
 
+// Create initial menu
+function init_main_menu(){
+  // Check if the menu exists
+$menu_name = 'Main menu';
+$menu_exists = wp_get_nav_menu_object( $menu_name );
+
+// If it doesn't exist, let's create it.
+if( !$menu_exists){
+    $menu_id = wp_create_nav_menu($menu_name);
+
+  // Set up default menu items
+    wp_update_nav_menu_item($menu_id, 0, array(
+        'menu-item-title' =>  __('Buy'),
+        'menu-item-classes' => 'menu-buy',
+        'menu-item-url' => home_url( '/' ),
+        'menu-item-status' => 'publish'));
+
+    wp_update_nav_menu_item($menu_id, 0, array(
+        'menu-item-title' =>  __('Rent'),
+        'menu-item-classes' => 'menu-rent',
+        'menu-item-url' => home_url( '/rent' ),
+        'menu-item-status' => 'publish'));
+
+  }
+}
