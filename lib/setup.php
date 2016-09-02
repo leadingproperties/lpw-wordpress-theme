@@ -187,9 +187,9 @@ foreach($pages as $page_url_title => $page_meta) {
 // Use a static front page
 function set_home_page(){
   $buy = get_page_by_title( 'Buy' );
-   if(!isset($buy->ID)){
-    update_option( 'page_on_front', $buy->ID );
+   if(isset($buy->ID)){
     update_option( 'show_on_front', 'page' );
+    update_option( 'page_on_front', $buy->ID );
   }
 }
 
