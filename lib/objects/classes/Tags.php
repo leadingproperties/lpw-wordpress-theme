@@ -182,7 +182,7 @@ class Tags
     function get_similar_tag_html($parameters, $counters){
         $similar_tag= '';
         if($parameters){
-            $similar_tag = '<li>Similar: 5 km from CZ-04476  <sup>' . $counters['geo_location']['doc_count'] . '</sup> <span class="tag-remove" data-tag_type="similar" data-tag_data="similar"></span></li>';
+            $similar_tag = '<li>' . __('Similar', 'leadingprops') . ': 5 km ' . __('from', 'leadingprops') . ' CZ-04476  <sup>' . $counters['geo_location']['doc_count'] . '</sup> <span class="tag-remove" data-tag_type="similar" data-tag_data="similar"></span></li>';
         }
         return $similar_tag;
     }

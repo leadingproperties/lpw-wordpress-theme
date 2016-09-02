@@ -1053,7 +1053,6 @@ Number.prototype.formatMoney = function(c, d, t){
                 method: 'post',
                 data : data,
                 success : function(data){
-                    console.debug(data, objectlist.triggerId);
                     if( !_.isEmpty(data) ) {
                         if(data.error) {
                             console.log(data.error);
