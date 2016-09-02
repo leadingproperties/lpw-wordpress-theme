@@ -78,9 +78,9 @@ function lp_menu_static_links ( $items, $args ) {
 		   // $return .= '<li><a class="menu-link' . $rp_class . '" href="#">' . __('Rent', 'leadingprops') . '  <sup class="text-red">' . $lp_settings['counters']['for_rent'] . '</sup></a></li>';
 		    $return .= $items;
 		    $return .= '<li class="divider"></li>';
-		    $return .= '<li><a class="menu-link menu-icon menu-region" data-toggle="modal" data-target="#map-modal">' . __('Select region', 'leadingprops') . '</a></li>';
-		    $return .= '<li><a class="menu-link menu-icon menu-favorites" href="' . $lp_settings['favorites'] . '">' . __('Favorites', 'leadingprops') . ' <sup class="text-red"></sup></a></li>';
-		    $return .= '<li><a class="menu-link menu-icon menu-offmarket half-opaque" data-type="off_market">' . __('Off-market', 'leadingprops') . ' <sup class="text-red"></sup></a></li>';
+		    $return .= '<li><a class="menu-link menu-icon menu-region" data-toggle="modal" data-target="#map-modal">' . __('alerts:show_map_tooltip', 'leadingprops') . '</a></li>';
+		    $return .= '<li><a class="menu-link menu-icon menu-favorites" href="' . $lp_settings['favorites'] . '">' . __('menu:favorites', 'leadingprops') . ' <sup class="text-red"></sup></a></li>';
+		    $return .= '<li><a class="menu-link menu-icon menu-offmarket half-opaque" data-type="off_market">' . __('menu:offmarket', 'leadingprops') . ' <sup class="text-red"></sup></a></li>';
 		    $return .= '<li class="divider"></li>';
 		    if($lp_settings['contact_phone']) {
 			    $return .= '<li><a class="menu-link menu-icon menu-phone">' . $lp_settings['contact_phone'] . '</a></li>';
