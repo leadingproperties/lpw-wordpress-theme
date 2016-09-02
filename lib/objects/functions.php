@@ -582,9 +582,9 @@ function get_object_list($args) {
 							$html .= '<span>' . number_format($object->parameters->price->min, 0, ".", " ") . '</span>';
 						}
 					if ($object->parameters->price->max) {
-		                    $html .= '&nbsp;&ndash;&nbsp;<span><?= number_format($object->parameters->price->max, 0, ".", " "); ?></span>';
+		                    $html .= '&nbsp;&ndash;&nbsp;<span>' . number_format($object->parameters->price->max, 0, ".", " ") . '</span>';
 					}
-					$html .= '&nbsp;<span><?= $object->parameters->price->currency; ?></span></span>';
+					$html .= '&nbsp;<span>' . $object->parameters->price->currency . '</span></span>';
 				}
 
 				if ($object->parameters->rooms->min || $object->parameters->rooms->max) {
