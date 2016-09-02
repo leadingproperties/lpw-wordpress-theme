@@ -4,7 +4,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="btn btn-close modal-close" data-dismiss="modal" aria-label="Close"></button>
-				<h4 class="modal-title"><?php _e('Get detailed information about the property, additional photos, plans and prices  or arrange a viewing ','leadindprops'); ?></h4>
+				<h4 class="modal-title"><?php _e('Get detailed information about the property, additional photos, plans and prices  or arrange a viewing','leadindprops'); ?></h4>
 			</div>
 			<div class="modal-body">
 				<form action="" class="request-form">
@@ -31,11 +31,11 @@
 						</div>
 						<div class="request-form-row">
 							<div class="input-group soc-icon icon-mail">
-								<label class="sr-only" for="rf-email"><?php _e('Email', 'leadingprops'); ?></label>
+								<label class="sr-only" for="rf-email">Email</label>
 								<input id="rf-email" type="email" class="your-email text-input" placeholder="<?php _e('your e-mail', 'leadingprops'); ?>" data-validation="email">
 							</div>
 							<div class="input-group soc-icon icon-skype">
-								<label class="sr-only" for="rf-skype"><?php _e('Skype', 'leadingprops'); ?></label>
+								<label class="sr-only" for="rf-skype">Skype</label>
 								<input id="rf-skype" type="text" class="your-skype text-input" placeholder="<?php _e('your Skype name', 'leadingprops'); ?>" data-validation="skype">
 							</div>
 						</div>

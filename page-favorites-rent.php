@@ -14,7 +14,7 @@ get_favorites_bar();
 			<span class="fav-count-field icon"><?php _e('Your favorite properties', 'leadingprops'); ?>: <span class="favorite_objects_count">0 </span> <span class="fav-remove tag-remove"></span></span>
 		</div>
 		<div class="sorting-field sorting">
-			<label for="sorting" class="sr-only"><?php _e('Sort', 'leadingprops'); ?></label>
+			<label for="sorting" class="sr-only">Sort</label>
 			<select class="sorting-select" id="sorting">
 				<option value="false"><?php _e('Most recent', 'leadingprops'); ?></option>
 				<option value="desc"><?php _e('Highest price', 'leadingprops'); ?></option>

@@ -163,10 +163,10 @@ class Tags
             $rent_bool_tags .= '<li>' . __('Short term rental', 'leadingprops') . ' <sup>' . $counters['short_rent']['doc_count'] . '</sup> <span class="tag-remove" data-tag_type="short-term" data-tag_data="short-term"></span></li>';
         }
         if($params['child_friendly']){
-            $rent_bool_tags .= '<li>' . __('Child friendly', 'leadingprops') . ' <sup>' . $counters['child_friendly']['doc_count'] . '</sup> <span class="tag-remove" data-tag_type="child-friendly" data-tag_data="child-friendly"></span></li>';
+            $rent_bool_tags .= '<li>' . __('child friendly', 'leadingprops') . ' <sup>' . $counters['child_friendly']['doc_count'] . '</sup> <span class="tag-remove" data-tag_type="child-friendly" data-tag_data="child-friendly"></span></li>';
         }
         if($params['pets_allowed']){
-            $rent_bool_tags .= '<li>' . __('Pets allowed', 'leadingprops') . ' <sup>' . $counters['pets_allowed']['doc_count'] . '</sup> <span class="tag-remove" data-tag_type="pets-allowed" data-tag_data="pets-allowed"></span></li>';
+            $rent_bool_tags .= '<li>' . __('pets allowed', 'leadingprops') . ' <sup>' . $counters['pets_allowed']['doc_count'] . '</sup> <span class="tag-remove" data-tag_type="pets-allowed" data-tag_data="pets-allowed"></span></li>';
         }
         return $rent_bool_tags;
     }

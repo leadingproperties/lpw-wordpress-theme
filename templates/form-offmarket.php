@@ -3,7 +3,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="btn btn-close modal-close" data-dismiss="modal" aria-label="Close"></button>
-				<h4 class="modal-title"><?php _e('We need your contact details to provide you information about the Off-Market properties', 'leadindprops'); ?></h4>
+				<h4 class="modal-title"><?php _e('We need your contact details to provide you information about the Off-Market properties', 'leadindprops'); ?></h4>
 			</div>
 			<div class="modal-body">
 				<form action="" class="request-form">
@@ -32,11 +32,11 @@
 						</div>
 						<div class="request-form-row">
 							<div class="input-group soc-icon icon-mail">
-								<label class="sr-only" for="om-email"><?php _e('Email', 'leadingprops'); ?></label>
+								<label class="sr-only" for="om-email">Email</label>
 								<input id="om-email" type="email" class="your-email text-input" placeholder="<?php _e('your e-mail', 'leadingprops'); ?>" data-validation="email">
 							</div>
 							<div class="input-group soc-icon icon-skype">
-								<label class="sr-only" for="om-skype"><?php _e('Skype', 'leadingprops'); ?></label>
+								<label class="sr-only" for="om-skype">Skype</label>
 								<input id="om-skype" type="text" class="your-skype text-input" placeholder="<?php _e('your Skype name', 'leadingprops'); ?>" data-validation="skype">
 							</div>
 						</div>

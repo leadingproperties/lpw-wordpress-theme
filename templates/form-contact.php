@@ -30,11 +30,11 @@
 						</div>
 						<div class="request-form-row">
 							<div class="input-group soc-icon icon-mail">
-								<label class="sr-only" for="cf-email"><?php _e('Email', 'leadingprops'); ?></label>
+								<label class="sr-only" for="cf-email">Email</label>
 								<input id="cf-email" type="email" class="your-email text-input" placeholder="<?php _e('your e-mail', 'leadingprops'); ?>" data-validation="email">
 							</div>
 							<div class="input-group soc-icon icon-skype">
-								<label class="sr-only" for="cf-skype"><?php _e('Skype', 'leadingprops'); ?></label>
+								<label class="sr-only" for="cf-skype">Skype</label>
 								<input id="cf-skype" type="text" class="your-skype text-input" placeholder="<?php _e('your Skype name', 'leadingprops'); ?>" data-validation="skype">
 							</div>
 						</div>

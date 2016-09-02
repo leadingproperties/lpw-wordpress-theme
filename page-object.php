@@ -35,7 +35,7 @@
 			<div class="single-object-wrap">
 				<div class="detailed-link-wrap">
 					<a href="#" class="btn btn-green btn-detailed-link" data-toggle="modal" data-target=".single-object-request" data-type="single_property" data-object-type="<?= $object_type; ?>" data-id="<?= $objects_obj->id; ?>" data-code="<? $objects_obj->code; ?>">
-						<span><?php _e('Get detailed information', 'leadingprops'); ?></span>
+						<span><?php _e('detailed_info', 'leadingprops'); ?></span>
 					</a>
 				</div>
 				<ul class="single-object-menu">

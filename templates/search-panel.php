@@ -2,7 +2,7 @@
 <section class="search-panel-wrap">
 	<div class="container sp-container">
 		<div class="sp-field sp-search-field">
-			<label for="sp-search" class="sr-only"><?php _e('Search', 'leadingprops'); ?></label>
+			<label for="sp-search" class="sr-only">Search</label>
 			<div class="sp-input-wrap">
 				<input id="sp-search" type="text" class="sp-input text-input dropdown-trigger" placeholder="<?php _e('Address or reference number', 'leadingprops'); ?>">
 			</div>

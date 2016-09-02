@@ -54,41 +54,41 @@
 				</div>
 				<div class="sp-filters-group filter-area">
 					<div class="filter-area-group">
-						<span class="sp-group-title"><?php _e('Area, m', 'leadingprops'); ?><sup>2</sup></span>
-						<label for="area-min" class="sr-only"><?php _e('Area min', 'leadingprops'); ?></label>
-						<input type="number" min="0" class="filter-input area-input" id="area-min" placeholder="min">
+						<span class="sp-group-title"><?php _e('area, m', 'leadingprops'); ?><sup>2</sup></span>
+						<label for="area-min" class="sr-only">Area min</label>
+						<input type="number" min="0" class="filter-input area-input" id="area-min" placeholder="<?php _e('min', 'leadingprops'); ?>">
 						&nbsp;&ndash;&nbsp;
-						<label for="area-max" class="sr-only"><?php _e('Area max', 'leadingprops'); ?></label>
-						<input type="number" min="0" class="filter-input area-input" id="area-max" placeholder="max">
+						<label for="area-max" class="sr-only">Area max</label>
+						<input type="number" min="0" class="filter-input area-input" id="area-max" placeholder="<?php _e('max', 'leadingprops'); ?>">
 					</div>
 				</div>
 			</div>
 			<div class="sp-760-group sp-760-middle">
 				<div class="sp-filters-group filter-persons">
 					<span class="sp-group-title"><?php _e('Persons', 'leadingprops'); ?></span>
-					<label for="persons-max" class="sr-only"><?php _e('Persons max', 'leadingprops'); ?></label>
-					<input type="number" min="0" class="filter-input area-input" id="persons-max" placeholder="max">
+					<label for="persons-max" class="sr-only">Persons max</label>
+					<input type="number" min="0" class="filter-input area-input" id="persons-max" placeholder="<?php _e('max', 'leadingprops'); ?>">
 				</div>
 				<div class="sp-filters-group filter-conditions">
 					<div class="sp-checkbox">
 						<input id="child-friendly" type="checkbox" name="condition">
-						<label for="child-friendly"><span class="icon icon-child"><?php _e('Child friendly', 'leadingprops'); ?></span></label>
+						<label for="child-friendly"><span class="icon icon-child"><?php _e('child friendly', 'leadingprops'); ?></span></label>
 					</div>
 					<div class="sp-checkbox">
 						<input id="pets-allowed" type="checkbox" name="condition">
-						<label for="pets-allowed"><span class="icon icon-pet"><?php _e('Pets allowed', 'leadingprops'); ?></span></label>
+						<label for="pets-allowed"><span class="icon icon-pet"><?php _e('pets allowed', 'leadingprops'); ?></span></label>
 					</div>
 				</div>
 			</div>
 			<div class="sp-filters-group filter-price">
 				<div class="filter-price-group">
 					<span class="sp-group-title"><?php _e('Price', 'leadingprops'); ?></span>
-					<label for="price-min" class="sr-only"><?php _e('Price min', 'leadingprops'); ?></label>
-					<input type="number" min="0" class="filter-input price-input" id="price-min" placeholder="min">
+					<label for="price-min" class="sr-only">Price min</label>
+					<input type="number" min="0" class="filter-input price-input" id="price-min" placeholder="<?php _e('min', 'leadingprops'); ?>">
 					&nbsp;&ndash;&nbsp;
-					<label for="price-max" class="sr-only"><?php _e('Price max', 'leadingprops'); ?></label>
-					<input type="number" min="0" class="filter-input price-input" id="price-max" placeholder="max">
-					<label for="price-currency" class="sr-only"><?php _e('Currency', 'leadingprops'); ?></label>
+					<label for="price-max" class="sr-only">Price max</label>
+					<input type="number" min="0" class="filter-input price-input" id="price-max" placeholder="<?php _e('max', 'leadingprops'); ?>">
+					<label for="price-currency" class="sr-only">Currency</label>
 					<div class="rent-select-wrap">
 						<select name="price[currency]" id="price-currency" class="price-input price-select">
 							<option value="1">EUR</option>
@@ -101,8 +101,8 @@
 						</select>
 						&nbsp;&frasl;&nbsp;
 						<select name="period" id="price-period" class="price-input">
-							<option value="day"><?php _e('Day', 'leadingprops'); ?></option>
-							<option value="month"><?php _e('Month', 'leadingprops'); ?></option>
+							<option value="day"><?php _e('day', 'leadingprops'); ?></option>
+							<option value="month"><?php _e('month', 'leadingprops'); ?></option>
 						</select>
 					</div>
 				</div>
