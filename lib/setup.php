@@ -129,6 +129,7 @@ function lp_activation() {
 
 if (isset($_GET['activated']) && is_admin()){
     add_action('init', __NAMESPACE__ . '\\create_initial_pages');
+    add_action('init', __NAMESPACE__ . '\\set_home_page');
 }
 function create_initial_pages() {
 
@@ -141,8 +142,8 @@ $pages = array(
     'Rent' => array(
         'Rent page template. Please do not delete this page!'=>'page-rent.php'),
 
-    'Favorites Sales' => array(
-        'Favorites Sales page template. Please do not delete this page!'=>'page-favorites.php'),
+    'Favorites Sale' => array(
+        'Favorites Sale page template. Please do not delete this page!'=>'page-favorites.php'),
 
     'Favorites Rent' => array(
         'Favorites Rent page template. Please do not delete this page!'=>'page-favorites-rent.php'),
@@ -182,3 +183,13 @@ foreach($pages as $page_url_title => $page_meta) {
   };
 }
 // XXX -> Generate pages on activation end
+//
+// Use a static front page
+function set_home_page(){
+  $buy = get_page_by_title( 'Buy' );
+   if(!isset($buy->ID)){
+    update_option( 'page_on_front', $buy->ID );
+    update_option( 'show_on_front', 'page' );
+  }
+}
+
