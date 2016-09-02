@@ -2,33 +2,29 @@
 	<div class="sp-filter-wrap">
 		<form action="" id="filter-form">
 			<div class="sp-filters-group filter-type">
-				<span class="sp-group-title"><?php _e('Property type', 'leadingprops'); ?></span>
+				<span class="sp-group-title"><?php _e('search_panel:property_types:label', 'leadingprops'); ?></span>
 				<div class="sp-checkbox">
 					<input id="apartments" class="property_type" type="checkbox" name="property_types[]" value="1">
-					<label for="apartments"><?php _e('Apartments', 'leadingprops'); ?></label>
+					<label for="apartments"><?php _e('search_panel:property_types:apartments', 'leadingprops'); ?></label>
 				</div>
 				<div class="sp-checkbox">
 					<input id="houses" class="property_type" type="checkbox" name="property_types[]" value="2">
-					<label for="houses"><?php _e('Houses', 'leadingprops'); ?></label>
+					<label for="houses"><?php _e('search_panel:property_types:houses', 'leadingprops'); ?></label>
 				</div>
 				<div class="sp-checkbox">
 					<input id="commercial" class="property_type" type="checkbox" name="property_types[]" value="3">
-					<label for="commercial"><?php _e('Commercial Properties', 'leadingprops'); ?></label>
-				</div>
-				<div class="sp-checkbox">
-					<input id="plots" class="property_type" type="checkbox" name="property_types[]" value="4">
-					<label for="plots"><?php _e('Plots', 'leadingprops'); ?></label>
+					<label for="commercial"><?php _e('search_panel:property_types:commercial', 'leadingprops'); ?></label>
 				</div>
 			</div>
 			<div class="sp-760-group sp-760-middle">
 				<div class="sp-filters-group filter-price">
 					<div class="filter-price-group">
-						<span class="sp-group-title"><?php _e('Price', 'leadingprops'); ?></span>
+						<span class="sp-group-title"><?php _e('search_panel:price_label', 'leadingprops'); ?></span>
 						<label for="price-min" class="sr-only">Price min</label>
-						<input type="number" min="0" class="filter-input price-input" id="price-min" name="price[min]" placeholder="<?php _e('min', 'leadingprops'); ?>">
+						<input type="number" min="0" class="filter-input price-input" id="price-min" name="price[min]" placeholder="<?php _e('search_panel:min', 'leadingprops'); ?>">
 						&nbsp;&ndash;&nbsp;
 						<label for="price-max" class="sr-only">Price max</label>
-						<input type="number" min="0" class="filter-input price-input" id="price-max" name="price[max]" placeholder="<?php _e('max', 'leadingprops'); ?>">
+						<input type="number" min="0" class="filter-input price-input" id="price-max" name="price[max]" placeholder="<?php _e('search_panel:max', 'leadingprops'); ?>">
 						<label for="price-currency" class="sr-only">Currency</label>
 						<div class="price-select-wrap">
 							<select name="price[currency]" id="price-currency" class="price-input price-select">
@@ -45,18 +41,18 @@
 				</div>
 				<div class="sp-filters-group filter-area">
 					<div class="filter-area-group">
-						<span class="sp-group-title"><?php _e('area, m', 'leadingprops'); ?><sup>2</sup></span>
+						<span class="sp-group-title"><?php _e('search_panel:area_label', 'leadingprops'); ?>, <?php _e('search_panel:sqm', 'leadingprops'); ?></span>
 						<label for="area-min" class="sr-only">Area min</label>
-						<input type="number" min="0" class="filter-input area-input" id="area-min" placeholder="<?php _e('min', 'leadingprops'); ?>" name="area[min]">
+						<input type="number" min="0" class="filter-input area-input" id="area-min" placeholder="<?php _e('search_panel:min', 'leadingprops'); ?>" name="area[min]">
 						&nbsp;&ndash;&nbsp;
 						<label for="area-max" class="sr-only">Area max</label>
-						<input type="number" min="0" class="filter-input area-input" id="area-max" placeholder="<?php _e('max', 'leadingprops'); ?>" name="area[max]">
+						<input type="number" min="0" class="filter-input area-input" id="area-max" placeholder="<?php _e('search_panel:max', 'leadingprops'); ?>" name="area[max]">
 					</div>
 				</div>
 			</div>
 			<div class="sp-filters-group filter-rooms">
 				<div class="sp-checkboxes">
-					<span class="sp-group-title"><?php _e('Rooms', 'leadingprops'); ?></span>
+					<span class="sp-group-title"><?php _e('search_panel:rooms_label', 'leadingprops'); ?></span>
 					<div class="sp-checkbox">
 						<input id="one" class="filter-room" type="checkbox" name="rooms[]" value="1">
 						<label for="one">1</label>
@@ -83,11 +79,11 @@
 				<div class="sp-filters-group filter-quality">
 					<div class="sp-checkbox">
 						<input id="quality" type="checkbox" name="hd_photos">
-						<label for="quality"><?php _e('Listings with high quality photos only', 'leadingprops'); ?></label>
+						<label for="quality"><?php _e('search_panel:hd_photos:label', 'leadingprops'); ?></label>
 					</div>
 				</div>
 				<div class="filter-submit">
-					<button type="submit" class="btn btn-green btn-filter-submit"><?php _e('Show results', 'leadingprops'); ?></button>
+					<button type="submit" class="btn btn-green btn-filter-submit"><?php _e('search_panel:submit_button', 'leadingprops'); ?></button>
 				</div>
 			</div>
 		</form>

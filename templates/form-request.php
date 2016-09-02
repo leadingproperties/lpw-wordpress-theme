@@ -4,7 +4,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="btn btn-close modal-close" data-dismiss="modal" aria-label="Close"></button>
-				<h4 class="modal-title"><?php _e('form:Get detailed information about the property, additional photos, plans and prices  or arrange a viewing','leadingprops'); ?></h4>
+				<h4 class="modal-title"><?php _e('form:title_single','leadingprops'); ?></h4>
 			</div>
 			<div class="modal-body">
 				<form action="" class="request-form">

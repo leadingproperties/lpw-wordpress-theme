@@ -163,7 +163,7 @@ function single_object_html($args) {
 					$html .= '<div class="single-object-info">';
 					$html .= '<p class="object-price icon">';
 							if($objects_obj->parameters->price->on_demand) {
-								$html .= __('Price on demand', 'leadindprops');
+								$html .= __('s_object:on_demand', 'leadingprops');
 							} else {
 								if($objects_obj->parameters->price->min) {
 									$html .= number_format($objects_obj->parameters->price->min, 0, ".", " ");

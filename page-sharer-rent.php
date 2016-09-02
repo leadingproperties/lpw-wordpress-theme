@@ -14,9 +14,9 @@ get_favorites_bar(false);
 		<div class="sorting-field sorting">
 			<label for="sorting" class="sr-only">Sort</label>
 			<select class="sorting-select" id="sorting">
-				<option value="false"><?php _e('Most recent', 'leadingprops'); ?></option>
-				<option value="desc"><?php _e('Highest price', 'leadingprops'); ?></option>
-				<option value="asc"><?php _e('Lowest price', 'leadingprops'); ?></option>
+				<option value="false"><?php _e('search_panel:order:recent', 'leadingprops'); ?></option>
+				<option value="desc"><?php _e('search_panel:order:price_desc', 'leadingprops'); ?></option>
+				<option value="asc"><?php _e('search_panel:order:price_asc', 'leadingprops'); ?></option>
 			</select>
 		</div>
 	</section><!-- /.sorting -->
@@ -44,25 +44,25 @@ get_favorites_bar(false);
 								$min_stay = __('s_object:rent:on_request', 'leadingprops');
 							} elseif( $object->property_rent->short_rent === true ) {
 								if ( $object->property_rent->rent_short->min_day === true ) {
-									$minStay = '1 ' . __('day', 'leadingprops');
+									$minStay = '1 ' . __('s_object:rent:day', 'leadingprops');
 								} elseif ( $object->property_rent->rent_short->min_week === true ) {
-									$minStay = '1 ' . __('week', 'leadingprops');
+									$minStay = '1 ' . __('s_object:rent:week', 'leadingprops');
 								} else {
-									$minStay = '1 ' . __('month', 'leadingprops');
+									$minStay = '1 ' . __('s_object:rent:month', 'leadingprops');
 								}
 							}
 
 							if( $object->property_rent->short_rent === true ) {
 								if ( $object->property_rent->rent_short->sort_price->day ) {
-									$rentPrice = '<span class="price-num">' . number_format( $object->property_rent->rent_short->sort_price->day, 0, ".", " " ) . ' </span>' . $object->property_rent->rent_short->sort_price->currency_code . '&nbsp;/&nbsp;' . __( 'day', 'leadingprops' );
+									$rentPrice = '<span class="price-num">' . number_format( $object->property_rent->rent_short->sort_price->day, 0, ".", " " ) . ' </span>' . $object->property_rent->rent_short->sort_price->currency_code . '&nbsp;/&nbsp;' . __( 's_object:rent:day', 'leadingprops' );
 								} elseif ( $object->roperty_rent->rent_short->sort_price->month ) {
-									$rentPrice = '<span class="price-num">' . number_format( $object->property_rent->rent_short->sort_price->month, 0, ".", " " ) . ' </span>' . $object->property_rent->rent_short->sort_price->currency_code . '&nbsp;/&nbsp;' . __( 'month', 'leadingprops' );
+									$rentPrice = '<span class="price-num">' . number_format( $object->property_rent->rent_short->sort_price->month, 0, ".", " " ) . ' </span>' . $object->property_rent->rent_short->sort_price->currency_code . '&nbsp;/&nbsp;' . __( 's_object:rent:month', 'leadingprops' );
 								}
 							} elseif( $object->property_rent->long_rent === true ) {
 								if($object->property_rent->rent_long->sort_price->month) {
-									$rentPrice = '<span class="price-num">' . number_format( $object->property_rent->rent_long->sort_price->month, 0, ".", " " ) .  ' </span>' . $object->property_rent->rent_long->sort_price->currency_code . '&nbsp;/&nbsp;' . __( 'month', 'leadingprops' );
+									$rentPrice = '<span class="price-num">' . number_format( $object->property_rent->rent_long->sort_price->month, 0, ".", " " ) .  ' </span>' . $object->property_rent->rent_long->sort_price->currency_code . '&nbsp;/&nbsp;' . __( 's_object:rent:month', 'leadingprops' );
 								} elseif($object->property_rent->rent_long->sort_price->day) {
-									$rentPrice = '<span class="price-num">' . number_format( $object->property_rent->rent_long->sort_price->day, 0, ".", " " ) . ' </span>' . $object->property_rent->rent_long->sort_price->currency_code . '&nbsp;/&nbsp;' . __( 'day', 'leadingprops' );
+									$rentPrice = '<span class="price-num">' . number_format( $object->property_rent->rent_long->sort_price->day, 0, ".", " " ) . ' </span>' . $object->property_rent->rent_long->sort_price->currency_code . '&nbsp;/&nbsp;' . __( 's_object:rent:day', 'leadingprops' );
 								}
 							}
 
@@ -94,7 +94,7 @@ get_favorites_bar(false);
 									<h2 class="info-title">
 										<a class="open-object-modal object-link" href="<?= $lp_settings['property_page'] . $object->rent_slug; ?>"><?= $object->description->rent_title; ?></a>
 									</h2>
-									<p class="min-days"><?= __('Minimum stay', 'leadingprops'); ?>: <?= $minStay; ?></p>
+									<p class="min-days"><?= __('s_object:rent:min_stay_full', 'leadingprops'); ?>: <?= $minStay; ?></p>
 									<ul class="rent-details">
 										<?php if ( $object->parameters->area->min ) { ?>
 											<li class="area"><?= $object->parameters->area->min; ?> m<sup>2</sup></li>

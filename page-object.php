@@ -185,7 +185,7 @@
 									} else {
 										echo __('s_object:rent:vat', 'leadingprops') . ' ' . __('s_object:rent:included', 'leadingprops') . '; ';
 									}
-								echo __('deposit', 'leadingprops') . ': ';
+								echo __('s_object:rent:deposit', 'leadingprops') . ': ';
 									if($objects_obj->property_rent->rent_long->deposit_on_demand === true) {
 										echo __('s_object:rent:on_request', 'leadingprops') . '; ';
 									} else {
@@ -264,7 +264,7 @@
 								echo  '<ul class="rent-price-list">
                                       <li class="heading hidden-760">' . __('s_object:rent:min_stay', 'leadingprops') . '</li>
                                       <li class="heading">' . __('s_object:rent:hight_season', 'leadingprops') . '</li>
-                                      <li class="hidden-760">1 ' .__('day', 'leadingprops') . '</li>
+                                      <li class="hidden-760">1 ' .__('s_object:rent:day', 'leadingprops') . '</li>
                                       <li>';
 								echo ($objects_obj->property_rent->rent_short->hs_daily_rate) ? number_format($objects_obj->property_rent->rent_short->hs_daily_rate, 0, ".", " ")  : '&mdash;';
 								echo '</li>
@@ -282,7 +282,7 @@
 								echo '<p class="footnote">* ';
 								if($objects_obj->property_rent->rent_short->vat_in_price === false) {
 									if($objects_obj->property_rent->rent_short->vat) {
-										echo __('s_object:rent:vat', 'leadingprops') . ' ' . $objects_obj->property_rent->rent_short->vat . '% ' . __('is not included') . '; ';
+										echo __('s_object:rent:vat', 'leadingprops') . ' ' . $objects_obj->property_rent->rent_short->vat . '% ' . __('s_object:rent:not_included') . '; ';
 									}
 								} else {
 									echo __('s_object:rent:vat', 'leadingprops') . ' ' . __('s_object:rent:included', 'leadingprops') . '; ';

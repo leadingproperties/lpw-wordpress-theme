@@ -1,0 +1,517 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Project-Id-Version: Leading Properties\n"
+"POT-Creation-Date: 2016-09-02 18:44+0300\n"
+"PO-Revision-Date: 2016-09-02 18:44+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.9\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-WPHeader: style.css\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: 404.php:8
+msgid "page_404:title_404"
+msgstr ""
+
+#: 404.php:10
+msgid "page_404:title"
+msgstr ""
+
+#: 404.php:11
+msgid "page_404:text"
+msgstr ""
+
+#: functions.php:20
+#, php-format
+msgid "Error locating %s for inclusion"
+msgstr ""
+
+#: lib/extras.php:54
+msgid "Continued"
+msgstr ""
+
+#: lib/extras.php:81 templates/search-panel.php:18
+msgid "alerts:show_map_tooltip"
+msgstr ""
+
+#: lib/extras.php:82
+msgid "menu:favorites"
+msgstr ""
+
+#: lib/extras.php:83
+msgid "menu:offmarket"
+msgstr ""
+
+#: lib/objects/classes/LP_ObjectList.class.php:326
+msgid "An error was occurred. Please try again later."
+msgstr ""
+
+#: lib/objects/classes/Tags.php:102 templates/filter-rent.php:18
+#: templates/filter-sale.php:8
+msgid "search_panel:property_types:apartments"
+msgstr ""
+
+#: lib/objects/classes/Tags.php:105 templates/filter-rent.php:22
+#: templates/filter-sale.php:12
+msgid "search_panel:property_types:houses"
+msgstr ""
+
+#: lib/objects/classes/Tags.php:108 templates/filter-rent.php:26
+#: templates/filter-sale.php:16
+msgid "search_panel:property_types:commercial"
+msgstr ""
+
+#: lib/objects/classes/Tags.php:111
+msgid "search_panel:property_types:plots"
+msgstr ""
+
+#: lib/objects/classes/Tags.php:122 templates/filter-rent.php:32
+#: templates/filter-sale.php:55
+msgid "search_panel:rooms_label"
+msgstr ""
+
+#: lib/objects/classes/Tags.php:130
+msgid "search_panel:hd_photos:tag"
+msgstr ""
+
+#: lib/objects/classes/Tags.php:160 templates/filter-rent.php:11
+msgid "search_panel:long_rent"
+msgstr ""
+
+#: lib/objects/classes/Tags.php:163 templates/filter-rent.php:7
+msgid "search_panel:short_rent"
+msgstr ""
+
+#: lib/objects/classes/Tags.php:166 lib/objects/functions.php:429
+#: page-object.php:420 templates/filter-rent.php:75
+msgid "search_panel:child_friendly"
+msgstr ""
+
+#: lib/objects/classes/Tags.php:169 lib/objects/functions.php:432
+#: page-object.php:423 templates/filter-rent.php:79
+msgid "search_panel:pets_allowed"
+msgstr ""
+
+#: lib/objects/classes/Tags.php:177 templates/filter-rent.php:68
+msgid "search_panel:persons"
+msgstr ""
+
+#: lib/objects/classes/Tags.php:185
+msgid "Similar: %1$ km from %2$"
+msgstr ""
+
+#: lib/objects/functions.php:36 lib/objects/functions.php:460
+#: page-object.php:46 page-object.php:446
+msgid "s_object:header:detailed_info"
+msgstr ""
+
+#: lib/objects/functions.php:109 page-object.php:106
+msgid "s_object:sold"
+msgstr ""
+
+#: lib/objects/functions.php:166 lib/objects/functions.php:589
+#: page-object.php:156
+msgid "s_object:on_demand"
+msgstr ""
+
+#: lib/objects/functions.php:182
+msgid "s_object:rent:long-term_rent:"
+msgstr ""
+
+#: lib/objects/functions.php:184 lib/objects/functions.php:200
+#: lib/objects/functions.php:206 lib/objects/functions.php:212
+#: lib/objects/functions.php:218 lib/objects/functions.php:224
+#: lib/objects/functions.php:230 lib/objects/functions.php:302
+#: lib/objects/functions.php:308 lib/objects/functions.php:314
+#: lib/objects/functions.php:320 lib/objects/functions.php:326
+#: lib/objects/functions.php:332 lib/objects/functions.php:519
+#: lib/objects/functions.php:538 page-object.php:174 page-object.php:190
+#: page-object.php:196 page-object.php:202 page-object.php:208
+#: page-object.php:214 page-object.php:220 page-object.php:292
+#: page-object.php:298 page-object.php:304 page-object.php:310
+#: page-object.php:316 page-object.php:322 page-sharer-rent.php:44
+msgid "s_object:rent:on_request"
+msgstr ""
+
+#: lib/objects/functions.php:193 lib/objects/functions.php:196
+#: lib/objects/functions.php:295 lib/objects/functions.php:298
+#: page-object.php:183 page-object.php:186 page-object.php:285
+#: page-object.php:288
+msgid "s_object:rent:vat"
+msgstr ""
+
+#: lib/objects/functions.php:193 lib/objects/functions.php:295
+#: page-object.php:183 page-object.php:285
+msgid "s_object:rent:not_included"
+msgstr ""
+
+#: lib/objects/functions.php:196 lib/objects/functions.php:298
+#: page-object.php:186 page-object.php:288
+msgid "s_object:rent:included"
+msgstr ""
+
+#: lib/objects/functions.php:198 lib/objects/functions.php:300
+#: page-object.php:188 page-object.php:290
+msgid "s_object:rent:deposit"
+msgstr ""
+
+#: lib/objects/functions.php:216 lib/objects/functions.php:318
+#: page-object.php:206 page-object.php:308
+msgid "s_object:rent:commission"
+msgstr ""
+
+#: lib/objects/functions.php:237
+msgid "s_object:rent:rent_short_title"
+msgstr ""
+
+#: lib/objects/functions.php:240 lib/objects/functions.php:258
+#: lib/objects/functions.php:275 page-object.php:231 page-object.php:248
+#: page-object.php:265
+msgid "s_object:rent:min_stay"
+msgstr ""
+
+#: lib/objects/functions.php:241 page-object.php:232
+msgid "s_object:rent:low_season"
+msgstr ""
+
+#: lib/objects/functions.php:242 lib/objects/functions.php:243
+#: lib/objects/functions.php:244 lib/objects/functions.php:260
+#: lib/objects/functions.php:277 lib/objects/functions.php:522
+#: lib/objects/functions.php:532 lib/objects/functions.php:543
+#: page-object.php:233 page-object.php:250 page-object.php:267
+#: page-sharer-rent.php:47 page-sharer-rent.php:57 page-sharer-rent.php:65
+#: templates/filter-rent.php:104
+msgid "s_object:rent:day"
+msgstr ""
+
+#: lib/objects/functions.php:248 lib/objects/functions.php:264
+#: lib/objects/functions.php:281 lib/objects/functions.php:524
+#: page-object.php:237 page-object.php:254 page-object.php:271
+#: page-sharer-rent.php:49
+msgid "s_object:rent:week"
+msgstr ""
+
+#: lib/objects/functions.php:252 lib/objects/functions.php:268
+#: lib/objects/functions.php:285 lib/objects/functions.php:526
+#: lib/objects/functions.php:534 lib/objects/functions.php:541
+#: page-object.php:241 page-object.php:258 page-object.php:275
+#: page-sharer-rent.php:51 page-sharer-rent.php:59 page-sharer-rent.php:63
+#: templates/filter-rent.php:105
+msgid "s_object:rent:month"
+msgstr ""
+
+#: lib/objects/functions.php:259 page-object.php:249
+msgid "s_object:rent:medium_season"
+msgstr ""
+
+#: lib/objects/functions.php:276 page-object.php:266
+msgid "s_object:rent:hight_season"
+msgstr ""
+
+#: lib/objects/functions.php:342
+msgid "s_object:property_type"
+msgstr ""
+
+#: lib/objects/functions.php:345 page-object.php:336
+msgid "s_object:number_of_rooms"
+msgstr ""
+
+#: lib/objects/functions.php:356 page-object.php:347
+msgid "s_object:area_sq_m"
+msgstr ""
+
+#: lib/objects/functions.php:367 page-object.php:358
+msgid "s_object:bedrooms"
+msgstr ""
+
+#: lib/objects/functions.php:378 page-object.php:369
+msgid "s_object:bathrooms"
+msgstr ""
+
+#: lib/objects/functions.php:390 page-object.php:381
+msgid "s_object:rent:max_persons"
+msgstr ""
+
+#: lib/objects/functions.php:394 page-object.php:385
+msgid "s_object:land_area"
+msgstr ""
+
+#: lib/objects/functions.php:405 page-object.php:396
+msgid "s_object:building_storeys"
+msgstr ""
+
+#: lib/objects/functions.php:416 page-object.php:407
+msgid "s_object:terrace_balcony"
+msgstr ""
+
+#: lib/objects/functions.php:419 page-object.php:410
+msgid "s_object:pool"
+msgstr ""
+
+#: lib/objects/functions.php:422 page-object.php:413
+msgid "s_object:garage_parking"
+msgstr ""
+
+#: lib/objects/functions.php:425 page-object.php:416
+msgid "s_object:utility_rooms"
+msgstr ""
+
+#: lib/objects/functions.php:440
+msgid "s_object:prev"
+msgstr ""
+
+#: lib/objects/functions.php:443
+msgid "s_object:next"
+msgstr ""
+
+#: lib/objects/functions.php:450
+msgid "s_object:similar_label"
+msgstr ""
+
+#: lib/objects/functions.php:610
+msgid "s_object:rooms"
+msgstr ""
+
+#: lib/objects/functions.php:627 page-sharer-rent.php:97
+msgid "s_object:rent:min_stay_full"
+msgstr ""
+
+#: lib/objects/functions.php:630
+msgid "s_object:m_short"
+msgstr ""
+
+#: lib/setup.php:23
+msgid "Primary Navigation"
+msgstr ""
+
+#: lib/setup.php:24
+msgid "Footer Navigation"
+msgstr ""
+
+#: lib/titles.php:13
+msgid "Latest Posts"
+msgstr ""
+
+#: lib/titles.php:18
+#, php-format
+msgid "Search Results for %s"
+msgstr ""
+
+#: lib/titles.php:20
+msgid "Not Found"
+msgstr ""
+
+#: page-favorites-rent.php:14 page-favorites.php:14
+msgid "favorites:title"
+msgstr ""
+
+#: page-favorites-rent.php:19 page-favorites.php:19 page-sharer-rent.php:17
+#: page-sharer.php:17 templates/sorting-panel.php:6
+msgid "search_panel:order:recent"
+msgstr ""
+
+#: page-favorites-rent.php:20 page-favorites.php:20 page-sharer-rent.php:18
+#: page-sharer.php:18 templates/sorting-panel.php:7
+msgid "search_panel:order:price_desc"
+msgstr ""
+
+#: page-favorites-rent.php:21 page-favorites.php:21 page-sharer-rent.php:19
+#: page-sharer.php:19 templates/sorting-panel.php:8
+msgid "search_panel:order:price_asc"
+msgstr ""
+
+#: page-favorites-rent.php:36 page-favorites.php:36
+msgid "favorites:delete_alert"
+msgstr ""
+
+#: page-object.php:172
+msgid "s_object:rent:long-term_rent"
+msgstr ""
+
+#: page-object.php:228
+msgid "rent_short_title"
+msgstr ""
+
+#: page-object.php:333
+msgid "s_object:property type"
+msgstr ""
+
+#: search.php:5
+msgid "Sorry, no results were found."
+msgstr ""
+
+#: templates/comments.php:9
+#, php-format
+msgctxt "comments title"
+msgid "One response to &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s responses to &ldquo;%2$s&rdquo;"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/comments.php:19
+msgid "&larr; Older comments"
+msgstr ""
+
+#: templates/comments.php:22
+msgid "Newer comments &rarr;"
+msgstr ""
+
+#: templates/comments.php:31
+msgid "Comments are closed."
+msgstr ""
+
+#: templates/favorites-bar.php:3
+msgid "search_panel:share"
+msgstr ""
+
+#: templates/favorites-bar.php:18
+msgid "favorites:facebook_message"
+msgstr ""
+
+#: templates/favorites-bar.php:29
+msgid "search_panel:copy"
+msgstr ""
+
+#: templates/filter-rent.php:15 templates/filter-sale.php:5
+msgid "search_panel:property_types:label"
+msgstr ""
+
+#: templates/filter-rent.php:57 templates/filter-sale.php:44
+msgid "search_panel:area_label"
+msgstr ""
+
+#: templates/filter-rent.php:57 templates/filter-sale.php:44
+msgid "search_panel:sqm"
+msgstr ""
+
+#: templates/filter-rent.php:59 templates/filter-rent.php:87
+#: templates/filter-sale.php:24 templates/filter-sale.php:46
+msgid "search_panel:min"
+msgstr ""
+
+#: templates/filter-rent.php:62 templates/filter-rent.php:70
+#: templates/filter-rent.php:90 templates/filter-sale.php:27
+#: templates/filter-sale.php:49
+msgid "search_panel:max"
+msgstr ""
+
+#: templates/filter-rent.php:85 templates/filter-sale.php:22
+msgid "search_panel:price_label"
+msgstr ""
+
+#: templates/filter-rent.php:115 templates/filter-sale.php:82
+msgid "search_panel:hd_photos:label"
+msgstr ""
+
+#: templates/filter-rent.php:119 templates/filter-sale.php:86
+msgid "search_panel:submit_button"
+msgstr ""
+
+#: templates/form-contact.php:6
+msgid "form:title_default"
+msgstr ""
+
+#: templates/form-contact.php:13 templates/form-offmarket.php:13
+#: templates/form-request.php:14
+msgid "form:first_name"
+msgstr ""
+
+#: templates/form-contact.php:17 templates/form-offmarket.php:17
+#: templates/form-request.php:18
+msgid "form:last_name"
+msgstr ""
+
+#: templates/form-contact.php:24 templates/form-offmarket.php:24
+#: templates/form-request.php:25
+msgid "form:how_can_reach"
+msgstr ""
+
+#: templates/form-contact.php:27 templates/form-offmarket.php:28
+#: templates/form-request.php:28
+msgid "form:your_phone"
+msgstr ""
+
+#: templates/form-contact.php:34 templates/form-offmarket.php:36
+#: templates/form-request.php:35
+msgid "form:your_email"
+msgstr ""
+
+#: templates/form-contact.php:38 templates/form-offmarket.php:40
+#: templates/form-request.php:39
+msgid "form:your_skype"
+msgstr ""
+
+#: templates/form-contact.php:44 templates/form-offmarket.php:46
+#: templates/form-request.php:45
+msgid "form:have_questions"
+msgstr ""
+
+#: templates/form-contact.php:50 templates/form-offmarket.php:52
+#: templates/form-request.php:51
+msgid "form:send"
+msgstr ""
+
+#: templates/form-contact.php:53 templates/form-offmarket.php:55
+#: templates/form-request.php:54
+msgid "form:disclaimer_note"
+msgstr ""
+
+#: templates/form-contact.php:53 templates/form-offmarket.php:55
+msgid "form:privacy_policy"
+msgstr ""
+
+#: templates/form-offmarket.php:6
+msgid "form:title_off_market"
+msgstr ""
+
+#: templates/form-request.php:7
+msgid "form:title_single"
+msgstr ""
+
+#: templates/form-request.php:54
+msgid "form:Privacy policy"
+msgstr ""
+
+#: templates/search-panel.php:7
+msgid "search_panel:autocomplete"
+msgstr ""
+
+#: templates/search-panel.php:9
+msgid "alerts:advanced_search"
+msgstr ""
+
+#: templates/search-panel.php:19
+msgid "alerts:favorite_properties"
+msgstr ""
+
+#: templates/search-panel.php:20
+msgid "alerts:offmarket_properties"
+msgstr ""
+
+#: templates/search-panel.php:26
+msgid "alerts:offmarket_found:text"
+msgstr ""
+
+#: templates/search-panel.php:26
+msgid "alerts:offmarket_found:link"
+msgstr ""
+
+#. Theme Name of the plugin/theme
+#. Author of the plugin/theme
+msgid "Leading Properties"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://www.leadingproperties.com/"
+msgstr ""
