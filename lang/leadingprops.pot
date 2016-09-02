@@ -343,9 +343,6 @@ msgstr ""
 msgid "favorites:delete_alert"
 msgstr ""
 
-#: page-object.php:172
-msgid "s_object:rent:long-term_rent"
-msgstr ""
 
 #: page-object.php:333
 msgid "s_object:property type"
@@ -506,6 +503,12 @@ msgstr ""
 
 #: templates/search-panel.php:26
 msgid "alerts:offmarket_found:link"
+msgstr ""
+
+msgid "favorites:delete_y"
+msgstr ""
+
+msgid "favorites:delete_n"
 msgstr ""
 
 #. Theme Name of the plugin/theme
