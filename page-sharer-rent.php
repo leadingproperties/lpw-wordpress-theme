@@ -41,7 +41,7 @@ get_favorites_bar(false);
 							$min_stay = '';
 							$rent_price = '';
 							if($object->property_rent->long_rent === true && $object->property_rent->short_rent === false) {
-								$min_stay = __('on request', 'leadingprops');
+								$min_stay = __('s_object:rent:on_request', 'leadingprops');
 							} elseif( $object->property_rent->short_rent === true ) {
 								if ( $object->property_rent->rent_short->min_day === true ) {
 									$minStay = '1 ' . __('day', 'leadingprops');
