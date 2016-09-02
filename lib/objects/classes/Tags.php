@@ -136,7 +136,7 @@ class Tags
         $price_tag_html = '';
 
         if($price){
-            $suffix   = $price && $price['currency'] ? $this->currencies[$price['currency']] : "EUR?";
+            $suffix   = $price && $price['currency'] ? $this->currencies[$price['currency']] : "EUR";
             $price_tag_html = '<li>' . $this->get_range_label($price['min'], $price['max'], $suffix) . ' <sup>' . $counters['price']['doc_count'] . '</sup> <span class="tag-remove" data-tag_type="price" data-tag_data="price"></span></li>';
         }
 

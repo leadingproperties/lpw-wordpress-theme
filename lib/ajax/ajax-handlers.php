@@ -65,17 +65,19 @@ function ajax_get_objects($args) {
 		unset($args['fn']);
 	}
 	$args['action'] = 'get_objects';
-
-	$objects = new LP_ObjectList($args);
-	return $objects->get_json_objects();
+	return json_encode(get_object_list($args));
 }
 function ajax_get_single_object($args) {
 	if(isset($args['fn'])) {
 		unset($args['fn']);
 	}
 	$args['action'] = 'get_objects';
-	return single_object_html($args);
-	//return json_decode(single_object_html($args));
+	$return =  single_object_html($args);
+	if( is_array($return) ) {
+		return json_encode($return);
+	} else {
+		return $return;
+	}
 }
 
 function ajax_get_shorten_url($url) {

@@ -92,7 +92,7 @@ get_favorites_bar(false);
 										</div>
 									</div>
 									<h2 class="info-title">
-										<a class="open-object-modal object-link" href="<?= $lp_settings['property_page'] . $object->slug; ?>"><?= $object->description->rent_title; ?></a>
+										<a class="open-object-modal object-link" href="<?= $lp_settings['property_page'] . $object->rent_slug; ?>"><?= $object->description->rent_title; ?></a>
 									</h2>
 									<p class="min-days"><?= __('Minimum stay', 'leadingprops'); ?>: <?= $minStay; ?></p>
 									<ul class="rent-details">

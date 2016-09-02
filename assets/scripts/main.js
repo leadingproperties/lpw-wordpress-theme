@@ -883,6 +883,17 @@ Number.prototype.formatMoney = function(c, d, t){
                     }
                 }
         };
+        this.markButtons = function(objects, favorites) {
+            objects.each(function() {
+                var btn = $(this).find('.add-favorite-button'),
+                    id = btn.data('id');
+                if(_.includes(favorites, id)) {
+                    btn.addClass('in-favorites').data('action', 'remove');
+                } else {
+                    btn.data('action', 'add');
+                }
+            });
+        };
         this.markButton = function(favorites) {
             var btn = $('.add-favorite-button'),
                 id = btn.data('id');
@@ -948,7 +959,9 @@ Number.prototype.formatMoney = function(c, d, t){
 
     function SingleObject(objectlist) {
 
-        var $this = this;
+        var $this = this,
+            objectWrapper = $('.objects-list-wrapper');
+
 
         function isModalExists() {
             return $('.single-object-modal').length > 0;
@@ -968,481 +981,71 @@ Number.prototype.formatMoney = function(c, d, t){
         }
 
         function prevObjectLink(id) {
-            var prevObject = $('#object-' + id).prev();
+            var prevObject = $('#object-' + id).prev(),
+                prevLink = prevObject.find('.object-link');
 
             if(prevObject.length > 0) {
-                return prevObject.find('.object-link').attr('href');
+                return prevLink.attr('href');
+
             } else {
                 return false;
             }
         }
         function nextObjectLink(id) {
-            var nextObject = $('#object-' + id).next();
+            var nextObject = $('#object-' + id).next(),
+                nextLink = nextObject.find('.object-link');
 
             if(nextObject.length > 0) {
-                return nextObject.find('.object-link').attr('href');
+                return  nextLink.attr('href');
+
             } else {
                 return false;
             }
         }
 
-        this.renderSingleHtml = function(data)  {
-            $('html').addClass('overflow-height');
-
-            var type = (data.slug_type === 'PropertyObject') ? 'sale' : 'rent',
-                title = (data.slug_type === 'PropertyObject') ? data.description.title : data.description.rent_title,
-                favs = objectlist.favoritesIds,
-                a2f_class,
-                a2f_action,
-                prevBtn = ($this.prevLink) ? '<a class="icon open-object-modal" href="' + $this.prevLink + '"><span class="direction-text">Previous property</span></a>' : '<a class="icon disabled"><span class="direction-text">Previous property</span></a>',
-                nextBtn = ($this.nextLink) ? '<a class="icon open-object-modal" href="' + $this.nextLink + '"><span class="direction-text">Next property</span></a>' : '<a class="icon disabled"><span class="direction-text">Next property</span></a>';
-
-            if( objectlist.type === 'favorites' || _.includes(favs, data.id) ) {
-                a2f_class = ' in-favorites';
-                a2f_action = 'remove';
-            } else {
-                a2f_class = '';
-                a2f_action = 'add';
-            }
-            var dataType = type === 'rent' ? ' data-is_rent="true"' : '';
-
+        this.renderSingleHtml = function(data, id)  {
+            var favs = objectlist.favoritesIds;
             if( isModalExists() ) {
                 $('.single-object-modal').remove();
             }
-            try {
-                var objectHtml = '<div class="single-object-container single-object-modal">' +
-                    '<header class="single-object-header">' +
-                    '<div class="single-object-wrap">' +
-                    '<div class="detailed-link-wrap">' +
-                    '<a href="#" class="btn btn-green btn-detailed-link" data-toggle="modal" data-object-type="' + type + '" data-type="single_property" data-id="' + data.id + '" data-code="' + data.code + '" data-target=".single-object-request"><span>Get detailed information</span></a>' +
-                    '</div>' +
-                    '<button type="button" class="btn btn-single-close">Close</button>' +
-                    '<ul class="single-object-menu">' +
-                    '<li><a href="#" data-id="' + data.id + '"' + dataType + ' class="pdf-link"><sup class="text-red">PDF</sup></a></li>' +
-                    '<li><a href="#" class="add-favorite-button' + a2f_class + '"  data-action="' + a2f_action + '"  data-id="' + data.id + '"></a></li>' +
-                    '</ul>' +
-                    '</div>' +
-                    '</header><!-- /.single-object-header -->' +
-                    '<div class="single-object-content">' +
-                    '<div class="single-object-content-inner">' +
-                    '<div id="gallery-' + data.id + '" class="single-slider carousel slide" data-ride="carousel">';
-                if (_.isArray(data.parameters.images)) {
-                    objectHtml += '<ol class="carousel-indicators">';
-                    var indClass = '';
-                    for (var i = 0; i < data.parameters.images.length; i++) {
-                        indClass = ( i === 0 ) ? 'active' : '';
-                        objectHtml += '<li data-target="#gallery-' + data.id + '" data-slide-to="' + i + '" class="' + indClass + '"></li>';
-                    }
-                    objectHtml += '</ol>';
-                    objectHtml += '<div class="carousel-inner" role="listbox">';
-                    for (i = 0; i < data.parameters.images.length; i++) {
-                        indClass = ( i === 0 ) ? 'active' : '';
-                        objectHtml += '<div class="item ' + indClass + '">' +
-                            '<img src="' + data.parameters.images[i] + '" alt="' + title + '">' +
-                            '</div>';
-                    }
-                    objectHtml += '</div>';
-                    objectHtml += '<a class="left carousel-control" href="#gallery-' + data.id + '" role="button" data-slide="prev">' +
-                        '<span class="sr-only">Previous</span>' +
-                        '</a>' +
-                        '<a class="right carousel-control" href="#gallery-' + data.id + '" role="button" data-slide="next">' +
-                        '<span class="sr-only">Next</span>' +
-                        '</a>';
-
-                }
-                objectHtml += '</div>' +
-                    '<div class="single-object-details">' +
-                    '<ul class="single-object-locations">' +
-                    '<li><a class="icon cursor-default"><span>';
-                if ('country' in data && !_.isNull(data.country.title)) {
-                    objectHtml += data.country.title;
-                }
-                if ('region' in data && !_.isNull(data.region.title)) {
-                    objectHtml += ', ' + data.region.title;
-                }
-                if ('city' in data && !_.isNull(data.city.title)) {
-                    objectHtml += ', ' + data.city.title;
-                }
-                if ('district' in data && !_.isNull(data.district.title)) {
-                    objectHtml += ', ' + data.district.title;
-                }
-                objectHtml += '</span></a></li></ul>' +
-                    '<h1 class="single-object-title">';
-                if(data.sold_state === true) {
-                    objectHtml += '<span class="object-sold">sold</span>';
-                }
-                objectHtml +=  title + '</h1>';
-
-                if( type === 'rent') {
-                    if ( (!_.isNull(data.features.bedrooms.min) || !_.isNull(data.features.bedrooms.max)) || (!_.isNull(data.features.bathrooms.min) || !_.isNull(data.features.bathrooms.max)) || !_.isNull(data.property_rent.persons_max) || !_.isNull(data.property_rent.child_friendly) || !_.isNull(data.property_rent.pets_allowed) ) {
-                        objectHtml += '<ul class="object-short-info">';
-                        if(!_.isNull(data.features.bedrooms.min) || !_.isNull(data.features.bedrooms.max)) {
-                            objectHtml += '<li class="icon icon-bedroom">';
-                            if(!_.isNull(data.features.bedrooms.min)) {
-                                objectHtml += data.features.bedrooms.min;
-                            }
-                            if(!_.isNull(data.features.bedrooms.max)) {
-                                objectHtml += ' - ' + data.features.bedrooms.max;
-                            }
-                            objectHtml += '</li>';
-                        }
-                        if(!_.isNull(data.features.bathrooms.min) || !_.isNull(data.features.bathrooms.max)) {
-                            objectHtml += '<li class="icon icon-bathroom">';
-                            if(!_.isNull(data.features.bathrooms.min)) {
-                                objectHtml += data.features.bathrooms.min;
-                            }
-                            if(!_.isNull(data.features.bathrooms.max)) {
-                                objectHtml += ' - ' + data.features.bathrooms.max;
-                            }
-                            objectHtml += '</li>';
-                        }
-                        if(!_.isNull(data.property_rent.persons_max)) {
-                            objectHtml += '<li class="icon icon-person">' + data.property_rent.persons_max + '</li>';
-                        }
-                        if(data.property_rent.child_friendly === true) {
-                            objectHtml += '<li class="icon icon-child"></li>';
-                        }
-                        if(data.property_rent.pets_allowed === true) {
-                            objectHtml += '<li class="icon icon-pet"></li>';
-                        }
-                        objectHtml += '</ul>';
-                    }
-                }
-
-                objectHtml += '<div class="single-object-description">';
-
-                objectHtml += '<p>' + data.description.main_text + '</p>' +
-                    '</div><!-- /.single-object-description -->';
-
-                if( type === 'sale') {
-                    objectHtml += '<div class="single-object-info">' +
-                        '<p class="object-price icon">';
-                    if (data.parameters.price.on_demand === true) {
-                        objectHtml += 'Price on demand';
-                    } else {
-                        if (!_.isNull(data.parameters.price.min)) {
-                            objectHtml += data.parameters.price.min.formatMoney(0, ',', ' ');
-                        }
-                        if (!_.isNull(data.parameters.price.max)) {
-                            objectHtml += '&nbsp;-&nbsp;' + data.parameters.price.max.formatMoney(0, ',', ' ');
-                        }
-                    }
-                    objectHtml += '&nbsp;' + data.parameters.price.currency + '</p>';
-                    objectHtml += '<p class="object-code icon">' + data.code + '</p>' +
-                        '</div>';
-                } else if( type === 'rent' ) {
-
-                    objectHtml += '<div class="rent-rate">';
-
-                    if( data.property_rent.long_rent === true ) {
-                        objectHtml += '<p class="icon icon-month">Long term rental, monthly rate: ';
-                        if(data.property_rent.rent_long.on_demand === true || _.isNull(data.property_rent.rent_long.monthly_rate)) {
-                            objectHtml += 'on request*';
-                        } else if(!_.isNull(data.property_rent.rent_long.monthly_rate)) {
-                            objectHtml += data.property_rent.rent_long.monthly_rate.formatMoney(0, ',', ' ') + '&nbsp;' + data.property_rent.rent_long.currency_code + '*';
-                        }
-                        objectHtml += '</p>';
-                        objectHtml += '<hr>';
-                        objectHtml += '<p class="footnote">* ';
-                        if(data.property_rent.rent_long.vat_in_price === false) {
-                            if( !_.isNull(data.property_rent.rent_long.vat) ) {
-                                objectHtml += 'VAT ' + data.property_rent.rent_long.vat + '% is not included; ';
-                            }
-                        } else {
-                            objectHtml += 'VAT is included; ';
-                        }
-
-                        objectHtml += 'deposit: ';
-                        if(data.property_rent.rent_long.deposit_on_demand === true) {
-                            objectHtml += 'on request; ';
-                        } else {
-                            if (data.property_rent.rent_long.deposit_type === 1) {
-                                if(!_.isNull(data.property_rent.rent_long.deposit)) {
-                                    objectHtml += data.property_rent.rent_long.deposit + '%; ';
-                                } else {
-                                    objectHtml += 'on request; ';
-                                }
-                            } else {
-                                if(!_.isNull(data.property_rent.rent_long.deposit)) {
-                                    objectHtml += data.property_rent.rent_long.deposit.formatMoney(0, ',', ' ') + '&nbsp;' + data.property_rent.rent_long.currency_code + '; ';
-                                } else {
-                                    objectHtml += 'on request; ';
-                                }
-                            }
-                        }
-
-                        objectHtml += 'commission: ';
-                        if(data.property_rent.rent_long.commission_on_demand === true) {
-                            objectHtml += 'on request; ';
-                        } else {
-                            if (data.property_rent.rent_long.commission_type === 1) {
-                                if(!_.isNull(data.property_rent.rent_long.commission)) {
-                                    objectHtml += data.property_rent.rent_long.commission + '%; ';
-                                } else {
-                                    objectHtml += 'on request; ';
-                                }
-                            } else {
-                                if(!_.isNull(data.property_rent.rent_long.commission)) {
-                                    objectHtml += data.property_rent.rent_long.commission + ' ' + data.property_rent.rent_long.currency_code + '; ';
-                                } else {
-                                    objectHtml += 'on request; ';
-                                }
-                            }
-                        }
-                        objectHtml += '</p>';
-                    }
-
-                    if( data.property_rent.short_rent === true ) {
-                        objectHtml += '<p class="icon icon-day">Short term rental, daily rate, ' + data.property_rent.rent_short.currency_code + '*</p>';
-                        objectHtml += '<div class="rent-price-wrap">' +
-                                      '<ul class="rent-price-list">' +
-                                      '<li class="heading">min. stay</li>' +
-                                      '<li class="heading">low season</li>' +
-                                      '<li>1 day</li>';
-                        objectHtml += '<li>';
-                        objectHtml += (!_.isNull(data.property_rent.rent_short.ls_daily_rate)) ? data.property_rent.rent_short.ls_daily_rate.formatMoney(0, ',', ' ') : '&mdash;';
-                        objectHtml += '</li>';
-                        objectHtml += '<li>1 week</li>';
-                        objectHtml += '<li>';
-                        objectHtml += (!_.isNull(data.property_rent.rent_short.ls_weekly_rate)) ? data.property_rent.rent_short.ls_weekly_rate.formatMoney(0, ',', ' ') : '&mdash;';
-                        objectHtml += '</li>';
-                        objectHtml += '<li>1 month</li>';
-                        objectHtml += '<li>';
-                        objectHtml += (!_.isNull(data.property_rent.rent_short.ls_monthly_rate)) ? data.property_rent.rent_short.ls_monthly_rate.formatMoney(0, ',', ' ') : '&mdash;';
-                        objectHtml += '</li>';
-                        objectHtml += '</ul>';
-
-                        objectHtml += '<ul class="rent-price-list">' +
-                                      '<li class="heading hidden-760">min. stay</li>' +
-                                      '<li class="heading">medium season</li>' +
-                                      '<li class="hidden-760">1 day</li>';
-                        objectHtml += '<li>';
-                        objectHtml += (!_.isNull(data.property_rent.rent_short.ms_daily_rate)) ? data.property_rent.rent_short.ms_daily_rate.formatMoney(0, ',', ' ') : '&mdash;';
-                        objectHtml += '</li>';
-                        objectHtml += '<li class="hidden-760">1 week</li>';
-                        objectHtml += '<li>';
-                        objectHtml += (!_.isNull(data.property_rent.rent_short.ms_weekly_rate)) ? data.property_rent.rent_short.ms_weekly_rate.formatMoney(0, ',', ' ') : '&mdash;';
-                        objectHtml += '</li>';
-                        objectHtml += '<li class="hidden-760">1 month</li>';
-                        objectHtml += '<li>';
-                        objectHtml += (!_.isNull(data.property_rent.rent_short.ms_monthly_rate)) ? data.property_rent.rent_short.ms_monthly_rate.formatMoney(0, ',', ' ') : '&mdash;';
-                        objectHtml += '</li>';
-                        objectHtml += '</ul>';
-
-                        objectHtml += '<ul class="rent-price-list">' +
-                                      '<li class="heading hidden-760">min. stay</li>' +
-                                      '<li class="heading">high season</li>' +
-                                      '<li class="hidden-760">1 day</li>';
-                        objectHtml += '<li>';
-                        objectHtml += (!_.isNull(data.property_rent.rent_short.hs_daily_rate)) ? data.property_rent.rent_short.hs_daily_rate.formatMoney(0, ',', ' ') : '&mdash;';
-                        objectHtml += '</li>';
-                        objectHtml += '<li class="hidden-760">1 week</li>';
-                        objectHtml += '<li>';
-                        objectHtml += (!_.isNull(data.property_rent.rent_short.hs_weekly_rate)) ? data.property_rent.rent_short.hs_weekly_rate.formatMoney(0, ',', ' ') : '&mdash;';
-                        objectHtml += '</li>';
-                        objectHtml += '<li class="hidden-760">1 month</li>';
-                        objectHtml += '<li>';
-                        objectHtml += (!_.isNull(data.property_rent.rent_short.hs_monthly_rate)) ? data.property_rent.rent_short.hs_monthly_rate.formatMoney(0, ',', ' ') : '&mdash;';
-                        objectHtml += '</li>';
-                        objectHtml += '</ul>';
-                        objectHtml += '</div>' +
-                                      '<p class="footnote">*';
-                        if( data.property_rent.rent_short.vat_in_price === false ) {
-                            if( !_.isNull(data.property_rent.rent_short.vat) ) {
-                                objectHtml += 'VAT ' + data.property_rent.rent_short.vat + '% is not included; ';
-                            }
-                        } else {
-                            objectHtml += 'VAT is included; ';
-                        }
-                        objectHtml += 'deposit: ';
-                        if(data.property_rent.rent_short.deposit_on_demand === true) {
-                            objectHtml += 'on request; ';
-                        } else {
-                            if (data.property_rent.rent_short.deposit_type === 1) {
-                                if(!_.isNull(data.property_rent.rent_short.deposit)) {
-                                    objectHtml += data.property_rent.rent_short.deposit + '%; ';
-                                } else {
-                                    objectHtml += 'on request; ';
-                                }
-                            } else {
-                                if(!_.isNull(data.property_rent.rent_short.deposit)) {
-                                    objectHtml += data.property_rent.rent_short.deposit + ' ' + data.property_rent.rent_short.currency_code + '; ';
-                                } else {
-                                    objectHtml += 'on request; ';
-                                }
-                            }
-                        }
-
-                        objectHtml += 'commission: ';
-                        if(data.property_rent.rent_short.commission_on_demand === true) {
-                            objectHtml += 'on request; ';
-                        } else {
-                            if (data.property_rent.rent_short.commission_type === 1) {
-                                if(!_.isNull(data.property_rent.rent_short.commission)) {
-                                    objectHtml += data.property_rent.rent_short.commission + '%';
-                                } else {
-                                    objectHtml += 'on request';
-                                }
-                            } else {
-                                if(!_.isNull(data.property_rent.rent_short.commission)) {
-                                    objectHtml += data.property_rent.rent_short.commission + ' ' + data.property_rent.rent_short.currency_code;
-                                } else {
-                                    objectHtml += 'on request';
-                                }
-                            }
-                        }
-                        objectHtml += '</p>';
-                    }
-
-                    objectHtml += '</div><!-- /.rent-rate -->';
-
-                }
-                objectHtml += '<ul class="object-properties">' +
-                    '<li>property type</li>' +
-                    '<li>' + data.parameters.property_object_type + '</li>';
-                if (!_.isNull(data.parameters.rooms.min) || !_.isNull(data.parameters.rooms.max)) {
-                    objectHtml += '<li>number of rooms</li>';
-                    objectHtml += '<li>';
-                    if (!_.isNull(data.parameters.rooms.min)) {
-                        objectHtml += data.parameters.rooms.min;
-                    }
-                    if (!_.isNull(data.parameters.rooms.max)) {
-                        objectHtml += ' - ' + data.parameters.rooms.max;
-                    }
-                    objectHtml += '</li>';
-                }
-                if (!_.isNull(data.parameters.area.min) || !_.isNull(data.parameters.area.max)) {
-                    objectHtml += '<li>area, m<sup>2</sup></li>';
-                    objectHtml += '<li>';
-                    if (!_.isNull(data.parameters.area.min)) {
-                        objectHtml += data.parameters.area.min;
-                    }
-                    if (!_.isNull(data.parameters.area.max)) {
-                        objectHtml += ' - ' + data.parameters.area.max;
-                    }
-                    objectHtml += '</li>';
-                }
-                if (!_.isNull(data.features.bedrooms.min) || !_.isNull(data.features.bedrooms.max)) {
-                    objectHtml += '<li>bedrooms</li>';
-                    objectHtml += '<li>';
-                    if (!_.isNull(data.features.bedrooms.min)) {
-                        objectHtml += data.features.bedrooms.min;
-                    }
-                    if (!_.isNull(data.features.bedrooms.max)) {
-                        objectHtml += ' - ' + data.features.bedrooms.max;
-                    }
-                    objectHtml += '</li>';
-                }
-                if (!_.isNull(data.features.bathrooms.min) || !_.isNull(data.features.bathrooms.max)) {
-                    objectHtml += '<li>bathrooms</li>';
-                    objectHtml += '<li>';
-                    if (!_.isNull(data.features.bathrooms.min)) {
-                        objectHtml += data.features.bathrooms.min;
-                    }
-                    if (!_.isNull(data.features.bathrooms.max)) {
-                        objectHtml += ' - ' + data.features.bathrooms.max;
-                    }
-                    objectHtml += '</li>';
-                }
-
-                if(  type === 'rent' ) {
-                    if( !_.isNull(data.property_rent.persons_max) ) {
-                        objectHtml += '<li>max. persons</li><li>' + data.property_rent.persons_max + '</i></li>';
-                    }
-                }
-
-                if (!_.isNull(data.features.land_area.min) || !_.isNull(data.features.land_area.max)) {
-                    objectHtml += '<li>land area</li>';
-                    objectHtml += '<li>';
-                    if (!_.isNull(data.features.land_area.min)) {
-                        objectHtml += data.features.land_area.min;
-                    }
-                    if (!_.isNull(data.features.land_area.max)) {
-                        objectHtml += ' - ' + data.features.land_area.max;
-                    }
-                    objectHtml += '</li>';
-                }
-                if (!_.isNull(data.features.building_storeys) && (!_.isNull(data.features.building_storeys.min) || !_.isNull(data.features.building_storeys.max))) {
-                    objectHtml += '<li>building storeys</li>';
-                    objectHtml += '<li>';
-                    if (!_.isNull(data.features.building_storeys.min)) {
-                        objectHtml += data.features.building_storeys.min;
-                    }
-                    if (!_.isNull(data.features.building_storeys.max)) {
-                        objectHtml += ' - ' + data.features.building_storeys.max;
-                    }
-                    objectHtml += '</li>';
-                }
-                if ('present' in data.features.terrace_balcony && data.features.terrace_balcony.present === true) {
-                    objectHtml += '<li>terrace/balcony</li><li><i class="icon icon-checkmark-circle"></i></li>';
-                }
-                if ('present' in data.features.pool && data.features.pool.present === true) {
-                    objectHtml += '<li>pool</li><li><i class="icon icon-checkmark-circle"></i></li>';
-                }
-                if ('present' in data.features.garage_parking && data.features.garage_parking.present === true) {
-                    objectHtml += '<li>parking/garage</li><li><i class="icon icon-checkmark-circle"></i></li>';
-                }
-                if ('present' in data.features.utility_rooms && data.features.utility_rooms.present === true) {
-                    objectHtml += '<li>cellars</li><li><i class="icon icon-checkmark-circle"></i></li>';
-                }
-                if(  type === 'rent' ) {
-                    if( data.property_rent.child_friendly === true ) {
-                        objectHtml += '<li>child friendly</li><li><i class="icon icon-checkmark-circle"></i></li>';
-                    }
-                    if( data.property_rent.pets_allowed === true ) {
-                        objectHtml += '<li>pets allowed</li><li><i class="icon icon-checkmark-circle"></i></li>';
-                    }
-                }
-                objectHtml += '</ul><!-- /.object-properties -->' +
-                    '</div><!-- /.single-object-details -->' +
-                    '</div><!-- /.single-object-content-inner -->' +
-                    '<div class="object-navigation">' +
-                    '<div class="object-prev">' +
-                     prevBtn +
-                    '</div>' +
-                    '<div class="object-next">' +
-                     nextBtn +
-                    '</div>' +
-                    '</div><!-- /.object-navigation -->' +
-                    '</div><!-- /.single-object-content -->' +
-                    '<div class="similar-object-search">' +
-                    '<div class="similar-search-container">' +
-                    '<i class="icon icon-radar"></i>' +
-                    '<p>Find similar properties in the same area</p>' +
-                    '<ul class="similar-locations">' +
-                    '<li><a href="#">1 km</a></li>' +
-                    '<li><a href="#">5 km</a></li>' +
-                    '<li><a href="#">10 km</a></li>' +
-                    '</ul>' +
-                    '</div>' +
-                    '</div><!-- /.similar-object-search -->' +
-                    '<footer class="single-object-footer">' +
-                    '<a href="#" class="btn btn-green btn-detailed-link" data-toggle="modal" data-target=".single-object-request"  data-object-type="' + type + '" data-type="single_property" data-id="' + data.id + '" data-code="' + data.code + '"><span>Get detailed information</span></a>' +
-                    '</footer>' +
-                     '<div class="single-object-backdrop"></div>' +
-                    '</div><!-- /.single-object-container -->';
-                objectlist.objectContainer.append(objectHtml);
-            } catch(e) {
-                console.log(e);
+            $('html').addClass('overflow-height');
+            objectWrapper.append(data);
+            if($this.prevLink) {
+                $('.object-prev a').attr('href', $this.prevLink);
+            } else {
+                $('.object-prev a').removeClass('open-object-modal').addClass('disabled');
             }
+            if($this.nextLink) {
+                $('.object-next a').attr('href', $this.nextLink);
+            } else {
+                $('.object-next a').removeClass('open-object-modal').addClass('disabled');
+            }
+
+            if( objectlist.type === 'favorites' || _.includes(favs, id) ) {
+
+                $('.single-object-menu .add-favorite-button').addClass('in-favorites').data('action', 'remove');
+            }
+
 
         };
         this.getSingleObject = function(ev) {
             ev.preventDefault();
             var url;
+
             if( 'click' === ev.type ) {
                 url = $(this).attr('href');
+
             } else {
                 url = window.location.href;
             }
-
             var data = {
                 'action' : 'do_ajax',
-                'fn' : 'get_objects',
+                'fn' : 'get_object',
                 'lang': objectlist.args.lang,
                 'slug': _.replace(url, LpData.propertyPage, '')
             };
             $this.showLoader(true);
+
 
             $.ajax({
                 url: LpData.ajaxUrl,
@@ -1450,23 +1053,26 @@ Number.prototype.formatMoney = function(c, d, t){
                 method: 'post',
                 data : data,
                 success : function(data){
+                    console.debug(data, objectlist.triggerId);
                     if( !_.isEmpty(data) ) {
                         if(data.error) {
                             console.log(data.error);
-                        } else {
+                        } else if(!_.isEmpty(data.html)) {
                             $this.prevLink = prevObjectLink(data.id);
                             $this.nextLink = nextObjectLink(data.id);
+
                             if (data.id === objectlist.triggerId) {
+                                console.log('fire');
                                 objectlist.getObjects(function () {
-                                    $this.renderSingleHtml(data);
+                                    $this.renderSingleHtml(data.html);
                                     if (url !== $this.location) {
                                         if (Helpers.isHhistoryApiAvailable() && 'click' === ev.type) {
                                             window.history.pushState(null, null, url);
                                         }
                                     }
-                                });
+                                }, 'single');
                             } else {
-                                $this.renderSingleHtml(data);
+                                $this.renderSingleHtml(data.html);
                                 if (url !== $this.location) {
                                     if (Helpers.isHhistoryApiAvailable() && 'click' === ev.type) {
                                         window.history.pushState(null, null, url);
@@ -1503,10 +1109,10 @@ Number.prototype.formatMoney = function(c, d, t){
             }
         };
         this.eventListeners = function() {
-            objectlist.objectContainer.on('click.lprop', '.open-object-modal', $this.getSingleObject);
+            objectWrapper.on('click.lprop', '.open-object-modal', $this.getSingleObject);
             $(window).on('popstate', $this.testPopstste);
-            objectlist.objectContainer.on('click.lprop', '.btn-single-close', closeModal);
-            objectlist.objectContainer.on('click.lprop', '.single-object-backdrop', closeModal);
+            objectWrapper.on('click.lprop', '.btn-single-close', closeModal);
+            objectWrapper.on('click.lprop', '.single-object-backdrop', closeModal);
         };
 
         this.init = function() {
@@ -1722,157 +1328,14 @@ Number.prototype.formatMoney = function(c, d, t){
         };
 
         this.renderHTML = function(objects) {
-            var objectHtml = '',
-                title,
-                slug,
-                url,
-                minStay,
-                rentPrice,
-                favs = $this.favoritesIds,
-                a2f_class,
-                a2f_action,
-                objectClass = ( category === 'rent' ) ? 'object-item rent-item' : 'object-item',
-                r = $.Deferred();
 
-            _.forEach(objects, function(object, key) {
+            var r = $.Deferred(),
+                $objects = $(objects);
+            $this.objectContainer.append($objects);
 
-                if( category === 'sale' ) {
-                    title = object.description.title;
-                    slug = object.slug;
-                } else {
-                    title = ( !_.isNull(object.description.rent_title) ) ? object.description.rent_title : object.description.title;
-                    slug = ( !_.isNull(object.rent_slug) ) ? object.rent_slug : object.slug;
-                    if(object.property_rent.long_rent === true && object.property_rent.short_rent === false) {
-                        minStay = 'on request';
-                    } else if( object.property_rent.short_rent === true ) {
-                        if ( object.property_rent.rent_short.min_day === true ) {
-                            minStay = '1 day';
-                        } else if ( object.property_rent.rent_short.min_week === true ) {
-                            minStay = '1 week';
-                        } else {
-                            minStay = '1 month';
-                        }
-                    }
-                    if( object.property_rent.short_rent === true ) {
-                        if(!_.isNull(object.property_rent.rent_short.sort_price.day)) {
-                            rentPrice = '<span class="price-num">' + object.property_rent.rent_short.sort_price.day.formatMoney(0, ',', ' ') + ' </span>' + object.property_rent.rent_short.sort_price.currency_code + '&nbsp;/&nbsp;day';
-                        } else if(!_.isNull(object.property_rent.rent_short.sort_price.month)) {
-                            rentPrice = '<span class="price-num">' + object.property_rent.rent_short.sort_price.month.formatMoney(0, ',', ' ') + ' </span>' + object.property_rent.rent_short.sort_price.currency_code + '&nbsp;/&nbsp;month';
-                        }
-                    } else if( object.property_rent.long_rent === true ) {
-
-                        if(object.property_rent.rent_long.on_demand === true) {
-                            rentPrice = '<span class="price-onrequest">On request</span>';
-                        } else {
-                            if (!_.isNull(object.property_rent.rent_long.sort_price.month)) {
-                                rentPrice = '<span class="price-num">' + object.property_rent.rent_long.sort_price.month.formatMoney(0, ',', ' ') + ' </span>' + object.property_rent.rent_long.sort_price.currency_code + '&nbsp;/&nbsp;month';
-                            } else if (!_.isNull(object.property_rent.rent_long.sort_price.day)) {
-                                rentPrice = '<span class="price-num">' + object.property_rent.rent_long.sort_price.day.formatMoney(0, ',', ' ') + ' </span>' + object.property_rent.rent_long.sort_price.currency_code + '&nbsp;/&nbsp;day';
-                            }
-                        }
-                    }
-                }
-                url = LpData.propertyPage + slug;
-                try {
-                    if( type === 'favorites' || _.includes(favs, object.id) ) {
-                        a2f_class = ' in-favorites';
-                        a2f_action = 'remove';
-                    } else {
-                        a2f_class = '';
-                        a2f_action = 'add';
-                    }
-                    objectHtml += '<article class="' + objectClass + '" id="object-' + object.id + '" data-object-id="' + object.id + '">' +
-                                  '<div class="object-inner-wrapper">' +
-                                  '<div class="object-thumbnail">' +
-                                  '<a href="' + url + '" class="open-object-modal object-thumbnail-holder" title="' + title + '">' +
-                                  '<img class="img-responsive" src="' + object.image + '"  alt="' + title + '">' +
-                                  '</a>' +
-                                  '<span class="add-favorite-button' + a2f_class + '" data-action="' + a2f_action + '" data-id="' + object.id + '"></span>';
-                    if( category === 'rent' && object.property_rent) {
-                        objectHtml += '<div class="rent-price"><span>' + rentPrice + '</span></div>';
-                    }
-                    objectHtml += '</div>' +
-                                  '<div class="object-info-holder">' +
-                                  '<div class="info-address-holder">' +
-                                  '<div class="info-address">';
-                    if (('country' in object) && ('title' in object.country) && !_.isNull(object.country.title)) {
-                        objectHtml += '<a>' + object.country.title + '</a>';
-                    }
-                    if (('region' in object) && ('title' in object.region) && !_.isNull(object.region.title)) {
-                        objectHtml += '<a>' + object.region.title + '</a>';
-                    }
-                    if (('city' in object) && ('title' in object.city) && !_.isNull(object.city.title)) {
-                        objectHtml += '<a>' + object.city.title + '</a>';
-                    }
-                    objectHtml += '</div>' +
-                                  '</div>' +
-                                  '<h2 class="info-title">' +
-                                  '<a class="open-object-modal object-link" href="' + url + '">' + title + '</a>' +
-                                  '</h2>';
-                    if( category === 'sale') {
-                        objectHtml +=  '<p class="info-details"><span>';
-                        if (object.parameters.price.on_demand) {
-                            objectHtml += '<span>Price on demand</span>&nbsp;';
-                        } else {
-                            if (!_.isNull(object.parameters.price.min)) {
-                                objectHtml += '<span>' + object.parameters.price.min.formatMoney(0, ', ', ' ') + '</span>';
-                            }
-                            if (!_.isNull(object.parameters.price.max)) {
-                                objectHtml += '&nbsp;&ndash;&nbsp;<span>' + object.parameters.price.max.formatMoney(0, ',', ' ') + '</span>';
-                            }
-                            objectHtml += '&nbsp;<span>' + object.parameters.price.currency + '</span></span>';
-                        }
-                        if (!_.isNull(object.parameters.rooms.min) || !_.isNull(object.parameters.rooms.max)) {
-                            objectHtml += ',&nbsp;';
-                        }
-                        if (!_.isNull(object.parameters.rooms.min)) {
-                            objectHtml += '<span>' + object.parameters.rooms.min + '</span>';
-                        }
-                        if (!_.isNull(object.parameters.rooms.max)) {
-                            objectHtml += '&nbsp;&ndash;&nbsp;<span>' + object.parameters.rooms.max + '</span>';
-                        }
-                        if (!_.isNull(object.parameters.rooms.min) || !_.isNull(object.parameters.rooms.max)) {
-                            objectHtml += '&nbsp;rooms';
-                        }
-                        if (!_.isNull(object.parameters.area.min) || !_.isNull(object.parameters.area.max)) {
-                            objectHtml += ',&nbsp;';
-                        }
-                        if (!_.isNull(object.parameters.area.min)) {
-                            objectHtml += '<span>' + object.parameters.area.min + '</span>';
-                        }
-                        if (!_.isNull(object.parameters.area.max)) {
-                            objectHtml += '&nbsp;&ndash;&nbsp;<span>' + object.parameters.area.max + '</span>';
-                        }
-                        if (!_.isNull(object.parameters.area.min) || !_.isNull(object.parameters.area.max)) {
-                            objectHtml += '&nbsp;m<sup>2</sup>';
-                        }
-                        objectHtml += '</p>';
-                    } else {
-                        objectHtml += '<p class="min-days">Minimum stay: ' + minStay + '</p>';
-                        objectHtml +=  '<ul class="rent-details">';
-                        if (!_.isNull(object.parameters.area.min)) {
-                            objectHtml += '<li class="area">' + object.parameters.area.min + ' m<sup>2</sup></li>';
-                        }
-                        if (!_.isNull(object.parameters.bedrooms.min)) {
-                            objectHtml += '<li class="icon icon-bedroom">' + object.parameters.bedrooms.min + '</li>';
-                        }
-                        if (!_.isNull(object.parameters.bathrooms.min)) {
-                            objectHtml += '<li class="icon icon-bathroom">' + object.parameters.bedrooms.min + '</li>';
-                        }
-                        if (!_.isNull(object.property_rent.persons_max)) {
-                            objectHtml += '<li class="icon icon-person">' + object.property_rent.persons_max + '</li>';
-                        }
-                        objectHtml += '</ul>';
-                    }
-                    objectHtml += '</div></div></article>';
-                } catch(e) {
-                    console.log(e);
-                }
-            });
-           $this.objectContainer.append(objectHtml);
+            $this.favorites.markButtons($objects, $this.favorites.favoritesIds );
             r.resolve();
             return r;
-
         };
         this.getObjects = function (callback, eventType) {
 
@@ -1885,7 +1348,7 @@ Number.prototype.formatMoney = function(c, d, t){
             data.action = 'do_ajax';
 
 
-            if( type === 'list' && eventType !== 'scroll' ) {
+            if( type === 'list' && eventType !== 'scroll' && eventType !== 'single') {
 
                 $this.tags.buildTags(data);
 
@@ -1918,27 +1381,23 @@ Number.prototype.formatMoney = function(c, d, t){
                     method: 'post',
                     data: data,
                     success: function (data) {
-                        if( !_.isEmpty(data) ) {
+                        if( !_.isEmpty(data.html) ) {
                             if (data.error) {
                                 console.log(data.errorMessage);
-                            } else if (_.isArray(data.property_objects)) {
+                            } else {
                                 if($this.usedFilters.location === true) {
                                     setOffmarker(data.offmarket);
                                 } else {
                                     setOffmarker(0);
                                 }
                                 $this.args.page++;
-                                $this.onPage += data.property_objects.length;
+                                $this.onPage += data.count;
                                 $this.totalObjects = data.total;
-                                $this.renderHTML(data.property_objects)
+                                $this.triggerId = data.triggerID;
+                                $this.renderHTML(data.html)
                                     .done(function(){
                                         if( typeof callback === 'function') {
-                                            if( category === 'sale' ) {
-                                                singleObject.nextLink = (!_.isNull(data.property_objects[0].slug)) ? LpData.propertyPage + data.property_objects[0].slug : false;
-                                            } else if( category === 'rent' ) {
-                                                singleObject.nextLink = (!_.isNull(data.property_objects[0].rent_slug)) ? LpData.propertyPage + data.property_objects[0].rent_slug : false;
-                                            }
-
+                                            singleObject.nextLink = (!_.isNull(data.firstObject.slug)) ? LpData.propertyPage + data.firstObject.slug : false;
                                             callback(data);
                                         }
                                     });
@@ -1955,7 +1414,7 @@ Number.prototype.formatMoney = function(c, d, t){
                         var limit = (_.isEmpty($this.args.ids)) ? $this.totalObjects : $this.args.ids.length;
 
                         if( ( limit > $this.onPage )) {
-                            $this.triggerId = $this.lastItem().data('object-id');
+
                             if( Helpers.isElementIntoView($this.lastItem()) ) {
                                 $this.getObjects();
                             }
@@ -1978,8 +1437,12 @@ Number.prototype.formatMoney = function(c, d, t){
             }
         };
         this.onLoadCheck = function(ev) {
+
             var query = Helpers.getParameterByName('filter'),
                 eventtype = ev.type;
+            if(eventtype === 'popstate' && window.location.href.search(LpData.propertyPage) !== -1) {
+                return false;
+            }
                 if(eventtype === 'popstate' && (window.location.href.search(LpData.propertyPage) === -1)) {
                     clearAllFilters();
                 }
@@ -2020,7 +1483,7 @@ Number.prototype.formatMoney = function(c, d, t){
 
             if( this.onPage < this.totalObjects) {
                 $(window).on('scroll.lprop', $this.scrollPage);
-                $(window).on('popstate', $this.onLoadCheck);
+                $(window).on('popstate.lprop', $this.onLoadCheck);
                 if (_.isEmpty($this.lastItem()) || Helpers.isElementIntoView($this.lastItem())) {
                     if(type !== 'share') {
                         $(window).on('load.lprop', $this.onLoadCheck);
@@ -2116,6 +1579,24 @@ Number.prototype.formatMoney = function(c, d, t){
           });
 
           var pdf = new window.lpw.Pdf();
+
+          /* Favorites copy link to clipboard functionality */
+          $('.fav-link-input').on('click', function() {
+              this.select();
+          });
+          function copyToClipboard(elem) {
+
+              elem.select();
+              try {
+                  document.execCommand('copy');
+              } catch (err) {
+
+              }
+          }
+          $('.fav-copy').on('click', function(ev) {
+              ev.preventDefault();
+              copyToClipboard($(this).siblings('.fav-link-input'));
+          });
 
       },
       finalize: function() {
