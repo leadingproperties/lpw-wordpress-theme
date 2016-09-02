@@ -123,3 +123,62 @@ function lp_activation() {
   }
 }
 
+// Generate pages on theme activation
+// @howtwizer
+// 2.09.2016
+
+if (isset($_GET['activated']) && is_admin()){
+    add_action('init', __NAMESPACE__ . '\\create_initial_pages');
+}
+function create_initial_pages() {
+
+$pages = array(
+     // Page Title and URL (a blank space will end up becomeing a dash "-")
+    'Buy' => array(
+        // Page Content     // Template to use (if left blank the default template will be used)
+        'Buy page template. Please do not delete this page!'=>'page-buy.php'),
+
+    'Rent' => array(
+        'Rent page template. Please do not delete this page!'=>'page-rent.php'),
+
+    'Favorites Sales' => array(
+        'Favorites Sales page template. Please do not delete this page!'=>'page-favorites.php'),
+
+    'Favorites Rent' => array(
+        'Favorites Rent page template. Please do not delete this page!'=>'page-favorites-rent.php'),
+
+    'Single property' => array(
+        'Single property page template. Please do not delete this page!'=>'page-object.php'),
+
+    'Buy share' => array(
+        'Buy share page template. Please do not delete this page!'=>'page-sharer.php'),
+
+    'Rent share' => array(
+        'Rent share page template. Please do not delete this page!'=>'page-rent.php'),
+
+);
+
+foreach($pages as $page_url_title => $page_meta) {
+        $id = get_page_by_title($page_url_title);
+
+    foreach ($page_meta as $page_content=>$page_template){
+    $page = array(
+        'post_type'   => 'page',
+        'post_title'  => $page_url_title,
+        'post_name'   => $page_url_title,
+        'post_status' => 'publish',
+        'post_content' => $page_content,
+        'post_author' => 1,
+        'post_parent' => ''
+    );
+
+      if(!isset($id->ID)){
+        $new_page_id = wp_insert_post($page);
+        if(!empty($page_template)){
+                update_post_meta($new_page_id, '_wp_page_template', $page_template);
+        }
+      }
+    }
+  };
+}
+// XXX -> Generate pages on activation end
