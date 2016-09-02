@@ -225,7 +225,7 @@
 							} ?>
 
 							<?php if($objects_obj->property_rent->short_rent === true) {
-								echo '<p class="icon icon-day">' . __('rent_short_title', 'leadingprops') . ', ' . $objects_obj->property_rent->rent_short->currency_code . '*</p>
+								echo '<p class="icon icon-day">' . __('s_object:rent:rent_short_title', 'leadingprops') . ', ' . $objects_obj->property_rent->rent_short->currency_code . '*</p>
 									  <div class="rent-price-wrap">
                                       <ul class="rent-price-list">
                                       <li class="heading">' . __('s_object:rent:min_stay', 'leadingprops') . '</li>

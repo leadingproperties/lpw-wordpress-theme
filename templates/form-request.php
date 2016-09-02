@@ -51,7 +51,7 @@
 							<button type="submit" class="btn btn-green btn-submit"><?php _e('form:send', 'leadingprops'); ?></button>
 						</div>
 						<div class="disclaimer-note">
-							<p><?php _e('form:disclaimer_note', 'leadingprops'); ?> <a href="https://www.leadingproperties.com/protection-policy-personal-information" target="_blank"><?php _e('form:Privacy policy', 'leadingprops'); ?></a>
+							<p><?php _e('form:disclaimer_note', 'leadingprops'); ?> <a href="https://www.leadingproperties.com/protection-policy-personal-information" target="_blank"><?php _e('form:privacy_policy', 'leadingprops'); ?></a>
 							</p>
 						</div>
 					</div>
