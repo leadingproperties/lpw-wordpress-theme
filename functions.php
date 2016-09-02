@@ -27,19 +27,19 @@ unset($file, $filepath);
 /* Global Settings */
 global $lp_settings;
 $lp_settings = [
-	'contact_phone' => get_field('contact_phone', 'option'),
-	'contact_email' => get_field('contact_email', 'option'),
-	'favorites' => esc_url(get_field('sale_favorites', 'option')),
-	'favorites_rent' => esc_url(get_field('rent_favorites', 'option')),
-	'use_shortener' => get_field('use_google_shortener', 'option'),
-	'google_api_key' => (get_field('google_api_key', 'option')) ? get_field('google_api_key', 'option') : 'AIzaSyB9AMFYWn5z8QYptnbetxXckrldFpsZyGA',
-	'site_title' => get_bloginfo('name'),
-	'sale_page' => get_field('sale', 'option'),
-	'rent_page' => get_field('rent', 'option'),
-	'sale_share' => get_field('sale_share', 'option'),
-	'rent_share' => get_field('rent_share', 'option'),
-	'property_page_id' => get_field('single_object', 'option'),
-	'lang' => lpw_get_current_lang()
+  'contact_phone' => get_field('contact_phone', 'option'),
+  'contact_email' => get_field('contact_email', 'option'),
+  'use_shortener' => get_field('use_google_shortener', 'option'),
+  'google_api_key' => (get_field('google_api_key', 'option')) ? get_field('google_api_key', 'option') : 'AIzaSyB9AMFYWn5z8QYptnbetxXckrldFpsZyGA',
+  'site_title' => get_bloginfo('name'),
+  'sale_page' => (get_field('sale', 'option')) ? get_field('sale', 'option') : get_page_by_title('Buy')->guid,
+  'rent_page' => (get_field('rent', 'option')) ? get_field('rent', 'option'): get_page_by_title('Rent')->guid,
+  'sale_share' => (get_field('sale_share', 'option')) ? get_field('sale_share', 'option'): get_page_by_title('Buy share')->guid,
+  'rent_share' => (get_field('rent_share', 'option')) ? get_field('rent_share', 'option'): get_page_by_title('Rent share')->guid,
+  'property_page_id' => (get_field('single_object', 'option')) ? get_field('single_object', 'option'): get_page_by_title('Single property')->id,
+  'favorites' => esc_url((get_field('sale_favorites', 'option'))?get_field('sale_favorites', 'option'):get_page_by_title('Favorites Sale')->guid),
+  'favorites_rent' => esc_url((get_field('rent_favorites', 'option'))?get_field('rent_favorites', 'option'):get_page_by_title('Favorites Rent')->guid),
+  'lang' => lpw_get_current_lang()
 ];
 $lp_settings['property_page'] = get_page_link($lp_settings['property_page_id']);
 
