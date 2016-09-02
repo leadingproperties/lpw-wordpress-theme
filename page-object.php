@@ -7,6 +7,8 @@
 	global $lp_settings, $objects_obj;
 	$object_slug = get_query_var('object_slug', false);
 
+	$list_url = '';
+
 	$objects_obj = new StdClass;
 	if($object_slug) {
 		$objects = new LP_ObjectList([
@@ -28,6 +30,12 @@
 	$object_type = (isset($objects_obj->slug_type) && $objects_obj->slug_type === 'PropertyObject') ? 'sale' : 'rent';
 	$object_class = ($object_type === 'sale') ? ' object-sale' : ' object-rent';
 	$object_title = ($object_type === 'sale') ? $objects_obj->description->title : $objects_obj->description->rent_title;
+
+	if($object_type === 'sale') {
+		$list_url = $lp_settings['sale_page'] . '?filter=';
+	} elseif($object_type === 'rent') {
+		$list_url = $lp_settings['rent_page'] . '?filter=';
+	}
 
 	?>
 	<div class="single-object-container<?= $object_class; ?>">
@@ -427,9 +435,9 @@
 				<i class="icon icon-radar"></i>
 				<p>Find similar properties in the same area</p>
 				<ul class="similar-locations">
-					<li><a href="#">1 km</a></li>
-					<li><a href="#">5 km</a></li>
-					<li><a href="#">10 km</a></li>
+					<?= '<li><a href="' . $list_url . urlencode('{"location_point":{"lat":' . $objects_obj->location->lat . ' ,"lon":' . $objects_obj->location->lon . ',"radius":1},"similar":{"code":"' . $objects_obj->code . '"}}') . '">1 km</a></li>'; ?>
+					<?= '<li><a href="' . $list_url . urlencode('{"location_point":{"lat":' . $objects_obj->location->lat . ' ,"lon":' . $objects_obj->location->lon . ',"radius":5},"similar":{"code":"' . $objects_obj->code . '"}}') . '">5 km</a></li>'; ?>
+					<?= '<li><a href="' . $list_url . urlencode('{"location_point":{"lat":' . $objects_obj->location->lat . ' ,"lon":' . $objects_obj->location->lon . ',"radius":10},"similar":{"code":"' . $objects_obj->code . '"}}') . '">10 km</a></li>'; ?>
 				</ul>
 			</div>
 		</div><!-- /.similar-object-search -->

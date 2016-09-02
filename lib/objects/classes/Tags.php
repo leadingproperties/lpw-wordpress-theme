@@ -36,7 +36,7 @@ class Tags
             $hq_photos = $this->get_hq_photos_tag_html($request_data['raw']['hd_photos'], $counters);
             $price = $this->get_price_tag_html($request_data['raw']['price'], $counters);
             $area = $this->get_area_tag_html($request_data['raw']['area'], $counters);
-            $similar = $this->get_similar_tag_html($request_data['raw']['similar'], $counters);//not ready yet
+            $similar = $this->get_similar_tag_html($request_data['raw']['similar'], $request_data['raw']['location_point']['radius'], $counters);
 
             $answer = sprintf(
                 $format,
@@ -179,10 +179,10 @@ class Tags
         return $rent_persons_tag;
     }
 
-    function get_similar_tag_html($parameters, $counters){
+    function get_similar_tag_html($parameters, $radius = 1, $counters){
         $similar_tag= '';
         if($parameters){
-            $similar_tag = '<li>Similar: 5 km from CZ-04476  <sup>' . $counters['geo_location']['doc_count'] . '</sup> <span class="tag-remove" data-tag_type="similar" data-tag_data="similar"></span></li>';
+            $similar_tag = '<li>' . __('Similar', 'leadingprops') . ': ' . $radius . ' ' . __('km', 'leadingprops') . ' ' . __('from', 'leadingprops') . ' ' . $parameters['code'] . ' <sup>' . $counters['geo_location']['doc_count'] . '</sup> <span class="tag-remove" data-tag_type="similar" data-tag_data="similar"></span></li>';
         }
         return $similar_tag;
     }
