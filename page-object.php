@@ -402,7 +402,7 @@
 						echo '<li>' . __('pool', 'leadingprops') . '</li><li><i class="icon icon-checkmark-circle"></i></li>';
 					}
 					if(isset($objects_obj->features->garage_parking->present) && $objects_obj->features->garage_parking->present === true) {
-						echo '<li>' . __('parking/garage') . '</li><li><i class="icon icon-checkmark-circle"></i></li>';
+						echo '<li>' . __('parking/garage', 'leadingprops') . '</li><li><i class="icon icon-checkmark-circle"></i></li>';
 					}
 					if(isset($objects_obj->features->utility_rooms->present) && $objects_obj->features->utility_rooms->present === true) {
 						echo '<li>' . __('cellars', 'leadingprops') . '</li><li><i class="icon icon-checkmark-circle"></i></li>';

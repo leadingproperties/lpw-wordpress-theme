@@ -409,7 +409,7 @@ function single_object_html($args) {
 					$html .= '<li>' . __('pool', 'leadingprops') . '</li><li><i class="icon icon-checkmark-circle"></i></li>';
 				}
 				if(isset($objects_obj->features->garage_parking->present) && $objects_obj->features->garage_parking->present === true) {
-					$html .= '<li>' . __('parking/garage') . '</li><li><i class="icon icon-checkmark-circle"></i></li>';
+					$html .= '<li>' . __('parking/garage', 'leadingprops') . '</li><li><i class="icon icon-checkmark-circle"></i></li>';
 				}
 				if(isset($objects_obj->features->utility_rooms->present) && $objects_obj->features->utility_rooms->present === true) {
 					$html .= '<li>' . __('cellars', 'leadingprops') . '</li><li><i class="icon icon-checkmark-circle"></i></li>';
@@ -584,20 +584,20 @@ function get_object_list($args) {
 					if ($object->parameters->price->max) {
 		                    $html .= '&nbsp;&ndash;&nbsp;<span>' . number_format($object->parameters->price->max, 0, ".", " ") . '</span>';
 					}
-					$html .= '&nbsp;<span>' . $object->parameters->price->currency . '</span></span>';
+					$html .= '&nbsp;<span class="text-uppercase">' . $object->parameters->price->currency . '</span></span>';
 				}
 
 				if ($object->parameters->rooms->min || $object->parameters->rooms->max) {
 					$html .= ',&nbsp';
 				 }
 				if ($object->parameters->rooms->min) {
-					$html .='<span>' . $object->parameters->rooms->min . '</span>';
+					$html .= '<span>' . $object->parameters->rooms->min . '</span>';
 				 }
 				if ($object->parameters->rooms->max) {
 					$html .= '&nbsp;&ndash;&nbsp;<span>' . $object->parameters->rooms->max . '</span>';
 				 }
 				if ($object->parameters->rooms->min || $object->parameters->rooms->max) {
-					$html .= '&nbsp;rooms';
+					$html .= '&nbsp;' . __('Rooms', 'leadingprops');
 				}
 				if ($object->parameters->area->min || $object->parameters->area->max) {
 					$html .= ',&nbsp;';
