@@ -1,11 +1,9 @@
-#, fuzzy
 msgid ""
 msgstr ""
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "Project-Id-Version: Leading Properties\n"
-"POT-Creation-Date: 2016-09-02 19:17+0300\n"
-"PO-Revision-Date: 2016-09-02 19:17+0300\n"
-"Last-Translator: \n"
+"POT-Creation-Date: 2016-09-02 19:10+0300\n"
+"PO-Revision-Date: 2016-09-02 19:21+0300\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -14,23 +12,23 @@ msgstr ""
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: style.css\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
-"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"Last-Translator: \n"
+"Language: ru_RU\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
 #: 404.php:8
 msgid "page_404:title_404"
-msgstr ""
+msgstr "Ошибка 404"
 
 #: 404.php:10
 msgid "page_404:title"
-msgstr ""
+msgstr "К сожалению, эта страница не существует!"
 
 #: 404.php:11
 msgid "page_404:text"
-msgstr ""
+msgstr "Причины, которые могут привести к ошибке: неправильно набран адрес, страница никогда не была на этом сайте, или эта страница была, но не может быть доступна более. Если вы попали на эту страницу по ссылке с нашего сайта, пожалуйста, сообщите об этом на:"
 
 #: functions.php:20
 #, php-format
@@ -43,15 +41,15 @@ msgstr ""
 
 #: lib/extras.php:81 templates/search-panel.php:18
 msgid "alerts:show_map_tooltip"
-msgstr ""
+msgstr "Показать карту"
 
 #: lib/extras.php:82
 msgid "menu:favorites"
-msgstr ""
+msgstr "Избранные"
 
 #: lib/extras.php:83
 msgid "menu:offmarket"
-msgstr ""
+msgstr "Off-market"
 
 #: lib/objects/classes/LP_ObjectList.class.php:326
 msgid "An error was occurred. Please try again later."
@@ -60,64 +58,64 @@ msgstr ""
 #: lib/objects/classes/Tags.php:102 templates/filter-rent.php:18
 #: templates/filter-sale.php:8
 msgid "search_panel:property_types:apartments"
-msgstr ""
+msgstr "Квартиры"
 
 #: lib/objects/classes/Tags.php:105 templates/filter-rent.php:22
 #: templates/filter-sale.php:12
 msgid "search_panel:property_types:houses"
-msgstr ""
+msgstr "Дома"
 
 #: lib/objects/classes/Tags.php:108 templates/filter-rent.php:26
 #: templates/filter-sale.php:16
 msgid "search_panel:property_types:commercial"
-msgstr ""
+msgstr "Коммерческая недвижимость"
 
 #: lib/objects/classes/Tags.php:111
 msgid "search_panel:property_types:plots"
-msgstr ""
+msgstr "Участки"
 
 #: lib/objects/classes/Tags.php:122 templates/filter-rent.php:32
 #: templates/filter-sale.php:55
 msgid "search_panel:rooms_label"
-msgstr ""
+msgstr "Комнат"
 
 #: lib/objects/classes/Tags.php:130
 msgid "search_panel:hd_photos:tag"
-msgstr ""
+msgstr "Фото высокого качества"
 
 #: lib/objects/classes/Tags.php:160 templates/filter-rent.php:11
 msgid "search_panel:long_rent"
-msgstr ""
+msgstr "Долгосрочная аренда"
 
 #: lib/objects/classes/Tags.php:163 templates/filter-rent.php:7
 msgid "search_panel:short_rent"
-msgstr ""
+msgstr "Краткосрочная аренда"
 
 #: lib/objects/classes/Tags.php:166 lib/objects/functions.php:429
 #: page-object.php:420 templates/filter-rent.php:75
 msgid "search_panel:child_friendly"
-msgstr ""
+msgstr "Адаптировано для детей"
 
 #: lib/objects/classes/Tags.php:169 lib/objects/functions.php:432
 #: page-object.php:423 templates/filter-rent.php:79
 msgid "search_panel:pets_allowed"
-msgstr ""
+msgstr "Возможно проживание с домашними животными"
 
 #: lib/objects/classes/Tags.php:177 templates/filter-rent.php:68
 msgid "search_panel:persons"
-msgstr ""
+msgstr "Особ"
 
 #: lib/objects/classes/Tags.php:185
 msgid "search_panel:similar"
-msgstr ""
+msgstr "Похожее"
 
 #: lib/objects/classes/Tags.php:185
 msgid "search_panel:km"
-msgstr ""
+msgstr "км"
 
 #: lib/objects/classes/Tags.php:185
 msgid "search_panel:from"
-msgstr ""
+msgstr "от"
 
 #: lib/objects/functions.php:36 lib/objects/functions.php:460
 #: page-object.php:46 page-object.php:446
@@ -362,6 +360,7 @@ msgid "One response to &ldquo;%2$s&rdquo;"
 msgid_plural "%1$s responses to &ldquo;%2$s&rdquo;"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: templates/comments.php:19
 msgid "&larr; Older comments"

@@ -178,12 +178,11 @@ class Tags
         }
         return $rent_persons_tag;
     }
-//similar_tag: "Similar: {radius} km from {code}"
+
     function get_similar_tag_html($parameters, $radius = 1, $counters){
         $similar_tag= '';
         if($parameters){
-            $text = printf( __( 'Similar: %1$ km from %2$', 'leadingprops' ), $radius, $parameters['code'] );
-            $similar_tag = '<li>' . $text . ' <sup>' . $counters['geo_location']['doc_count'] . '</sup> <span class="tag-remove" data-tag_type="similar" data-tag_data="similar"></span></li>';
+            $similar_tag = '<li>' . __('search_panel:similar', 'leadingprops') . ': ' . $radius . ' ' . __('search_panel:km', 'leadingprops') . ' ' . __('search_panel:from', 'leadingprops') . ' ' . $parameters['code'] . ' <sup>' . $counters['geo_location']['doc_count'] . '</sup> <span class="tag-remove" data-tag_type="similar" data-tag_data="similar"></span></li>';
         }
         return $similar_tag;
     }
