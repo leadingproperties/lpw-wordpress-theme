@@ -11,7 +11,7 @@ get_favorites_bar();
 ?>
 	<section class="sorting-wrapper container">
 		<div class="fav-count-wrap">
-			<span class="fav-count-field icon"><?php _e('favorites:title', 'leadingprops'); ?>: <span class="favorite_objects_count">0 </span> <span class="fav-remove tag-remove"></span></span>
+			<span class="fav-count-field icon"><?php _e('favorites:title', 'leadingprops'); ?> <span class="favorite_objects_count">0 </span> <span class="fav-remove tag-remove"></span></span>
 		</div>
 		<div class="sorting-field sorting">
 			<label for="sorting" class="sr-only">Sort</label>
