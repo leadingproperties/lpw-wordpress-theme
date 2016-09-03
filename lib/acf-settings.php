@@ -508,7 +508,7 @@ if( function_exists('acf_add_local_field_group') ):
 				'label' => 'Logo',
 				'name' => 'logo',
 				'type' => 'image',
-				'instructions' => '1000 х 180 px max',
+				'instructions' => '1000 х 500 px max',
 				'required' => 0,
 				'conditional_logic' => 0,
 				'wrapper' => array (
@@ -523,7 +523,7 @@ if( function_exists('acf_add_local_field_group') ):
 				'min_height' => '',
 				'min_size' => '',
 				'max_width' => 1000,
-				'max_height' => 180,
+				'max_height' => 500,
 				'max_size' => '',
 				'mime_types' => '',
 			),
