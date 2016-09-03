@@ -3,7 +3,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Project-Id-Version: Leading Properties\n"
 "POT-Creation-Date: 2016-09-03 08:34+0300\n"
-"PO-Revision-Date: 2016-09-03 08:53+0300\n"
+"PO-Revision-Date: 2016-09-03 09:58+0300\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -320,7 +320,7 @@ msgstr ""
 
 #: page-favorites-rent.php:14 page-favorites.php:14
 msgid "favorites:title"
-msgstr ""
+msgstr "Ihre favorisierten Immobilien:"
 
 #: page-favorites-rent.php:19 page-favorites.php:19 page-sharer-rent.php:17
 #: page-sharer.php:17 templates/sorting-panel.php:6
