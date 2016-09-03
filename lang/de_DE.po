@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Project-Id-Version: Leading Properties\n"
-"POT-Creation-Date: 2016-09-02 19:10+0300\n"
-"PO-Revision-Date: 2016-09-03 08:34+0300\n"
+"POT-Creation-Date: 2016-09-03 08:34+0300\n"
+"PO-Revision-Date: 2016-09-03 08:53+0300\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -14,21 +14,21 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "Last-Translator: \n"
-"Language: ru_RU\n"
+"Language: de_DE\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
 #: 404.php:8
 msgid "page_404:title_404"
-msgstr "Ошибка 404"
+msgstr "Error 404"
 
 #: 404.php:10
 msgid "page_404:title"
-msgstr "К сожалению, эта страница не существует!"
+msgstr "Sorry, that page doesn’t exist!"
 
 #: 404.php:11
 msgid "page_404:text"
-msgstr "Причины, которые могут привести к ошибке: неправильно набран адрес, страница никогда не была на этом сайте, или эта страница была, но не может быть доступна более. Если вы попали на эту страницу по ссылке с нашего сайта, пожалуйста, сообщите об этом на:"
+msgstr "The reasons that could cause the error: incorrectly typed address, the page was never on this site or this page was, but can not be accessed anymore. If you reached this page through a link from our website, please report this at:"
 
 #: functions.php:20
 #, php-format
@@ -41,11 +41,11 @@ msgstr ""
 
 #: lib/extras.php:81 templates/search-panel.php:18
 msgid "alerts:show_map_tooltip"
-msgstr "Показать карту"
+msgstr "Karte zeigen"
 
 #: lib/extras.php:82
 msgid "menu:favorites"
-msgstr "Избранные"
+msgstr "Favoriten"
 
 #: lib/extras.php:83
 msgid "menu:offmarket"
@@ -58,82 +58,82 @@ msgstr ""
 #: lib/objects/classes/Tags.php:102 templates/filter-rent.php:18
 #: templates/filter-sale.php:8
 msgid "search_panel:property_types:apartments"
-msgstr "Квартиры"
+msgstr "Wohnungen"
 
 #: lib/objects/classes/Tags.php:105 templates/filter-rent.php:22
 #: templates/filter-sale.php:12
 msgid "search_panel:property_types:houses"
-msgstr "Дома"
+msgstr "Häuser"
 
 #: lib/objects/classes/Tags.php:108 templates/filter-rent.php:26
 #: templates/filter-sale.php:16
 msgid "search_panel:property_types:commercial"
-msgstr "Коммерческая недвижимость"
+msgstr "Gewerbeimmobilien"
 
 #: lib/objects/classes/Tags.php:111
 msgid "search_panel:property_types:plots"
-msgstr "Участки"
+msgstr "Grundstücke"
 
 #: lib/objects/classes/Tags.php:122 templates/filter-rent.php:32
 #: templates/filter-sale.php:55
 msgid "search_panel:rooms_label"
-msgstr "Комнат"
+msgstr "Zimmer"
 
 #: lib/objects/classes/Tags.php:130
 msgid "search_panel:hd_photos:tag"
-msgstr "Фото высокого качества"
+msgstr "Hochwertige Fotos"
 
 #: lib/objects/classes/Tags.php:160 templates/filter-rent.php:11
 msgid "search_panel:long_rent"
-msgstr "Долгосрочная аренда"
+msgstr "Langzeitmiete"
 
 #: lib/objects/classes/Tags.php:163 templates/filter-rent.php:7
 msgid "search_panel:short_rent"
-msgstr "Краткосрочная аренда"
+msgstr "Kurzmiete"
 
 #: lib/objects/classes/Tags.php:166 lib/objects/functions.php:429
 #: page-object.php:420 templates/filter-rent.php:75
 msgid "search_panel:child_friendly"
-msgstr "Адаптировано для детей"
+msgstr "Kinderfreundlich"
 
 #: lib/objects/classes/Tags.php:169 lib/objects/functions.php:432
 #: page-object.php:423 templates/filter-rent.php:79
 msgid "search_panel:pets_allowed"
-msgstr "Возможно проживание с домашними животными"
+msgstr "Haustiere erlaubt"
 
 #: lib/objects/classes/Tags.php:177 templates/filter-rent.php:68
 msgid "search_panel:persons"
-msgstr "Особ"
+msgstr "Personen"
 
 #: lib/objects/classes/Tags.php:185
 msgid "search_panel:similar"
-msgstr "Похожее"
+msgstr "Similar:"
 
 #: lib/objects/classes/Tags.php:185
 msgid "search_panel:km"
-msgstr "км"
+msgstr "km"
 
 #: lib/objects/classes/Tags.php:185
 msgid "search_panel:from"
-msgstr "от"
+msgstr "von"
 
 #: lib/objects/functions.php:36 lib/objects/functions.php:460
 #: page-object.php:46 page-object.php:446
 msgid "s_object:header:detailed_info"
-msgstr "Получить подробную информацию"
+msgstr "Ausführliche Informationen"
 
 #: lib/objects/functions.php:109 page-object.php:106
 msgid "s_object:sold"
-msgstr "Продано"
+msgstr "Verkauft"
 
 #: lib/objects/functions.php:166 lib/objects/functions.php:589
 #: page-object.php:156
 msgid "s_object:on_demand"
-msgstr "Цена по запросу"
+msgstr "Preis auf Anfrage"
 
 #: lib/objects/functions.php:182
 msgid "s_object:rent:long-term_rent:"
-msgstr "Долгосрочная аренда, месячная ставка"
+msgstr "Langzeitmiete, Monatsgebühr"
 
 #: lib/objects/functions.php:184 lib/objects/functions.php:200
 #: lib/objects/functions.php:206 lib/objects/functions.php:212
@@ -148,48 +148,48 @@ msgstr "Долгосрочная аренда, месячная ставка"
 #: page-object.php:298 page-object.php:304 page-object.php:310
 #: page-object.php:316 page-object.php:322 page-sharer-rent.php:44
 msgid "s_object:rent:on_request"
-msgstr "по запросу"
+msgstr "Auf Anfrage"
 
 #: lib/objects/functions.php:193 lib/objects/functions.php:196
 #: lib/objects/functions.php:295 lib/objects/functions.php:298
 #: page-object.php:183 page-object.php:186 page-object.php:285
 #: page-object.php:288
 msgid "s_object:rent:vat"
-msgstr "НДС"
+msgstr "Mwst."
 
 #: lib/objects/functions.php:193 lib/objects/functions.php:295
 #: page-object.php:183 page-object.php:285
 msgid "s_object:rent:not_included"
-msgstr "не включено"
+msgstr "ist nicht inbegriffen"
 
 #: lib/objects/functions.php:196 lib/objects/functions.php:298
 #: page-object.php:186 page-object.php:288
 msgid "s_object:rent:included"
-msgstr "включено"
+msgstr "ist inbegriffen"
 
 #: lib/objects/functions.php:198 lib/objects/functions.php:300
 #: page-object.php:188 page-object.php:290
 msgid "s_object:rent:deposit"
-msgstr "залог"
+msgstr "Kaution"
 
 #: lib/objects/functions.php:216 lib/objects/functions.php:318
 #: page-object.php:206 page-object.php:308
 msgid "s_object:rent:commission"
-msgstr "комиссионные"
+msgstr "Provision"
 
 #: lib/objects/functions.php:237 page-object.php:228
 msgid "s_object:rent:rent_short_title"
-msgstr "Краткосрочная аренда, дневная ставка,"
+msgstr "Kurzmiete, Tagesgebühr, "
 
 #: lib/objects/functions.php:240 lib/objects/functions.php:258
 #: lib/objects/functions.php:275 page-object.php:231 page-object.php:248
 #: page-object.php:265
 msgid "s_object:rent:min_stay"
-msgstr "мин. пребывание"
+msgstr "Min. Aufenthalt"
 
 #: lib/objects/functions.php:241 page-object.php:232
 msgid "s_object:rent:low_season"
-msgstr "мертвый сезон"
+msgstr "niedrige Saison"
 
 #: lib/objects/functions.php:242 lib/objects/functions.php:243
 #: lib/objects/functions.php:244 lib/objects/functions.php:260
@@ -199,14 +199,14 @@ msgstr "мертвый сезон"
 #: page-sharer-rent.php:47 page-sharer-rent.php:57 page-sharer-rent.php:65
 #: templates/filter-rent.php:104
 msgid "s_object:rent:day"
-msgstr "день"
+msgstr "Tag"
 
 #: lib/objects/functions.php:248 lib/objects/functions.php:264
 #: lib/objects/functions.php:281 lib/objects/functions.php:524
 #: page-object.php:237 page-object.php:254 page-object.php:271
 #: page-sharer-rent.php:49
 msgid "s_object:rent:week"
-msgstr "неделя"
+msgstr "Woche"
 
 #: lib/objects/functions.php:252 lib/objects/functions.php:268
 #: lib/objects/functions.php:285 lib/objects/functions.php:526
@@ -215,87 +215,87 @@ msgstr "неделя"
 #: page-sharer-rent.php:51 page-sharer-rent.php:59 page-sharer-rent.php:63
 #: templates/filter-rent.php:105
 msgid "s_object:rent:month"
-msgstr "месяц"
+msgstr "Monat"
 
 #: lib/objects/functions.php:259 page-object.php:249
 msgid "s_object:rent:medium_season"
-msgstr "начало или окончание сезона"
+msgstr "mittlere Saison"
 
 #: lib/objects/functions.php:276 page-object.php:266
 msgid "s_object:rent:hight_season"
-msgstr "пик сезона"
+msgstr "Hochsaison"
 
 #: lib/objects/functions.php:342
 msgid "s_object:property_type"
-msgstr "тип недвижимости"
+msgstr "Immobilientyp"
 
 #: lib/objects/functions.php:345 page-object.php:336
 msgid "s_object:number_of_rooms"
-msgstr "кол-во комнат"
+msgstr "Anzahl der Zimmer"
 
 #: lib/objects/functions.php:356 page-object.php:347
 msgid "s_object:area_sq_m"
-msgstr "площадь, м²"
+msgstr "Fläche, m²"
 
 #: lib/objects/functions.php:367 page-object.php:358
 msgid "s_object:bedrooms"
-msgstr "спальни"
+msgstr "Schlafzimmer"
 
 #: lib/objects/functions.php:378 page-object.php:369
 msgid "s_object:bathrooms"
-msgstr "ванные комнаты"
+msgstr "Badezimmer"
 
 #: lib/objects/functions.php:390 page-object.php:381
 msgid "s_object:rent:max_persons"
-msgstr "макс. особ"
+msgstr "Max. Personen"
 
 #: lib/objects/functions.php:394 page-object.php:385
 msgid "s_object:land_area"
-msgstr "площадь участка"
+msgstr "Grundstücksfläche"
 
 #: lib/objects/functions.php:405 page-object.php:396
 msgid "s_object:building_storeys"
-msgstr "    next: Следующая недвижимость"
+msgstr "Gebäudestockwerke"
 
 #: lib/objects/functions.php:416 page-object.php:407
 msgid "s_object:terrace_balcony"
-msgstr "терраса/балкон"
+msgstr "Terrasse/Balkon"
 
 #: lib/objects/functions.php:419 page-object.php:410
 msgid "s_object:pool"
-msgstr "бассейн"
+msgstr "Pool"
 
 #: lib/objects/functions.php:422 page-object.php:413
 msgid "s_object:garage_parking"
-msgstr "паркинг/гараж"
+msgstr "Parkplatz/Garage"
 
 #: lib/objects/functions.php:425 page-object.php:416
 msgid "s_object:utility_rooms"
-msgstr "подсобные помещения"
+msgstr "Keller"
 
 #: lib/objects/functions.php:440
 msgid "s_object:prev"
-msgstr "Предыдущая недвижимость"
+msgstr "Vorheriges Objekt"
 
 #: lib/objects/functions.php:443
 msgid "s_object:next"
-msgstr "Следующая недвижимость"
+msgstr "Nächstes Objekt"
 
 #: lib/objects/functions.php:450
 msgid "s_object:similar_label"
-msgstr "Найти подобную недвижимость в этом районе"
+msgstr "Suchen Sie ähnliche Objekte in derselben Region"
 
 #: lib/objects/functions.php:610
 msgid "s_object:rooms"
-msgstr "кол-во комнат"
+msgstr "Anzahl der Zimmer"
 
 #: lib/objects/functions.php:627 page-sharer-rent.php:97
 msgid "s_object:rent:min_stay_full"
-msgstr "Минимальное пребывание"
+msgstr "Mindestaufenthalt"
 
 #: lib/objects/functions.php:630
 msgid "s_object:m_short"
-msgstr "м"
+msgstr "m"
 
 #: lib/setup.php:23
 msgid "Primary Navigation"
@@ -320,30 +320,30 @@ msgstr ""
 
 #: page-favorites-rent.php:14 page-favorites.php:14
 msgid "favorites:title"
-msgstr "Избранные объекты:"
+msgstr ""
 
 #: page-favorites-rent.php:19 page-favorites.php:19 page-sharer-rent.php:17
 #: page-sharer.php:17 templates/sorting-panel.php:6
 msgid "search_panel:order:recent"
-msgstr "Недавние"
+msgstr "Neueste"
 
 #: page-favorites-rent.php:20 page-favorites.php:20 page-sharer-rent.php:18
 #: page-sharer.php:18 templates/sorting-panel.php:7
 msgid "search_panel:order:price_desc"
-msgstr "Самая высокая цена"
+msgstr "Höchster Preis"
 
 #: page-favorites-rent.php:21 page-favorites.php:21 page-sharer-rent.php:19
 #: page-sharer.php:19 templates/sorting-panel.php:8
 msgid "search_panel:order:price_asc"
-msgstr "Самая низкая цена"
+msgstr "Niedrigster Preis"
 
 #: page-favorites-rent.php:36 page-favorites.php:36
 msgid "favorites:delete_alert"
-msgstr "Вы уверены, что хотите удалить всю недвижимость из избранного?"
+msgstr "Sind Sie sicher, dass Sie alle Objekte von der Favoritenliste entfernen möchten?"
 
 #: page-object.php:333
 msgid "s_object:property type"
-msgstr "тип недвижимости"
+msgstr "Immobilientyp"
 
 #: search.php:5
 msgid "Sorry, no results were found."
@@ -356,7 +356,6 @@ msgid "One response to &ldquo;%2$s&rdquo;"
 msgid_plural "%1$s responses to &ldquo;%2$s&rdquo;"
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
 
 #: templates/comments.php:19
 msgid "&larr; Older comments"
@@ -372,136 +371,142 @@ msgstr ""
 
 #: templates/favorites-bar.php:3
 msgid "search_panel:share"
-msgstr "Поделитесь своими избранными объектами недвижимости с друзьями и коллегами"
+msgstr "Teilen Sie Ihre favorisierten Objekte mit Freunden oder Kollegen"
 
 #: templates/favorites-bar.php:18
 msgid "favorites:facebook_message"
-msgstr "Подборка недвижимости от The Leading Properties of the World. Лучшая недвижимость отобранная вручную с высококачественными фотографиями. Хотите получить подборку для себя лично? Посетите наш сайт и получите персональные рекомендации уже сегодня."
+msgstr "Objektauswahl durch The Leading Properties of the World. Die besten handverlesenen Immobilien mit wunderschönen Fotos. Auf der Suche nach individuell für Sie ausgesuchten Immobilien? Besuchen Sie unsere Website und erhalten Sie noch heute Ihre ganz persönliche Empfehlung."
 
 #: templates/favorites-bar.php:29
 msgid "search_panel:copy"
-msgstr "Копировать"
+msgstr "Kopieren"
 
 #: templates/filter-rent.php:15 templates/filter-sale.php:5
 msgid "search_panel:property_types:label"
-msgstr "Тип недвижимости"
+msgstr "Immobilientyp"
 
 #: templates/filter-rent.php:57 templates/filter-sale.php:44
 msgid "search_panel:area_label"
-msgstr "Площадь"
+msgstr "Fläche"
 
 #: templates/filter-rent.php:57 templates/filter-sale.php:44
 msgid "search_panel:sqm"
-msgstr "м²"
+msgstr "m²"
 
 #: templates/filter-rent.php:59 templates/filter-rent.php:87
 #: templates/filter-sale.php:24 templates/filter-sale.php:46
 msgid "search_panel:min"
-msgstr "мин"
+msgstr "min"
 
 #: templates/filter-rent.php:62 templates/filter-rent.php:70
 #: templates/filter-rent.php:90 templates/filter-sale.php:27
 #: templates/filter-sale.php:49
 msgid "search_panel:max"
-msgstr "макс"
+msgstr "max"
 
 #: templates/filter-rent.php:85 templates/filter-sale.php:22
 msgid "search_panel:price_label"
-msgstr "Цена"
+msgstr "Preis"
 
 #: templates/filter-rent.php:115 templates/filter-sale.php:82
 msgid "search_panel:hd_photos:label"
-msgstr "Позиции только с высококачественными фото"
+msgstr "Nur Einträge mit hochwertigen Fotos"
 
 #: templates/filter-rent.php:119 templates/filter-sale.php:86
 msgid "search_panel:submit_button"
-msgstr "Показать результаты"
+msgstr "Ergebnisse anzeigen"
 
 #: templates/form-contact.php:6
 msgid "form:title_default"
-msgstr "Пожалуйста, свяжитесь с нами, если у вас есть вопросы, вам нужна дополнительная информация или помощь в выборе недвижимости"
+msgstr "Wenn Sie Fragen haben, weitere Informationen oder Hilfe bei der Auswahl einer Immobilie benötigen, stehen wir Ihnen gern zur Verfügung"
 
 #: templates/form-contact.php:13 templates/form-offmarket.php:13
 #: templates/form-request.php:14
 msgid "form:first_name"
-msgstr "Введите ваше имя"
+msgstr "Geben Sie Ihren Vornamen ein"
 
 #: templates/form-contact.php:17 templates/form-offmarket.php:17
 #: templates/form-request.php:18
 msgid "form:last_name"
-msgstr "и вашу фамилию"
+msgstr "und Ihren Nachnamen"
 
 #: templates/form-contact.php:24 templates/form-offmarket.php:24
 #: templates/form-request.php:25
 msgid "form:how_can_reach"
-msgstr "Как мы можем с вами связаться?"
+msgstr "Wie erreichen wir Sie?"
 
 #: templates/form-contact.php:27 templates/form-offmarket.php:28
 #: templates/form-request.php:28
 msgid "form:your_phone"
-msgstr "ваш телефон"
+msgstr "Ihre Telefonnummer"
 
 #: templates/form-contact.php:34 templates/form-offmarket.php:36
 #: templates/form-request.php:35
 msgid "form:your_email"
-msgstr "ваш e-mail"
+msgstr "Ihre E-Mail-Adresse"
 
 #: templates/form-contact.php:38 templates/form-offmarket.php:40
 #: templates/form-request.php:39
 msgid "form:your_skype"
-msgstr "ваше имя в Skype"
+msgstr "Ihr Skype-Name"
 
 #: templates/form-contact.php:44 templates/form-offmarket.php:46
 #: templates/form-request.php:45
 msgid "form:have_questions"
-msgstr "Есть ли у вас какие-либо вопросы или комментарии?"
+msgstr "Fragen oder Anmerkungen?"
 
 #: templates/form-contact.php:50 templates/form-offmarket.php:52
 #: templates/form-request.php:51
 msgid "form:send"
-msgstr "Отправить запрос"
+msgstr "Anfrage senden"
 
 #: templates/form-contact.php:53 templates/form-offmarket.php:55
 #: templates/form-request.php:54
 msgid "form:disclaimer_note"
-msgstr "I hereby agree and authorize LPW to disclose my personal information collected on this form to the property developers and / or sale agents who have signed a Marketing services agreement with LPW in respect to requested properties. Узнайте подробнее о нашей"
+msgstr "I hereby agree and authorize LPW to disclose my personal information collected on this form to the property developers and / or sale agents who have signed a Marketing services agreement with LPW in respect to requested properties. Lesen Sie mehr über unsere"
 
 #: templates/form-contact.php:53 templates/form-offmarket.php:55
 #: templates/form-request.php:54
 msgid "form:privacy_policy"
-msgstr "Политике Конфиденциальности"
+msgstr "Datenschutzerklärung"
 
 #: templates/form-offmarket.php:6
 msgid "form:title_off_market"
-msgstr "Для предоставления вам информации об объектах, не выставленных в открытую продажу, нам необходима ваша контактная информация"
+msgstr "Um Ihnen Informationen über die Off-Market-Objekte zukommen lassen zu können, benötigen wir Ihre Kontaktdaten"
 
 #: templates/form-request.php:7
 msgid "form:title_single"
-msgstr "Получите подробную информацию по объекту, дополнительные фото, планы и цены либо запросите организацию просмотра недвижимости"
+msgstr "Erhalten Sie ausführliche Informationen über die Immobilie, zusätzliche Fotos, Pläne und Preise, oder arrangieren Sie eine Besichtigung"
 
 #: templates/search-panel.php:7
 msgid "search_panel:autocomplete"
-msgstr "Швейцария или Лондон или Старый Город, Прага или 69783"
+msgstr "Schweiz oder London oder Altstadt, Prag oder 69783"
 
 #: templates/search-panel.php:9
 msgid "alerts:advanced_search"
-msgstr "Расширенный поиск"
+msgstr "Erweiterte Suche"
 
 #: templates/search-panel.php:19
 msgid "alerts:favorite_properties"
-msgstr "Избранная недвижимость"
+msgstr "Favorisierte Objekte"
 
 #: templates/search-panel.php:20
 msgid "alerts:offmarket_properties"
-msgstr "Недвижимость Off-Market"
+msgstr "Off-Market-Immobilien"
 
 #: templates/search-panel.php:26
 msgid "alerts:offmarket_found:text"
-msgstr "Найдены объекты недвижимости Off-Market, которые могут соответствовать вашему запросу."
+msgstr "Wir haben Off-Market-Immobilien gefunden, die Ihren Suchkriterien entsprechen könnten."
 
 #: templates/search-panel.php:26
 msgid "alerts:offmarket_found:link"
-msgstr "Запросить информацию"
+msgstr "Informationen anfordern"
+
+msgid "favorites:delete_y"
+msgstr "Ja, entfernen"
+
+msgid "favorites:delete_n"
+msgstr "Nein"
 
 #. Theme Name of the plugin/theme
 #. Author of the plugin/theme

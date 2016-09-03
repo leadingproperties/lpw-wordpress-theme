@@ -1,11 +1,9 @@
-#, fuzzy
 msgid ""
 msgstr ""
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Project-Id-Version: Leading Properties\n"
-"POT-Creation-Date: 2016-09-02 19:17+0300\n"
-"PO-Revision-Date: 2016-09-02 19:17+0300\n"
-"Last-Translator: \n"
+"POT-Creation-Date: 2016-09-03 08:59+0300\n"
+"PO-Revision-Date: 2016-09-03 09:14+0300\n"
 "Language-Team: \n"
 "MIME-Ver§`sion: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -14,238 +12,238 @@ msgstr ""
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: style.css\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
-"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"MIME-Version: 1.0\n"
+"Last-Translator: \n"
+"Language: it_IT\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
 #: 404.php:8
 msgid "page_404:title_404"
-msgstr ""
+msgstr "Error 404"
 
 #: 404.php:10
 msgid "page_404:title"
-msgstr ""
+msgstr "Sorry, that page doesn’t exist!"
 
 #: 404.php:11
 msgid "page_404:text"
-msgstr ""
+msgstr "The reasons that could cause the error: incorrectly typed address, the page was never on this site or this page was, but can not be accessed anymore. If you reached this page through a link from our website, please report this at:"
 
 #: lib/extras.php:82
 msgid "menu:favorites"
-msgstr ""
+msgstr "Preferiti"
 
 #: lib/extras.php:83
 msgid "menu:offmarket"
-msgstr ""
-
-#: templates/filter-rent.php:57 templates/filter-sale.php:44
-msgid "search_panel:area_label"
-msgstr ""
-
-#: templates/filter-rent.php:85 templates/filter-sale.php:22
-msgid "search_panel:price_label"
-msgstr ""
-
-#: lib/objects/classes/Tags.php:122 templates/filter-rent.php:32
-#: templates/filter-sale.php:55
-msgid "search_panel:rooms_label"
-msgstr ""
-
-#: templates/filter-rent.php:15 templates/filter-sale.php:5
-msgid "search_panel:property_types:label"
-msgstr ""
-
-#: lib/objects/classes/Tags.php:108 templates/filter-rent.php:26
-#: templates/filter-sale.php:16
-msgid "search_panel:property_types:commercial"
-msgstr ""
+msgstr "Fuori-Mercato"
 
 #: lib/objects/classes/Tags.php:102 templates/filter-rent.php:18
 #: templates/filter-sale.php:8
 msgid "search_panel:property_types:apartments"
-msgstr ""
+msgstr "Appartamenti"
 
 #: lib/objects/classes/Tags.php:105 templates/filter-rent.php:22
 #: templates/filter-sale.php:12
 msgid "search_panel:property_types:houses"
-msgstr ""
+msgstr "Case"
+
+#: lib/objects/classes/Tags.php:108 templates/filter-rent.php:26
+#: templates/filter-sale.php:16
+msgid "search_panel:property_types:commercial"
+msgstr "Proprietà commerciali"
 
 #: lib/objects/classes/Tags.php:111
 msgid "search_panel:property_types:plots"
-msgstr ""
+msgstr "Lotti"
 
-#: templates/filter-rent.php:115 templates/filter-sale.php:82
-msgid "search_panel:hd_photos:label"
-msgstr ""
+#: lib/objects/classes/Tags.php:122 templates/filter-rent.php:32
+#: templates/filter-sale.php:55
+msgid "search_panel:rooms_label"
+msgstr "Stanze"
 
 #: lib/objects/classes/Tags.php:130
 msgid "search_panel:hd_photos:tag"
-msgstr ""
+msgstr "Foto HQ"
 
-#: templates/filter-rent.php:119 templates/filter-sale.php:86
-msgid "search_panel:submit_button"
-msgstr ""
+#: lib/objects/classes/Tags.php:160 templates/filter-rent.php:11
+msgid "search_panel:long_rent"
+msgstr "Affitto a lungo termine"
 
-#: page-favorites-rent.php:19 page-favorites.php:19 page-sharer-rent.php:17
-#: page-sharer.php:17 templates/sorting-panel.php:6
-msgid "search_panel:order:recent"
-msgstr ""
+#: lib/objects/classes/Tags.php:163 templates/filter-rent.php:7
+msgid "search_panel:short_rent"
+msgstr "Affitto a breve termine"
 
-#: page-favorites-rent.php:21 page-favorites.php:21 page-sharer-rent.php:19
-#: page-sharer.php:19 templates/sorting-panel.php:8
-msgid "search_panel:order:price_asc"
-msgstr ""
+#: lib/objects/classes/Tags.php:166 lib/objects/functions.php:429
+#: page-object.php:420 templates/filter-rent.php:75
+msgid "search_panel:child_friendly"
+msgstr "Per bambini"
 
-#: page-favorites-rent.php:20 page-favorites.php:20 page-sharer-rent.php:18
-#: page-sharer.php:18 templates/sorting-panel.php:7
-msgid "search_panel:order:price_desc"
-msgstr ""
+#: lib/objects/classes/Tags.php:169 lib/objects/functions.php:432
+#: page-object.php:423 templates/filter-rent.php:79
+msgid "search_panel:pets_allowed"
+msgstr "Animali domestici ammessi"
+
+#: lib/objects/classes/Tags.php:177 templates/filter-rent.php:68
+msgid "search_panel:persons"
+msgstr "Persone"
+
+#: lib/objects/classes/Tags.php:185
+msgid "search_panel:similar"
+msgstr "Simile:"
+
+#: lib/objects/classes/Tags.php:185
+msgid "search_panel:km"
+msgstr "km"
+
+#: lib/objects/classes/Tags.php:185
+msgid "search_panel:from"
+msgstr "da"
+
+#: templates/favorites-bar.php:3
+msgid "search_panel:share"
+msgstr "Condividi le tue proprietà preferite con amici o colleghi"
+
+#: templates/favorites-bar.php:29
+msgid "search_panel:copy"
+msgstr "Copia"
+
+#: templates/filter-rent.php:15 templates/filter-sale.php:5
+msgid "search_panel:property_types:label"
+msgstr "Tipo di proprietà"
+
+#: templates/filter-rent.php:57 templates/filter-sale.php:44
+msgid "search_panel:area_label"
+msgstr "Area"
+
+#: templates/filter-rent.php:57 templates/filter-sale.php:44
+msgid "search_panel:sqm"
+msgstr "m²"
 
 #: templates/filter-rent.php:59 templates/filter-rent.php:87
 #: templates/filter-sale.php:24 templates/filter-sale.php:46
 msgid "search_panel:min"
-msgstr ""
+msgstr "min"
 
 #: templates/filter-rent.php:62 templates/filter-rent.php:70
 #: templates/filter-rent.php:90 templates/filter-sale.php:27
 #: templates/filter-sale.php:49
 msgid "search_panel:max"
-msgstr ""
+msgstr "max"
 
-#: templates/filter-rent.php:57 templates/filter-sale.php:44
-msgid "search_panel:sqm"
-msgstr ""
+#: templates/filter-rent.php:85 templates/filter-sale.php:22
+msgid "search_panel:price_label"
+msgstr "Prezzo"
 
-#: templates/favorites-bar.php:3
-msgid "search_panel:share"
-msgstr ""
+#: templates/filter-rent.php:115 templates/filter-sale.php:82
+msgid "search_panel:hd_photos:label"
+msgstr "Solo annunci con foto di alta qualità"
 
-#: templates/favorites-bar.php:29
-msgid "search_panel:copy"
-msgstr ""
+#: templates/filter-rent.php:119 templates/filter-sale.php:86
+msgid "search_panel:submit_button"
+msgstr "Mostra i risultati"
+
+#: page-favorites-rent.php:19 page-favorites.php:19 page-sharer-rent.php:17
+#: page-sharer.php:17 templates/sorting-panel.php:6
+msgid "search_panel:order:recent"
+msgstr "I più recenti"
+
+#: page-favorites-rent.php:20 page-favorites.php:20 page-sharer-rent.php:18
+#: page-sharer.php:18 templates/sorting-panel.php:7
+msgid "search_panel:order:price_desc"
+msgstr "Prezzo più alto"
+
+#: page-favorites-rent.php:21 page-favorites.php:21 page-sharer-rent.php:19
+#: page-sharer.php:19 templates/sorting-panel.php:8
+msgid "search_panel:order:price_asc"
+msgstr "Prezzo più basso"
 
 #: templates/search-panel.php:7
 msgid "search_panel:autocomplete"
-msgstr ""
-
-#: lib/objects/classes/Tags.php:160 templates/filter-rent.php:11
-msgid "search_panel:long_rent"
-msgstr ""
-
-#: lib/objects/classes/Tags.php:163 templates/filter-rent.php:7
-msgid "search_panel:short_rent"
-msgstr ""
-
-#: lib/objects/classes/Tags.php:166 lib/objects/functions.php:429
-#: page-object.php:420 templates/filter-rent.php:75
-msgid "search_panel:child_friendly"
-msgstr ""
-
-#: lib/objects/classes/Tags.php:169 lib/objects/functions.php:432
-#: page-object.php:423 templates/filter-rent.php:79
-msgid "search_panel:pets_allowed"
-msgstr ""
-
-#: lib/objects/classes/Tags.php:177 templates/filter-rent.php:68
-msgid "search_panel:persons"
-msgstr ""
-
-#: lib/objects/classes/Tags.php:185
-msgid "search_panel:similar"
-msgstr ""
-
-#: lib/objects/classes/Tags.php:185
-msgid "search_panel:km"
-msgstr ""
-
-#: lib/objects/classes/Tags.php:185
-msgid "search_panel:from"
-msgstr ""
+msgstr "Svizzera o Londra o Old Town, Praga oppure 69783"
 
 #: lib/objects/functions.php:36 lib/objects/functions.php:460
 #: page-object.php:46 page-object.php:446
 msgid "s_object:header:detailed_info"
-msgstr ""
+msgstr "Ricevi informazioni dettagliate"
 
 #: lib/objects/functions.php:109 page-object.php:106
 msgid "s_object:sold"
-msgstr ""
+msgstr "Venduto"
 
 #: lib/objects/functions.php:166 lib/objects/functions.php:589
 #: page-object.php:156
 msgid "s_object:on_demand"
-msgstr ""
+msgstr "Prezzo su richiesta"
 
 #: lib/objects/functions.php:610
 msgid "s_object:rooms"
-msgstr ""
+msgstr "stanze"
 
 #: lib/objects/functions.php:630
 msgid "s_object:m_short"
-msgstr ""
+msgstr "m"
 
 #: lib/objects/functions.php:345 page-object.php:336
 msgid "s_object:number_of_rooms"
-msgstr ""
+msgstr "numero di stampe"
 
 #: lib/objects/functions.php:342
 msgid "s_object:property_type"
-msgstr ""
+msgstr "tipo di proprietà"
 
 #: lib/objects/functions.php:356 page-object.php:347
 msgid "s_object:area_sq_m"
-msgstr ""
-
+msgstr "area, m²"
 
 #: lib/objects/functions.php:419 page-object.php:410
 msgid "s_object:pool"
-msgstr ""
+msgstr "piscina"
 
 #: lib/objects/functions.php:422 page-object.php:413
 msgid "s_object:garage_parking"
-msgstr ""
+msgstr "parcheggio/garage"
 
 #: lib/objects/functions.php:416 page-object.php:407
 msgid "s_object:terrace_balcony"
-msgstr ""
+msgstr "terrazza/balcone"
 
 #: lib/objects/functions.php:367 page-object.php:358
 msgid "s_object:bedrooms"
-msgstr ""
+msgstr "stanze da letto"
 
 #: lib/objects/functions.php:378 page-object.php:369
 msgid "s_object:bathrooms"
-msgstr ""
-
-#: lib/objects/functions.php:405 page-object.php:396
-msgid "s_object:building_storeys"
-msgstr ""
+msgstr "bagni"
 
 #: lib/objects/functions.php:394 page-object.php:385
 msgid "s_object:land_area"
-msgstr ""
+msgstr "area del terreno"
 
 #: lib/objects/functions.php:425 page-object.php:416
 msgid "s_object:utility_rooms"
-msgstr ""
+msgstr "cantine"
+
+#: lib/objects/functions.php:405 page-object.php:396
+msgid "s_object:building_storeys"
+msgstr "piani dell'edificio"
 
 #: lib/objects/functions.php:440
 msgid "s_object:prev"
-msgstr ""
+msgstr "Proprietà precedente"
 
 #: lib/objects/functions.php:443
 msgid "s_object:next"
-msgstr ""
+msgstr "Prossima proprietà"
 
 #: lib/objects/functions.php:450
 msgid "s_object:similar_label"
-msgstr ""
+msgstr "Trova proprietà simili nella stessa area"
 
 #: lib/objects/functions.php:182
 msgid "s_object:rent:long-term_rent:"
-msgstr ""
+msgstr "Affitto a lungo termine, costo mensile"
 
 #: lib/objects/functions.php:184 lib/objects/functions.php:200
 #: lib/objects/functions.php:206 lib/objects/functions.php:212
@@ -260,44 +258,44 @@ msgstr ""
 #: page-object.php:298 page-object.php:304 page-object.php:310
 #: page-object.php:316 page-object.php:322 page-sharer-rent.php:44
 msgid "s_object:rent:on_request"
-msgstr ""
+msgstr "su richiesta"
 
 #: lib/objects/functions.php:193 lib/objects/functions.php:196
 #: lib/objects/functions.php:295 lib/objects/functions.php:298
 #: page-object.php:183 page-object.php:186 page-object.php:285
 #: page-object.php:288
 msgid "s_object:rent:vat"
-msgstr ""
+msgstr "IVA"
 
 #: lib/objects/functions.php:193 lib/objects/functions.php:295
 #: page-object.php:183 page-object.php:285
 msgid "s_object:rent:not_included"
-msgstr ""
+msgstr "non è inclusa"
 
 #: lib/objects/functions.php:196 lib/objects/functions.php:298
 #: page-object.php:186 page-object.php:288
 msgid "s_object:rent:included"
-msgstr ""
+msgstr "è inclusa"
 
 #: lib/objects/functions.php:198 lib/objects/functions.php:300
 #: page-object.php:188 page-object.php:290
 msgid "s_object:rent:deposit"
-msgstr ""
+msgstr "deposito"
 
 #: lib/objects/functions.php:216 lib/objects/functions.php:318
 #: page-object.php:206 page-object.php:308
 msgid "s_object:rent:commission"
-msgstr ""
+msgstr "commissione"
 
 #: lib/objects/functions.php:237 page-object.php:228
 msgid "s_object:rent:rent_short_title"
-msgstr ""
+msgstr "Affitto a breve termine, costo giornaliero,"
 
 #: lib/objects/functions.php:240 lib/objects/functions.php:258
 #: lib/objects/functions.php:275 page-object.php:231 page-object.php:248
 #: page-object.php:265
 msgid "s_object:rent:min_stay"
-msgstr ""
+msgstr "soggiorno min."
 
 #: lib/objects/functions.php:242 lib/objects/functions.php:243
 #: lib/objects/functions.php:244 lib/objects/functions.php:260
@@ -307,14 +305,14 @@ msgstr ""
 #: page-sharer-rent.php:47 page-sharer-rent.php:57 page-sharer-rent.php:65
 #: templates/filter-rent.php:104
 msgid "s_object:rent:day"
-msgstr ""
+msgstr "giorno"
 
 #: lib/objects/functions.php:248 lib/objects/functions.php:264
 #: lib/objects/functions.php:281 lib/objects/functions.php:524
 #: page-object.php:237 page-object.php:254 page-object.php:271
 #: page-sharer-rent.php:49
 msgid "s_object:rent:week"
-msgstr ""
+msgstr "settimana"
 
 #: lib/objects/functions.php:252 lib/objects/functions.php:268
 #: lib/objects/functions.php:285 lib/objects/functions.php:526
@@ -323,131 +321,131 @@ msgstr ""
 #: page-sharer-rent.php:51 page-sharer-rent.php:59 page-sharer-rent.php:63
 #: templates/filter-rent.php:105
 msgid "s_object:rent:month"
-msgstr ""
+msgstr "mese"
 
 #: lib/objects/functions.php:241 page-object.php:232
 msgid "s_object:rent:low_season"
-msgstr ""
+msgstr "bassa stagione"
 
 #: lib/objects/functions.php:259 page-object.php:249
 msgid "s_object:rent:medium_season"
-msgstr ""
+msgstr "media stagione"
 
 #: lib/objects/functions.php:276 page-object.php:266
 msgid "s_object:rent:hight_season"
-msgstr ""
+msgstr "alta stagione"
 
 #: lib/objects/functions.php:390 page-object.php:381
 msgid "s_object:rent:max_persons"
-msgstr ""
+msgstr "num. max persone"
 
 #: lib/objects/functions.php:627 page-sharer-rent.php:97
 msgid "s_object:rent:min_stay_full"
-msgstr ""
+msgstr "Soggiorno minimo"
 
 #: templates/form-contact.php:6
 msgid "form:title_default"
-msgstr ""
+msgstr "Contattaci se hai domande, se hai bisogno di ulteriori informazioni o assistenza nello scegliere una proprietà"
 
 #: templates/form-contact.php:13 templates/form-offmarket.php:13
 #: templates/form-request.php:14
 msgid "form:first_name"
-msgstr ""
+msgstr "Inserisci il tuo nome"
 
 #: templates/form-contact.php:17 templates/form-offmarket.php:17
 #: templates/form-request.php:18
 msgid "form:last_name"
-msgstr ""
+msgstr "e il tuo cognome"
 
 #: templates/form-contact.php:24 templates/form-offmarket.php:24
 #: templates/form-request.php:25
 msgid "form:how_can_reach"
-msgstr ""
+msgstr "Come contattarti?"
 
 #: templates/form-contact.php:27 templates/form-offmarket.php:28
 #: templates/form-request.php:28
 msgid "form:your_phone"
-msgstr ""
+msgstr "il tuo telefono"
 
 #: templates/form-contact.php:34 templates/form-offmarket.php:36
 #: templates/form-request.php:35
 msgid "form:your_email"
-msgstr ""
+msgstr "la tua email"
 
 #: templates/form-contact.php:38 templates/form-offmarket.php:40
 #: templates/form-request.php:39
 msgid "form:your_skype"
-msgstr ""
+msgstr "il tuo nome Skype"
 
 #: templates/form-contact.php:44 templates/form-offmarket.php:46
 #: templates/form-request.php:45
 msgid "form:have_questions"
-msgstr ""
+msgstr "Hai domande o commenti?"
 
 #: templates/form-contact.php:50 templates/form-offmarket.php:52
 #: templates/form-request.php:51
 msgid "form:send"
-msgstr ""
+msgstr "Invia richieste"
 
 #: templates/form-contact.php:53 templates/form-offmarket.php:55
 #: templates/form-request.php:54
 msgid "form:disclaimer_note"
-msgstr ""
+msgstr "I hereby agree and authorize LPW to disclose my personal information collected on this form to the property developers and / or sale agents who have signed a Marketing services agreement with LPW in respect to requested properties. Maggiori informazioni sulla nostra"
 
 #: templates/form-contact.php:53 templates/form-offmarket.php:55
 #: templates/form-request.php:54
 msgid "form:privacy_policy"
-msgstr ""
+msgstr "Informativa sulla Privacy"
 
 #: templates/form-offmarket.php:6
 msgid "form:title_off_market"
-msgstr ""
+msgstr "Abbiamo bisogno dei tuoi dettagli di contatto per darti le informazioni sulle proprietà Fuori-Mercato"
 
 #: templates/form-request.php:7
 msgid "form:title_single"
-msgstr ""
+msgstr "Puoi ricevere le informazioni dettagliate sulla proprietà, ulteriori foto, piani e prezzi o puoi organizzare una visita"
 
 #: templates/search-panel.php:9
 msgid "alerts:advanced_search"
-msgstr ""
+msgstr "Ricerca avanzata"
 
 #: templates/search-panel.php:19
 msgid "alerts:favorite_properties"
-msgstr ""
+msgstr "Proprietà preferite"
 
 #: templates/search-panel.php:20
 msgid "alerts:offmarket_properties"
-msgstr ""
+msgstr "Proprietà Fuori-Mercato"
 
 #: templates/search-panel.php:26
 msgid "alerts:offmarket_found:text"
-msgstr ""
+msgstr "Abbiamo trovato delle proprietà Fuori-Mercato che potrebbe combaciare con i tuoi criteri di ricerca."
 
 #: templates/search-panel.php:26
 msgid "alerts:offmarket_found:link"
-msgstr ""
+msgstr "Richiedi informazioni"
 
 #: lib/extras.php:81 templates/search-panel.php:18
 msgid "alerts:show_map_tooltip"
-msgstr ""
+msgstr "Mostra la mappa"
 
 #: templates/favorites-bar.php:18
 msgid "favorites:facebook_message"
-msgstr ""
+msgstr "La selezione delle proprietà gestite da Le Proprietà Principali al Mondo. Le migliori proprietà selezionate a mano con bellissime fotografie. Vuoi vedere le proprietà selezionate proprio per te? Visita il nostro sito web e avrai le tue raccomandazioni personali oggi."
 
 #: page-favorites-rent.php:14 page-favorites.php:14
 msgid "favorites:title"
-msgstr ""
+msgstr "The Leading Properties of The World"
 
 #: page-favorites-rent.php:36 page-favorites.php:36
 msgid "favorites:delete_alert"
-msgstr ""
+msgstr "Sei sicuro di volere rimuovere tutte le proprietà dai preferiti?"
 
 msgid "favorites:delete_y"
-msgstr ""
+msgstr "Sì, rimuovile"
 
 msgid "favorites:delete_n"
-msgstr ""
+msgstr "No"
 
 #. Theme Name of the plugin/theme
 #. Author of the plugin/theme
