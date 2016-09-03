@@ -55,13 +55,7 @@
     }
     .price-onrequest {
       line-height: 20px;
-      text-transform: none;
-      font-size: 16px;
-      letter-spacing: normal;
-      font-weight: 400;
-      &:first-letter{
-        text-transform: capitalize;
-      }
+      letter-spacing: 1px;
     }
     .price-num {
       font-size: 16px;
