@@ -33,7 +33,7 @@ function single_object_html($args) {
 	$html .= '<div class="single-object-wrap">';
 	$html .= '<div class="detailed-link-wrap">';
 	$html .= '<a href="#" class="btn btn-green btn-detailed-link" data-toggle="modal" data-target=".single-object-request" data-type="single_property" data-object-type="' . $object_type . '" data-id="' . $objects_obj->id . '" data-code="' . $objects_obj->code . '">';
-	$html .= '<span>' . __('Get detailed information', 'leadingprops') . '</span>';
+	$html .= '<span>' . __('s_object:header:detailed_info', 'leadingprops') . '</span>';
 	$html .= '</a>';
 	$html .= '</div>';
 	$html .= '<button type="button" class="btn btn-single-close">Close</button>';
@@ -106,7 +106,7 @@ function single_object_html($args) {
 		$html .= '</ul><!-- /single-object-locations -->';
 		$html .= '<h1 class="single-object-title">';
 				if($objects_obj->sold_state) {
-					$html .= '<span class="object-sold">' . __('sold', 'leadingprops') . '</span> ';
+					$html .= '<span class="object-sold">' . __('s_object:sold', 'leadingprops') . '</span> ';
 				}
 		$html .=  $object_title . '</h1>';
 				 /* Rent info */
@@ -163,7 +163,7 @@ function single_object_html($args) {
 					$html .= '<div class="single-object-info">';
 					$html .= '<p class="object-price icon">';
 							if($objects_obj->parameters->price->on_demand) {
-								$html .= __('Price on demand', 'leadindprops');
+								$html .= __('s_object:on_demand', 'leadingprops');
 							} else {
 								if($objects_obj->parameters->price->min) {
 									$html .= number_format($objects_obj->parameters->price->min, 0, ".", " ");
@@ -179,9 +179,9 @@ function single_object_html($args) {
 					elseif($object_type === 'rent') :
 					$html .= '<div class="rent-rate">';
 						 if($objects_obj->property_rent->long_rent) {
-							$html .= '<p class="icon icon-month">' . __('Long term rental', 'leadingprops') . ', ' . __('monthly rate', 'leadingprops') . ': ';
+							$html .= '<p class="icon icon-month">' . __('s_object:rent:long-term_rent:', 'leadingprops') . ': ';
 							if($objects_obj->property_rent->rent_long->on_demand) {
-								$html .= __('on request', 'leadingprops') . '*';
+								$html .= __('s_object:rent:on_request', 'leadingprops') . '*';
 							} elseif($objects_obj->property_rent->rent_long->monthly_rate) {
 								$html .= number_format($objects_obj->property_rent->rent_long->monthly_rate, 0, ".", " ") . '&nbsp;' . $objects_obj->property_rent->rent_long->currency_code . '*';
 							}
@@ -190,99 +190,99 @@ function single_object_html($args) {
 							 $html .= '<p class="footnote">* ';
 							if($objects_obj->property_rent->rent_long->vat_in_price === false) {
 								if($objects_obj->property_rent->rent_long->vat) {
-									$html .= __('VAT', 'leadingprops') . ' ' . $objects_obj->property_rent->rent_long->vat . '% ' . __('is not included') . '; ';
+									$html .= __('s_object:rent:vat', 'leadingprops') . ' ' . $objects_obj->property_rent->rent_long->vat . '% ' . __('s_object:rent:not_included') . '; ';
 								}
 							} else {
-								$html .= __('VAT is included', 'leadingprops') . '; ';
+								$html .= __('s_object:rent:vat', 'leadingprops') . __('s_object:rent:included', 'leadingprops') . '; ';
 							}
-							$html .= __('deposit', 'leadingprops') . ': ';
+							$html .= __('s_object:rent:deposit', 'leadingprops') . ': ';
 							if($objects_obj->property_rent->rent_long->deposit_on_demand === true) {
-								$html .= __('on request', 'leadingprops') . '; ';
+								$html .= __('s_object:rent:on_request', 'leadingprops') . '; ';
 							} else {
 								if($objects_obj->property_rent->rent_long->deposit_type === 1) {
 									if($objects_obj->property_rent->rent_long->deposit) {
 										$html .= $objects_obj->property_rent->rent_long->deposit . '%; ';
 									} else {
-										$html .= __('on request', 'leadingprops') . '; ';
+										$html .= __('s_object:rent:on_request', 'leadingprops') . '; ';
 									}
 								} else {
 									if($objects_obj->property_rent->rent_long->deposit) {
 										$html .= number_format($objects_obj->property_rent->rent_long->deposit, 0, ".", " ") . '&nbsp;' . $objects_obj->property_rent->rent_long->currency_code . '; ';
 									} else {
-										$html .= __('on request', 'leadingprops') . '; ';
+										$html .= __('s_object:rent:on_request', 'leadingprops') . '; ';
 									}
 								}
 							}
-							$html .= __('commission', 'leadingprops') . ': ';
+							$html .= __('s_object:rent:commission', 'leadingprops') . ': ';
 							if($objects_obj->property_rent->rent_long->commission_on_demand === true) {
-								$html .= __('on request', 'leadingprops') . '; ';
+								$html .= __('s_object:rent:on_request', 'leadingprops') . '; ';
 							} else {
 								if($objects_obj->property_rent->rent_long->commission_type === 1) {
 									if($objects_obj->property_rent->rent_long->commission) {
 										$html .= $objects_obj->property_rent->rent_long->commission . '%; ';
 									} else {
-										$html .= __('on request', 'leadingprops') . '; ';
+										$html .= __('s_object:rent:on_request', 'leadingprops') . '; ';
 									}
 								} else {
 									if($objects_obj->property_rent->rent_long->commission) {
 										$html .= number_format($objects_obj->property_rent->rent_long->commission, 0, ".", " ") . '&nbsp;' . $objects_obj->property_rent->rent_long->currency_code . '; ';
 									} else {
-										$html .= __('on request', 'leadingprops') . '; ';
+										$html .= __('s_object:rent:on_request', 'leadingprops') . '; ';
 									}
 								}
 							}
 							$html .= '</p>';
 						}
 						 if($objects_obj->property_rent->short_rent === true) {
-							$html .= '<p class="icon icon-day">' . __('Short term rental', 'leadingprops') . ', ' . __('daily rate', 'leadingprops') . ', ' . $objects_obj->property_rent->rent_short->currency_code . '*</p>';
+							$html .= '<p class="icon icon-day">' . __('s_object:rent:rent_short_title', 'leadingprops') . ', ' . $objects_obj->property_rent->rent_short->currency_code . '*</p>';
 							$html .= '<div class="rent-price-wrap">';
 							$html .= '<ul class="rent-price-list">';
-							$html .= '<li class="heading">' . __('min. stay', 'leadingprops') . '</li>';
-							$html .= '<li class="heading">' . __('low season', 'leadingprops') . '</li>';
-							$html .= '<li>1 ' .__('day', 'leadingprops') . '</li>';
-							$html .= '<li>1 ' .__('day', 'leadingprops') . '</li>';
-							$html .= '<li>1 ' .__('day', 'leadingprops') . '</li>';
+							$html .= '<li class="heading">' . __('s_object:rent:min_stay', 'leadingprops') . '</li>';
+							$html .= '<li class="heading">' . __('s_object:rent:low_season', 'leadingprops') . '</li>';
+							$html .= '<li>1 ' .__('s_object:rent:day', 'leadingprops') . '</li>';
+							$html .= '<li>1 ' .__('s_object:rent:day', 'leadingprops') . '</li>';
+							$html .= '<li>1 ' .__('s_object:rent:day', 'leadingprops') . '</li>';
 							$html .= '<li>';
 							$html .= ($objects_obj->property_rent->rent_short->ls_daily_rate) ? number_format($objects_obj->property_rent->rent_short->ls_daily_rate, 0, ".", " ")  : '&mdash;';
 							$html .= '</li>';
-							$html .= '<li>1 ' . __('week', 'leadingprops') . '</li>';
+							$html .= '<li>1 ' . __('s_object:rent:week', 'leadingprops') . '</li>';
 							$html .= '<li>';
 							$html .= ($objects_obj->property_rent->rent_short->ls_weekly_rate) ? number_format($objects_obj->property_rent->rent_short->ls_weekly_rate, 0, ".", " ")  : '&mdash;';
 							$html .= '</li>';
-							$html .= '<li>1 ' . __('month', 'leadingprops') . '</li>';
+							$html .= '<li>1 ' . __('s_object:rent:month', 'leadingprops') . '</li>';
 							$html .= '<li>';
 							$html .= ($objects_obj->property_rent->rent_short->ls_monthly_rate) ? number_format($objects_obj->property_rent->rent_short->ls_monthly_rate, 0, ".", " ")  : '&mdash;';
 							$html .= '</li>';
 							$html .= '</ul>';
 							$html .= '<ul class="rent-price-list">';
-							$html .= '<li class="heading hidden-760">' . __('min. stay', 'leadingprops') . '</li>';
-							$html .= '<li class="heading">' . __('medium season', 'leadingprops') . '</li>';
-							$html .= '<li class="hidden-760">1 ' .__('day', 'leadingprops') . '</li>';
+							$html .= '<li class="heading hidden-760">' . __('s_object:rent:min_stay', 'leadingprops') . '</li>';
+							$html .= '<li class="heading">' . __('s_object:rent:medium_season', 'leadingprops') . '</li>';
+							$html .= '<li class="hidden-760">1 ' .__('s_object:rent:day', 'leadingprops') . '</li>';
 							$html .= '<li>';
 							$html .= ($objects_obj->property_rent->rent_short->ms_daily_rate) ? number_format($objects_obj->property_rent->rent_short->ms_daily_rate, 0, ".", " ")  : '&mdash;';
 							$html .= '</li>';
-							$html .= '<li class="hidden-760">1 ' . __('week', 'leadingprops') . '</li>';
+							$html .= '<li class="hidden-760">1 ' . __('s_object:rent:week', 'leadingprops') . '</li>';
 							$html .= '<li>';
 							$html .= ($objects_obj->property_rent->rent_short->ms_weekly_rate) ? number_format($objects_obj->property_rent->rent_short->ms_weekly_rate, 0, ".", " ")  : '&mdash;';
 							$html .= '</li>';
-							$html .= '<li class="hidden-760">1 ' . __('month', 'leadingprops') . '</li>';
+							$html .= '<li class="hidden-760">1 ' . __('s_object:rent:month', 'leadingprops') . '</li>';
 							$html .= '<li>';
 							$html .= ($objects_obj->property_rent->rent_short->ms_monthly_rate) ? number_format($objects_obj->property_rent->rent_short->ms_monthly_rate, 0, ".", " ") : '&mdash;';
 							$html .= '</li>';
 							$html .= '</ul>';
 
 							$html .=  '<ul class="rent-price-list">';
-							$html .= '<li class="heading hidden-760">' . __('min. stay', 'leadingprops') . '</li>';
-							$html .= '<li class="heading">' . __('hight season', 'leadingprops') . '</li>';
-							$html .= '<li class="hidden-760">1 ' .__('day', 'leadingprops') . '</li>';
+							$html .= '<li class="heading hidden-760">' . __('s_object:rent:min_stay', 'leadingprops') . '</li>';
+							$html .= '<li class="heading">' . __('s_object:rent:hight_season', 'leadingprops') . '</li>';
+							$html .= '<li class="hidden-760">1 ' .__('s_object:rent:day', 'leadingprops') . '</li>';
 							$html .= '<li>';
 							$html .= ($objects_obj->property_rent->rent_short->hs_daily_rate) ? number_format($objects_obj->property_rent->rent_short->hs_daily_rate, 0, ".", " ")  : '&mdash;';
 							$html .= '</li>';
-							$html .= '<li class="hidden-760">1 ' . __('week', 'leadingprops') . '</li>';
+							$html .= '<li class="hidden-760">1 ' . __('s_object:rent:week', 'leadingprops') . '</li>';
 							$html .= '<li>';
 							$html .= ($objects_obj->property_rent->rent_short->hs_weekly_rate) ? number_format($objects_obj->property_rent->rent_short->hs_weekly_rate, 0, ".", " ")  : '&mdash;';
 							$html .= '</li>';
-							$html .= '<li class="hidden-760">1 ' . __('month', 'leadingprops') . '</li>';
+							$html .= '<li class="hidden-760">1 ' . __('s_object:rent:month', 'leadingprops') . '</li>';
 							$html .= '<li>';
 							$html .= ($objects_obj->property_rent->rent_short->hs_monthly_rate) ? number_format($objects_obj->property_rent->rent_short->hs_monthly_rate, 0, ".", " ")  : '&mdash;';
 							$html .= '</li>';
@@ -292,44 +292,44 @@ function single_object_html($args) {
 							$html .= '<p class="footnote">* ';
 							if($objects_obj->property_rent->rent_short->vat_in_price === false) {
 								if($objects_obj->property_rent->rent_short->vat) {
-									$html .= __('VAT', 'leadingprops') . ' ' . $objects_obj->property_rent->rent_short->vat . '% ' . __('is not included') . '; ';
+									$html .= __('s_object:rent:vat', 'leadingprops') . ' ' . $objects_obj->property_rent->rent_short->vat . '% ' . __('s_object:rent:not_included', 'leadingprops') . '; ';
 								}
 							} else {
-								$html .= __('VAT is included', 'leadingprops') . '; ';
+								$html .= __('s_object:rent:vat', 'leadingprops') . __('s_object:rent:included', 'leadingprops') . '; ';
 							}
-							$html .= __('deposit', 'leadingprops') . ': ';
+							$html .= __('s_object:rent:deposit', 'leadingprops') . ': ';
 							if($objects_obj->property_rent->rent_short->deposit_on_demand === true) {
-								$html .= __('on request', 'leadingprops') . '; ';
+								$html .= __('s_object:rent:on_request', 'leadingprops') . '; ';
 							} else {
 								if($objects_obj->property_rent->rent_short->deposit_type === 1) {
 									if($objects_obj->property_rent->rent_short->deposit) {
 										$html .= $objects_obj->property_rent->rent_short->deposit . '%; ';
 									} else {
-										$html .= __('on request', 'leadingprops') . '; ';
+										$html .= __('s_object:rent:on_request', 'leadingprops') . '; ';
 									}
 								} else {
 									if($objects_obj->property_rent->rent_short->deposit) {
 										$html .= $objects_obj->property_rent->rent_short->deposit . '&nbsp;' . $objects_obj->property_rent->rent_short->currency_code . '; ';
 									} else {
-										$html .= __('on request', 'leadingprops') . '; ';
+										$html .= __('s_object:rent:on_request', 'leadingprops') . '; ';
 									}
 								}
 							}
-							$html .= __('commission', 'leadingprops') . ': ';
+							$html .= __('s_object:rent:commission', 'leadingprops') . ': ';
 							if($objects_obj->property_rent->rent_short->commission_on_demand === true) {
-								$html .= __('on request', 'leadingprops') . '; ';
+								$html .= __('s_object:rent:on_request', 'leadingprops') . '; ';
 							} else {
 								if($objects_obj->property_rent->rent_short->commission_type === 1) {
 									if($objects_obj->property_rent->rent_short->commission) {
 										$html .= $objects_obj->property_rent->rent_short->commission . '%; ';
 									} else {
-										$html .= __('on request', 'leadingprops') . '; ';
+										$html .= __('s_object:rent:on_request', 'leadingprops') . '; ';
 									}
 								} else {
 									if($objects_obj->property_rent->rent_short->commission) {
 										$html .= $objects_obj->property_rent->rent_short->commission . '&nbsp;' . $objects_obj->property_rent->rent_short->currency_code . '; ';
 									} else {
-										$html .= __('on request', 'leadingprops') . '; ';
+										$html .= __('s_object:rent:on_request', 'leadingprops') . '; ';
 									}
 								}
 							}
@@ -339,10 +339,10 @@ function single_object_html($args) {
 				 endif;
 
 				$html .= '<ul class="object-properties">';
-				$html .= '<li>' . __('property type', 'leadingprops') . '</li>';
+				$html .= '<li>' . __('s_object:property_type', 'leadingprops') . '</li>';
 				$html .= '<li>' . $objects_obj->parameters->property_object_type . '</li>';
 				if($objects_obj->parameters->rooms->min || $objects_obj->parameters->rooms->max) {
-					$html .= '<li>' . __('number of rooms', 'leadingprops') . '</li>';
+					$html .= '<li>' . __('s_object:number_of_rooms', 'leadingprops') . '</li>';
 					$html .= '<li>';
 					if($objects_obj->parameters->rooms->min) {
 						$html .= $objects_obj->parameters->rooms->min;
@@ -353,7 +353,7 @@ function single_object_html($args) {
 					$html .= '</li>';
 				}
 				if($objects_obj->parameters->area->min || $objects_obj->parameters->area->max) {
-					$html .= '<li>' . __('area, m', 'leadingprops') . ' <sup>2</sup></li>';
+					$html .= '<li>' . __('s_object:area_sq_m', 'leadingprops') . '</li>';
 					$html .= '<li>';
 					if($objects_obj->parameters->area->min) {
 						$html .= $objects_obj->parameters->area->min;
@@ -364,7 +364,7 @@ function single_object_html($args) {
 					$html .= '</li>';
 				}
 				if($objects_obj->features->bedrooms->min || $objects_obj->features->bedrooms->max) {
-					$html .= '<li>' . __('bedrooms', 'leadingprops') . '</li>';
+					$html .= '<li>' . __('s_object:bedrooms', 'leadingprops') . '</li>';
 					$html .= '<li>';
 					if($objects_obj->features->bedrooms->min) {
 						$html .= $objects_obj->features->bedrooms->min;
@@ -375,7 +375,7 @@ function single_object_html($args) {
 					$html .= '</li>';
 				}
 				if($objects_obj->features->bathrooms->min || $objects_obj->features->bathrooms->max) {
-					$html .= '<li>' . __('bedrooms', 'leadingprops') . '</li>';
+					$html .= '<li>' . __('s_object:bathrooms', 'leadingprops') . '</li>';
 					$html .= '<li>';
 					if($objects_obj->features->bathrooms->min) {
 						$html .= $objects_obj->features->bathrooms->min;
@@ -387,11 +387,11 @@ function single_object_html($args) {
 				}
 				if($object_type === 'rent') {
 					if($objects_obj->property_rent->persons_max) {
-						$html .= '<li>' . __('max. persons', 'leadingprops') . '</li><li>' . $objects_obj->property_rent->persons_max .  '</i></li>';
+						$html .= '<li>' . __('s_object:rent:max_persons', 'leadingprops') . '</li><li>' . $objects_obj->property_rent->persons_max .  '</i></li>';
 					}
 				}
 				if($objects_obj->features->land_area->min || $objects_obj->features->land_area->max) {
-					$html .= '<li>' . __('land area', 'leadingprops') . '</li>';
+					$html .= '<li>' . __('s_object:land_area', 'leadingprops') . '</li>';
 					$html .= '<li>';
 					if($objects_obj->features->land_area->min) {
 						$html .= $objects_obj->features->land_area->min;
@@ -402,7 +402,7 @@ function single_object_html($args) {
 					$html .= '</li>';
 				}
 				if($objects_obj->features->building_storeys && ($objects_obj->features->building_storeys->min || $objects_obj->features->building_storeys->max)) {
-					$html .= '<li>' . __('building storeys', 'leadingprops') . '</li>';
+					$html .= '<li>' . __('s_object:building_storeys', 'leadingprops') . '</li>';
 					$html .= '<li>';
 					if($objects_obj->features->building_storeys->min) {
 						$html .= $objects_obj->features->building_storeys->min;
@@ -413,23 +413,23 @@ function single_object_html($args) {
 					$html .= '</li>';
 				}
 				if(isset($objects_obj->features->terrace_balcony->present) && $objects_obj->features->terrace_balcony->present === true) {
-					$html .= '<li>' . __('terrace/balcony', 'leadingprops') . '</li><li><i class="icon icon-checkmark-circle"></i></li>';
+					$html .= '<li>' . __('s_object:terrace_balcony', 'leadingprops') . '</li><li><i class="icon icon-checkmark-circle"></i></li>';
 				}
 				if(isset($objects_obj->features->pool->present) && $objects_obj->features->pool->present === true) {
-					$html .= '<li>' . __('pool', 'leadingprops') . '</li><li><i class="icon icon-checkmark-circle"></i></li>';
+					$html .= '<li>' . __('s_object:pool', 'leadingprops') . '</li><li><i class="icon icon-checkmark-circle"></i></li>';
 				}
 				if(isset($objects_obj->features->garage_parking->present) && $objects_obj->features->garage_parking->present === true) {
-					$html .= '<li>' . __('parking/garage', 'leadingprops') . '</li><li><i class="icon icon-checkmark-circle"></i></li>';
+					$html .= '<li>' . __('s_object:garage_parking', 'leadingprops') . '</li><li><i class="icon icon-checkmark-circle"></i></li>';
 				}
 				if(isset($objects_obj->features->utility_rooms->present) && $objects_obj->features->utility_rooms->present === true) {
-					$html .= '<li>' . __('cellars', 'leadingprops') . '</li><li><i class="icon icon-checkmark-circle"></i></li>';
+					$html .= '<li>' . __('s_object:utility_rooms', 'leadingprops') . '</li><li><i class="icon icon-checkmark-circle"></i></li>';
 				}
 				if($object_type === 'rent') {
 					if($objects_obj->property_rent->child_friendly === true) {
-						$html .= '<li>' . __('child friendly', 'leadingprops') . '</li><li><i class="icon icon-checkmark-circle"></i></li>';
+						$html .= '<li>' . __('search_panel:child_friendly', 'leadingprops') . '</li><li><i class="icon icon-checkmark-circle"></i></li>';
 					}
 					if($objects_obj->property_rent->pets_allowed === true) {
-						$html .= '<li>' . __('pets allowed', 'leadingprops') . '</li><li><i class="icon icon-checkmark-circle"></i></li>';
+						$html .= '<li>' . __('search_panel:pets_allowed', 'leadingprops') . '</li><li><i class="icon icon-checkmark-circle"></i></li>';
 					}
 				}
 		$html .= '</ul><!-- /.object-properties -->';
@@ -437,17 +437,17 @@ function single_object_html($args) {
 		$html .= '</div><!-- /.single-object-content-inner -->';
 		$html .= '<div class="object-navigation">';
 		$html .= '<div class="object-prev">';
-		$html .= '<a class="icon open-object-modal"><span class="direction-text">' . __('Previous property', 'leadingprops') . '</span></a>';
+		$html .= '<a class="icon open-object-modal"><span class="direction-text">' . __('s_object:prev', 'leadingprops') . '</span></a>';
 		$html .= '</div>';
 		$html .= '<div class="object-next">';
-		$html .= '<a class="icon open-object-modal"><span class="direction-text">' . __('Next property', 'leadingprops') . '</span></a>';
+		$html .= '<a class="icon open-object-modal"><span class="direction-text">' . __('s_object:next', 'leadingprops') . '</span></a>';
 		$html .= '</div>';
 		$html .= '</div><!-- /.object-navigation -->';
 		$html .= '</div><!-- /.single-object-content -->';
 		$html .= '<div class="similar-object-search">';
 		$html .= '<div class="similar-search-container">';
 		$html .= '<i class="icon icon-radar"></i>';
-		$html .= '<p>' . __('Find similar properties in the same area', 'leadingprops') . '</p>';
+		$html .= '<p>' . __('s_object:similar_label', 'leadingprops') . '</p>';
 		$html .= '<ul class="similar-locations">';
 		$html .= '<li><a href="' . $list_url . urlencode('{"location_point":{"lat":' . $objects_obj->location->lat . ' ,"lon":' . $objects_obj->location->lon . ',"radius":1},"similar":{"code":"' . $objects_obj->code . '"}}') . '">1 km</a></li>';
 		$html .= '<li><a href="' . $list_url . urlencode('{"location_point":{"lat":' . $objects_obj->location->lat . ' ,"lon":' . $objects_obj->location->lon . ',"radius":5},"similar":{"code":"' . $objects_obj->code . '"}}') . '">5 km</a></li>';
@@ -457,7 +457,7 @@ function single_object_html($args) {
 		$html .= '</div><!-- /.similar-object-search -->';
 		$html .= '<footer class="single-object-footer">';
 		$html .= '<a href="#" class="btn btn-green btn-detailed-link" data-toggle="modal" data-target=".single-object-request" data-type="single_property" data-object-type="' . $object_type . '" data-id="' . $objects_obj->id . '" data-code="' . $objects_obj->code . '">';
-		$html .= '<span>' . __('Get detailed information', 'leadingprops') . '</span>';
+		$html .= '<span>' . __('s_object:header:detailed_info', 'leadingprops') . '</span>';
 		$html .= '</a>';
 		$html .= '</footer>';
 		$html .= '<div class="single-object-backdrop"></div>';
@@ -516,31 +516,31 @@ function get_object_list($args) {
 				$object_class = ' rent-item';
 
 				if($object->property_rent->long_rent === true && $object->property_rent->short_rent === false) {
-					$minStay = __('on request', 'leadingprops');
+					$minStay = __('s_object:rent:on_request', 'leadingprops');
 				} elseif( $object->property_rent->short_rent === true ) {
 					if ( $object->property_rent->rent_short->min_day === true ) {
-						$minStay = '1 ' . __('day', 'leadingprops');
+						$minStay = '1 ' . __('s_object:rent:day', 'leadingprops');
 					} elseif ( $object->property_rent->rent_short->min_week === true ) {
-						$minStay = '1 ' . __('week', 'leadingprops');
+						$minStay = '1 ' . __('s_object:rent:week', 'leadingprops');
 					} else {
-						$minStay = '1 ' . __('month', 'leadingprops');
+						$minStay = '1 ' . __('s_object:rent:month', 'leadingprops');
 					}
 				}
 
 				if( $object->property_rent->short_rent === true ) {
 					if($object->property_rent->rent_short->sort_price->day) {
-						$rentPrice = '<span class="price-num">' . number_format( $object->property_rent->rent_short->sort_price->day, 0, ".", " " ) . ' </span>' . $object->property_rent->rent_short->sort_price->currency_code . '&nbsp;/&nbsp;' . __( 'day', 'leadingprops' );
+                        $rent_price = '<span class="price-num">' . number_format( $object->property_rent->rent_short->sort_price->day, 0, ".", " " ) . ' </span>' . $object->property_rent->rent_short->sort_price->currency_code . '&nbsp;/&nbsp;' . __( 's_object:rent:day', 'leadingprops' );
 					} elseif ( $object->roperty_rent->rent_short->sort_price->month ) {
-						$rentPrice = '<span class="price-num">' . number_format( $object->property_rent->rent_short->sort_price->month, 0, ".", " " ) . ' </span>' . $object->property_rent->rent_short->sort_price->currency_code . '&nbsp;/&nbsp;' . __( 'month', 'leadingprops' );
+                        $rent_price = '<span class="price-num">' . number_format( $object->property_rent->rent_short->sort_price->month, 0, ".", " " ) . ' </span>' . $object->property_rent->rent_short->sort_price->currency_code . '&nbsp;/&nbsp;' . __( 's_object:rent:month', 'leadingprops' );
 					}
 				} elseif( $object->property_rent->long_rent === true ) {
 					if($object->property_rent->rent_long->on_demand === true) {
-						$rent_price = '<span class="price-onrequest">' . __('On request', 'leadingprops') . '</span>';
+						$rent_price = '<span class="price-onrequest">' . __('s_object:rent:on_request', 'leadingprops') . '</span>';
 					} else {
 						if($object->property_rent->rent_long->sort_price->month) {
-							$rentPrice = '<span class="price-num">' . number_format( $object->property_rent->rent_long->sort_price->month, 0, ".", " " ) .  ' </span>' . $object->property_rent->rent_long->sort_price->currency_code . '&nbsp;/&nbsp;' . __( 'month', 'leadingprops' );
+                            $rent_price = '<span class="price-num">' . number_format( $object->property_rent->rent_long->sort_price->month, 0, ".", " " ) .  ' </span>' . $object->property_rent->rent_long->sort_price->currency_code . '&nbsp;/&nbsp;' . __( 's_object:rent:month', 'leadingprops' );
 						} elseif($object->property_rent->rent_long->sort_price->day) {
-							$rentPrice = '<span class="price-num">' . number_format( $object->property_rent->rent_long->sort_price->day, 0, ".", " " ) . ' </span>' . $object->property_rent->rent_long->sort_price->currency_code . '&nbsp;/&nbsp;' . __( 'day', 'leadingprops' );
+                            $rent_price = '<span class="price-num">' . number_format( $object->property_rent->rent_long->sort_price->day, 0, ".", " " ) . ' </span>' . $object->property_rent->rent_long->sort_price->currency_code . '&nbsp;/&nbsp;' . __( 's_object:rent:day', 'leadingprops' );
 						}
 					}
 				}
@@ -586,7 +586,7 @@ function get_object_list($args) {
 			if( $category === 'sale') {
 				$html .= '<p class="info-details"><span>';
 				if ($object->parameters->price->on_demand === true) {
-					$html .= '<span>' . __('Price on demand', 'leadingprops') . '</span>&nbsp;';
+					$html .= '<span>' . __('s_object:on_demand', 'leadingprops') . '</span>&nbsp;';
 				} else {
 				     if ($object->parameters->price->min) {
 							$html .= '<span>' . number_format($object->parameters->price->min, 0, ".", " ") . '</span>';
@@ -607,7 +607,7 @@ function get_object_list($args) {
 					$html .= '&nbsp;&ndash;&nbsp;<span>' . $object->parameters->rooms->max . '</span>';
 				 }
 				if ($object->parameters->rooms->min || $object->parameters->rooms->max) {
-					$html .= '&nbsp;' . __('Rooms', 'leadingprops');
+					$html .= '&nbsp;' . __('s_object:rooms', 'leadingprops');
 				}
 				if ($object->parameters->area->min || $object->parameters->area->max) {
 					$html .= ',&nbsp;';
@@ -624,10 +624,10 @@ function get_object_list($args) {
 				$html .= '</p>';
 
 			} elseif( $category === 'rent' ) {
-				$html .= '<p class="min-days">' .  __('Minimum stay', 'leadingprops') . ': ' . $minStay . '</p>';
+				$html .= '<p class="min-days">' .  __('s_object:rent:min_stay_full', 'leadingprops') . ': ' . $minStay . '</p>';
 				$html .= '<ul class="rent-details">';
 				if ( $object->parameters->area->min ) {
-					$html .= '<li class="area">' . $object->parameters->area->min . ' m<sup>2</sup></li>';
+					$html .= '<li class="area">' . $object->parameters->area->min . __('s_object:m_short', 'leadingprops') .' <sup>2</sup></li>';
 				 }
 				if ( $object->parameters->bedrooms->min ) {
 					$html .= '<li class="icon icon-bedroom">' . $object->parameters->bedrooms->min . '</li>';

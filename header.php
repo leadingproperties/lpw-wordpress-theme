@@ -11,7 +11,7 @@
 				'container' => false,
 				'walker'    => new LP_Nav_Walker()
 			]); ?>
-			<a class="menu-close btn-close"><span class="sr-only"><?php __('Close', 'leadingprops'); ?></span></a>
+			<a class="menu-close btn-close"><span class="sr-only">Close</span></a>
 		</nav><!-- /.side-menu -->
 	<?php endif; ?>
 		<div class="menu-overlay">

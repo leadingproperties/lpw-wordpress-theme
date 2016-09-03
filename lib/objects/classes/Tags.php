@@ -99,16 +99,16 @@ class Tags
         foreach ($property_type_ids as $pt_id){
             switch ($pt_id){
                 case 1:
-                    $answer .= '<li>' . __('Apartments', 'leadingprops') . ' <sup>'. $counters['apartment']['doc_count'] .'</sup> <span class="tag-remove" data-tag_type="property_type" data-tag_data="apartments"></span></li>';
+                    $answer .= '<li>' . __('search_panel:property_types:apartments', 'leadingprops') . ' <sup>'. $counters['apartment']['doc_count'] .'</sup> <span class="tag-remove" data-tag_type="property_type" data-tag_data="apartments"></span></li>';
                     break;
                 case 2:
-                    $answer .= '<li>' . __('Houses', 'leadingprops') . ' <sup>'. $counters['house']['doc_count'] .'</sup> <span class="tag-remove" data-tag_type="property_type" data-tag_data="houses"></span></li>';
+                    $answer .= '<li>' . __('search_panel:property_types:houses', 'leadingprops') . ' <sup>'. $counters['house']['doc_count'] .'</sup> <span class="tag-remove" data-tag_type="property_type" data-tag_data="houses"></span></li>';
                     break;
                 case 3:
-                    $answer .= '<li>' . __('Commercial', 'leadingprops') . ' <sup>'. $counters['commercial']['doc_count'] .'</sup> <span class="tag-remove" data-tag_type="property_type" data-tag_data="commercial"></span></li>';
+                    $answer .= '<li>' . __('search_panel:property_types:commercial', 'leadingprops') . ' <sup>'. $counters['commercial']['doc_count'] .'</sup> <span class="tag-remove" data-tag_type="property_type" data-tag_data="commercial"></span></li>';
                     break;
                 case 4:
-                    $answer .= '<li>' . __('Plots', 'leadingprops') . ' <sup>'. $counters['plot']['doc_count'] .'</sup> <span class="tag-remove" data-tag_type="property_type" data-tag_data="plots"></span></li>';
+                    $answer .= '<li>' . __('search_panel:property_types:plots', 'leadingprops') . ' <sup>'. $counters['plot']['doc_count'] .'</sup> <span class="tag-remove" data-tag_type="property_type" data-tag_data="plots"></span></li>';
                     break;
             }
         };
@@ -119,7 +119,7 @@ class Tags
         $answer = '';
         foreach ($rooms as $room){
             $counter_key = $room . '_room';
-            $answer .= '<li>' . __('Rooms', 'leadingprops') . ': ' . $room . ($room == 5 ? '+' : '') .' <sup>'. $counters[$counter_key]['doc_count'] .'</sup> <span class="tag-remove" data-tag_type="room" data-tag_data="' . $this->get_room_html_id($room) . '"></span></li>';
+            $answer .= '<li>' . __('search_panel:rooms_label', 'leadingprops') . ': ' . $room . ($room == 5 ? '+' : '') .' <sup>'. $counters[$counter_key]['doc_count'] .'</sup> <span class="tag-remove" data-tag_type="room" data-tag_data="' . $this->get_room_html_id($room) . '"></span></li>';
         }
         return $answer;
     }
@@ -127,7 +127,7 @@ class Tags
     function get_hq_photos_tag_html($bool, $counters){
         $hq_photos_tag_html = '';
         if($bool){
-            $hq_photos_tag_html = '<li>' . __('HQ photos', 'ledingprops') . ' <sup>' . $counters['hd_photos']['doc_count'] . '</sup> <span class="tag-remove" data-tag_type="quality" data-tag_data="quality"></span></li>';
+            $hq_photos_tag_html = '<li>' . __('search_panel:hd_photos:tag', 'ledingprops') . ' <sup>' . $counters['hd_photos']['doc_count'] . '</sup> <span class="tag-remove" data-tag_type="quality" data-tag_data="quality"></span></li>';
         }
         return $hq_photos_tag_html;
     }
@@ -157,16 +157,16 @@ class Tags
     function get_rent_bool_tags($params, $counters){
         $rent_bool_tags = '';
         if($params['long_rent']){
-            $rent_bool_tags .= '<li>' . __('Long term rental', 'leadingprops') . ' <sup>' . $counters['long_rent']['doc_count'] . '</sup> <span class="tag-remove" data-tag_type="long-term" data-tag_data="long-term"></span></li>';
+            $rent_bool_tags .= '<li>' . __('search_panel:long_rent', 'leadingprops') . ' <sup>' . $counters['long_rent']['doc_count'] . '</sup> <span class="tag-remove" data-tag_type="long-term" data-tag_data="long-term"></span></li>';
         }
         if($params['short_rent']){
-            $rent_bool_tags .= '<li>' . __('Short term rental', 'leadingprops') . ' <sup>' . $counters['short_rent']['doc_count'] . '</sup> <span class="tag-remove" data-tag_type="short-term" data-tag_data="short-term"></span></li>';
+            $rent_bool_tags .= '<li>' . __('search_panel:short_rent', 'leadingprops') . ' <sup>' . $counters['short_rent']['doc_count'] . '</sup> <span class="tag-remove" data-tag_type="short-term" data-tag_data="short-term"></span></li>';
         }
         if($params['child_friendly']){
-            $rent_bool_tags .= '<li>' . __('Child friendly', 'leadingprops') . ' <sup>' . $counters['child_friendly']['doc_count'] . '</sup> <span class="tag-remove" data-tag_type="child-friendly" data-tag_data="child-friendly"></span></li>';
+            $rent_bool_tags .= '<li>' . __('search_panel:child_friendly', 'leadingprops') . ' <sup>' . $counters['child_friendly']['doc_count'] . '</sup> <span class="tag-remove" data-tag_type="child-friendly" data-tag_data="child-friendly"></span></li>';
         }
         if($params['pets_allowed']){
-            $rent_bool_tags .= '<li>' . __('Pets allowed', 'leadingprops') . ' <sup>' . $counters['pets_allowed']['doc_count'] . '</sup> <span class="tag-remove" data-tag_type="pets-allowed" data-tag_data="pets-allowed"></span></li>';
+            $rent_bool_tags .= '<li>' . __('search_panel:pets_allowed', 'leadingprops') . ' <sup>' . $counters['pets_allowed']['doc_count'] . '</sup> <span class="tag-remove" data-tag_type="pets-allowed" data-tag_data="pets-allowed"></span></li>';
         }
         return $rent_bool_tags;
     }
@@ -174,7 +174,7 @@ class Tags
     function get_rent_persons_tag($persons, $counters){
         $rent_persons_tag = '';
         if($persons){
-            $rent_persons_tag = '<li>' . __('Persons', 'leadingprops') . ': ' . $persons . ' <sup>' . $counters['long_rent']['doc_count'] . '</sup> <span class="tag-remove" data-tag_type="persons-max" data-tag_data="persons-max"></span></li>';
+            $rent_persons_tag = '<li>' . __('search_panel:persons', 'leadingprops') . ': ' . $persons . ' <sup>' . $counters['long_rent']['doc_count'] . '</sup> <span class="tag-remove" data-tag_type="persons-max" data-tag_data="persons-max"></span></li>';
         }
         return $rent_persons_tag;
     }
@@ -182,7 +182,7 @@ class Tags
     function get_similar_tag_html($parameters, $radius = 1, $counters){
         $similar_tag= '';
         if($parameters){
-            $similar_tag = '<li>' . __('Similar', 'leadingprops') . ': ' . $radius . ' ' . __('km', 'leadingprops') . ' ' . __('from', 'leadingprops') . ' ' . $parameters['code'] . ' <sup>' . $counters['geo_location']['doc_count'] . '</sup> <span class="tag-remove" data-tag_type="similar" data-tag_data="similar"></span></li>';
+            $similar_tag = '<li>' . __('search_panel:similar', 'leadingprops') . ': ' . $radius . ' ' . __('search_panel:km', 'leadingprops') . ' ' . __('search_panel:from', 'leadingprops') . ' ' . $parameters['code'] . ' <sup>' . $counters['geo_location']['doc_count'] . '</sup> <span class="tag-remove" data-tag_type="similar" data-tag_data="similar"></span></li>';
         }
         return $similar_tag;
     }
