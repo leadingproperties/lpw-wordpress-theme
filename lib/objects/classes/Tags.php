@@ -25,10 +25,11 @@ class Tags
     function get_tags_html($request_data){
         $answer = '';
         $counters = $this->get_counters($request_data['raw']);
+
         if(count($counters) > 0){
             $format = '<ul class="tag-list">%1$s%2$s%3$s%4$s%5$s%6$s%7$s%8$s%9$s<li><span class="tag-remove-all" data-tag_type="all"></span></li></ul>';
 
-            $autocomplete =  $this->get_autocomplete_tag_html($request_data['autocomplete'], $counters);
+            $autocomplete =  $this->get_autocomplete_tag_html($request_data['autocomplete'], $counters, $request_data['raw']);
             $rent_bool_tags = $request_data['raw']['for_rent'] ? $this->get_rent_bool_tags($request_data['raw'], $counters) : '';
             $rent_persons = $request_data['raw']['for_rent'] ? $this->get_rent_persons_tag($request_data['raw']['persons'], $counters) : '';
             $property_type = $this->get_property_type_tags_html($request_data['raw']['property_types'], $counters);
@@ -86,10 +87,10 @@ class Tags
         return json_decode($body, true)['counters']['buckets'];
     }
 
-    function get_autocomplete_tag_html($autocomplete_data, $counters){
+    function get_autocomplete_tag_html($autocomplete_data, $counters, $raw){
         $autocomplete_tag_html = '';
         if($autocomplete_data){
-            $autocomplete_tag_html = '<li>' . stripslashes($autocomplete_data['text']) . ' <sup>' . ($autocomplete_data['data']['l_id'] ? 1 : $counters['geo_location']['doc_count']) . '</sup> <span class="tag-remove" data-tag_type="autocomplete"></span></li>';
+            $autocomplete_tag_html = '<li>' . stripslashes($autocomplete_data['text']) . ' <sup>' . (($raw['ids']) ? count($raw['ids']) : $counters['geo_location']['doc_count']) . '</sup> <span class="tag-remove" data-tag_type="autocomplete"></span></li>';
         }
         return $autocomplete_tag_html;
     }

@@ -284,6 +284,12 @@ class LP_ObjectList {
     public function send_request_form() {
         $url = $this->api_url . '/request';
         $return = '';
+        $success_message = '';
+        if($this->args['form_type'] === 'single_property') {
+            $success_message = __('form:thank_you', 'leadingprops');
+        } else {
+            $success_message = __('form:thank_you_default', 'leadingprops');
+        }
         $data = [
             'first_name' => ($this->args['first_name']) ? $this->args['first_name'] : '',
             'last_name' => ($this->args['last_name']) ? $this->args['last_name'] : '',
@@ -327,11 +333,11 @@ class LP_ObjectList {
                 'status' => $status
             ]);
         } else {
-             /*$return = [
+             $return = [
                 'success' => true,
                 'type'  => 'green',
-                'message'   => __('Thank you, request was received. We will send detailed information about the object, including plans, prices and review information soon ', 'leadingprops')
-            ];*/
+                'message'   => $success_message
+            ];
             $return = $json_response;
         }
         curl_close($curl);

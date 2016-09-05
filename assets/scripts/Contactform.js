@@ -5,8 +5,9 @@
 
 		function ContactForm() {
 			var $this = this,
-				timer = null,
-				message = '';
+				timer = null;
+
+
 
 
 			function isValidName(input) {
@@ -62,18 +63,19 @@
 				if(timer) {
 					clearTimeout(timer);
 				}
-				this.message.remove();
-				this.form.show();
+				$('.request-form-message').remove();
+
+				$this.form.show();
+				$this.form.off('submit', $this.ajaxSendForm);
 			}
 			function showMessage(type, msg) {
-				message = $('<div class="request-form-message"><p class="text-'+type+'">'+ msg +'</p></div>');
-				$this.contactModal.find('.modal-body').append(message);
+				$this.contactModal.find('.modal-body').append('<div class="request-form-message"><p class="text-'+type+'">'+ msg +'</p></div>');
 				    timer = setTimeout(function(){
 					$this.contactModal.modal('hide');
 				}, 5000);
 			}
 
-			function ajaxSendForm(ev) {
+			this.ajaxSendForm = function(ev) {
 				ev.preventDefault();
 				if(!$this.formValid) {
 					return false;
@@ -118,9 +120,10 @@
 					}
 				});
 
-			}
+			};
 
-		function modalInit(ev) {
+		this.modalInit = function(ev) {
+
 			var btn = $(ev.relatedTarget);
 			$this.type = btn.data('type');
 			$this.contactModal = $(this);
@@ -164,13 +167,15 @@
 			$this.form.on('input', 'input', function() {
 				isValidForm($(this));
 			});
-			$this.form.on('submit', ajaxSendForm);
+			$this.form.on('submit', $this.ajaxSendForm);
 
-			$this.contactModal.on('hidden.bs.modal', resetForm);
-		}
+
+
+		};
 
 		this.init = function() {
-			$('.request-form-modal').on('show.bs.modal', modalInit);
+			$('.request-form-modal').on('shown.bs.modal', $this.modalInit)
+				.on('hidden.bs.modal', resetForm);
 		}
 	}
 

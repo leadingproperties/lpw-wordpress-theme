@@ -1337,11 +1337,15 @@ Number.prototype.formatMoney = function(c, d, t){
             return r;
         };
         this.getObjects = function (callback, eventType) {
-
+            if(_.has($this.args, 'autocomplete') && !(_.has($this.args, 'location_point') || _.has($this.args, 'ids'))) {
+                delete $this.args.autocomplete;
+            }
             var autocomplete = $this.args.autocomplete || null,
                 dataUrl;
 
             loader.show();
+
+
             data = $this.args;
             dataUrl = $this.args;
             data.action = 'do_ajax';
@@ -1536,11 +1540,8 @@ Number.prototype.formatMoney = function(c, d, t){
       var url = window.location.protocol + '//' + window.location.hostname + window.location.pathname,
           excluded = ['action', 'fn', 'page', 'per_page', 'for_sale', 'for_rent', 'lang'];
         data = _.omit(data, excluded);
-        if(_.has(data, 'autocomplete') && !_.has(data, 'location_point')) {
-            delete data.autocomplete;
-        }
+
         if(!_.isEmpty(data)) {
-            console.log(data);
             data = JSON.stringify(data);
             if(eventtype !== 'popstate') {
                 window.history.pushState(null, null, url + '?filter=' + encodeURIComponent(data));
@@ -1623,7 +1624,7 @@ Number.prototype.formatMoney = function(c, d, t){
             FloatingBar.init();
             var objects = new ObjectList('list', 'sale');
 
-            if(LpData.defaultLocation) {
+            if(!Helpers.getParameterByName('filter') && LpData.defaultLocation) {
                 objects.args.location_point = {
                     country_code: LpData.saleDefaultCoords.location_point.country_code,
                     lat: LpData.saleDefaultCoords.location_point.lat,
@@ -1655,7 +1656,7 @@ Number.prototype.formatMoney = function(c, d, t){
             FloatingBar.init();
             var objects = new ObjectList('list', 'rent');
 
-            if(LpData.defaultLocation) {
+            if(!Helpers.getParameterByName('filter') && LpData.defaultLocation) {
                 objects.args.location_point = {
                     country_code: LpData.rentDefaultCoords.location_point.country_code,
                     lat: LpData.rentDefaultCoords.location_point.lat,
