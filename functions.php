@@ -12,7 +12,8 @@ $sage_includes = [
   'lib/objects/objects.php',
   'lib/acf/acf.php',
   'lib/acf-settings.php',
-  'lib/ajax/ajax-handlers.php'
+  'lib/ajax/ajax-handlers.php',
+  'lib/admin/default-location.php'
 ];
 
 foreach ($sage_includes as $file) {
@@ -50,6 +51,10 @@ $lp_settings['counters'] = [
 	'for_rent' => ($counters['global_counters']['for_rent']) ? $counters['global_counters']['for_rent'] : '',
 	'commercial' => ($counters['global_counters']['commercial']) ? $counters['global_counters']['commercial'] : ''
 ];
+
+
+
+
 
 /*if(is_page_template('page-object.php')) {
 

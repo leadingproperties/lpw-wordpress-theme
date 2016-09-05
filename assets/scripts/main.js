@@ -1368,9 +1368,9 @@ Number.prototype.formatMoney = function(c, d, t){
                         };
                     }
                 }
-
-
-                $this.setUrls(dataUrl, eventType);
+                if(! (eventType === 'load' && LpData.defaultLocation) ) {
+                    $this.setUrls(dataUrl, eventType);
+                }
             }
 
             data.fn = 'get_objects';
@@ -1536,7 +1536,11 @@ Number.prototype.formatMoney = function(c, d, t){
       var url = window.location.protocol + '//' + window.location.hostname + window.location.pathname,
           excluded = ['action', 'fn', 'page', 'per_page', 'for_sale', 'for_rent', 'lang'];
         data = _.omit(data, excluded);
+        if(_.has(data, 'autocomplete') && !_.has(data, 'location_point')) {
+            delete data.autocomplete;
+        }
         if(!_.isEmpty(data)) {
+            console.log(data);
             data = JSON.stringify(data);
             if(eventtype !== 'popstate') {
                 window.history.pushState(null, null, url + '?filter=' + encodeURIComponent(data));
@@ -1618,6 +1622,28 @@ Number.prototype.formatMoney = function(c, d, t){
         init: function() {
             FloatingBar.init();
             var objects = new ObjectList('list', 'sale');
+
+            if(LpData.defaultLocation) {
+                objects.args.location_point = {
+                    country_code: LpData.saleDefaultCoords.location_point.country_code,
+                    lat: LpData.saleDefaultCoords.location_point.lat,
+                    lon: LpData.saleDefaultCoords.location_point.lon
+                };
+                objects.args.location_shape = {
+                    country_code: LpData.saleDefaultCoords.location_shape.country_code,
+                    bottom_left: {
+                        lat: LpData.saleDefaultCoords.location_shape.bottom_left.lat,
+                        lon: LpData.saleDefaultCoords.location_shape.bottom_left.lon
+                    },
+                    top_right: {
+                        lat: LpData.saleDefaultCoords.location_shape.top_right.lat,
+                        lon: LpData.saleDefaultCoords.location_shape.top_right.lon
+                    }
+                };
+                objects.args.autocomplete = {
+                    text: LpData.saleDefault
+                };
+            }
             objects.init();
 
             var contactForms = new window.lpw.ContactForm();
@@ -1628,6 +1654,29 @@ Number.prototype.formatMoney = function(c, d, t){
         init: function() {
             FloatingBar.init();
             var objects = new ObjectList('list', 'rent');
+
+            if(LpData.defaultLocation) {
+                objects.args.location_point = {
+                    country_code: LpData.rentDefaultCoords.location_point.country_code,
+                    lat: LpData.rentDefaultCoords.location_point.lat,
+                    lon: LpData.rentDefaultCoords.location_point.lon
+                };
+                objects.args.location_shape = {
+                    country_code: LpData.rentDefaultCoords.location_shape.country_code,
+                    bottom_left: {
+                        lat: LpData.rentDefaultCoords.location_shape.bottom_left.lat,
+                        lon: LpData.rentDefaultCoords.location_shape.bottom_left.lon
+                    },
+                    top_right: {
+                        lat: LpData.rentDefaultCoords.location_shape.top_right.lat,
+                        lon: LpData.rentDefaultCoords.location_shape.top_right.lon
+                    }
+                };
+                objects.args.autocomplete = {
+                    text: LpData.rentDefault
+                };
+            }
+
             objects.init();
 
             var contactForms = new window.lpw.ContactForm();

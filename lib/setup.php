@@ -109,6 +109,20 @@ function assets() {
 		$data['tag'] = $tag_id;
 		$data['totalPost'] = $tag[0]->count;
 	}
+    if(is_page_template('page-buy.php')) {
+        if(1 == lwp_option('use_default')) {
+            $data['defaultLocation'] = true;
+            $data['saleDefault'] = lwp_option('sale_location');
+            $data['saleDefaultCoords'] = json_decode(lwp_option('sale_location_geodata'));
+        }
+    }
+    if(is_page_template('page-rent.php')) {
+        if(1 == lwp_option('use_default')) {
+            $data['defaultLocation'] = true;
+            $data['rentDefault'] = lwp_option('sale_location');
+            $data['rentDefaultCoords'] = json_decode(lwp_option('sale_location_geodata'));
+        }
+    }
   wp_localize_script('lprop/js', 'LpData', $data);
   wp_enqueue_script('lprop/js');
 }
