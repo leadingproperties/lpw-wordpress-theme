@@ -285,64 +285,94 @@ class LP_ObjectList {
         $url = $this->api_url . '/request';
         $return = '';
         $success_message = '';
-        if($this->args['form_type'] === 'single_property') {
-            $success_message = __('form:thank_you', 'leadingprops');
-        } else {
-            $success_message = __('form:thank_you_default', 'leadingprops');
-        }
-        $data = [
-            'first_name' => ($this->args['first_name']) ? $this->args['first_name'] : '',
-            'last_name' => ($this->args['last_name']) ? $this->args['last_name'] : '',
-            'phone' => ($this->args['phone']) ? $this->args['phone'] : '',
-            'email' => ($this->args['email']) ? $this->args['email'] : '',
-            'skype' => ($this->args['skype']) ? $this->args['skype'] : '',
-            'question'  => ($this->args['question']) ? $this->args['question'] : '',
-            'form_type' => $this->args['form_type'],
-            'locale'    => ($this->args['locale']) ? $this->args['locale'] : 'en'
-        ];
-        if($this->args['property_id']) {
-            $data['property_id'] = $this->args['property_id'];
-        }
-        if($this->args['property_code']) {
-            $data['property_code'] = $this->args['property_code'];
-        }
-        if(isset($this->args['is_rent'])) {
-            $data['is_rent'] = $this->args['is_rent'];
-        }
-        if($this->args['form_type'] === 'off_market' && isset($this->args['url'])) {
-            $data['url'] = $this->args['url'];
-        }
-        $content = json_encode($data);
+        $error = false;
+        $errorMessage = '';
+        $return = [];
 
-        $curl = curl_init($url);
-        curl_setopt($curl, CURLOPT_HEADER, false);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_HTTPHEADER,
-            [
-                "Content-type: application/json",
-                'Authorization: Token token=' . $this->token
-            ]);
-        curl_setopt($curl, CURLOPT_POST, true);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $content);
-
-        $json_response = curl_exec($curl);
-
-        $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-        if ( $status !== 200 ) {
+        if(empty($this->args['first_name']) &&
+           empty($this->args['first_name']) &&
+           !(empty($this->args['phone']) || empty($this->args['email']) || empty($this->args['skype']))
+        ) {
+            $error = true;
+            $errorMessage = __('form:validation_error', 'leadingprops');
+        }
+        if($error) {
             $return = [
                 'success' => true,
                 'type'  => 'red',
-                'message'   => __('An error was occurred. Please try again later.', 'leadingprops'),
-                'status' => $status
+                'message'   => $errorMessage
             ];
         } else {
-             $return = [
-                'success' => true,
-                'type'  => 'green',
-                'message'   => $success_message
+
+            if ( $this->args['form_type'] === 'single_property' ) {
+                $success_message = __( 'form:thank_you', 'leadingprops' );
+            } else {
+                $success_message = __( 'form:thank_you_default', 'leadingprops' );
+            }
+            $data = [
+                'first_name' => $this->args['first_name'],
+                'last_name'  => $this->args['last_name'],
+                'form_type'  => $this->args['form_type'],
+                'locale'     => ( $this->args['locale'] ) ? $this->args['locale'] : 'en'
             ];
+            if ( ! empty( $this->args['phone'] ) ) {
+                $data['phone'] = $this->args['phone'];
+            }
+            if ( ! empty( $this->args['email'] ) ) {
+                $data['email'] = $this->args['email'];
+            }
+            if ( ! empty( $this->args['skype'] ) ) {
+                $data['skype'] = $this->args['skype'];
+            }
+            if ( ! empty( $this->args['question'] ) ) {
+                $data['question'] = $this->args['question'];
+            }
+
+
+            if ( ! empty($this->args['property_id']) ) {
+                $data['property_id'] = $this->args['property_id'];
+            }
+            if ( ! empty($this->args['property_code']) ) {
+                $data['property_code'] = $this->args['property_code'];
+            }
+            if ( isset( $this->args['is_rent'] ) && $this->args['is_rent'] == true ) {
+                $data['is_rent'] = $this->args['is_rent'];
+            }
+            if ( $this->args['form_type'] === 'off_market' && isset( $this->args['url'] ) ) {
+                $data['url'] = $this->args['url'];
+            }
+            $content = json_encode( $data );
+
+            $curl = curl_init( $url );
+            curl_setopt( $curl, CURLOPT_HEADER, false );
+            curl_setopt( $curl, CURLOPT_RETURNTRANSFER, true );
+            curl_setopt( $curl, CURLOPT_HTTPHEADER,
+                [
+                    "Content-type: application/json",
+                    'Authorization: Token token=' . $this->token
+                ] );
+            curl_setopt( $curl, CURLOPT_POST, true );
+            curl_setopt( $curl, CURLOPT_POSTFIELDS, $content );
+
+            $json_response = curl_exec( $curl );
+
+            $status = curl_getinfo( $curl, CURLINFO_HTTP_CODE );
+            if ( $status !== 200 ) {
+                $return = [
+                    'success' => true,
+                    'type'    => 'red',
+                    'message' => __( 'form:error_default', 'leadingprops' ),
+                    'status'  => $status
+                ];
+            } else {
+                $return = [
+                    'success' => true,
+                    'type'    => 'green',
+                    'message' => $success_message
+                ];
+            }
+            curl_close( $curl );
         }
-        curl_close($curl);
 
         return json_encode($return);
     }

@@ -3,12 +3,12 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "Project-Id-Version: Leading Properties\n"
 "POT-Creation-Date: 2016-09-02 19:10+0300\n"
-"PO-Revision-Date: 2016-09-03 08:34+0300\n"
+"PO-Revision-Date: 2016-09-06 12:42+0200\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.9\n"
+"X-Generator: Poedit 1.7.5\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: style.css\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -478,6 +478,15 @@ msgstr "Для предоставления вам информации об о�
 #: templates/form-request.php:7
 msgid "form:title_single"
 msgstr "Получите подробную информацию по объекту, дополнительные фото, планы и цены либо запросите организацию просмотра недвижимости"
+
+msgid "form:thank_you"
+msgstr "Спасибо, ваш запрос был принят. Мы вышлем подробную информацию об объекте, в том числе планы, цены и описания в ближайшее время."
+
+msgid "form:thank_you_default"
+msgstr "Спасибо, ваш запрос был принят. Мы вышлем подробную информацию об объекте, в том числе планы, цены и описания в ближайшее время."
+
+msgid "form:error_default"
+msgstr "Ошибка. Пожалуйста повторите попытку позже"
 
 #: templates/search-panel.php:7
 msgid "search_panel:autocomplete"
