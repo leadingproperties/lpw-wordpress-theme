@@ -3,12 +3,12 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Project-Id-Version: Leading Properties\n"
 "POT-Creation-Date: 2016-09-03 08:59+0300\n"
-"PO-Revision-Date: 2016-09-03 10:00+0300\n"
+"PO-Revision-Date: 2016-09-06 12:40+0200\n"
 "Language-Team: \n"
 "MIME-Ver§`sion: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.9\n"
+"X-Generator: Poedit 1.7.5\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: style.css\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -404,6 +404,15 @@ msgstr "Abbiamo bisogno dei tuoi dettagli di contatto per darti le informazioni 
 #: templates/form-request.php:7
 msgid "form:title_single"
 msgstr "Puoi ricevere le informazioni dettagliate sulla proprietà, ulteriori foto, piani e prezzi o puoi organizzare una visita"
+
+msgid "form:thank_you"
+msgstr "Grazie, la tua richiesta è stata ricevuta. Ti contatteremo a breve."
+
+msgid "form:thank_you_default"
+msgstr "Grazie, la tua richiesta è stata ricevuta. Ti contatteremo a breve."
+
+msgid "form:error_default"
+msgstr "An error has occurred. Please try again later."
 
 #: templates/search-panel.php:9
 msgid "alerts:advanced_search"
