@@ -1327,11 +1327,9 @@ Number.prototype.formatMoney = function(c, d, t){
         };
 
         this.renderHTML = function(objects) {
-
             var r = $.Deferred(),
                 $objects = $(objects);
             $this.objectContainer.append($objects);
-
             $this.favorites.markButtons($objects, $this.favorites.favoritesIds );
             r.resolve();
             return r;
@@ -1426,7 +1424,7 @@ Number.prototype.formatMoney = function(c, d, t){
                             $this.triggerId = 0;
                             $(window).off('scroll.lprop', $this.scrollPage);
                             $(window).off('load.lprop', $this.onLoadCheck);
-                            $(window).off('resize.lprop', $this.onLoadCheck);
+                          //  $(window).off('resize.lprop', $this.onLoadCheck);
                         }
                     }
                 });
@@ -1491,7 +1489,7 @@ Number.prototype.formatMoney = function(c, d, t){
                     if(type !== 'share') {
                         $(window).on('load.lprop', $this.onLoadCheck);
                     }
-                    $(window).on('resize.lprop', $this.onLoadCheck);
+                 //   $(window).on('resize.lprop', $this.onLoadCheck);
                 }
             }
             if( type === 'list' ) {

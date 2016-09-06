@@ -309,6 +309,9 @@ class LP_ObjectList {
         if(isset($this->args['is_rent'])) {
             $data['is_rent'] = $this->args['is_rent'];
         }
+        if($this->args['form_type'] === 'off_market' && isset($this->args['url'])) {
+            $data['url'] = $this->args['url'];
+        }
         $content = json_encode($data);
 
         $curl = curl_init($url);
@@ -326,23 +329,22 @@ class LP_ObjectList {
 
         $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
         if ( $status !== 200 ) {
-            $return = json_encode([
+            $return = [
                 'success' => true,
                 'type'  => 'red',
                 'message'   => __('An error was occurred. Please try again later.', 'leadingprops'),
                 'status' => $status
-            ]);
+            ];
         } else {
              $return = [
                 'success' => true,
                 'type'  => 'green',
                 'message'   => $success_message
             ];
-            $return = $json_response;
         }
         curl_close($curl);
 
-        return $return;
+        return json_encode($return);
     }
 
     /**

@@ -98,6 +98,9 @@
 					data.property_code = $this.property_code;
 					data.is_rent = $this.is_rent;
 				}
+				if($this.type === 'off_market') {
+					data.url = $this.url;
+				}
 
 				$this.submit.prop('disabled', true);
 
@@ -140,6 +143,9 @@
 				$this.is_rent = btn.data('object-type') === 'rent';
 				$this.property_id = btn.data('id');
 				$this.property_code = btn.data('code');
+			}
+			if($this.type === 'off_market') {
+				$this.url = window.location.href;
 			}
 
 
