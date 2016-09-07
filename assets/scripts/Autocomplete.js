@@ -233,7 +233,7 @@
 	};
 
 	/**
-	 * Проверяет наличие нужных параметров и проверяет размер шейпа до 3-х десятых
+	 * Проверяет наличие нужных параметров и проверяет размер шейпа до сотых
 	 * @param locationShape
 	 * @returns {boolean}
 	 */
@@ -246,8 +246,8 @@
 		}
 
 		try {
-			// compare values with 3 digits after comma
-			return locationShape.top_right.lat.toFixed(3) !== locationShape.bottom_left.lat.toFixed(3) || locationShape.top_right.lon.toFixed(3) !== locationShape.bottom_left.lon.toFixed(3);
+			// compare values with 2 digits after comma
+			return locationShape.top_right.lat.toFixed(2) !== locationShape.bottom_left.lat.toFixed(2) || locationShape.top_right.lon.toFixed(2) !== locationShape.bottom_left.lon.toFixed(2);
 		}catch(error){
 			return false;
 		}
