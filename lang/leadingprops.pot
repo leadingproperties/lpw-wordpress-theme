@@ -407,6 +407,15 @@ msgstr ""
 msgid "form:title_single"
 msgstr ""
 
+msgid "form:thank_you"
+msgstr ""
+
+msgid "form:thank_you_default"
+msgstr ""
+
+msgid "form:error_default"
+msgstr ""
+
 #: templates/search-panel.php:9
 msgid "alerts:advanced_search"
 msgstr ""
