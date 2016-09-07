@@ -154,7 +154,7 @@
 				var shape = this.getShapeFromBound(cluster.getBounds());
 				this.autoComplete.getPlaceDetails(place.placeId).done(function(place){
 					var coordinates = $this.autoComplete.getCoordinatesFromGooglePlace(place);
-					if(shape){ //т.е. location_shape кластера в приоритете
+					if(shape && shape.top_right.lat !== shape.bottom_left.lat){ //т.е. location_shape кластера в приоритете
 						coordinates.location_shape = shape;
 					}
 					$this.autoComplete.setSelected(coordinates, $this.autoComplete.getPlaceText(place));
