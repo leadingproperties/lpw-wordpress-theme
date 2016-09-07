@@ -154,6 +154,12 @@
 	</div><!-- /.comm-form-wrap -->
 
 <div class="map-wrap">
+	<div class="btn-map-wrap container">
+		<button class="btn icon btn-map-open" data-action="open">
+			<span class="map-closed-text"><?php _e('search_panel:toggle_map_y', 'leadingprops') ?></span>
+			<span class="map-opened-text"><?php _e('search_panel:toggle_map_n', 'leadingprops') ?></span>
+		</button>
+	</div>
 	<div id="invest-map"></div>
 </div>
 

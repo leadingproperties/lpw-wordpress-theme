@@ -72,7 +72,21 @@
 .filter-toggle::before {
   content: "\e936";
 }
-.btn-map-open::before,
+.btn-map-open {
+  &::before {
+    content: "\e95b";
+  }
+  &.opened {
+    &::before {
+      content: "\e95c";
+    }
+  }
+  &.map-close {
+    &::before {
+      content: "\e95a";
+    }
+  }
+}
 .map-lg-menu a::before,
 .menu-map-lg::after {
   content: "\e782";

@@ -164,6 +164,12 @@ msgstr ""
 msgid "search_panel:from"
 msgstr ""
 
+msgid "search_panel:toggle_map_y"
+msgstr ""
+
+msgid "search_panel:toggle_map_n"
+msgstr ""
+
 #: lib/objects/functions.php:36 lib/objects/functions.php:460
 #: page-object.php:46 page-object.php:446
 msgid "s_object:header:detailed_info"

@@ -21,7 +21,11 @@
         var $this = this;
         $('body').on('click.lprop', '.tag-remove', function(ev) {
             ev.preventDefault();
+            $this.investMap.mapReset();
             $this.onClusterSelect(null, true);
+        });
+        $('.btn-map-open').on('click', function(ev) {
+            $this.resizeMap(ev, $this);
         });
     };
     Invest.prototype.onClusterSelect = function(data, remove) {
@@ -98,7 +102,7 @@
         });
         if(html !== '') {
             if(tagsList.length > 0 ) {
-                tagsList.html(html)
+                tagsList.html(html);
             } else {
                 $('<ul class="comm-tags">' + html + '</ul>').appendTo('.comm-header');
             }
@@ -110,6 +114,33 @@
     };
     Invest.prototype.getSubTypesError = function(error) {
         console.debug('getSTError', error.responseText);
+    };
+    Invest.prototype.resizeMap = function(ev, $this) {
+        ev.preventDefault();
+        var maxHeight = 1000,
+            map = $('#invest-map'),
+            mapOffset = map.offset().top,
+            mapCenter = $this.investMap.map.getCenter(),
+            windowHeight = $(window).height(),
+            btn = $(ev.currentTarget),
+            action = btn.data('action'),
+            normalHeight = 255,
+            height = windowHeight < maxHeight ? windowHeight : maxHeight;
+        if(action === 'open') {
+            btn.addClass('opened').data('action', 'close');
+            map.animate({height:height}, 600, 'linear', function() {
+                google.maps.event.trigger($this.investMap.map, "resize");
+                $this.investMap.map.setCenter(mapCenter);
+            });
+            $('html, body').stop().animate({
+                scrollTop: mapOffset
+            }, 600);
+        } else {
+            btn.removeClass('opened').data('action', 'open');
+            map.css('height', normalHeight);
+            google.maps.event.trigger($this.investMap.map, "resize");
+            $this.investMap.map.setCenter(mapCenter);
+        }
     };
     window.lpw.Invest = Invest;
 })(jQuery);

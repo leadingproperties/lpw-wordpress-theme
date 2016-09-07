@@ -3,12 +3,12 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Project-Id-Version: Leading Properties\n"
 "POT-Creation-Date: 2016-09-07 16:21+0300\n"
-"PO-Revision-Date: 2016-09-07 17:08+0300\n"
+"PO-Revision-Date: 2016-09-07 21:07+0200\n"
 "Language-Team: \n"
 "MIME-Ver§`sion: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.9\n"
+"X-Generator: Poedit 1.7.5\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: style.css\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -162,6 +162,12 @@ msgstr "km"
 #: lib/objects/classes/Tags.php:185
 msgid "search_panel:from"
 msgstr "距"
+
+msgid "search_panel:toggle_map_y"
+msgstr "显示大地图"
+
+msgid "search_panel:toggle_map_n"
+msgstr "显示小地图"
 
 #: lib/objects/functions.php:36 lib/objects/functions.php:460
 #: page-object.php:46 page-object.php:446
