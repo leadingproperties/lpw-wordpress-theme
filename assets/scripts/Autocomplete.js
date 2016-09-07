@@ -221,11 +221,36 @@
 				if(countryComponent && countryComponent.short_name){
 					systemPlace.location_shape.country_code = countryComponent.short_name;
 				}
+
+				if(!this.isValidLocationShape(systemPlace.location_shape)){
+					systemPlace.location_shape = null;
+				}
 			}
 
 			systemPlace.place_id = place.place_id;
 		}
 		return _.keys(systemPlace).length > 0 ? systemPlace : null;
+	};
+
+	/**
+	 * Проверяет наличие нужных параметров и проверяет размер шейпа до 3-х десятых
+	 * @param locationShape
+	 * @returns {boolean}
+	 */
+	AutoComplete.prototype.isValidLocationShape = function(locationShape){
+		if(
+			!locationShape ||
+			!(_.has(locationShape, 'top_right.lat') && _.has(locationShape, 'bottom_left.lat'))
+		){
+			return false;
+		}
+
+		try {
+			// compare values with 3 digits after comma
+			return locationShape.top_right.lat.toFixed(3) !== locationShape.bottom_left.lat.toFixed(3) || locationShape.top_right.lon.toFixed(3) !== locationShape.bottom_left.lon.toFixed(3);
+		}catch(error){
+			return false;
+		}
 	};
 
 	/**
