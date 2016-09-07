@@ -1,0 +1,514 @@
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
+"Project-Id-Version: Leading Properties\n"
+"POT-Creation-Date: 2016-09-07 15:55+0300\n"
+"PO-Revision-Date: 2016-09-07 16:18+0300\n"
+"Language-Team: \n"
+"MIME-Ver§`sion: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.9\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-WPHeader: style.css\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"MIME-Version: 1.0\n"
+"Last-Translator: \n"
+"Language: ar\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: 404.php:8
+msgid "page_404:title_404"
+msgstr "‫Error 404"
+
+#: 404.php:10
+msgid "page_404:title"
+msgstr "‫Sorry, that page doesn’t exist!"
+
+#: 404.php:11
+msgid "page_404:text"
+msgstr "‫The reasons that could cause the error: incorrectly typed address, the page was never on this site or this page was, but can not be accessed anymore. If you reached this page through a link from our website, please report this at:"
+
+#: lib/extras.php:82
+msgid "menu:favorites"
+msgstr "المفضلة"
+
+#: lib/extras.php:83
+msgid "menu:offmarket"
+msgstr "خارج السوق"
+
+#: templates/filter-rent.php:57 templates/filter-sale.php:44
+msgid "search_panel:area_label"
+msgstr "المنطقة"
+
+#: templates/filter-rent.php:85 templates/filter-sale.php:22
+msgid "search_panel:price_label"
+msgstr "السعر"
+
+#: lib/objects/classes/Tags.php:122 templates/filter-rent.php:32
+#: templates/filter-sale.php:55
+msgid "search_panel:rooms_label"
+msgstr "الغرف"
+
+#: templates/filter-rent.php:15 templates/filter-sale.php:5
+msgid "search_panel:property_types:label"
+msgstr "نوع العقار"
+
+#: lib/objects/classes/Tags.php:108 templates/filter-rent.php:26
+#: templates/filter-sale.php:16
+msgid "search_panel:property_types:commercial"
+msgstr "العقارات التجارية"
+
+#: lib/objects/classes/Tags.php:102 templates/filter-rent.php:18
+#: templates/filter-sale.php:8
+msgid "search_panel:property_types:apartments"
+msgstr "الشقق"
+
+#: lib/objects/classes/Tags.php:105 templates/filter-rent.php:22
+#: templates/filter-sale.php:12
+msgid "search_panel:property_types:houses"
+msgstr "المنازل"
+
+#: lib/objects/classes/Tags.php:111
+msgid "search_panel:property_types:plots"
+msgstr "قطع الأرض"
+
+#: templates/filter-rent.php:115 templates/filter-sale.php:82
+msgid "search_panel:hd_photos:label"
+msgstr "يتم إعداد القوائم مع صور عالية الجودة حصرا"
+
+#: lib/objects/classes/Tags.php:130
+msgid "search_panel:hd_photos:tag"
+msgstr "صور عالية الجودة"
+
+#: templates/filter-rent.php:119 templates/filter-sale.php:86
+msgid "search_panel:submit_button"
+msgstr "عرض النتائج"
+
+#: page-favorites-rent.php:19 page-favorites.php:19 page-sharer-rent.php:17
+#: page-sharer.php:17 templates/sorting-panel.php:6
+msgid "search_panel:order:recent"
+msgstr "الأحدث"
+
+#: page-favorites-rent.php:21 page-favorites.php:21 page-sharer-rent.php:19
+#: page-sharer.php:19 templates/sorting-panel.php:8
+msgid "search_panel:order:price_asc"
+msgstr "السعر الأقل"
+
+#: page-favorites-rent.php:20 page-favorites.php:20 page-sharer-rent.php:18
+#: page-sharer.php:18 templates/sorting-panel.php:7
+msgid "search_panel:order:price_desc"
+msgstr "السعر الأعلى"
+
+#: templates/filter-rent.php:59 templates/filter-rent.php:87
+#: templates/filter-sale.php:24 templates/filter-sale.php:46
+msgid "search_panel:min"
+msgstr "الحد الأدنى"
+
+#: templates/filter-rent.php:62 templates/filter-rent.php:70
+#: templates/filter-rent.php:90 templates/filter-sale.php:27
+#: templates/filter-sale.php:49
+msgid "search_panel:max"
+msgstr "الحد الأعلى"
+
+#: templates/filter-rent.php:57 templates/filter-sale.php:44
+msgid "search_panel:sqm"
+msgstr "‫m²"
+
+#: templates/favorites-bar.php:3
+msgid "search_panel:share"
+msgstr "شارك العقارات المفضلة لديك مع أصدقائك أو زملائك"
+
+#: templates/favorites-bar.php:29
+msgid "search_panel:copy"
+msgstr "نسخة"
+
+#: templates/search-panel.php:7
+msgid "search_panel:autocomplete"
+msgstr "سويسرا أو لندن أو البلدة القديمة، براغ أو 69783"
+
+#: lib/objects/classes/Tags.php:160 templates/filter-rent.php:11
+msgid "search_panel:long_rent"
+msgstr "استئجار طويل الأجل"
+
+#: lib/objects/classes/Tags.php:163 templates/filter-rent.php:7
+msgid "search_panel:short_rent"
+msgstr "استئجار قصير الأجل"
+
+#: lib/objects/classes/Tags.php:166 lib/objects/functions.php:429
+#: page-object.php:420 templates/filter-rent.php:75
+msgid "search_panel:child_friendly"
+msgstr "صديقة للطفل"
+
+#: lib/objects/classes/Tags.php:169 lib/objects/functions.php:432
+#: page-object.php:423 templates/filter-rent.php:79
+msgid "search_panel:pets_allowed"
+msgstr "مسموح بدخول الحيوانات الأليفة"
+
+#: lib/objects/classes/Tags.php:177 templates/filter-rent.php:68
+msgid "search_panel:persons"
+msgstr "الأشخاص"
+
+#: lib/objects/classes/Tags.php:185
+msgid "search_panel:similar"
+msgstr "‫Similar"
+
+#: lib/objects/classes/Tags.php:185
+msgid "search_panel:km"
+msgstr "من"
+
+#: lib/objects/classes/Tags.php:185
+msgid "search_panel:from"
+msgstr "كم"
+
+#: lib/objects/functions.php:36 lib/objects/functions.php:460
+#: page-object.php:46 page-object.php:446
+msgid "s_object:header:detailed_info"
+msgstr "احصل على المعلومات المفصلة"
+
+#: lib/objects/functions.php:109 page-object.php:106
+msgid "s_object:sold"
+msgstr "تم البيع"
+
+#: lib/objects/functions.php:166 lib/objects/functions.php:589
+#: page-object.php:156
+msgid "s_object:on_demand"
+msgstr "سعر الطلب"
+
+#: lib/objects/functions.php:610
+msgid "s_object:rooms"
+msgstr "غرفة"
+
+#: lib/objects/functions.php:630
+msgid "s_object:m_short"
+msgstr "متر"
+
+#: lib/objects/functions.php:345 page-object.php:336
+msgid "s_object:number_of_rooms"
+msgstr "عدد الغرف"
+
+#: lib/objects/functions.php:342
+msgid "s_object:property_type"
+msgstr "نوع العقار"
+
+#: lib/objects/functions.php:356 page-object.php:347
+msgid "s_object:area_sq_m"
+msgstr "المنطقة, m²"
+
+#: lib/objects/functions.php:419 page-object.php:410
+msgid "s_object:pool"
+msgstr "المسبح"
+
+#: lib/objects/functions.php:422 page-object.php:413
+msgid "s_object:garage_parking"
+msgstr "المرآب/الكراج"
+
+#: lib/objects/functions.php:416 page-object.php:407
+msgid "s_object:terrace_balcony"
+msgstr "الشرفة/البلكون"
+
+#: lib/objects/functions.php:367 page-object.php:358
+msgid "s_object:bedrooms"
+msgstr "غرف النوم"
+
+#: lib/objects/functions.php:378 page-object.php:369
+msgid "s_object:bathrooms"
+msgstr "غرف الاستحمام"
+
+#: lib/objects/functions.php:405 page-object.php:396
+msgid "s_object:building_storeys"
+msgstr "أدوار المبنى"
+
+#: lib/objects/functions.php:394 page-object.php:385
+msgid "s_object:land_area"
+msgstr "مساحة الأرض"
+
+#: lib/objects/functions.php:425 page-object.php:416
+msgid "s_object:utility_rooms"
+msgstr "أقبية"
+
+#: lib/objects/functions.php:440
+msgid "s_object:prev"
+msgstr "العقار السابق"
+
+#: lib/objects/functions.php:443
+msgid "s_object:next"
+msgstr "العقار التالي"
+
+#: lib/objects/functions.php:450
+msgid "s_object:similar_label"
+msgstr "اعثر على عقارات مشابهة في نفس المنطقة"
+
+#: lib/objects/functions.php:182
+msgid "s_object:rent:long-term_rent:"
+msgstr "استئجار طويل الأجل، السعر الشهري"
+
+#: lib/objects/functions.php:184 lib/objects/functions.php:200
+#: lib/objects/functions.php:206 lib/objects/functions.php:212
+#: lib/objects/functions.php:218 lib/objects/functions.php:224
+#: lib/objects/functions.php:230 lib/objects/functions.php:302
+#: lib/objects/functions.php:308 lib/objects/functions.php:314
+#: lib/objects/functions.php:320 lib/objects/functions.php:326
+#: lib/objects/functions.php:332 lib/objects/functions.php:519
+#: lib/objects/functions.php:538 page-object.php:174 page-object.php:190
+#: page-object.php:196 page-object.php:202 page-object.php:208
+#: page-object.php:214 page-object.php:220 page-object.php:292
+#: page-object.php:298 page-object.php:304 page-object.php:310
+#: page-object.php:316 page-object.php:322 page-sharer-rent.php:44
+msgid "s_object:rent:on_request"
+msgstr "بناء على الطلب"
+
+#: lib/objects/functions.php:193 lib/objects/functions.php:196
+#: lib/objects/functions.php:295 lib/objects/functions.php:298
+#: page-object.php:183 page-object.php:186 page-object.php:285
+#: page-object.php:288
+msgid "s_object:rent:vat"
+msgstr "ضريبة القيمة المضافة"
+
+#: lib/objects/functions.php:193 lib/objects/functions.php:295
+#: page-object.php:183 page-object.php:285
+msgid "s_object:rent:not_included"
+msgstr "غير مدرجة"
+
+#: lib/objects/functions.php:196 lib/objects/functions.php:298
+#: page-object.php:186 page-object.php:288
+msgid "s_object:rent:included"
+msgstr "مدرجة"
+
+#: lib/objects/functions.php:198 lib/objects/functions.php:300
+#: page-object.php:188 page-object.php:290
+msgid "s_object:rent:deposit"
+msgstr "الإيداع"
+
+#: lib/objects/functions.php:216 lib/objects/functions.php:318
+#: page-object.php:206 page-object.php:308
+msgid "s_object:rent:commission"
+msgstr "العمولة"
+
+#: lib/objects/functions.php:237 page-object.php:228
+msgid "s_object:rent:rent_short_title"
+msgstr "استئجار قصير الأجل، السعر اليومي "
+
+#: lib/objects/functions.php:240 lib/objects/functions.php:258
+#: lib/objects/functions.php:275 page-object.php:231 page-object.php:248
+#: page-object.php:265
+msgid "s_object:rent:min_stay"
+msgstr "الحد الأدنى للإقامة"
+
+#: lib/objects/functions.php:242 lib/objects/functions.php:243
+#: lib/objects/functions.php:244 lib/objects/functions.php:260
+#: lib/objects/functions.php:277 lib/objects/functions.php:522
+#: lib/objects/functions.php:532 lib/objects/functions.php:543
+#: page-object.php:233 page-object.php:250 page-object.php:267
+#: page-sharer-rent.php:47 page-sharer-rent.php:57 page-sharer-rent.php:65
+#: templates/filter-rent.php:104
+msgid "s_object:rent:day"
+msgstr "يوم"
+
+#: lib/objects/functions.php:248 lib/objects/functions.php:264
+#: lib/objects/functions.php:281 lib/objects/functions.php:524
+#: page-object.php:237 page-object.php:254 page-object.php:271
+#: page-sharer-rent.php:49
+msgid "s_object:rent:week"
+msgstr "أسبوع"
+
+#: lib/objects/functions.php:252 lib/objects/functions.php:268
+#: lib/objects/functions.php:285 lib/objects/functions.php:526
+#: lib/objects/functions.php:534 lib/objects/functions.php:541
+#: page-object.php:241 page-object.php:258 page-object.php:275
+#: page-sharer-rent.php:51 page-sharer-rent.php:59 page-sharer-rent.php:63
+#: templates/filter-rent.php:105
+msgid "s_object:rent:month"
+msgstr "شهر"
+
+#: lib/objects/functions.php:241 page-object.php:232
+msgid "s_object:rent:low_season"
+msgstr "انخفاض الموسم"
+
+#: lib/objects/functions.php:259 page-object.php:249
+msgid "s_object:rent:medium_season"
+msgstr "وسط الموسم"
+
+#: lib/objects/functions.php:276 page-object.php:266
+msgid "s_object:rent:hight_season"
+msgstr "قمة الموسم"
+
+#: lib/objects/functions.php:390 page-object.php:381
+msgid "s_object:rent:max_persons"
+msgstr "العدد الأقصى للأشخاص"
+
+#: lib/objects/functions.php:627 page-sharer-rent.php:97
+msgid "s_object:rent:min_stay_full"
+msgstr "الحد الأدنى للإقامة"
+
+#: templates/form-contact.php:6
+msgid "form:title_default"
+msgstr "اتصل بنا من فضلك في حال كان لديك أية أسئلة، أو إذا كنت بحاجة معلومات إضافية أو مساعدة في اختيار العقار"
+
+#: templates/form-contact.php:13 templates/form-offmarket.php:13
+#: templates/form-request.php:14
+msgid "form:first_name"
+msgstr "أدخل اسمك الأول"
+
+#: templates/form-contact.php:17 templates/form-offmarket.php:17
+#: templates/form-request.php:18
+msgid "form:last_name"
+msgstr "واسمك الأخير"
+
+#: templates/form-contact.php:24 templates/form-offmarket.php:24
+#: templates/form-request.php:25
+msgid "form:how_can_reach"
+msgstr "كيف يمكن لنا أن نتواصل معك؟"
+
+#: templates/form-contact.php:27 templates/form-offmarket.php:28
+#: templates/form-request.php:28
+msgid "form:your_phone"
+msgstr "هاتفك"
+
+#: templates/form-contact.php:34 templates/form-offmarket.php:36
+#: templates/form-request.php:35
+msgid "form:your_email"
+msgstr "بريدك الالكتروني"
+
+#: templates/form-contact.php:38 templates/form-offmarket.php:40
+#: templates/form-request.php:39
+msgid "form:your_skype"
+msgstr "اسم السكايب الخاص بك"
+
+#: templates/form-contact.php:44 templates/form-offmarket.php:46
+#: templates/form-request.php:45
+msgid "form:have_questions"
+msgstr "هل هناك أية أسئلة أو تعليقات؟"
+
+#: templates/form-contact.php:50 templates/form-offmarket.php:52
+#: templates/form-request.php:51
+msgid "form:send"
+msgstr "أرسل طلبا"
+
+#: templates/form-contact.php:53 templates/form-offmarket.php:55
+#: templates/form-request.php:54
+msgid "form:disclaimer_note"
+msgstr "سوف يتم استخدام I hereby agree and authorize LPW to disclose my personal information collected on this form to the property developers and / or sale agents who have signed a Marketing services agreement with LPW in respect to requested properties."
+
+#: templates/form-contact.php:53 templates/form-offmarket.php:55
+#: templates/form-request.php:54
+msgid "form:privacy_policy"
+msgstr "سياسة الخصوصية الخاصة بنا"
+
+#: templates/form-offmarket.php:6
+msgid "form:title_off_market"
+msgstr "نحتاج إلى معلومات الاتصال الخاصة بك لتزويدك بالمعلومات المتعلقة بالعقارات خارج السوق"
+
+#: templates/form-request.php:7
+msgid "form:title_single"
+msgstr "احصل على المعلومات المفصلة عن العقار والصور الإضافية والمخططات والأسعار أو قم بإجراء معاينة"
+
+msgid "form:thank_you"
+msgstr "شكرا لك، تم تلقي طلبك. سنتصل بك قريبا"
+
+msgid "form:thank_you_default"
+msgstr "شكرا لك، تم تلقي طلبك. سنتصل بك قريبا"
+
+msgid "form:error_default"
+msgstr " "
+
+#: templates/search-panel.php:9
+msgid "alerts:advanced_search"
+msgstr "البحث المتقدم"
+
+#: templates/search-panel.php:19
+msgid "alerts:favorite_properties"
+msgstr "العقارات المفضلة"
+
+#: templates/search-panel.php:20
+msgid "alerts:offmarket_properties"
+msgstr "العقارات خارج السوق"
+
+#: templates/search-panel.php:26
+msgid "alerts:offmarket_found:text"
+msgstr "لقد وجدنا عقارات خارج السوق يمكن لها أن تكون مناسبة لمعايير بحثك."
+
+#: templates/search-panel.php:26
+msgid "alerts:offmarket_found:link"
+msgstr "معلومات الطلب"
+
+#: lib/extras.php:81 templates/search-panel.php:18
+msgid "alerts:show_map_tooltip"
+msgstr "إظهار الخريطة"
+
+#: templates/favorites-bar.php:18
+msgid "favorites:facebook_message"
+msgstr "المجموعة العقارية مدعومة من العقارات الرائدة حول العالم. أفضل مجموعة عقارية مختارة مع صور رائعة لها. هل تريد مشاهدة العقارات التي تم اختيارها تحديدا من أجلك؟ قم بزيارة موقعنا الالكتروني واحصل على النصائح الشخصية الخاصة بك لهذا اليوم."
+
+#: page-favorites-rent.php:14 page-favorites.php:14
+msgid "favorites:title"
+msgstr "‫The Leading Properties of The World"
+
+#: page-favorites-rent.php:36 page-favorites.php:36
+msgid "favorites:delete_alert"
+msgstr "هل أنت متأكد أنك تريد إزالة جميع العقارات من المفضلة؟"
+
+msgid "favorites:delete_y"
+msgstr "نعم، أزلها"
+
+msgid "favorites:delete_n"
+msgstr "لا"
+
+msgid "commercial:subtypes:hotel"
+msgstr "فنادق"
+
+msgid "commercial:subtypes:residential"
+msgstr "سكني"
+
+msgid "commercial:subtypes:office_building"
+msgstr "مبنى إداري"
+
+msgid "commercial:subtypes:retail"
+msgstr "التجزئة"
+
+msgid "commercial:subtypes:shopping_centre"
+msgstr "مركز التسوق"
+
+msgid "commercial:subtypes:cbr"
+msgstr "مقهى / بار / مطعم"
+
+msgid "commercial:subtypes:mixed"
+msgstr "استخدام متعدد"
+
+msgid "commercial:subtypes:other"
+msgstr "أخرى"
+
+msgid "commercial:main_title"
+msgstr "العقارات التجارية"
+
+msgid "commercial:sub_title_1"
+msgstr "3 خطوات للحصول على معلومات بشأن العقارات التجارية"
+
+msgid "commercial:sub_title_2"
+msgstr "أنت مهتم ب*"
+
+msgid "commercial:step_1"
+msgstr "إملأ الإستمارة"
+
+msgid "commercial:step_2"
+msgstr "تحدث إلى مديرنا"
+
+msgid "commercial:step_3"
+msgstr "احصل على المعلومات"
+
+msgid "commercial:note_text"
+msgstr "* في بعض الحالات لا يتم تقديم المعلومات إلا بعد توقيع اتفاقية عدم الإفصاح (NDA)."
+
+msgid "commercial:note_link"
+msgstr "تنزيل نموذج اتفاقية عدم الإفصاح"
+
+#. Theme Name of the plugin/theme
+#. Author of the plugin/theme
+msgid "Leading Properties"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://www.leadingproperties.com/"
+msgstr ""
