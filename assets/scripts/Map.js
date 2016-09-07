@@ -72,9 +72,9 @@
 			]
 		};
 
-		if(this.category === 'sale') {
+		if(this.category === 'sale' || this.category === 'invest') {
 			this.mapOptions.maxZoom = this.markerClusterOptions.maxZoom = 8;
-		} else if(this.category === 'rent' || this.category === 'invest') {
+		} else if(this.category === 'rent') {
 			this.mapOptions.maxZoom = this.markerClusterOptions.maxZoom = 18;
 		}
 		if(this.category === 'invest' ) {

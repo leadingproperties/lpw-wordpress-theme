@@ -10,35 +10,44 @@
             'invest',
             new window.lpw.AutoComplete(null, null, 'invest', this)
         );
+
         this.setTotalCounter = function(count) {
-            if(!_.isNumber(count)) {
-                count = LpData.totalInvest;
-            }
           $('#total-counter').text(count);
         };
 
         this.setEventListeners();
     }
     Invest.prototype.setEventListeners = function() {
-      var $this = this;
-
+        var $this = this;
+        $('body').on('click.lprop', '.tag-remove', function(ev) {
+            ev.preventDefault();
+            $this.onClusterSelect(null, true);
+        });
     };
-    Invest.prototype.onClusterSelect = function(data) {
-        var title = $('<h3 class="location-title">' +
-            '<span class="location-title-wrapper">' +
-            '<span>' + data.text + '</span>&nbsp;<span class="tag-remove text-red"></span>' +
-            '</span>' +
-            '</h3>');
-        title.insertAfter('.invest-title');
-
-        $('html, body').stop().animate({
-            scrollTop: 0
-        }, 1000);
-        if (data.location) {
-            this.getSubTypes(data.location)
-                .done(this.getSubTypesSuccess.bind(this))
-                .fail(this.getSubTypesError.bind(this));
+    Invest.prototype.onClusterSelect = function(data, remove) {
+        var locations = (data && data.location) ? data.location : null;
+        if(remove) {
+            $('.location-title').remove();
+        } else {
+            var locationTitle = $('.location-title-wrapper');
+            if (locationTitle.length > 0) {
+                locationTitle.html('<span>' + data.text + '</span>&nbsp;<span class="tag-remove text-red"></span>');
+            } else {
+                var title = $('<h3 class="location-title">' +
+                    '<span class="location-title-wrapper">' +
+                    '<span>' + data.text + '</span>&nbsp;<span class="tag-remove text-red"></span>' +
+                    '</span>' +
+                    '</h3>');
+                title.insertAfter('.invest-title');
+            }
+            $('html, body').stop().animate({
+                scrollTop: 0
+            }, 1000);
         }
+        this.getSubTypes(locations)
+            .done(this.getSubTypesSuccess.bind(this))
+            .fail(this.getSubTypesError.bind(this));
+
     };
     Invest.prototype.getSubTypes = function(location) {
         var data = {
@@ -46,19 +55,58 @@
             fn: 'get_subtypes',
             subtype_parent_id: 3
         };
-        if(_.isObject(location)) {
-            _.forEach(location, function (v, k) {
-                data[k] = v;
-            });
+        if(location) {
+            if(!location.location_shape && location.location_point) {
+                data.location_point = location.location_point;
+            } else if(location.location_shape) {
+                data.location_shape = location.location_shape;
+            }
         }
         return $.ajax({
             url: LpData.ajaxUrl,
             method: 'post',
+            dataType: 'json',
             data: data
         });
     };
-    Invest.prototype.getSubTypesSuccess = function(answer) {
-         console.log(answer);
+    Invest.prototype.getSubTypesSuccess = function(data) {
+        var html = '',
+            answer = [],
+            rawTypesArray = data.counters,
+            tagsList = $('.comm-tags'),
+            TypesOrder = [
+                'hotel',
+                'residential',
+                'office_building',
+                'retail',
+                'shopping_centre',
+                'cbr',
+                'mixed',
+                'other'
+            ];
+
+        _.forEach(TypesOrder, function(typeName){
+            var target = _.find(rawTypesArray, ['name', typeName]);
+            if(target && target.count){
+                answer.push(target);
+            }
+        });
+
+        this.setTotalCounter(data.total);
+        _.forEach(answer, function(value) {
+            html += '<li><span>' + value.title + ' <sup class="text-red">' + value.count + '</sup></span></li>';
+        });
+        if(html !== '') {
+            if(tagsList.length > 0 ) {
+                tagsList.html(html)
+            } else {
+                $('<ul class="comm-tags">' + html + '</ul>').appendTo('.comm-header');
+            }
+        } else {
+            tagsList.remove();
+        }
+
+        this.tagWrap.html(html);
     };
     Invest.prototype.getSubTypesError = function(error) {
         console.debug('getSTError', error.responseText);
