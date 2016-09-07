@@ -11,12 +11,13 @@
 	 */
 	function AutoComplete(
 		inputSelectorString,
-		callback
+		callback, category, invest
 	) {
 		this.jqInput = $(inputSelectorString);
 		this.callback = callback;
-
+		this.category = category;
 		this.autocompleteSelected = null;
+		this.invest = invest;
 		this.errors = {
 			google: false
 		};
@@ -30,7 +31,9 @@
 			this.errors.google = true;
 			console.error("Google maps service not loaded");
 		}
-		this.attachTypeAheadPlugin();
+		if(this.category !== 'invest') {
+			this.attachTypeAheadPlugin();
+		}
 	}
 
 	/**
@@ -234,8 +237,15 @@
 	 */
 	AutoComplete.prototype.setSelected = function(item, inputText, ignoreCallback) {
 		this.autocompleteSelected = item;
-		this.jqInput.val(inputText || '').change();
-		this.callback(item, ignoreCallback);
+		if(this.category === 'invest') {
+			this.invest.onClusterSelect({
+				location: item,
+				text: inputText
+			});
+		} else {
+			this.jqInput.val(inputText || '').change();
+			this.callback(item, ignoreCallback);
+		}
 	};
 
 	/**

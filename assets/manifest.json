@@ -7,6 +7,7 @@
         "scripts/Map.js",
         "scripts/Tags.js",
         "scripts/Pdf.js",
+        "scripts/Invest.js",
         "scripts/main.js"
       ],
       "main": true

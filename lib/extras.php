@@ -41,6 +41,8 @@ function body_class($classes) {
 		$classes[] = 'page-sharer';
 	} elseif(is_page_template('page-sharer-rent.php')) {
 		$classes[] = 'page-sharer-rent';
+	} elseif(is_page_template('page-invest.php')) {
+		$classes[] = 'page-commercial';
 	}
 
   return $classes;

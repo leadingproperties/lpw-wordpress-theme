@@ -103,6 +103,8 @@ class LP_ObjectList {
                     $url .= '/property_objects/geo_points';
                 } elseif ($this->args['type'] === 'rent') {
                     $url .= '/property_objects/rent_geo_points';
+                } elseif ($this->args['type'] === 'invest') {
+                    $url .= '/property_objects/invest_geo_points';
                 }
                 break;
             case 'get_pdf':
@@ -112,6 +114,28 @@ class LP_ObjectList {
                 }
                 if($this->args['for_rent']) {
                     $url .= '?for_rent=true';
+                }
+                break;
+            case 'get_subtypes':
+                    $url .= 'subtype_counters?';
+                if($this->args['subtype_parent_id']) {
+                    $url .= 'subtype_parent_id=' . $this->args['subtype_parent_id'];
+                }
+                if(isset($this->args['location_point']) && is_array($this->args['location_point'])) {
+                    foreach ($this->args['location_point'] as $k => $v) {
+                        $url .= '&location_point[' . $k . ']=' . $v;
+                    }
+                }
+                if(isset($this->args['location_shape']) && is_array($this->args['location_shape'])) {
+                    foreach ($this->args['location_shape'] as $key => $value) {
+                        if(is_array($value)) {
+                            foreach($value as $k => $v) {
+                                $url .= '&location_shape[' . $key . '][' .  $k . ']=' . $v;
+                            }
+                        } else {
+                            $url .= '&location_shape[' . $key . ']=' . $value;
+                        }
+                    }
                 }
                 break;
             default:
@@ -174,9 +198,6 @@ class LP_ObjectList {
                             $url .= '&location_point[' . $k . ']=' . $v;
                         }
                     }
-                    if(isset($this->args['order_by']['order'])) {
-                        $url .= '&order_by[order]=' . $this->args['order_by']['order'];
-                    }
                     if(isset($this->args['location_shape']) && is_array($this->args['location_shape'])) {
                         foreach ($this->args['location_shape'] as $key => $value) {
                             if(is_array($value)) {
@@ -188,6 +209,9 @@ class LP_ObjectList {
                             }
                         }
                     }
+                    if(isset($this->args['order_by']['order'])) {
+                        $url .= '&order_by[order]=' . $this->args['order_by']['order'];
+                    }
                 }
 
         }
@@ -195,7 +219,8 @@ class LP_ObjectList {
         $curl_options = [
             CURLOPT_URL => $url,
             CURLOPT_HTTPHEADER => [
-                'Authorization: Token token=' . $this->token
+                'Authorization: Token token=' . $this->token,
+                'Accept-Language: ' . $this->args['lang']
             ],
             CURLOPT_RETURNTRANSFER => true,
 	        CURLOPT_HEADER => true,
@@ -376,6 +401,7 @@ class LP_ObjectList {
 
         return json_encode($return);
     }
+
 
     /**
      * Check if string is JSON

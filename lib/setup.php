@@ -73,7 +73,7 @@ function assets() {
   if (is_single() && comments_open() && get_option('thread_comments')) {
     wp_enqueue_script('comment-reply');
   }
-  if(is_page_template('page-buy.php') || is_page_template('page-rent.php')) {
+  if(is_page_template('page-buy.php') || is_page_template('page-rent.php') || is_page_template('page-invest.php')) {
 
  	 wp_enqueue_script('google-map', 'https://maps.googleapis.com/maps/api/js?key=' . $lp_settings['google_api_key'] . '&libraries=places&language=en', null, true);
       wp_enqueue_script('js-marker-clusterer', Assets\asset_path('/scripts/js-marker-clusterer.js'), ['jquery', 'google-map'], null, true);
@@ -97,7 +97,8 @@ function assets() {
 	  'perPage' => get_option('posts_per_page'),
 	  'lang'    => $lp_settings['lang'],
 	  'totalSale' => $lp_settings['counters']['for_sale'],
-	  'totalRent'   => $lp_settings['counters']['for_rent']
+	  'totalRent'   => $lp_settings['counters']['for_rent'],
+      'totalInvest'   => $lp_settings['counters']['commercial']
   ];
 	$data['totalObjects'] = (is_page_template('page-buy.php')) ? $lp_settings['counters']['for_sale'] : $lp_settings['counters']['for_rent'];
     if((is_page_template('page-sharer.php') || is_page_template('page-sharer-rent.php')) && isset($_GET['ids'])) {

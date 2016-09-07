@@ -48,6 +48,9 @@ function ajax_handler() {
 		case 'get_pdf':
 			$output = ajax_get_pdf($_REQUEST);
 			break;
+		case 'get_subtypes':
+			$output = ajax_get_subtypes($_REQUEST);
+			break;
 		default :
 			$output = 'No function specified, check your jQuery.ajax() call';
 			break;
@@ -227,6 +230,11 @@ function ajax_build_tags($args){
 }
 function ajax_get_pdf($args) {
 	$args['action'] = 'get_pdf';
+	$return = new LP_ObjectList($args);
+	return $return->get_json_objects();
+}
+function ajax_get_subtypes($args) {
+	$args['action'] = 'get_subtypes';
 	$return = new LP_ObjectList($args);
 	return $return->get_json_objects();
 }

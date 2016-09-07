@@ -74,28 +74,41 @@
 
 		if(this.category === 'sale') {
 			this.mapOptions.maxZoom = this.markerClusterOptions.maxZoom = 8;
-		} else if(this.category === 'rent') {
+		} else if(this.category === 'rent' || this.category === 'invest') {
 			this.mapOptions.maxZoom = this.markerClusterOptions.maxZoom = 18;
 		}
+		if(this.category === 'invest' ) {
+			this.map = new google.maps.Map(
+				document.getElementById('invest-map'),
+				$this.mapOptions
+			);
 
-		this.mapModal.on('shown.bs.modal', function() {
-			if(!$this.map) {
-				//инит карты
+		} else {
+			this.mapModal.on('shown.bs.modal', function () {
+				if (!$this.map) {
+					//инит карты
 
-				$this.map = new google.maps.Map(
-					document.getElementById('map-canvas'),
-					$this.mapOptions
-				);
-				if(!$this.geopointsError) {
-					$this.getGeoPointsSuccess($this.geoPoints);
+					$this.map = new google.maps.Map(
+						document.getElementById('map-canvas'),
+						$this.mapOptions
+					);
+					if (!$this.geopointsError) {
+						$this.getGeoPointsSuccess($this.geoPoints);
+					}
+				} else {
+					google.maps.event.trigger($this.map, "idle");
 				}
-			} else {
-				google.maps.event.trigger($this.map, "idle");
-			}
-		});
+			});
+		}
 		//запрашиваем геопоинты
-		this.getGeoPoints()
-			.fail(this.getGeoPointsError.bind(this));
+		if(this.category === 'invest') {
+			this.getGeoPoints()
+				.done(this.getGeoPointsSuccess.bind(this))
+				.fail(this.getGeoPointsError.bind(this));
+		} else {
+			this.getGeoPoints()
+				.fail(this.getGeoPointsError.bind(this));
+		}
 
 	}
 
@@ -148,7 +161,12 @@
 					//google.maps.event.trigger($this.map, "idle"); //иногда пропадают кластеры - так что пинаем чтобы перерендерить // Moved to modal event listentr
 				});
 			}
-		this.mapModal.modal('hide');
+			if(this.category === 'invest') {
+
+			} else {
+				this.mapModal.modal('hide');
+			}
+
 		}
 	};
 

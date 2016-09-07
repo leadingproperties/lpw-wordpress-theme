@@ -1563,6 +1563,7 @@ Number.prototype.formatMoney = function(c, d, t){
 
           $('.menu .menu-buy > a').append(' <sup class="text-red">' + LpData.totalSale + '</sup>');
           $('.menu .menu-rent > a').append(' <sup class="text-red">' + LpData.totalRent + '</sup>');
+          $('.menu .menu-invest > a').append(' <sup class="text-red">' + LpData.totalInvest + '</sup>');
 
           $('body').on('click.lprop', '.alert-close', function(ev) {
               ev.preventDefault();
@@ -1701,6 +1702,11 @@ Number.prototype.formatMoney = function(c, d, t){
           var contactForms = new window.lpw.ContactForm();
           contactForms.init();
       }
+    },
+    'page_commercial': {
+        init: function() {
+           var invest = new window.lpw.Invest();
+        }
     },
     'page_single_object': {
       init: function() {

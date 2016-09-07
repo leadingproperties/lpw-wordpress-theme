@@ -458,30 +458,6 @@ msgstr ""
 msgid "favorites:delete_n"
 msgstr ""
 
-msgid "commercial:subtypes:hotel"
-msgstr ""
-
-msgid "commercial:subtypes:residential"
-msgstr ""
-
-msgid "commercial:subtypes:office_building"
-msgstr ""
-
-msgid "commercial:subtypes:retail"
-msgstr ""
-
-msgid "commercial:subtypes:shopping_centre"
-msgstr ""
-
-msgid "commercial:subtypes:cbr"
-msgstr ""
-
-msgid "commercial:subtypes:mixed"
-msgstr ""
-
-msgid "commercial:subtypes:other"
-msgstr ""
-
 msgid "commercial:main_title"
 msgstr ""
 
