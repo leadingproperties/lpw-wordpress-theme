@@ -14,20 +14,38 @@
 	]);
 	$subtypesObj = $subtypes->get_objects_array();
 	$totalCnt = ($subtypesObj->total) ? $subtypesObj->total : 0;
+	$countersArray = $subtypesObj->counters;
+	$typesOrder = [
+		'hotel',
+		'residential',
+		'office_building',
+		'retail',
+		'shopping_centre',
+		'cbr',
+		'mixed',
+		'other'
+	];
+	$counters = [];
+	foreach($typesOrder as $name) {
+		foreach($countersArray as $c) {
+			if ($name == $c->name && $c->count > 0) {
+				$counters[] = $c;
+				break;
+			}
+		}
+	}
 
 ?>
 	<div class="page-content page-comm-content">
 		<div class="page-container">
 			<header class="comm-header">
 				<h2 class="invest-title"><?php _e('commercial:main_title', 'leadingprops') ?> <span id="total-counter" class="text-red"><?= $totalCnt ?></span></h2>
-				<?php if($subtypesObj->counters && is_array($subtypesObj->counters)) : ?>
 				<ul class="comm-tags">
-					<?php foreach($subtypesObj->counters as $counter) {
-						if( $counter->count === 0 ) { continue; }
+					<?php foreach($counters as $counter) {
 						echo '<li><span>' . $counter->title . ' <sup class="text-red">' . $counter->count . '</sup></span></li>';
 					} ?>
 				</ul>
-				<?php endif; ?>
+
 			</header>
 			<div class="comm-steps">
 				<h3><?php _e('commercial:sub_title_1', 'leadingprops') ?><br> <?php _e('commercial:sub_title_2', 'leadingprops') ?></h3>

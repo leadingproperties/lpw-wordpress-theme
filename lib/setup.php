@@ -172,6 +172,9 @@ $pages = array(
     'Rent share' => array(
         'Rent share page template. Please do not delete this page!'=>'page-rent.php'),
 
+    'Invest' => array(
+        'Invest page template. Please do not delete this page!'=>'page-invest.php'),
+
 );
 
 foreach($pages as $page_url_title => $page_meta) {
@@ -191,7 +194,7 @@ foreach($pages as $page_url_title => $page_meta) {
       if(!isset($id->ID)){
         $new_page_id = wp_insert_post($page);
         if(!empty($page_template)){
-                update_post_meta($new_page_id, '_wp_page_template', $page_template);
+             update_post_meta($new_page_id, '_wp_page_template', $page_template);
         }
       }
     }
