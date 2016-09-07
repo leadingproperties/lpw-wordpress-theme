@@ -3,7 +3,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "Project-Id-Version: Leading Properties\n"
 "POT-Creation-Date: 2016-09-03 09:14+0300\n"
-"PO-Revision-Date: 2016-09-06 12:38+0200\n"
+"PO-Revision-Date: 2016-09-07 14:36+0200\n"
 "Language-Team: \n"
 "MIME-Ver§`sion: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -455,6 +455,54 @@ msgstr "\"Oui, supprimer"
 
 msgid "favorites:delete_n"
 msgstr "Non"
+
+msgid "commercial:subtypes:hotel"
+msgstr "Hôtels"
+
+msgid "commercial:subtypes:residential"
+msgstr "Résidentiel"
+
+msgid "commercial:subtypes:office_building"
+msgstr "Bâtiment de bureau"
+
+msgid "commercial:subtypes:retail"
+msgstr "Vente"
+
+msgid "commercial:subtypes:shopping_centre"
+msgstr "Centre commercial"
+
+msgid "commercial:subtypes:cbr"
+msgstr "Café/Bar/Restaurant"
+
+msgid "commercial:subtypes:mixed"
+msgstr "Usage mixte"
+
+msgid "commercial:subtypes:other"
+msgstr "Autre"
+
+msgid "commercial:main_title"
+msgstr "Propriétés commerciales"
+
+msgid "commercial:sub_title_1"
+msgstr "3 étapes pour obtenir des informations sur les propriétés commerciales"
+
+msgid "commercial:sub_title_2"
+msgstr "Vous êtes intéressé par *"
+
+msgid "commercial:step_1"
+msgstr "Remplir le formulaire"
+
+msgid "commercial:step_2"
+msgstr "Parlez avec notre responsable"
+
+msgid "commercial:step_3"
+msgstr "Obtenir des informations"
+
+msgid "commercial:note_text"
+msgstr "\"*Dans les cas où les informations sont fournies uniquement après avoir souscrit à un accord de confidentialité (AC).\""
+
+msgid "commercial:note_link"
+msgstr "Télécharger un modèle d'AC"
 
 #. Theme Name of the plugin/theme
 #. Author of the plugin/theme

@@ -3,7 +3,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "Project-Id-Version: Leading Properties\n"
 "POT-Creation-Date: 2016-09-02 19:10+0300\n"
-"PO-Revision-Date: 2016-09-06 12:42+0200\n"
+"PO-Revision-Date: 2016-09-07 14:53+0200\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -38,10 +38,6 @@ msgstr ""
 #: lib/extras.php:54
 msgid "Continued"
 msgstr ""
-
-#: lib/extras.php:81 templates/search-panel.php:18
-msgid "alerts:show_map_tooltip"
-msgstr "Показать карту"
 
 #: lib/extras.php:82
 msgid "menu:favorites"
@@ -318,10 +314,6 @@ msgstr ""
 msgid "Not Found"
 msgstr ""
 
-#: page-favorites-rent.php:14 page-favorites.php:14
-msgid "favorites:title"
-msgstr "Избранные объекты:"
-
 #: page-favorites-rent.php:19 page-favorites.php:19 page-sharer-rent.php:17
 #: page-sharer.php:17 templates/sorting-panel.php:6
 msgid "search_panel:order:recent"
@@ -336,10 +328,6 @@ msgstr "Самая высокая цена"
 #: page-sharer.php:19 templates/sorting-panel.php:8
 msgid "search_panel:order:price_asc"
 msgstr "Самая низкая цена"
-
-#: page-favorites-rent.php:36 page-favorites.php:36
-msgid "favorites:delete_alert"
-msgstr "Вы уверены, что хотите удалить всю недвижимость из избранного?"
 
 #: page-object.php:333
 msgid "s_object:property type"
@@ -373,10 +361,6 @@ msgstr ""
 #: templates/favorites-bar.php:3
 msgid "search_panel:share"
 msgstr "Поделитесь своими избранными объектами недвижимости с друзьями и коллегами"
-
-#: templates/favorites-bar.php:18
-msgid "favorites:facebook_message"
-msgstr "Подборка недвижимости от The Leading Properties of the World. Лучшая недвижимость отобранная вручную с высококачественными фотографиями. Хотите получить подборку для себя лично? Посетите наш сайт и получите персональные рекомендации уже сегодня."
 
 #: templates/favorites-bar.php:29
 msgid "search_panel:copy"
@@ -511,6 +495,76 @@ msgstr "Найдены объекты недвижимости Off-Market, ко�
 #: templates/search-panel.php:26
 msgid "alerts:offmarket_found:link"
 msgstr "Запросить информацию"
+
+#: lib/extras.php:81 templates/search-panel.php:18
+msgid "alerts:show_map_tooltip"
+msgstr "Показать карту"
+
+#: templates/favorites-bar.php:18
+msgid "favorites:facebook_message"
+msgstr "Подборка недвижимости от The Leading Properties of the World. Лучшая недвижимость отобранная вручную с высококачественными фотографиями. Хотите получить подборку для себя лично? Посетите наш сайт и получите персональные рекомендации уже сегодня."
+
+#: page-favorites-rent.php:14 page-favorites.php:14
+msgid "favorites:title"
+msgstr "Избранные объекты:"
+
+#: page-favorites-rent.php:36 page-favorites.php:36
+msgid "favorites:delete_alert"
+msgstr "Вы уверены, что хотите удалить всю недвижимость из избранного?"
+
+msgid "favorites:delete_y"
+msgstr "Да, удалить"
+
+msgid "favorites:delete_n"
+msgstr "Нет"
+
+msgid "commercial:subtypes:hotel"
+msgstr "Отели"
+
+msgid "commercial:subtypes:residential"
+msgstr "Жилая"
+
+msgid "commercial:subtypes:office_building"
+msgstr "Офисные здания"
+
+msgid "commercial:subtypes:retail"
+msgstr "Торговые помещения"
+
+msgid "commercial:subtypes:shopping_centre"
+msgstr "Торговый центр"
+
+msgid "commercial:subtypes:cbr"
+msgstr "Кафе/Бар/Ресторан"
+
+msgid "commercial:subtypes:mixed"
+msgstr "Помещения смешанного типа"
+
+msgid "commercial:subtypes:other"
+msgstr "Другое"
+
+msgid "commercial:main_title"
+msgstr "Коммерческая недвижимость"
+
+msgid "commercial:sub_title_1"
+msgstr "3 шага для получения информации о коммерческой недвижимости,"
+
+msgid "commercial:sub_title_2"
+msgstr "которая вас интересует*"
+
+msgid "commercial:step_1"
+msgstr "Заполните форму"
+
+msgid "commercial:step_2"
+msgstr "Поговорите с нашим менеджером"
+
+msgid "commercial:step_3"
+msgstr "Получите информацию"
+
+msgid "commercial:note_text"
+msgstr "«* В некоторых случаях информация предоставляется только после подписания соглашения о неразглашении информации (NDA).»"
+
+msgid "commercial:note_link"
+msgstr "Скачать бланк NDA соглашения"
 
 #. Theme Name of the plugin/theme
 #. Author of the plugin/theme

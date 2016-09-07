@@ -528,6 +528,54 @@ msgstr "Yes, delete"
 msgid "favorites:delete_n"
 msgstr "No"
 
+msgid "commercial:subtypes:hotel"
+msgstr "Hotels"
+
+msgid "commercial:subtypes:residential"
+msgstr "Residential"
+
+msgid "commercial:subtypes:office_building"
+msgstr "Office Building"
+
+msgid "commercial:subtypes:retail"
+msgstr "Retail"
+
+msgid "commercial:subtypes:shopping_centre"
+msgstr "Shopping Centre"
+
+msgid "commercial:subtypes:cbr"
+msgstr "Cafe/Bar/Restaurant"
+
+msgid "commercial:subtypes:mixed"
+msgstr "Mixed use"
+
+msgid "commercial:subtypes:other"
+msgstr "Other"
+
+msgid "commercial:main_title"
+msgstr "Commercial properties"
+
+msgid "commercial:sub_title_1"
+msgstr "3 steps to obtain information about commercial properties"
+
+msgid "commercial:sub_title_2"
+msgstr "you are interested in*"
+
+msgid "commercial:step_1"
+msgstr "Fill in the form"
+
+msgid "commercial:step_2"
+msgstr "Talk to our manager"
+
+msgid "commercial:step_3"
+msgstr "Get information"
+
+msgid "commercial:note_text"
+msgstr "\"* In some cases information is provided only after Signing a non-disclosure agreement (NDA).\""
+
+msgid "commercial:note_link"
+msgstr "Download an NDA template"
+
 #. Theme Name of the plugin/theme
 #. Author of the plugin/theme
 msgid "Leading Properties"

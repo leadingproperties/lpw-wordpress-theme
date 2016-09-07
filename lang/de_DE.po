@@ -3,7 +3,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Project-Id-Version: Leading Properties\n"
 "POT-Creation-Date: 2016-09-03 08:34+0300\n"
-"PO-Revision-Date: 2016-09-06 12:34+0200\n"
+"PO-Revision-Date: 2016-09-07 14:25+0200\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -516,6 +516,54 @@ msgstr "Ja, entfernen"
 
 msgid "favorites:delete_n"
 msgstr "Nein"
+
+msgid "commercial:subtypes:hotel"
+msgstr "Hotels"
+
+msgid "commercial:subtypes:residential"
+msgstr "Wohngebäude"
+
+msgid "commercial:subtypes:office_building"
+msgstr "Bürogebäude"
+
+msgid "commercial:subtypes:retail"
+msgstr "Einzelhandel"
+
+msgid "commercial:subtypes:shopping_centre"
+msgstr "Shoppingcenter"
+
+msgid "commercial:subtypes:cbr"
+msgstr "Café/Bar/Restaurant"
+
+msgid "commercial:subtypes:mixed"
+msgstr "Mischnutzung"
+
+msgid "commercial:subtypes:other"
+msgstr "Sonstige"
+
+msgid "commercial:main_title"
+msgstr "Gewerbeimmobilien"
+
+msgid "commercial:sub_title_1"
+msgstr "3 Schritte, um Informationen über Gewerbeimmobilien zu erhalten"
+
+msgid "commercial:sub_title_2"
+msgstr "Sie interessieren sich für *"
+
+msgid "commercial:step_1"
+msgstr "Bitte Formular ausfüllen"
+
+msgid "commercial:step_2"
+msgstr "Sprechen Sie mit unserem Manager"
+
+msgid "commercial:step_3"
+msgstr "Informationen einholen"
+
+msgid "commercial:note_text"
+msgstr "„*In manchen Fällen werden Informationen erst nach Unterzeichnung einer Geheimhaltungsvereinbarung (NDA) zur Verfügung gestellt.“"
+
+msgid "commercial:note_link"
+msgstr "Eine NDA-Vorlage herunterladen"
 
 #. Theme Name of the plugin/theme
 #. Author of the plugin/theme

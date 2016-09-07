@@ -3,7 +3,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Project-Id-Version: Leading Properties\n"
 "POT-Creation-Date: 2016-09-03 08:59+0300\n"
-"PO-Revision-Date: 2016-09-06 12:40+0200\n"
+"PO-Revision-Date: 2016-09-07 14:39+0200\n"
 "Language-Team: \n"
 "MIME-Ver§`sion: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -455,6 +455,54 @@ msgstr "Sì, rimuovile"
 
 msgid "favorites:delete_n"
 msgstr "No"
+
+msgid "commercial:subtypes:hotel"
+msgstr "Alberghi"
+
+msgid "commercial:subtypes:residential"
+msgstr "Residenziale"
+
+msgid "commercial:subtypes:office_building"
+msgstr "Edificio per uffici"
+
+msgid "commercial:subtypes:retail"
+msgstr "Negozio al dettaglio"
+
+msgid "commercial:subtypes:shopping_centre"
+msgstr "Centro commerciale"
+
+msgid "commercial:subtypes:cbr"
+msgstr "Caffè/Bar/Ristorante"
+
+msgid "commercial:subtypes:mixed"
+msgstr "Uso misto"
+
+msgid "commercial:subtypes:other"
+msgstr "Altro"
+
+msgid "commercial:main_title"
+msgstr "Immobili commerciali"
+
+msgid "commercial:sub_title_1"
+msgstr "3 passi per ottenere delle informazioni su immobili commerciali"
+
+msgid "commercial:sub_title_2"
+msgstr "sei interessato a*"
+
+msgid "commercial:step_1"
+msgstr "Compila il modulo"
+
+msgid "commercial:step_2"
+msgstr "Parla con il nostro dirigente"
+
+msgid "commercial:step_3"
+msgstr "Ottieni informazioni"
+
+msgid "commercial:note_text"
+msgstr "\"* In alcuni casi le informazioni sono fornite solo dopo aver firmato un accordo di non divulgazione (NDA).\""
+
+msgid "commercial:note_link"
+msgstr "Scarica un modello di NDA"
 
 #. Theme Name of the plugin/theme
 #. Author of the plugin/theme
