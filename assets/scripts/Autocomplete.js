@@ -247,7 +247,8 @@
 
 		try {
 			// compare values with 2 digits after comma
-			return locationShape.top_right.lat.toFixed(2) !== locationShape.bottom_left.lat.toFixed(2) || locationShape.top_right.lon.toFixed(2) !== locationShape.bottom_left.lon.toFixed(2);
+			// both lat and lon should be unequal
+			return locationShape.top_right.lat.toFixed(2) !== locationShape.bottom_left.lat.toFixed(2) && locationShape.top_right.lon.toFixed(2) !== locationShape.bottom_left.lon.toFixed(2);
 		}catch(error){
 			return false;
 		}
