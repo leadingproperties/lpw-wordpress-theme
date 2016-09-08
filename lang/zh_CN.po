@@ -3,7 +3,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Project-Id-Version: Leading Properties\n"
 "POT-Creation-Date: 2016-09-07 16:21+0300\n"
-"PO-Revision-Date: 2016-09-08 10:16+0200\n"
+"PO-Revision-Date: 2016-09-08 14:46+0200\n"
 "Language-Team: \n"
 "MIME-Ver§`sion: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -470,6 +470,15 @@ msgstr "请求信息"
 #: lib/extras.php:81 templates/search-panel.php:18
 msgid "alerts:show_map_tooltip"
 msgstr "显示地图"
+
+msgid "alerts:no_results:title"
+msgstr "没有匹配您请求的房产"
+
+msgid "alerts:no_results:text"
+msgstr "尝试编辑您的价格范围或删除筛选以查看更多结果"
+
+msgid "alerts:no_results:button"
+msgstr "移除筛选"
 
 #: templates/favorites-bar.php:18
 msgid "favorites:facebook_message"

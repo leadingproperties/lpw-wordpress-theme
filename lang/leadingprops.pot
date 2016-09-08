@@ -473,6 +473,15 @@ msgstr ""
 msgid "alerts:show_map_tooltip"
 msgstr ""
 
+msgid "alerts:no_results:title"
+msgstr ""
+
+msgid "alerts:no_results:text"
+msgstr ""
+
+msgid "alerts:no_results:button"
+msgstr ""
+
 #: templates/favorites-bar.php:18
 msgid "favorites:facebook_message"
 msgstr ""

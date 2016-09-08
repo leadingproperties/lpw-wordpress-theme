@@ -3,7 +3,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "Project-Id-Version: Leading Properties\n"
 "POT-Creation-Date: 2016-09-02 19:10+0300\n"
-"PO-Revision-Date: 2016-09-08 10:13+0200\n"
+"PO-Revision-Date: 2016-09-08 14:46+0200\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -532,6 +532,15 @@ msgstr "Запросить информацию"
 #: lib/extras.php:81 templates/search-panel.php:18
 msgid "alerts:show_map_tooltip"
 msgstr "Показать карту"
+
+msgid "alerts:no_results:title"
+msgstr "По вашему запросу ничего не найдено"
+
+msgid "alerts:no_results:text"
+msgstr "Попробуйте изменить диапазон цен или очистить фильтры, чтобы получить больше результатов"
+
+msgid "alerts:no_results:button"
+msgstr "Очистить фильтры"
 
 #: templates/favorites-bar.php:18
 msgid "favorites:facebook_message"

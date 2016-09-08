@@ -3,7 +3,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "Project-Id-Version: Leading Properties\n"
 "POT-Creation-Date: 2016-09-03 09:14+0300\n"
-"PO-Revision-Date: 2016-09-08 10:10+0200\n"
+"PO-Revision-Date: 2016-09-08 14:44+0200\n"
 "Language-Team: \n"
 "MIME-Ver§`sion: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -470,6 +470,15 @@ msgstr "Demander des informations"
 #: lib/extras.php:81 templates/search-panel.php:18
 msgid "alerts:show_map_tooltip"
 msgstr "Afficher la carte"
+
+msgid "alerts:no_results:title"
+msgstr "Aucune propriété ne correspond à votre demande"
+
+msgid "alerts:no_results:text"
+msgstr "Essayez de modifier votre gamme de prix ou de supprimer des filtres pour voir plus de résultats"
+
+msgid "alerts:no_results:button"
+msgstr "Supprimer les filtres"
 
 #: templates/favorites-bar.php:18
 msgid "favorites:facebook_message"

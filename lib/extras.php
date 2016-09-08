@@ -91,11 +91,11 @@ function lp_menu_static_links ( $items, $args ) {
 			    $return .= '<li><a class="menu-link menu-icon menu-email" href="mailto:' . $lp_settings['contact_email'] . '">' . $lp_settings['contact_email'] . '</a></li>';
 		    }
 	    }
-    } elseif($args->theme_location === 'footer_navigation') {
+    }// elseif($args->theme_location === 'footer_navigation') {
 	   // $return .= '<li><a href="' . esc_url(home_url('/')) . '">' . __('Buy', 'leadingprops') . '</a></li>';
 	   // $return .= '<li><a href="#">' . __('Rent', 'leadingprops') . '</a></li>';
-	    $return .= $items;
-    }
+	  //  $return .= $items;
+    //}
     return $return;
 }
 

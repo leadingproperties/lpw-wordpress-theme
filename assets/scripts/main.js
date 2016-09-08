@@ -213,7 +213,7 @@ Number.prototype.formatMoney = function(c, d, t){
                 if(values.price.max) {
                     filterInp.price.max.val(values.price.max);
                 } else {
-                    filterInp.price.min.val(undefined);
+                    filterInp.price.max.val(undefined);
                 }
                 if(values.price.currency) {
                     filterInp.price.currency.val(values.price.currency).trigger("change");
@@ -227,7 +227,7 @@ Number.prototype.formatMoney = function(c, d, t){
                 }
             } else {
                 filterInp.price.min.val(undefined);
-                filterInp.price.min.val(undefined);
+                filterInp.price.max.val(undefined);
                 filterInp.price.currency.val(1).trigger("change");
                 filterInp.price.period.val("day").trigger("change");
             }
@@ -1228,6 +1228,7 @@ Number.prototype.formatMoney = function(c, d, t){
         function clearAllFilters() {
             clearAutoSearch();
             clearFilters();
+            filter.setValues($this.args);
         }
 
         this.autoSearch = function(data, silent) {
@@ -1316,7 +1317,8 @@ Number.prototype.formatMoney = function(c, d, t){
         this.didScroll = false;
         this.triggerId = 0;
         this.usedFilters = {
-          location: false
+          location: false,
+          filter: false
         };
         this.args = {
             lang: LpData.lang,
@@ -1329,8 +1331,17 @@ Number.prototype.formatMoney = function(c, d, t){
         this.renderHTML = function(objects) {
             var r = $.Deferred(),
                 $objects = $(objects);
-            $this.objectContainer.append($objects);
-            $this.favorites.markButtons($objects, $this.favorites.favoritesIds );
+            if($this.totalObjects > 0 ) {
+                var noMatches = $('.no-matches');
+                if(noMatches.length > 0) {
+                    noMatches.remove();
+                }
+
+                $this.objectContainer.append($objects);
+                $this.favorites.markButtons($objects, $this.favorites.favoritesIds);
+            } else if ($this.usedFilters.location || $this.usedFilters.filter ) {
+                $objects.insertBefore($this.objectContainer);
+            }
             r.resolve();
             return r;
         };
@@ -1374,7 +1385,9 @@ Number.prototype.formatMoney = function(c, d, t){
                     $this.setUrls(dataUrl, eventType);
                 }
             }
+            // Check if we use filters and set flag if any
 
+            $this.isFiltersActive();
             data.fn = 'get_objects';
                 $.ajax({
                     url: LpData.ajaxUrl,
@@ -1382,28 +1395,25 @@ Number.prototype.formatMoney = function(c, d, t){
                     method: 'post',
                     data: data,
                     success: function (data) {
-                        if( !_.isEmpty(data.html) ) {
-                            if (data.error) {
-                                console.log(data.errorMessage);
+                        if (data.error) {
+                            console.log(data.errorMessage);
+                        } else if( !_.isEmpty(data.html) ) {
+                            if($this.usedFilters.location === true) {
+                                setOffmarker(data.offmarket);
                             } else {
-                                if($this.usedFilters.location === true) {
-                                    setOffmarker(data.offmarket);
-                                } else {
-                                    setOffmarker(0);
-                                }
-                                $this.args.page++;
-                                $this.onPage += data.count;
-                                $this.totalObjects = data.total;
-                                $this.triggerId = data.triggerID;
-                                $this.renderHTML(data.html)
-                                    .done(function(){
-                                        if( typeof callback === 'function') {
-                                            singleObject.nextLink = (!_.isNull(data.firstObject.slug)) ? LpData.propertyPage + data.firstObject.slug : false;
-                                            callback(data);
-                                        }
-                                    });
+                                setOffmarker(0);
                             }
-
+                            $this.args.page++;
+                            $this.onPage += data.count;
+                            $this.totalObjects = data.total;
+                            $this.triggerId = data.triggerID;
+                            $this.renderHTML(data.html)
+                                .done(function(){
+                                    if( typeof callback === 'function') {
+                                        singleObject.nextLink = (!_.isNull(data.firstObject.slug)) ? LpData.propertyPage + data.firstObject.slug : false;
+                                        callback(data);
+                                    }
+                                });
                         }
                     },
                     error: function (error) {
@@ -1475,6 +1485,15 @@ Number.prototype.formatMoney = function(c, d, t){
             }
         };
         this.setEventListeners = function () {
+            //Clear Filters button
+            $('body').on('click.lpropr', '.clear-filters-btn', function(ev) {
+                ev.preventDefault();
+                clearAllFilters();
+                $('.no-matches').remove();
+                resetObjects();
+                $this.getObjects();
+            });
+
             $('.off-market-menu a').on('click.lprop', function(ev) {
                 ev.preventDefault();
                 if(!$(this).hasClass('half-opaque')) {
@@ -1550,6 +1569,16 @@ Number.prototype.formatMoney = function(c, d, t){
         }
     };
 
+    ObjectList.prototype.isFiltersActive = function() {
+        if(this.args.price || this.args.rooms || this.args.area || this.args.property_types || this.args.rooms || this.args.hd_photos || this.args.persons || this.args.long_rent || this.args.short_rent || this.args.child_friendly || this.args.pets_allowed) {
+            this.usedFilters.filter = true;
+        }
+        if(this.location_point || this.location_shape) {
+            this.usedFilters.location = true;
+        }
+
+    };
+
 
 
   // Use this variable to set up the common and page specific functions. If you
@@ -1600,6 +1629,9 @@ Number.prototype.formatMoney = function(c, d, t){
               ev.preventDefault();
               copyToClipboard($(this).siblings('.fav-link-input'));
           });
+          FloatingBar.init();
+          var contactForms = new window.lpw.ContactForm();
+          contactForms.init();
 
       },
       finalize: function() {
@@ -1620,7 +1652,7 @@ Number.prototype.formatMoney = function(c, d, t){
     },
     'page_sales': {
         init: function() {
-            FloatingBar.init();
+
             var objects = new ObjectList('list', 'sale');
 
             if(!Helpers.getParameterByName('filter') && LpData.defaultLocation) {
@@ -1646,13 +1678,11 @@ Number.prototype.formatMoney = function(c, d, t){
             }
             objects.init();
 
-            var contactForms = new window.lpw.ContactForm();
-            contactForms.init();
+
         }
     },
     'page_rent': {
         init: function() {
-            FloatingBar.init();
             var objects = new ObjectList('list', 'rent');
 
             if(!Helpers.getParameterByName('filter') && LpData.defaultLocation) {
@@ -1679,8 +1709,6 @@ Number.prototype.formatMoney = function(c, d, t){
 
             objects.init();
 
-            var contactForms = new window.lpw.ContactForm();
-            contactForms.init();
         }
     },
     'page_favorites': {
@@ -1689,18 +1717,12 @@ Number.prototype.formatMoney = function(c, d, t){
           objects.init();
           FloatingBar.init();
 
-          var contactForms = new window.lpw.ContactForm();
-          contactForms.init();
       }
     },
     'page_favorites_rent': {
       init: function() {
           var objects = new ObjectList('favorites', 'rent');
           objects.init();
-          FloatingBar.init();
-
-          var contactForms = new window.lpw.ContactForm();
-          contactForms.init();
       }
     },
     'page_commercial': {
@@ -1765,10 +1787,6 @@ Number.prototype.formatMoney = function(c, d, t){
           }
           var favorites = new Favorites('single', getCategory());
           favorites.init();
-
-          var contactForms = new window.lpw.ContactForm();
-          contactForms.init();
-
       }
     },
     'blog_list': {
@@ -1777,7 +1795,6 @@ Number.prototype.formatMoney = function(c, d, t){
               single = new Single();
           blog.init();
           single.init();
-          FloatingBar.init();
 
           $('.tooltip-sharing').tooltip({
               html: true,
@@ -1824,8 +1841,6 @@ Number.prototype.formatMoney = function(c, d, t){
               init();
           }();
 
-          var contactForms = new window.lpw.ContactForm();
-          contactForms.init();
       }
   },
     'single_post': {

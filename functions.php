@@ -102,10 +102,10 @@ function get_social_links() {
 function get_floating_bar() {
 	global $lp_settings;
 	$return = '';
-	if(is_page_template('page-buy.php') || is_page_template('page-buy.rent') || is_page_template('page-favorites.php') || is_page_template('page-favorites-rent.php') ) {
+	if(!is_404() ) {
 		$return = ' <nav class="floating-bar" role="navigation"><div class="container">
         <ul>';
-		if ( !(is_page_template('page-favorites.php') || is_page_template('page-favorites-rent.php')) ) {
+		if ( is_page_template('page-buy.php') || is_page_template('page-rent.php') ) {
 			$return .= '<li><a href="#" class="search-link"></a></li>
 			            <li><a href="' . $lp_settings['favorites'] . '" class="favorites-link"><sup></sup></a></li>
 			            <li><a href="#" class="off-market-link half-opaque" data-type="off_market"><sup></sup></a></li>';
@@ -137,8 +137,8 @@ add_action('wp_footer', 'get_floating_bar', 5);
  * Add CF modals
  */
 function add_cf_modals() {
+	get_template_part('templates/form', 'contact');
 	if(is_page_template('page-buy.php') || is_page_template('page-rent.php') || is_page_template('page-favorites.php') || is_page_template('page-favorites-rent.php') || is_page_template('page-object.php')) {
-		get_template_part('templates/form', 'contact');
 		get_template_part('templates/form', 'request');
 		get_template_part('templates/form', 'offmarket');
 	}

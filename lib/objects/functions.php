@@ -499,151 +499,161 @@ function get_object_list($args) {
 
 	if(isset($object_array->property_objects) && is_array($object_array->property_objects)) {
 		$count = count($object_array->property_objects);
-		foreach ( $object_array->property_objects as $object ) {
-			$title = '';
-			$slug = '';
-			$minStay = '';
-			$rent_price = '';
-			$object_class = '';
+		if ($count > 0) {
+			foreach ( $object_array->property_objects as $object ) {
+				$title        = '';
+				$slug         = '';
+				$minStay      = '';
+				$rent_price   = '';
+				$object_class = '';
 
-			if($category === 'sale') {
-				$title = $object->description->title;
-				$slug = $object->slug;
-			} elseif($category === 'rent') {
+				if ( $category === 'sale' ) {
+					$title = $object->description->title;
+					$slug  = $object->slug;
+				} elseif ( $category === 'rent' ) {
 
-				$title = ($object->description->rent_title) ? $object->description->rent_title : $object->description->title;
-				$slug = ($object->rent_slug) ? $object->rent_slug : $object->slug;
-				$object_class = ' rent-item';
+					$title        = ( $object->description->rent_title ) ? $object->description->rent_title : $object->description->title;
+					$slug         = ( $object->rent_slug ) ? $object->rent_slug : $object->slug;
+					$object_class = ' rent-item';
 
-				if($object->property_rent->long_rent === true && $object->property_rent->short_rent === false) {
-					$minStay = __('s_object:rent:on_request', 'leadingprops');
-				} elseif( $object->property_rent->short_rent === true ) {
-					if ( $object->property_rent->rent_short->min_day === true ) {
-						$minStay = '1 ' . __('s_object:rent:day', 'leadingprops');
-					} elseif ( $object->property_rent->rent_short->min_week === true ) {
-						$minStay = '1 ' . __('s_object:rent:week', 'leadingprops');
-					} else {
-						$minStay = '1 ' . __('s_object:rent:month', 'leadingprops');
+					if ( $object->property_rent->long_rent === true && $object->property_rent->short_rent === false ) {
+						$minStay = __( 's_object:rent:on_request', 'leadingprops' );
+					} elseif ( $object->property_rent->short_rent === true ) {
+						if ( $object->property_rent->rent_short->min_day === true ) {
+							$minStay = '1 ' . __( 's_object:rent:day', 'leadingprops' );
+						} elseif ( $object->property_rent->rent_short->min_week === true ) {
+							$minStay = '1 ' . __( 's_object:rent:week', 'leadingprops' );
+						} else {
+							$minStay = '1 ' . __( 's_object:rent:month', 'leadingprops' );
+						}
 					}
-				}
 
-				if( $object->property_rent->short_rent === true ) {
-					if($object->property_rent->rent_short->sort_price->day) {
-                        $rent_price = '<span class="price-num">' . number_format( $object->property_rent->rent_short->sort_price->day, 0, ".", " " ) . ' </span>' . $object->property_rent->rent_short->sort_price->currency_code . '&nbsp;/&nbsp;' . __( 's_object:rent:day', 'leadingprops' );
-					} elseif ( $object->roperty_rent->rent_short->sort_price->month ) {
-                        $rent_price = '<span class="price-num">' . number_format( $object->property_rent->rent_short->sort_price->month, 0, ".", " " ) . ' </span>' . $object->property_rent->rent_short->sort_price->currency_code . '&nbsp;/&nbsp;' . __( 's_object:rent:month', 'leadingprops' );
-					}
-				} elseif( $object->property_rent->long_rent === true ) {
-					if($object->property_rent->rent_long->on_demand === true) {
-						$rent_price = '<span class="price-onrequest">' . __('s_object:rent:on_request', 'leadingprops') . '</span>';
-					} else {
-						if($object->property_rent->rent_long->sort_price->month) {
-                            $rent_price = '<span class="price-num">' . number_format( $object->property_rent->rent_long->sort_price->month, 0, ".", " " ) .  ' </span>' . $object->property_rent->rent_long->sort_price->currency_code . '&nbsp;/&nbsp;' . __( 's_object:rent:month', 'leadingprops' );
-						} elseif($object->property_rent->rent_long->sort_price->day) {
-                            $rent_price = '<span class="price-num">' . number_format( $object->property_rent->rent_long->sort_price->day, 0, ".", " " ) . ' </span>' . $object->property_rent->rent_long->sort_price->currency_code . '&nbsp;/&nbsp;' . __( 's_object:rent:day', 'leadingprops' );
+					if ( $object->property_rent->short_rent === true ) {
+						if ( $object->property_rent->rent_short->sort_price->day ) {
+							$rent_price = '<span class="price-num">' . number_format( $object->property_rent->rent_short->sort_price->day, 0, ".", " " ) . ' </span>' . $object->property_rent->rent_short->sort_price->currency_code . '&nbsp;/&nbsp;' . __( 's_object:rent:day', 'leadingprops' );
+						} elseif ( $object->roperty_rent->rent_short->sort_price->month ) {
+							$rent_price = '<span class="price-num">' . number_format( $object->property_rent->rent_short->sort_price->month, 0, ".", " " ) . ' </span>' . $object->property_rent->rent_short->sort_price->currency_code . '&nbsp;/&nbsp;' . __( 's_object:rent:month', 'leadingprops' );
+						}
+					} elseif ( $object->property_rent->long_rent === true ) {
+						if ( $object->property_rent->rent_long->on_demand === true ) {
+							$rent_price = '<span class="price-onrequest">' . __( 's_object:rent:on_request', 'leadingprops' ) . '</span>';
+						} else {
+							if ( $object->property_rent->rent_long->sort_price->month ) {
+								$rent_price = '<span class="price-num">' . number_format( $object->property_rent->rent_long->sort_price->month, 0, ".", " " ) . ' </span>' . $object->property_rent->rent_long->sort_price->currency_code . '&nbsp;/&nbsp;' . __( 's_object:rent:month', 'leadingprops' );
+							} elseif ( $object->property_rent->rent_long->sort_price->day ) {
+								$rent_price = '<span class="price-num">' . number_format( $object->property_rent->rent_long->sort_price->day, 0, ".", " " ) . ' </span>' . $object->property_rent->rent_long->sort_price->currency_code . '&nbsp;/&nbsp;' . __( 's_object:rent:day', 'leadingprops' );
+							}
 						}
 					}
 				}
-			}
-			if($i === 1) {
-				$firstObj = [
-					'slug'  => $slug,
-					'id'    => $object->id
-				];
-			}
-			if($i === $count) {
-				$triggerId = $object->id;
-			}
+				if ( $i === 1 ) {
+					$firstObj = [
+						'slug' => $slug,
+						'id'   => $object->id
+					];
+				}
+				if ( $i === $count ) {
+					$triggerId = $object->id;
+				}
 
-			$html .= '<article class="object-item' .  $object_class . '" id="object-' . $object->id . '" data-object-id="' . $object->id .  '">';
-			$html .= '<div class="object-inner-wrapper">';
-			$html .= '<div class="object-thumbnail">';
-			$html .= '<a href="' . $lp_settings['property_page'] . $slug . '" class="open-object-modal object-thumbnail-holder" title="' . $title . '" data-id=' . $object->id . '>';
-			$html .= '<img class="img-responsive" src="' . $object->image . '"  alt="' . $title . '">';
-			$html .= '</a>';
-			$html .= '<span class="add-favorite-button" data-action="add" data-id="' . $object->id . '"></span>';
-			if( $category === 'rent' ) {
-				$html .= '<div class="rent-price"><span>' . $rent_price . '</span></div>';
-			}
-			$html .= '</div>';
-			$html .= '<div class="object-info-holder">';
-			$html .= '<div class="info-address-holder">';
-			$html .= '<div class="info-address">';
-				if ($object->country && $object->country->title) {
+				$html .= '<article class="object-item' . $object_class . '" id="object-' . $object->id . '" data-object-id="' . $object->id . '">';
+				$html .= '<div class="object-inner-wrapper">';
+				$html .= '<div class="object-thumbnail">';
+				$html .= '<a href="' . $lp_settings['property_page'] . $slug . '" class="open-object-modal object-thumbnail-holder" title="' . $title . '" data-id=' . $object->id . '>';
+				$html .= '<img class="img-responsive" src="' . $object->image . '"  alt="' . $title . '">';
+				$html .= '</a>';
+				$html .= '<span class="add-favorite-button" data-action="add" data-id="' . $object->id . '"></span>';
+				if ( $category === 'rent' ) {
+					$html .= '<div class="rent-price"><span>' . $rent_price . '</span></div>';
+				}
+				$html .= '</div>';
+				$html .= '<div class="object-info-holder">';
+				$html .= '<div class="info-address-holder">';
+				$html .= '<div class="info-address">';
+				if ( $object->country && $object->country->title ) {
 					$html .= '<a>' . $object->country->title . '</a>';
 				}
-				if ($object->region && $object->region->title) {
+				if ( $object->region && $object->region->title ) {
 					$html .= '<a>' . $object->region->title . '</a>';
 				}
-				if ($object->city && $object->city->title) {
+				if ( $object->city && $object->city->title ) {
 					$html .= '<a>' . $object->city->title . '</a>';
 				}
-			$html .= '</div>';
-			$html .= '</div>';
-			$html .= '<h2 class="info-title">';
-			$html .= '<a class="open-object-modal object-link" href="' . $lp_settings['property_page'] . $object->slug . '" data-id="' . $object->id . '">' . $title . '</a>';
-			$html .= '</h2>';
-			if( $category === 'sale') {
-				$html .= '<p class="info-details"><span>';
-				if ($object->parameters->price->on_demand === true) {
-					$html .= '<span>' . __('s_object:on_demand', 'leadingprops') . '</span>&nbsp;';
-				} else {
-				     if ($object->parameters->price->min) {
-							$html .= '<span>' . number_format($object->parameters->price->min, 0, ".", " ") . '</span>';
+				$html .= '</div>';
+				$html .= '</div>';
+				$html .= '<h2 class="info-title">';
+				$html .= '<a class="open-object-modal object-link" href="' . $lp_settings['property_page'] . $object->slug . '" data-id="' . $object->id . '">' . $title . '</a>';
+				$html .= '</h2>';
+				if ( $category === 'sale' ) {
+					$html .= '<p class="info-details"><span>';
+					if ( $object->parameters->price->on_demand === true ) {
+						$html .= '<span>' . __( 's_object:on_demand', 'leadingprops' ) . '</span>&nbsp;';
+					} else {
+						if ( $object->parameters->price->min ) {
+							$html .= '<span>' . number_format( $object->parameters->price->min, 0, ".", " " ) . '</span>';
 						}
-					if ($object->parameters->price->max) {
-		                    $html .= '&nbsp;&ndash;&nbsp;<span>' . number_format($object->parameters->price->max, 0, ".", " ") . '</span>';
+						if ( $object->parameters->price->max ) {
+							$html .= '&nbsp;&ndash;&nbsp;<span>' . number_format( $object->parameters->price->max, 0, ".", " " ) . '</span>';
+						}
+						$html .= '&nbsp;<span class="text-uppercase">' . $object->parameters->price->currency . '</span></span>';
 					}
-					$html .= '&nbsp;<span class="text-uppercase">' . $object->parameters->price->currency . '</span></span>';
-				}
 
-				if ($object->parameters->rooms->min || $object->parameters->rooms->max) {
-					$html .= ',&nbsp';
-				 }
-				if ($object->parameters->rooms->min) {
-					$html .= '<span>' . $object->parameters->rooms->min . '</span>';
-				 }
-				if ($object->parameters->rooms->max) {
-					$html .= '&nbsp;&ndash;&nbsp;<span>' . $object->parameters->rooms->max . '</span>';
-				 }
-				if ($object->parameters->rooms->min || $object->parameters->rooms->max) {
-					$html .= '&nbsp;' . __('s_object:rooms', 'leadingprops');
-				}
-				if ($object->parameters->area->min || $object->parameters->area->max) {
-					$html .= ',&nbsp;';
-				 }
-				if ($object->parameters->area->min) {
-					$html .= '<span>' . $object->parameters->area->min . '</span>';
-				 }
-				if ($object->parameters->area->max) {
-					$html .= '&nbsp;&ndash;&nbsp;<span>' . $object->parameters->area->max . '</span>';
-				 }
-				if ($object->parameters->area->min || $object->parameters->area->max) {
-					$html .= '&nbsp;m<sup>2</sup>';
-				}
-				$html .= '</p>';
+					if ( $object->parameters->rooms->min || $object->parameters->rooms->max ) {
+						$html .= ',&nbsp';
+					}
+					if ( $object->parameters->rooms->min ) {
+						$html .= '<span>' . $object->parameters->rooms->min . '</span>';
+					}
+					if ( $object->parameters->rooms->max ) {
+						$html .= '&nbsp;&ndash;&nbsp;<span>' . $object->parameters->rooms->max . '</span>';
+					}
+					if ( $object->parameters->rooms->min || $object->parameters->rooms->max ) {
+						$html .= '&nbsp;' . __( 's_object:rooms', 'leadingprops' );
+					}
+					if ( $object->parameters->area->min || $object->parameters->area->max ) {
+						$html .= ',&nbsp;';
+					}
+					if ( $object->parameters->area->min ) {
+						$html .= '<span>' . $object->parameters->area->min . '</span>';
+					}
+					if ( $object->parameters->area->max ) {
+						$html .= '&nbsp;&ndash;&nbsp;<span>' . $object->parameters->area->max . '</span>';
+					}
+					if ( $object->parameters->area->min || $object->parameters->area->max ) {
+						$html .= '&nbsp;m<sup>2</sup>';
+					}
+					$html .= '</p>';
 
-			} elseif( $category === 'rent' ) {
-				$html .= '<p class="min-days">' .  __('s_object:rent:min_stay_full', 'leadingprops') . ': ' . $minStay . '</p>';
-				$html .= '<ul class="rent-details">';
-				if ( $object->parameters->area->min ) {
-					$html .= '<li class="area">' . $object->parameters->area->min . __('s_object:m_short', 'leadingprops') .' <sup>2</sup></li>';
-				 }
-				if ( $object->parameters->bedrooms->min ) {
-					$html .= '<li class="icon icon-bedroom">' . $object->parameters->bedrooms->min . '</li>';
-				 }
-				if ( $object->parameters->bathrooms->min ) {
-					$html .= '<li class="icon icon-bathroom">' . $object->parameters->bedrooms->min . '</li>' ."\n";
+				} elseif ( $category === 'rent' ) {
+					$html .= '<p class="min-days">' . __( 's_object:rent:min_stay_full', 'leadingprops' ) . ': ' . $minStay . '</p>';
+					$html .= '<ul class="rent-details">';
+					if ( $object->parameters->area->min ) {
+						$html .= '<li class="area">' . $object->parameters->area->min . __( 's_object:m_short', 'leadingprops' ) . ' <sup>2</sup></li>';
+					}
+					if ( $object->parameters->bedrooms->min ) {
+						$html .= '<li class="icon icon-bedroom">' . $object->parameters->bedrooms->min . '</li>';
+					}
+					if ( $object->parameters->bathrooms->min ) {
+						$html .= '<li class="icon icon-bathroom">' . $object->parameters->bedrooms->min . '</li>' . "\n";
+					}
+					if ( $object->property_rent->persons_max ) {
+						$html .= '<li class="icon icon-person">' . $object->property_rent->persons_max . '</li>';
+					}
+					$html .= '</ul>';
 				}
-				if ( $object->property_rent->persons_max ) {
-					$html .= '<li class="icon icon-person">' . $object->property_rent->persons_max . '</li>';
-				}
-				$html .= '</ul>';
+				$html .= '</div>';
+				$html .= '</div>';
+				$html .= '</article>';
+				$i ++;
 			}
-			$html .= '</div>';
-			$html .= '</div>';
-			$html .= '</article>';
-			$i++;
+		} else {
+			$html .= '<div class="no-matches">
+                        <div class="container">
+                            <h5 class="text-red">' . __('alerts:no_results:title', 'leadingprops') . '</h5>
+                            <p>' . __('alerts:no_results:text', 'leadingprops') . '</p>
+                            <button class="btn btn-red clear-filters-btn icon">' . __('alerts:no_results:button', 'leadingprops') . '</button>
+                        </div>
+                    </div><!-- /.no-matches -->';
 		}
 		return [
 			'html' => $html,
@@ -656,7 +666,7 @@ function get_object_list($args) {
 	} else {
 		return [
 			'error' => true,
-			'errorMessage'  => 'Not Found'
+			'errorMessage'  => $object_array->error
 		];
 	}
 }
