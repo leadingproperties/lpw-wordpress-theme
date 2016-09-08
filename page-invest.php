@@ -12,7 +12,8 @@
 
 	$subtypes = new LP_ObjectList([
 		'action' => 'get_subtypes',
-		'subtype_parent_id' => 3
+		'subtype_parent_id' => 3,
+		'lang'  => $lp_settings['lang']
 	]);
 	$subtypesObj = $subtypes->get_objects_array();
 	$totalCnt = ($subtypesObj->total) ? $subtypesObj->total : 0;

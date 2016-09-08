@@ -234,7 +234,9 @@ function ajax_get_pdf($args) {
 	return $return->get_json_objects();
 }
 function ajax_get_subtypes($args) {
+	global $lp_settings;
 	$args['action'] = 'get_subtypes';
+	$args['lang'] = $lp_settings['lang'];
 	$return = new LP_ObjectList($args);
 	return $return->get_json_objects();
 }

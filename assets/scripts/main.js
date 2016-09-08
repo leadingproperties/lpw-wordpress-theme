@@ -1059,11 +1059,9 @@ Number.prototype.formatMoney = function(c, d, t){
                         } else if(!_.isEmpty(data.html)) {
                             $this.prevLink = prevObjectLink(data.id);
                             $this.nextLink = nextObjectLink(data.id);
-
                             if (data.id === objectlist.triggerId) {
-                                console.log('fire');
                                 objectlist.getObjects(function () {
-                                    $this.renderSingleHtml(data.html);
+                                    $this.renderSingleHtml(data.html, data.id);
                                     if (url !== $this.location) {
                                         if (Helpers.isHhistoryApiAvailable() && 'click' === ev.type) {
                                             window.history.pushState(null, null, url);
@@ -1071,7 +1069,7 @@ Number.prototype.formatMoney = function(c, d, t){
                                     }
                                 }, 'single');
                             } else {
-                                $this.renderSingleHtml(data.html);
+                                $this.renderSingleHtml(data.html, data.id);
                                 if (url !== $this.location) {
                                     if (Helpers.isHhistoryApiAvailable() && 'click' === ev.type) {
                                         window.history.pushState(null, null, url);
