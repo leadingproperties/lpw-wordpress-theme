@@ -138,6 +138,9 @@ class LP_ObjectList {
                     }
                 }
                 break;
+            case 'get_countries':
+                    $url .= '/countries/commercial';
+                break;
             default:
 
                 $url .= $this->args['lang'] . '/property_objects/';
@@ -366,6 +369,17 @@ class LP_ObjectList {
             if ( $this->args['form_type'] === 'off_market' && isset( $this->args['url'] ) ) {
                 $data['url'] = $this->args['url'];
             }
+            if($this->args['form_type'] === 'commercial') {
+                if($this->args['country']) {
+                    $data['country'] = $this->args['country'];
+                }
+                if(! empty($this->args['budget'])) {
+                    $data['budget'] = $this->args['budget'];
+                }
+                if($this->args['several_countries']) {
+                    $data['several_countries'] = true;
+                }
+            }
             $content = json_encode( $data );
 
             $curl = curl_init( $url );
@@ -400,6 +414,26 @@ class LP_ObjectList {
         }
 
         return json_encode($return);
+    }
+
+    public function get_countries() {
+        $json = $this->get_api_objects();
+        $countries_arr = [];
+        $lang = $this->args['lang'];
+        if(!$this->error) {
+            $counties = json_decode($json);
+            if($counties->countries && is_array($counties->countries)) {
+                foreach($counties->countries as $country) {
+                    $countries_arr[] = [
+                        'name'  => $country->title_translations->en,
+                        'title' => $country->title_translations->$lang ? $country->title_translations->$lang : $country->title_translations->en
+                    ];
+
+                }
+            }
+
+        }
+        return $countries_arr;
     }
 
 

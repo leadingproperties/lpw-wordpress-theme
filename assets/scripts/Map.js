@@ -247,6 +247,6 @@
 	Map.prototype.mapReset = function() {
 		this.map.setCenter(this.mapOptions.center);
 		this.map.setZoom(this.mapOptions.zoom);
-	}
+	};
 
 })(jQuery);

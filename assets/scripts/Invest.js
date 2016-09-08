@@ -4,7 +4,8 @@
     window.lpw = window.lpw || {};
 
     function Invest() {
-        var $this = this;
+        var $this = this,
+            contact = new window.lpw.ContactForm(true);
         this.investMap = new window.lpw.Map(
             '#invest-map',
             'invest',
@@ -110,7 +111,7 @@
             tagsList.remove();
         }
 
-        this.tagWrap.html(html);
+        tagsList.html(html);
     };
     Invest.prototype.getSubTypesError = function(error) {
         console.debug('getSTError', error.responseText);

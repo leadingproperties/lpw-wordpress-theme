@@ -3,12 +3,9 @@
 	window.lpw = window.lpw || {};
 	window.lpw.ContactForm = ContactForm;
 
-		function ContactForm() {
+		function ContactForm(invest) {
 			var $this = this,
 				timer = null;
-
-
-
 
 			function isValidName(input) {
 				var val = input.val();
@@ -28,7 +25,9 @@
 			}
 			function isValidForm(el) {
 				var type = el.data('validation'),
-					valid = false;
+					valid = false,
+					skypeVal = invest ? '' : $this.skype.val(),
+					validSkype = invest ? true : isValidSkype($this.skype);
 				switch (type) {
 					case 'name':
 						valid = isValidName(el);
@@ -49,9 +48,9 @@
 					el.removeClass('has-error');
 				}
 				if(valid && isValidName($this.fname) && isValidName($this.lname)
-					&& isValidPhone($this.phone) && isValidEmail($this.email) && isValidSkype($this.skype)
+					&& isValidPhone($this.phone) && isValidEmail($this.email) && validSkype
 					&&(($this.phone.val().trim().length > 0) || ($this.email.val().trim().length > 0)
-					|| ($this.skype.val().trim().length > 0))) {
+					|| (skypeVal.trim().length > 0))) {
 					$this.formValid = true;
 					$this.submit.prop("disabled", false);
 				} else {
@@ -69,10 +68,27 @@
 				$this.form.off('submit', $this.ajaxSendForm);
 			}
 			function showMessage(type, msg) {
-				$this.contactModal.find('.modal-body').append('<div class="request-form-message"><p class="text-'+type+'">'+ msg +'</p></div>');
-				    timer = setTimeout(function(){
-					$this.contactModal.modal('hide');
-				}, 5000);
+				if($this.type === 'commercial') {
+					if(type === 'green') {
+						$('.invest-form-message')
+							.removeClass('bg-red')
+							.addClass('bg-green')
+							.show()
+							.find('p').text(msg);
+					} else {
+						$('.invest-form-message')
+							.removeClass('bg-green')
+							.addClass('bg-red')
+							.show()
+							.find('p').text(msg);
+					}
+
+				} else {
+					$this.contactModal.find('.modal-body').append('<div class="request-form-message"><p class="text-' + type + '">' + msg + '</p></div>');
+					timer = setTimeout(function () {
+						$this.contactModal.modal('hide');
+					}, 5000);
+				}
 			}
 
 			this.ajaxSendForm = function(ev) {
@@ -84,7 +100,7 @@
 				var data = {
 						first_name: $this.fname.val(),
 						last_name: $this.lname.val(),
-						phone: $this.phone.val(),
+						phone: $this.phone.intlTelInput("getNumber"),
 						email: $this.email.val(),
 						skype: $this.skype.val(),
 						question: $this.message.val(),
@@ -101,6 +117,20 @@
 				if($this.type === 'off_market') {
 					data.url = $this.url;
 				}
+				if($this.type === 'commercial') {
+					data.country = $this.countries.val();
+					if($this.several.is(':checked')) {
+						data.several_countries = true;
+					}
+
+					var budget = $this.budget.filter(':checked').map(function() {
+						return this.value;
+					}).get();
+					if(budget) {
+						data.budget = budget.join(', ');
+					}
+
+				}
 
 				$this.submit.prop('disabled', true);
 
@@ -111,7 +141,9 @@
 					data: data,
 					success : function(data){
 						if(data.success) {
-							$this.form.hide();
+							if($this.type !== 'commercial' ) {
+								$this.form.hide();
+							}
 							showMessage(data.type, data.message);
 						}
 					},
@@ -125,31 +157,40 @@
 
 			};
 
-		this.modalInit = function(ev) {
+			this.investFormInit = function() {
+				var formMsg = $('.invest-form-message');
+				$this.type = 'commercial';
+				$this.form = $('#invest-form');
+				$this.formInit($this.form);
+				formMsg.on('click.lprop', '.btn-close', function(ev) {
+					ev.preventDefault();
+					formMsg.hide();
+				});
+			};
 
-			var btn = $(ev.relatedTarget);
-			$this.type = btn.data('type');
-			$this.contactModal = $(this);
-			$this.form = $this.contactModal.find('form');
-			$this.submit = $this.contactModal.find('.btn-submit');
-			$this.fname = $this.form.find('.first-name');
-			$this.lname = $this.form.find('.last-name');
-			$this.phone = $this.form.find('.your-phone');
-			$this.email = $this.form.find('.your-email');
-			$this.skype = $this.form.find('.your-skype');
-			$this.message = $this.form.find('.your-message');
+			this.formInit = function(form) {
+				$this.submit = form.find('.btn-submit');
+				$this.fname = form.find('.first-name');
+				$this.lname = form.find('.last-name');
+				$this.phone = form.find('.your-phone');
+				$this.email = form.find('.your-email');
+				$this.skype = form.find('.your-skype');
+				$this.message = form.find('.your-message');
 
-			if($this.type === 'single_property') {
-				$this.is_rent = btn.data('object-type') === 'rent';
-				$this.property_id = btn.data('id');
-				$this.property_code = btn.data('code');
-			}
-			if($this.type === 'off_market') {
-				$this.url = window.location.href;
-			}
+				if($this.type === 'commercial') {
+					$this.countries = $('.country-select');
+					$this.countries.select2({
+						minimumResultsForSearch: Infinity,
+						containerCssClass : "country-select",
+						dropdownCssClass: "country-dropdown",
+						width: "100%"
+					});
+					$this.several = $('#several-countries');
+					$this.budget = $('.budget-checkbox');
+				}
 
 
-			$this.phone.intlTelInput({
+				$this.phone.intlTelInput({
 					initialCountry: "auto",
 					preferredCountries: [],
 					autoPlaceholder: false,
@@ -167,22 +208,40 @@
 
 					}
 				});
-			$this.form.attr('novalidate', 'novalidate');
-			$this.submit.prop("disabled", true);
+				$this.form.attr('novalidate', 'novalidate');
+				$this.submit.prop("disabled", true);
 
-			$this.form.on('input', 'input', function() {
-				isValidForm($(this));
-			});
-			$this.form.on('submit', $this.ajaxSendForm);
+				$this.form.on('input', 'input', function() {
+					isValidForm($(this));
+				});
+				$this.form.on('submit', $this.ajaxSendForm);
+			};
 
+			if(invest === true) {
+				this.investFormInit();
+			}
 
+		this.modalInit = function(ev) {
 
+			var btn = $(ev.relatedTarget);
+			$this.type = btn.data('type');
+			$this.contactModal = $(this);
+			$this.form = $this.contactModal.find('form');
+			$this.formInit($this.form);
+			if($this.type === 'single_property') {
+				$this.is_rent = btn.data('object-type') === 'rent';
+				$this.property_id = btn.data('id');
+				$this.property_code = btn.data('code');
+			}
+			if($this.type === 'off_market') {
+				$this.url = window.location.href;
+			}
 		};
 
 		this.init = function() {
 			$('.request-form-modal').on('shown.bs.modal', $this.modalInit)
 				.on('hidden.bs.modal', resetForm);
-		}
+		};
 	}
 
 

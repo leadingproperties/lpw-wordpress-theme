@@ -234,6 +234,32 @@
     padding-right: 25px;
     @include text-overflow();
   }
+  .invest-form-message {
+    display: none;
+    position: fixed;
+    z-index: 200;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    color: #fff;
+    padding: 26px 35px;
+    text-align: center;
+    font-size: 14px;
+    &.bg-green {
+      background: $color-green;
+    }
+    &.bg-red {
+      background: $color-red;
+    }
+    .btn-close {
+      font-size: 20px;
+      color: #fff;
+      cursor: pointer;
+      position: absolute;
+      right: 15px;
+      top: 12px;
+    }
+  }
   @media (min-width: $container-width-1) {
     padding-top: 60px;
     padding-bottom: 60px;
@@ -244,6 +270,11 @@
     }
     .request-checkbox {
       width: 33.33333%;
+    }
+    .invest-form-message {
+      font-size: 16px;
+      padding-top: 31px;
+      padding-bottom: 31px;
     }
   }
   @media (min-width: $container-width-2) {
@@ -268,6 +299,10 @@
     }
     .input-group-checkbox {
       margin-top: 43px;
+    }
+    .invest-form-message {
+      padding-top: 34px;
+      padding-bottom: 34px;
     }
   }
 }
