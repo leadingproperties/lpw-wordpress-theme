@@ -10,7 +10,7 @@
 				<h2><?php _e('page_404:title', 'leadingprops'); ?></h2>
 				<p><?php _e('page_404:text', 'leadingprops');
 					if($lp_settings['contact_email']) {
-						echo '<a href="mailto:' . $lp_settings['contact_email'] . '">' . $lp_settings['contact_email'] . '</a>';
+						echo ' <a href="mailto:' . $lp_settings['contact_email'] . '">' . $lp_settings['contact_email'] . '</a>';
 					} ?>
 				</p>
 			</div>
