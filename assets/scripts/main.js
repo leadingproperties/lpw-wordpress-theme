@@ -716,7 +716,7 @@ Number.prototype.formatMoney = function(c, d, t){
         function setValues(url) {
             var urlEnc = encodeURIComponent(url);
             shInput = $('.fav-link-input').val(url);
-            shEmail.attr('href','mailto:?Subject=' + LpData.siteTitle + '&body=' + encodeURIComponent(url + "\n\n" + 'Property selection powered by The Leading Properties of the World. Best hand-picked properties with beautiful photos. Want to see properties selected just for you? Visit our website and get your personal recommendation today.'));
+            shEmail.attr('href','mailto:?Subject=' + LpData.siteTitle + '&body=' + encodeURIComponent(url + "\n\n" + 'Property selection powered by ' + LpData.siteTitle + ' . Best hand-picked properties with beautiful photos. Want to see properties selected just for you? Visit our website and get your personal recommendation today.'));
             shFb.attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + urlEnc);
             shTw.attr('href', 'https://twitter.com/intent/tweet?url=' + urlEnc);
             shLn.attr('href', 'https://www.linkedin.com/shareArticle?mini=true&url=' + urlEnc);
@@ -1233,7 +1233,13 @@ Number.prototype.formatMoney = function(c, d, t){
         function clearAllFilters() {
             clearAutoSearch();
             clearFilters();
+            if($this.args.autocomplete) {
+                delete $this.args.autocomplete;
+            }
+            $this.tags.autoComplete.autocompleteSelected = null;
+            $this.tags.autoComplete.jqInput.val(undefined);
             filter.setValues($this.args);
+            $this.setUrls($this.args);
         }
 
         this.autoSearch = function(data, silent) {

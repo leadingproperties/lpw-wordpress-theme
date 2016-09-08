@@ -83,8 +83,15 @@ class Tags
         $body = substr($resp, $header_size);
 
         curl_close($ch);
-
-        return json_decode($body, true)['counters']['buckets'];
+        $return = json_decode($body, true)['counters']['buckets'];
+        if(! $return && $params['location_point'])  {
+            return [
+              'geo_location' => [
+                  'doc_count'   => 0
+              ]
+            ];
+        }
+        return $return;
     }
 
     function get_autocomplete_tag_html($autocomplete_data, $counters, $raw){
