@@ -130,6 +130,9 @@
               content: "\e66b";
             }
           }
+          &.menu-phone, &.menu-email {
+            direction: ltr;
+          }
         }
       }
        &.divider {

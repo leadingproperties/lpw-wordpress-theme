@@ -37,16 +37,11 @@
       &::before {
         @include make-linicon("\e93a")
       }
+
     }
   }
 }
-.sorting-select {
-  .select2-selection__arrow {
-    b {
-      right: fil
-    }
-  }
-}
+
 .price-select, .period-select {
   font-size: 12px;
   .select2-selection__arrow {

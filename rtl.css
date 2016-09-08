@@ -1,0 +1,99 @@
+/* Colors */
+/* Type */
+/* Side Menu */
+/* Lang panel */
+/* Breakpoints */
+/*Static page breakpoints*/
+/* z-indexes */
+body {
+  direction: rtl;
+  unicode-bidi: embed; }
+
+/* Lang Panel */
+.lang-option-wrapper a span {
+  margin: 0 0 0 7px; }
+@media (min-width: 370px) {
+  .lang-option-wrapper a span {
+    margin: 0 0 0 14px; } }
+
+/* Off canvas */
+.side-menu > ul > li > a.menu-icon {
+  padding-right: 10px;
+  padding-left: 35px; }
+  .side-menu > ul > li > a.menu-icon::after {
+    right: auto;
+    left: 10px; }
+  @media (min-width: 370px) {
+    .side-menu > ul > li > a.menu-icon {
+      padding-right: 15px;
+      padding-left: 35px; } }
+
+/* Filters */
+.sp-filters .sp-checkbox {
+  padding: 0 0 0 10px; }
+.sp-filters .filter-price-group .price-select-wrap {
+  margin: 0 3px 0 0; }
+@media (min-width: 370px) {
+  .sp-filters.sp-filters-buy .sp-group-title {
+    margin: 0 0 0 10px; }
+  .sp-filters.sp-filters-buy .sp-checkbox {
+    margin: 0 0 10px 10px; } }
+@media (min-width: 740px) {
+  .sp-filters .sp-760-middle .sp-filters-group {
+    float: right; }
+    .sp-filters .sp-760-middle .sp-filters-group:first-child {
+      margin: 0 0 0 24px; }
+  .sp-filters.sp-filters-rent .sp-group-title {
+    margin: 0 0 0 10px; }
+  .sp-filters.sp-filters-rent .sp-checkbox {
+    margin: 0 0 10px 10px; }
+  .sp-filters.sp-filters-rent .filter-quality, .sp-filters.sp-filters-buy .filter-quality {
+    float: right;
+    padding: 10px 0 0 5px; }
+  .sp-filters.sp-filters-rent .filter-submit, .sp-filters.sp-filters-buy .filter-submit {
+    float: left; } }
+
+/* Request form */
+.request-form fieldset::before {
+  left: auto;
+  right: 0; }
+
+/* Blog */
+.single-post-content .single-post-locations li {
+  margin: 0 0 0 7px; }
+
+/*  Single object */
+.single-object-content .single-object-locations li {
+  margin: 0 0 0 7px; }
+.single-object-content .object-sold {
+  margin: 0 0 0 4px; }
+.single-object-content .single-object-info p {
+  margin: 0 0 0 15px; }
+  .single-object-content .single-object-info p:last-child {
+    margin-right: 0; }
+@media (min-width: 370px) {
+  .single-object-content .single-object-content .single-object-locations li {
+    margin: 0 0 0 10px; } }
+
+/* Select2 */
+.select2-selection--single .select2-selection__rendered {
+  padding-left: 20px;
+  padding-right: 8px; }
+.select2-selection--single.sorting-select .select2-selection__rendered {
+  padding-left: 20px;
+  padding-right: 10px; }
+  @media (min-width: 370px) {
+    .select2-selection--single.sorting-select .select2-selection__rendered {
+      padding-left: 20px;
+      padding-right: 15px; } }
+
+.select2-container--default .price-select .select2-selection__arrow b, .select2-container--default .sorting-select .select2-selection__arrow b, .select2-container--default .period-select .select2-selection__arrow b, .select2-container--default .country-select .select2-selection__arrow b {
+  right: -26px; }
+
+/* Site Footer */
+.site-footer .social-links ul li {
+  float: right; }
+  .site-footer .social-links ul li:last-child {
+    margin-right: 5px; }
+
+/*# sourceMappingURL=rtl.css.map */

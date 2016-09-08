@@ -18,6 +18,7 @@
   padding-top: 15px;
   padding-bottom: 15px;
   text-align: left;
+  direction: ltr;
   img {
     @include img-responsive();
     margin-left: auto;
