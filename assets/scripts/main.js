@@ -1131,6 +1131,8 @@ Number.prototype.formatMoney = function(c, d, t){
             $this.objectContainer.html('');
             $this.args.page = 1;
             $this.onPage = 0;
+            $this.totalObjects = parseInt(LpData.totalObjects);
+            $(window).on('scroll.lprop', $this.scrollPage);
         }
 
         function setOffmarker(count) {
@@ -1223,6 +1225,9 @@ Number.prototype.formatMoney = function(c, d, t){
             }
             if($this.args.pets_allowed) {
                 delete $this.args.pets_allowed;
+            }
+            if($this.args.order_by) {
+                delete $this.args.order_by;
             }
         }
         function clearAllFilters() {
@@ -1331,11 +1336,11 @@ Number.prototype.formatMoney = function(c, d, t){
         this.renderHTML = function(objects) {
             var r = $.Deferred(),
                 $objects = $(objects);
+            var noMatches = $('.no-matches');
+            if(noMatches.length > 0) {
+                noMatches.remove();
+            }
             if($this.totalObjects > 0 ) {
-                var noMatches = $('.no-matches');
-                if(noMatches.length > 0) {
-                    noMatches.remove();
-                }
 
                 $this.objectContainer.append($objects);
                 $this.favorites.markButtons($objects, $this.favorites.favoritesIds);
