@@ -3,7 +3,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Project-Id-Version: Leading Properties\n"
 "POT-Creation-Date: 2016-09-07 16:21+0300\n"
-"PO-Revision-Date: 2016-09-07 21:07+0200\n"
+"PO-Revision-Date: 2016-09-08 10:16+0200\n"
 "Language-Team: \n"
 "MIME-Ver§`sion: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -418,7 +418,34 @@ msgid "form:thank_you_default"
 msgstr "谢谢，已收到的您的请求。我们会很快联系您."
 
 msgid "form:error_default"
-msgstr " "
+msgstr " An error has occurred. Please try again later."
+
+msgid "form:country_label"
+msgstr "您正在哪个国家寻找房地产?"
+
+msgid "form:country_default"
+msgstr "所有国家"
+
+msgid "form:country_checkbox_label"
+msgstr "我对几个国家感兴趣"
+
+msgid "form:budget_label"
+msgstr "您的预算，欧元"
+
+msgid "form:budget_range_label_1"
+msgstr "多达 1 百万"
+
+msgid "form:budget_range_label_2"
+msgstr "1-5 百万"
+
+msgid "form:budget_range_label_3"
+msgstr "5-10 百万"
+
+msgid "form:budget_range_label_4"
+msgstr "10-50 百万"
+
+msgid "form:budget_range_label_5"
+msgstr "50+ 百万"
 
 #: templates/search-panel.php:9
 msgid "alerts:advanced_search"

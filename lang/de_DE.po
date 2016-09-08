@@ -3,7 +3,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Project-Id-Version: Leading Properties\n"
 "POT-Creation-Date: 2016-09-03 08:34+0300\n"
-"PO-Revision-Date: 2016-09-07 20:58+0200\n"
+"PO-Revision-Date: 2016-09-08 09:48+0200\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -508,6 +508,33 @@ msgstr "Favorisierte Objekte"
 #: templates/search-panel.php:20
 msgid "alerts:offmarket_properties"
 msgstr "Off-Market-Immobilien"
+
+msgid "form:country_label"
+msgstr "In welchem Land suchen Sie nach Immobilien?"
+
+msgid "form:country_default"
+msgstr "Alle Länder"
+
+msgid "form:country_checkbox_label"
+msgstr "Ich interessiere mich für mehrere Länder"
+
+msgid "form:budget_label"
+msgstr "Ihr Budget, EUR"
+
+msgid "form:budget_range_label_1"
+msgstr "Bis zu 1 Mio."
+
+msgid "form:budget_range_label_2"
+msgstr "1-5 Mio."
+
+msgid "form:budget_range_label_3"
+msgstr "5-10 Mio."
+
+msgid "form:budget_range_label_4"
+msgstr "10-50 Mio."
+
+msgid "form:budget_range_label_5"
+msgstr "50+ Mio."
 
 #: templates/search-panel.php:26
 msgid "alerts:offmarket_found:text"

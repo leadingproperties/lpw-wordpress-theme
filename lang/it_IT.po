@@ -3,7 +3,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Project-Id-Version: Leading Properties\n"
 "POT-Creation-Date: 2016-09-03 08:59+0300\n"
-"PO-Revision-Date: 2016-09-07 21:05+0200\n"
+"PO-Revision-Date: 2016-09-08 10:11+0200\n"
 "Language-Team: \n"
 "MIME-Ver§`sion: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -419,6 +419,33 @@ msgstr "Grazie, la tua richiesta è stata ricevuta. Ti contatteremo a breve."
 
 msgid "form:error_default"
 msgstr "An error has occurred. Please try again later."
+
+msgid "form:country_label"
+msgstr "In quale paese stai cercando delle proprietà?"
+
+msgid "form:country_default"
+msgstr "Tutti i paesi"
+
+msgid "form:country_checkbox_label"
+msgstr "Sono interessato a diversi paesi"
+
+msgid "form:budget_label"
+msgstr "Il tuo budget, in EUR"
+
+msgid "form:budget_range_label_1"
+msgstr "fino a 1 mln"
+
+msgid "form:budget_range_label_2"
+msgstr "1-5 mln"
+
+msgid "form:budget_range_label_3"
+msgstr "5-10 mln"
+
+msgid "form:budget_range_label_4"
+msgstr "10-50 mln"
+
+msgid "form:budget_range_label_5"
+msgstr "50+ mln"
 
 #: templates/search-panel.php:9
 msgid "alerts:advanced_search"

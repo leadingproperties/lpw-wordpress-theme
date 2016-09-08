@@ -422,6 +422,33 @@ msgstr ""
 msgid "form:error_default"
 msgstr ""
 
+msgid "form:country_label"
+msgstr ""
+
+msgid "form:country_default"
+msgstr ""
+
+msgid "form:country_checkbox_label"
+msgstr ""
+
+msgid "form:budget_label"
+msgstr ""
+
+msgid "form:budget_range_label_1"
+msgstr ""
+
+msgid "form:budget_range_label_2"
+msgstr ""
+
+msgid "form:budget_range_label_3"
+msgstr ""
+
+msgid "form:budget_range_label_4"
+msgstr ""
+
+msgid "form:budget_range_label_5"
+msgstr ""
+
 #: templates/search-panel.php:9
 msgid "alerts:advanced_search"
 msgstr ""

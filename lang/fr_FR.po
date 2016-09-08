@@ -3,7 +3,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "Project-Id-Version: Leading Properties\n"
 "POT-Creation-Date: 2016-09-03 09:14+0300\n"
-"PO-Revision-Date: 2016-09-07 21:04+0200\n"
+"PO-Revision-Date: 2016-09-08 10:10+0200\n"
 "Language-Team: \n"
 "MIME-Ver§`sion: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -419,6 +419,33 @@ msgstr "Merci, votre demande a bien été reçue. Nous vous contacterons rapidem
 
 msgid "form:error_default"
 msgstr "An error has occurred. Please try again later."
+
+msgid "form:country_label"
+msgstr "Dans quel pays cherchez-vous un logement ?"
+
+msgid "form:country_default"
+msgstr "Tous les pays"
+
+msgid "form:country_checkbox_label"
+msgstr "Je suis intéressé par plusieurs pays"
+
+msgid "form:budget_label"
+msgstr "Votre budget en EUR"
+
+msgid "form:budget_range_label_1"
+msgstr "jusqu'à 1 million"
+
+msgid "form:budget_range_label_2"
+msgstr "1-5 millions"
+
+msgid "form:budget_range_label_3"
+msgstr "5-10 millions"
+
+msgid "form:budget_range_label_4"
+msgstr "10-50 millions"
+
+msgid "form:budget_range_label_5"
+msgstr "50+ millions"
 
 #: templates/search-panel.php:9
 msgid "alerts:advanced_search"
