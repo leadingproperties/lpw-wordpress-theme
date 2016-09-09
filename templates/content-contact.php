@@ -42,11 +42,11 @@ if( $header_type === 'image' ) : ?>
 				$info = get_sub_field('info');
 				?>
 				<div class="team-box eqh">
-					<div class="team-photo">
-						<?php if($photo) { ?>
+					<?php if($photo) { ?>
+						<div class="team-photo">
 							<img src="<?= $photo; ?>" alt="<?= $name; ?>" class="img-responsive">
-						<?php } ?>
-					</div>
+						</div>
+					<?php } ?>
 					<h2 class="team-name"><?= $name; ?></h2>
 					<p class="team-contact"><?= $info; ?></p>
 				</div>
