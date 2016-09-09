@@ -27,7 +27,7 @@ if( function_exists('acf_add_local_field_group') ):
 
 	acf_add_local_field_group(array (
 		'key' => 'group_57d299cb5ea31',
-		'title' => 'Static Pages',
+		'title' => '[:en]Static Pages[:]',
 		'fields' => array (
 			array (
 				'key' => 'field_57d29a068b1a3',
@@ -893,6 +893,30 @@ Moscow +7 495 565 34 09',
 				),
 				'placement' => 'top',
 				'endpoint' => 0,
+			),
+			array (
+				'key' => 'field_57d2bf3b1b1f0',
+				'label' => 'Favicon',
+				'name' => 'favicon',
+				'type' => 'image',
+				'instructions' => '',
+				'required' => 0,
+				'conditional_logic' => 0,
+				'wrapper' => array (
+					'width' => '',
+					'class' => '',
+					'id' => '',
+				),
+				'return_format' => 'url',
+				'preview_size' => 'thumbnail',
+				'library' => 'all',
+				'min_width' => '',
+				'min_height' => '',
+				'min_size' => '',
+				'max_width' => '',
+				'max_height' => '',
+				'max_size' => '',
+				'mime_types' => '',
 			),
 			array (
 				'key' => 'field_57d270138e1b7',

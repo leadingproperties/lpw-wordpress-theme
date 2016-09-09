@@ -26,6 +26,14 @@ function lpw_custom_styles() {
 	echo '</style>';
 }
 
+add_action('wp_head', 'lpw_favicon');
+
+function lpw_favicon() {
+	if($icon = get_field('favicon', 'option')) {
+		echo ' <link rel="shortcut icon" href="' . $icon . '" type="image/x-icon">';
+	}
+}
+
 function hex2rgba($hex, $opacity) {
 	$hex = str_replace("#", "", $hex);
 
