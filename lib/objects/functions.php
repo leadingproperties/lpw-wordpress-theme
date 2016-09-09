@@ -530,18 +530,18 @@ function get_object_list($args) {
 
 					if ( $object->property_rent->short_rent === true ) {
 						if ( $object->property_rent->rent_short->sort_price->day ) {
-							$rent_price = '<span class="price-num">' . number_format( $object->property_rent->rent_short->sort_price->day, 0, ".", " " ) . ' </span>' . $object->property_rent->rent_short->sort_price->currency_code . '&nbsp;/&nbsp;' . __( 's_object:rent:day', 'leadingprops' );
+							$rent_price = '<span dir="ltr" class="price-num">' . number_format( $object->property_rent->rent_short->sort_price->day, 0, ".", " " ) . ' </span>' . $object->property_rent->rent_short->sort_price->currency_code . '&nbsp;/&nbsp;' . __( 's_object:rent:day', 'leadingprops' );
 						} elseif ( $object->roperty_rent->rent_short->sort_price->month ) {
-							$rent_price = '<span class="price-num">' . number_format( $object->property_rent->rent_short->sort_price->month, 0, ".", " " ) . ' </span>' . $object->property_rent->rent_short->sort_price->currency_code . '&nbsp;/&nbsp;' . __( 's_object:rent:month', 'leadingprops' );
+							$rent_price = '<span dir="ltr" class="price-num">' . number_format( $object->property_rent->rent_short->sort_price->month, 0, ".", " " ) . ' </span>' . $object->property_rent->rent_short->sort_price->currency_code . '&nbsp;/&nbsp;' . __( 's_object:rent:month', 'leadingprops' );
 						}
 					} elseif ( $object->property_rent->long_rent === true ) {
 						if ( $object->property_rent->rent_long->on_demand === true ) {
-							$rent_price = '<span class="price-onrequest">' . __( 's_object:rent:on_request', 'leadingprops' ) . '</span>';
+							$rent_price = '<span dir="ltr" class="price-onrequest">' . __( 's_object:rent:on_request', 'leadingprops' ) . '</span>';
 						} else {
 							if ( $object->property_rent->rent_long->sort_price->month ) {
-								$rent_price = '<span class="price-num">' . number_format( $object->property_rent->rent_long->sort_price->month, 0, ".", " " ) . ' </span>' . $object->property_rent->rent_long->sort_price->currency_code . '&nbsp;/&nbsp;' . __( 's_object:rent:month', 'leadingprops' );
+								$rent_price = '<span dir="ltr" class="price-num">' . number_format( $object->property_rent->rent_long->sort_price->month, 0, ".", " " ) . ' </span>' . $object->property_rent->rent_long->sort_price->currency_code . '&nbsp;/&nbsp;' . __( 's_object:rent:month', 'leadingprops' );
 							} elseif ( $object->property_rent->rent_long->sort_price->day ) {
-								$rent_price = '<span class="price-num">' . number_format( $object->property_rent->rent_long->sort_price->day, 0, ".", " " ) . ' </span>' . $object->property_rent->rent_long->sort_price->currency_code . '&nbsp;/&nbsp;' . __( 's_object:rent:day', 'leadingprops' );
+								$rent_price = '<span dir="ltr" class="price-num">' . number_format( $object->property_rent->rent_long->sort_price->day, 0, ".", " " ) . ' </span>' . $object->property_rent->rent_long->sort_price->currency_code . '&nbsp;/&nbsp;' . __( 's_object:rent:day', 'leadingprops' );
 							}
 						}
 					}
@@ -590,14 +590,16 @@ function get_object_list($args) {
 					if ( $object->parameters->price->on_demand === true ) {
 						$html .= '<span>' . __( 's_object:on_demand', 'leadingprops' ) . '</span>&nbsp;';
 					} else {
+						$html .= '<span dir="ltr">';
 						if ( $object->parameters->price->min ) {
 							$html .= '<span>' . number_format( $object->parameters->price->min, 0, ".", " " ) . '</span>';
 						}
 						if ( $object->parameters->price->max ) {
-							$html .= '&nbsp;&ndash;&nbsp;<span>' . number_format( $object->parameters->price->max, 0, ".", " " ) . '</span>';
+							$html .= '&nbsp;&ndash;&nbsp;<span dir="ltr">' . number_format( $object->parameters->price->max, 0, ".", " " ) . '</span>';
 						}
 						$html .= '&nbsp;<span class="text-uppercase">' . $object->parameters->price->currency . '</span></span>';
 					}
+						$html .= '</span>';
 
 					if ( $object->parameters->rooms->min || $object->parameters->rooms->max ) {
 						$html .= ',&nbsp';

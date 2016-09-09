@@ -134,6 +134,13 @@ body {
     }
   }
 }
+.object-item {
+  .rent-price {
+    .price-num {
+      margin-left: 5px;
+    }
+  }
+}
 /* Select2 */
 .select2-selection--single {
   .select2-selection__rendered {

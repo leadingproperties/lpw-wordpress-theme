@@ -75,6 +75,9 @@ body {
   .single-object-content .single-object-content .single-object-locations li {
     margin: 0 0 0 10px; } }
 
+.object-item .rent-price .price-num {
+  margin-left: 5px; }
+
 /* Select2 */
 .select2-selection--single .select2-selection__rendered {
   padding-left: 20px;
