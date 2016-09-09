@@ -28,10 +28,12 @@
 									?>
 								</div>
 							<?php } ?>
+							<?php $logo_array = wp_get_attachment_image_src(get_field('logo', 'option'), 'full');
+							?>
 
 							<a class="logo-link" href="<?php echo esc_url(home_url('/')); ?>">
-								<?php if($logo = wp_get_attachment_image_url(get_field('logo', 'option'), 'full')) {
-									echo '<img src="' . $logo . '" alt="' . get_bloginfo('name') . '">';
+								<?php if($logo_array[0]) {
+									echo '<img src="' . $logo_array[0] . '" alt="' . get_bloginfo('name') . '" width="' . $logo_array[1] / 2 . '" height="' . $logo_array[2] / 2 . '">';
 								} else {
 									bloginfo('name');
 								} ?>
