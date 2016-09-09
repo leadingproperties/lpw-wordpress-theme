@@ -9,6 +9,7 @@ $sage_includes = [
   'lib/nav.php',         //Walker nav
   'lib/blog.php',       //Blog functions
   'lib/conditional_tags.php',
+  'lib/style.php',
   'lib/objects/objects.php',
   'lib/acf/acf.php',
   'lib/acf-settings.php',
