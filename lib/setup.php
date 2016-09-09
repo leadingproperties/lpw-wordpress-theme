@@ -192,6 +192,32 @@ foreach($pages as $page_url_title => $page_meta) {
 
       if(!isset($id->ID)){
         $new_page_id = wp_insert_post($page);
+
+        switch ($page_url_title) {
+            case 'Buy':
+                update_field('sale', $new_page_id, 'option');
+                break;
+            case 'Rent':
+                update_field('rent', $new_page_id, 'option');
+                break;
+            case 'Favorites Sale':
+                update_field('sale_favorites', $new_page_id, 'option');
+                break;
+            case 'Favorites Rent':
+                update_field('rent_favorites', $new_page_id, 'option');
+                break;
+            case 'Single property':
+                update_field('single_object', $new_page_id, 'option');
+                break;
+            case 'Buy share':
+                update_field('sale_share', $new_page_id, 'option');
+                break;
+            case 'Rent share':
+                update_field('rent_share', $new_page_id, 'option');
+                break;
+            default:
+        }
+
         if(!empty($page_template)){
              update_post_meta($new_page_id, '_wp_page_template', $page_template);
         }
