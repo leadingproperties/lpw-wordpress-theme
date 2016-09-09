@@ -28,8 +28,8 @@
 									?>
 								</div>
 							<?php } ?>
-							<?php $logo_array = wp_get_attachment_image_src(get_field('logo', 'option'), 'full');
-							?>
+
+							<?php $logo_array = wp_get_attachment_image_src(get_field('logo', 'option'), 'full'); ?>
 
 							<a class="logo-link" href="<?php echo esc_url(home_url('/')); ?>">
 								<?php if($logo_array[0]) {

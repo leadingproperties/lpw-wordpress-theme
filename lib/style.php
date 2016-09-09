@@ -16,9 +16,12 @@ function lpw_custom_styles() {
 			echo 'color: ' . $ptColor . ';';
 		}
 		echo '}';
-		if($customCss) {
-			echo $customCss;
+		if($ptBg) {
+			echo '.floating-bar ul { background: rgba('. hex2rgba($ptBg, .9) .'); }';
 		}
+	}
+	if($customCss) {
+		echo $customCss;
 	}
 	echo '</style>';
 }
@@ -35,7 +38,7 @@ function hex2rgba($hex, $opacity) {
 		$g = hexdec(substr($hex,2,2));
 		$b = hexdec(substr($hex,4,2));
 	}
-	$rgb = array($r, $g, $b);
-	//return implode(",", $rgb); // returns the rgb values separated by commas
-	return $rgb; // returns an array with the rgb values
+	$rgb = array($r, $g, $b, $opacity);
+	return implode(",", $rgb); // returns the rgb values separated by commas
+	//return $rgb; // returns an array with the rgb values
 }
