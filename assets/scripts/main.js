@@ -1584,7 +1584,7 @@ Number.prototype.formatMoney = function(c, d, t){
         if(this.args.price || this.args.rooms || this.args.area || this.args.property_types || this.args.rooms || this.args.hd_photos || this.args.persons || this.args.long_rent || this.args.short_rent || this.args.child_friendly || this.args.pets_allowed) {
             this.usedFilters.filter = true;
         }
-        if(this.location_point || this.location_shape) {
+        if(this.args.location_point || this.args.location_shape) {
             this.usedFilters.location = true;
         }
 
