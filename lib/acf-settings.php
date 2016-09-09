@@ -26,6 +26,116 @@ acf_add_options_page([
 if( function_exists('acf_add_local_field_group') ):
 
 	acf_add_local_field_group(array (
+		'key' => 'group_57d299cb5ea31',
+		'title' => 'Static Pages',
+		'fields' => array (
+			array (
+				'key' => 'field_57d29a068b1a3',
+				'label' => 'Image banner',
+				'name' => 'image_banner',
+				'type' => 'true_false',
+				'instructions' => '',
+				'required' => 0,
+				'conditional_logic' => 0,
+				'wrapper' => array (
+					'width' => '',
+					'class' => '',
+					'id' => '',
+				),
+				'message' => '',
+				'default_value' => 0,
+			),
+			array (
+				'key' => 'field_57d29a618b1a4',
+				'label' => 'Image',
+				'name' => 'banner_image',
+				'type' => 'image',
+				'instructions' => '',
+				'required' => 1,
+				'conditional_logic' => array (
+					array (
+						array (
+							'field' => 'field_57d29a068b1a3',
+							'operator' => '==',
+							'value' => '1',
+						),
+					),
+				),
+				'wrapper' => array (
+					'width' => '',
+					'class' => '',
+					'id' => '',
+				),
+				'return_format' => 'url',
+				'preview_size' => 'full',
+				'library' => 'all',
+				'min_width' => '',
+				'min_height' => '',
+				'min_size' => '',
+				'max_width' => '',
+				'max_height' => '',
+				'max_size' => '',
+				'mime_types' => '',
+			),
+			array (
+				'key' => 'field_57d29aab8b1a5',
+				'label' => 'Banner height',
+				'name' => 'banner_height',
+				'type' => 'number',
+				'instructions' => '',
+				'required' => 1,
+				'conditional_logic' => array (
+					array (
+						array (
+							'field' => 'field_57d29a068b1a3',
+							'operator' => '==',
+							'value' => '1',
+						),
+					),
+				),
+				'wrapper' => array (
+					'width' => '',
+					'class' => '',
+					'id' => '',
+				),
+				'default_value' => '',
+				'placeholder' => '',
+				'prepend' => '',
+				'append' => 'px',
+				'min' => 0,
+				'max' => '',
+				'step' => 1,
+				'readonly' => 0,
+				'disabled' => 0,
+			),
+		),
+		'location' => array (
+			array (
+				array (
+					'param' => 'page_template',
+					'operator' => '==',
+					'value' => 'default',
+				),
+			),
+			array (
+				array (
+					'param' => 'page_template',
+					'operator' => '==',
+					'value' => 'page-contact.php',
+				),
+			),
+		),
+		'menu_order' => 0,
+		'position' => 'acf_after_title',
+		'style' => 'default',
+		'label_placement' => 'top',
+		'instruction_placement' => 'label',
+		'hide_on_screen' => '',
+		'active' => 1,
+		'description' => '',
+	));
+
+	acf_add_local_field_group(array (
 		'key' => 'group_57bd72e15c6e2',
 		'title' => 'Contact',
 		'fields' => array (
