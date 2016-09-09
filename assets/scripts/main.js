@@ -713,6 +713,7 @@ Number.prototype.formatMoney = function(c, d, t){
             shGp = $('.obj-share-gplus'),
             shInput = $('.fav-link-input'),
             baseUrl = category === 'sale' ? LpData.saleSharer + '?ids=' : LpData.rentSharer + '?ids=';
+
         function setValues(url) {
             var urlEnc = encodeURIComponent(url);
             shInput = $('.fav-link-input').val(url);
@@ -1348,6 +1349,7 @@ Number.prototype.formatMoney = function(c, d, t){
 
                 $this.objectContainer.append($objects);
                 $this.favorites.markButtons($objects, $this.favorites.favoritesIds);
+
             } else if ($this.usedFilters.location || $this.usedFilters.filter ) {
                 $objects.insertBefore($this.objectContainer);
             }

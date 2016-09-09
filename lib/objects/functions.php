@@ -549,7 +549,8 @@ function get_object_list($args) {
 				if ( $i === 1 ) {
 					$firstObj = [
 						'slug' => $slug,
-						'id'   => $object->id
+						'id'   => $object->id,
+						'image' => $object->image
 					];
 				}
 				if ( $i === $count ) {
@@ -647,13 +648,13 @@ function get_object_list($args) {
 				$i ++;
 			}
 		} else {
-			$html .= '<div class="no-matches">
-                        <div class="container">
-                            <h5 class="text-red">' . __('alerts:no_results:title', 'leadingprops') . '</h5>
-                            <p>' . __('alerts:no_results:text', 'leadingprops') . '</p>
-                            <button class="btn btn-red clear-filters-btn icon">' . __('alerts:no_results:button', 'leadingprops') . '</button>
-                        </div>
-                    </div><!-- /.no-matches -->';
+			$html .= '<div class="no-matches">';
+			$html .= '<div class="container">';
+			$html .= '<h5 class="text-red">' . __('alerts:no_results:title', 'leadingprops') . '</h5>';
+			$html .= '<p>' . __('alerts:no_results:text', 'leadingprops') . '</p>';
+			$html .= '<button class="btn btn-red clear-filters-btn icon">' . __('alerts:no_results:button', 'leadingprops') . '</button>';
+			$html .= '</div>';
+			$html .= '</div><!-- /.no-matches -->';
 		}
 		return [
 			'html' => $html,

@@ -31,7 +31,6 @@ function setup() {
   add_theme_support('post-thumbnails');
   set_post_thumbnail_size(350, 205, true);
   add_image_size('featured', 700, 410, true);
-  add_image_size('logo', 350, 90, true);
   add_image_size('office', 350, 210, true);
   add_image_size('agent', 350, 350, true);
 
