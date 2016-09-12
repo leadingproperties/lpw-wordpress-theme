@@ -44,7 +44,7 @@ $lp_settings = [
   'lang' => lpw_get_current_lang()
 ];
 $lp_settings['property_page'] = get_page_link($lp_settings['property_page_id']);
-if(is_ssl()) {
+if(is_ssl() && strpos($lp_settings['property_page'], 'http:')) {
 	$lp_settings['property_page'] = str_replace('http:', 'https:', $lp_settings['property_page']);
 }
 
