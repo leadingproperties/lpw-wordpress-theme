@@ -45,9 +45,7 @@ $lp_settings = [
 ];
 $lp_settings['property_page'] = get_page_link($lp_settings['property_page_id']);
 if(is_ssl()) {
-	$lp_settings['property_page'] = str_replace('http', 'https', get_page_link($lp_settings['property_page_id']));
-} else {
-	$lp_settings['property_page'] = get_page_link($lp_settings['property_page_id']);
+	$lp_settings['property_page'] = str_replace('http:', 'https:', get_page_link($lp_settings['property_page_id']));
 }
 
 $objects = new LP_ObjectList();
