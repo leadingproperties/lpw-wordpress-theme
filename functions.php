@@ -43,10 +43,8 @@ $lp_settings = [
   'favorites_rent' => esc_url((get_field('rent_favorites', 'option'))?get_field('rent_favorites', 'option'):get_page_by_title('Favorites Rent')->guid),
   'lang' => lpw_get_current_lang()
 ];
-$lp_settings['property_page'] = get_page_link($lp_settings['property_page_id']);
-if(is_ssl() && strpos($lp_settings['property_page'], 'http:')) {
-	$lp_settings['property_page'] = str_replace('http:', 'https:', $lp_settings['property_page']);
-}
+$property_page = get_page_link($lp_settings['property_page_id']);
+$lp_settings['property_page'] = is_ssl() ? str_replace('http:', 'https:', $property_page) : $property_page;
 
 $objects = new LP_ObjectList();
 $counters = $objects->get_global_counters();
