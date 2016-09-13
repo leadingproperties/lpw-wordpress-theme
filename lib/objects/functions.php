@@ -583,7 +583,7 @@ function get_object_list($args) {
 				$html .= '</div>';
 				$html .= '</div>';
 				$html .= '<h2 class="info-title">';
-				$html .= '<a class="open-object-modal object-link" href="' . $lp_settings['property_page'] . $object->slug . '" data-id="' . $object->id . '">' . $title . '</a>';
+				$html .= '<a class="open-object-modal object-link" href="' . $lp_settings['property_page'] . $slug . '" data-id="' . $object->id . '">' . $title . '</a>';
 				$html .= '</h2>';
 				if ( $category === 'sale' ) {
 					$html .= '<p class="info-details"><span>';
