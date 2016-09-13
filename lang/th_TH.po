@@ -3,7 +3,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Project-Id-Version: Leading Properties\n"
 "POT-Creation-Date: 2016-09-09 11:24+0300\n"
-"PO-Revision-Date: 2016-09-09 16:58+0300\n"
+"PO-Revision-Date: 2016-09-13 20:16+0300\n"
 "Language-Team: \n"
 "MIME-Ver§`sion: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -33,11 +33,11 @@ msgstr "The reasons that could cause the error: incorrectly typed address, the p
 
 #: lib/extras.php:82
 msgid "menu:favorites"
-msgstr "ไม่อยู่ในตลาด"
+msgstr "รายการโปรด"
 
 #: lib/extras.php:83
 msgid "menu:offmarket"
-msgstr "รายการโปรด"
+msgstr "ไม่อยู่ในตลาด"
 
 #: templates/filter-rent.php:57 templates/filter-sale.php:44
 msgid "search_panel:area_label"
@@ -64,7 +64,7 @@ msgstr "อสังหาริมทรัพย์เชิงพาณิช
 #: lib/objects/classes/Tags.php:102 templates/filter-rent.php:18
 #: templates/filter-sale.php:8
 msgid "search_panel:property_types:apartments"
-msgstr "อสังหาริมทรัพย์เชิงพาณิชย์"
+msgstr "อพาร์ตเมนต์"
 
 #: lib/objects/classes/Tags.php:105 templates/filter-rent.php:22
 #: templates/filter-sale.php:12
@@ -499,7 +499,7 @@ msgid "favorites:delete_n"
 msgstr "ไม่"
 
 msgid "commercial:main_title"
-msgstr "ทรัพย์สินเชิงพาณิชย์"
+msgstr "ทรัพย์สินเชิงพาณิชย์:"
 
 msgid "commercial:sub_title_1"
 msgstr "3 ขั้นตอนเพื่อรับข้อมูลเกี่ยวกับทรัพย์สินเชิงพาณิชย์"
