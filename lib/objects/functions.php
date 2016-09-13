@@ -637,7 +637,7 @@ function get_object_list($args) {
 						$html .= '<li class="icon icon-bedroom">' . $object->parameters->bedrooms->min . '</li>';
 					}
 					if ( $object->parameters->bathrooms->min ) {
-						$html .= '<li class="icon icon-bathroom">' . $object->parameters->bathrooms->min . '</li>' . "\n";
+						$html .= '<li class="icon icon-bathroom">' . $object->parameters->bathrooms->min . '</li>';
 					}
 					if ( $object->property_rent->persons_max ) {
 						$html .= '<li class="icon icon-person">' . $object->property_rent->persons_max . '</li>';
