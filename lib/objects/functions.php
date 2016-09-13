@@ -623,7 +623,7 @@ function get_object_list($args) {
 						$html .= '&nbsp;&ndash;&nbsp;<span>' . $object->parameters->area->max . '</span>';
 					}
 					if ( $object->parameters->area->min || $object->parameters->area->max ) {
-						$html .= '&nbsp;m<sup>2</sup>';
+						$html .= '&nbsp;' .__( 's_object:m_short', 'leadingprops' ) . ' <sup>2</sup>';
 					}
 					$html .= '</p>';
 

@@ -66,7 +66,7 @@
 						<span class="red-circle">3</span><?php _e('commercial:step_3', 'leadingprops') ?>
 					</li>
 				</ul>
-				<p class="footnote"><?php _e('commercial:note_text', 'leadingprops') ?> <br><a href="#"><?php _e('commercial:note_link', 'leadingprops') ?></a></p>
+				<p class="footnote"><?php _e('commercial:note_text', 'leadingprops') ?></p>
 			</div>
 		</div>
 	</div><!-- /.page-content -->
