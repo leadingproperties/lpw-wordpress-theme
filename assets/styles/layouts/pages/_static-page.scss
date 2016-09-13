@@ -10,12 +10,10 @@
   }
 }
 .page-header, .page-title {
-  margin-bottom: 20px;
   h1 {
     font-size: 30px;
   }
   @media (min-width: $container-width-1) {
-    margin-bottom: 30px;
     h1 {
       font-size: 36px;
     }
@@ -26,13 +24,18 @@
   color: #fff;
   padding-top: 24px;
   padding-bottom: 29px;
+  margin-bottom: 20px;
   @media (min-width: $container-width-1) {
+    margin-bottom: 30px;
     padding-top: 29px;
     padding-bottom: 34px;
   }
 }
 .page-title {
   color: $text-dark-color;
+  h1 {
+    margin-bottom: 0;
+  }
 }
 .page-banner {
   background-position: 50% 50%;
