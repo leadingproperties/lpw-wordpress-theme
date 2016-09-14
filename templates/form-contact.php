@@ -1,3 +1,4 @@
+<?php global $lp_settings; ?>
 <div class="modal request-form-modal contact-modal" tabindex="-1" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -50,7 +51,13 @@
 							<button type="submit" class="btn btn-green btn-submit"><?php _e('form:send', 'leadingprops'); ?></button>
 						</div>
 						<div class="disclaimer-note">
-							<p><?php _e('form:disclaimer_note', 'leadingprops'); ?> <a href="https://www.leadingproperties.com/protection-policy-personal-information" target="_blank"><?php _e('form:privacy_policy', 'leadingprops'); ?></a>
+							<p><?php
+								printf(
+									__('I hereby agree and authorize %s to disclose my personal information collected on this form to the property developers and / or sale agents who have signed a Marketing services agreement with %s in respect to requested properties. Read more about our', 'leadingprops'),
+									$lp_settings['site_title'],
+									$lp_settings['site_title']
+								);
+								?> <a href="https://www.leadingproperties.com/protection-policy-personal-information" target="_blank"><?php _e('form:privacy_policy', 'leadingprops'); ?></a>
 							</p>
 						</div>
 					</div>

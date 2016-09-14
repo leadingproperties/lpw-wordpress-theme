@@ -453,13 +453,13 @@ msgstr "Отправить запрос"
 
 #: templates/form-contact.php:53 templates/form-offmarket.php:55
 #: templates/form-request.php:54
-msgid "form:disclaimer_note"
-msgstr "I hereby agree and authorize LPW to disclose my personal information collected on this form to the property developers and / or sale agents who have signed a Marketing services agreement with LPW in respect to requested properties. Узнайте подробнее о нашей"
+msgid "I hereby agree and authorize %s to disclose my personal information collected on this form to the property developers and / or sale agents who have signed a Marketing services agreement with %s in respect to requested properties. Read more about our"
+msgstr "I hereby agree and authorize %s to disclose my personal information collected on this form to the property developers and / or sale agents who have signed a Marketing services agreement with %s in respect to requested properties. Узнайте подробнее о нашей"
 
 #: templates/form-contact.php:53 templates/form-offmarket.php:55
 #: templates/form-request.php:54
 msgid "form:privacy_policy"
-msgstr "Политике Конфиденциальности"
+msgstr "Политика Конфиденциальности"
 
 #: templates/form-offmarket.php:6
 msgid "form:title_off_market"
