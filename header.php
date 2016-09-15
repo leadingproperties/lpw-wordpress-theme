@@ -1,6 +1,8 @@
 <?php
 	global $lp_settings;
 	$header_style = get_field('header_style', 'option');
+	$lang_indicator = get_field('lang_indicator_type', 'option');
+	$lang_class = ($lang_indicator === 'flag-code') ? ' with-code' : '';
 ?>
 <body <?php body_class(); ?>>
 	<div class="wrap" role="document">
@@ -62,7 +64,7 @@
 								<?php endif; ?>
 								<div class="map-col"><a href="#" class="map-toggle icon" data-toggle="modal" data-target="#map-modal"><span class="sr-only">Select region</span></a></div>
 								<div class="menu-col"><a href="#" class="menu-toggle"><span class="sr-only">Menu</span></a></div>
-								<div class="lang-col"><a class="lang-toggle collapsed" data-toggle="collapse" data-target="#lang-panel" aria-expanded="false" aria-controls="lang-panel"><span class="lang-<?= $lp_settings['lang']; ?>"></span></a></div>
+								<div class="lang-col"><a class="lang-toggle collapsed<?= $lang_class; ?>" data-toggle="collapse" data-target="#lang-panel" aria-expanded="false" aria-controls="lang-panel"><span class="lang-<?= $lp_settings['lang']; ?>"></span><span class="ln-code icon"><?= $lp_settings['lang']; ?></span> </a></div>
 							</div>
 						</div><!-- /.header-inner -->
 						<?php do_action('lang_panel') ?>

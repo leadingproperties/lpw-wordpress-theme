@@ -21,6 +21,33 @@
       visibility: hidden;
     }
   }
+  span {
+    vertical-align: top;
+    + span {
+      margin-left: 9px;
+    }
+  }
+  .ln-code {
+    text-transform: uppercase;
+     display: none;
+    color: $text-dark-color;
+    font-size: 14px;
+    line-height: 14px;
+    position: relative;
+    padding-right: 24px;
+    &::before {
+      color: $text-color;
+      content: "\e93a";
+      position: absolute;
+      top: 1px;
+      right: 0;
+    }
+  }
+  &.with-code {
+    .ln-code {
+      display: inline;
+    }
+  }
 }
 span[class^="lang-"],
 span[class*=" lang-"] {

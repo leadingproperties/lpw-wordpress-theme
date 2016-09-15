@@ -27,7 +27,7 @@ if( function_exists('acf_add_local_field_group') ):
 
 	acf_add_local_field_group(array (
 		'key' => 'group_57d299cb5ea31',
-		'title' => '[:en]Static Pages[:]',
+		'title' => 'Static Pages',
 		'fields' => array (
 			array (
 				'key' => 'field_57d29a068b1a3',
@@ -394,7 +394,7 @@ if( function_exists('acf_add_local_field_group') ):
 				'key' => 'field_574f315822b19',
 				'label' => 'API key',
 				'name' => 'api_key',
-				'type' => 'password',
+				'type' => 'text',
 				'instructions' => '',
 				'required' => 1,
 				'conditional_logic' => 0,
@@ -403,9 +403,11 @@ if( function_exists('acf_add_local_field_group') ):
 					'class' => '',
 					'id' => '',
 				),
+				'default_value' => '',
 				'placeholder' => '',
 				'prepend' => '',
 				'append' => '',
+				'maxlength' => '',
 				'readonly' => 0,
 				'disabled' => 0,
 			),
@@ -636,6 +638,29 @@ if( function_exists('acf_add_local_field_group') ):
 				'max_height' => '',
 				'max_size' => '',
 				'mime_types' => '',
+			),
+			array (
+				'key' => 'field_57da53ff10dec',
+				'label' => 'Language Indicator type',
+				'name' => 'lang_indicator_type',
+				'type' => 'radio',
+				'instructions' => '',
+				'required' => 0,
+				'conditional_logic' => 0,
+				'wrapper' => array (
+					'width' => '',
+					'class' => '',
+					'id' => '',
+				),
+				'choices' => array (
+					'flag' => 'Flag',
+					'flag-code' => 'Flag & Code',
+				),
+				'allow_null' => 0,
+				'other_choice' => 0,
+				'save_other_choice' => 0,
+				'default_value' => '',
+				'layout' => 'horizontal',
 			),
 			array (
 				'key' => 'field_574f13ac8f0c8',
