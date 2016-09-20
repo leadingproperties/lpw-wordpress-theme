@@ -45,7 +45,7 @@
 					<fieldset data-count="3">
 						<div class="input-group">
 							<label class="request-form-label" for="om-question"><?php _e('form:have_questions', 'leadingprops'); ?></label>
-							<textarea id="om-question" class="text-input" rows="4"></textarea>
+							<textarea id="om-question" class="your-message text-input" rows="4"></textarea>
 						</div>
 					</fieldset>
 					<div class="request-form-footer request-form-row">

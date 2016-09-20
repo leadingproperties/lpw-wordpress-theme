@@ -100,7 +100,6 @@
 				var data = {
 						first_name: $this.fname.val(),
 						last_name: $this.lname.val(),
-						phone: $this.phone.intlTelInput("getNumber"),
 						email: $this.email.val(),
 						skype: $this.skype.val(),
 						question: $this.message.val(),
@@ -109,6 +108,9 @@
 						action: 'do_ajax',
 						fn: 'contact_form'
 					};
+				if($this.phone.val().trim().length > 0) {
+					data.phone = $this.phone.intlTelInput("getNumber");
+				}
 				if($this.type === 'single_property') {
 					data.property_id = $this.property_id;
 					data.property_code = $this.property_code;
