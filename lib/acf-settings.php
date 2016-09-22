@@ -644,7 +644,7 @@ if( function_exists('acf_add_local_field_group') ):
 				'label' => 'Logo Link',
 				'name' => 'logo_link',
 				'type' => 'text',
-				'instructions' => '',
+				'instructions' => 'To set different links for different languages use construction like [:en]http://google.com[:][:ru]http://ya.ru[:]',
 				'required' => 0,
 				'conditional_logic' => 0,
 				'wrapper' => array (
@@ -1078,7 +1078,23 @@ Moscow +7 495 565 34 09',
 					'class' => '',
 					'id' => '',
 				),
-				'message' => 'We take no responsibility for the scripts used',
+				'message' => 'We take no responsibility for the scripts used
+
+The code will NOT be wrapped in &lt;script&gt; tag. You need to do it manually
+ex:
+&lt;script type="text/javascript"&gt;
+
+	var _gaq = _gaq || [];
+	_gaq.push([\'_setAccount\', \'UA-XXXXX-X\']);
+	_gaq.push([\'_trackPageview\']);
+
+	(function() {
+		var ga = document.createElement(\'script\'); ga.type = \'text/javascript\'; ga.async = true;
+		ga.src = (\'https:\' == document.location.protocol ? \'https://ssl\' : \'http://www\') + \'.google-analytics.com/ga.js\';
+		var s = document.getElementsByTagName(\'script\')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+
+&lt;/script&gt;',
 				'new_lines' => 'wpautop',
 				'esc_html' => 0,
 			),
