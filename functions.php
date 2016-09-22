@@ -10,6 +10,7 @@ $sage_includes = [
   'lib/blog.php',       //Blog functions
   'lib/conditional_tags.php',
   'lib/style.php',
+  'lib/custom-scripts.php',
   'lib/objects/objects.php',
   'lib/acf/acf.php',
   'lib/acf-settings.php',

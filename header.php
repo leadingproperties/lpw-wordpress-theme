@@ -3,6 +3,7 @@
 	$header_style = get_field('header_style', 'option');
 	$lang_indicator = get_field('lang_indicator_type', 'option');
 	$lang_class = ($lang_indicator === 'flag-code') ? ' with-code' : '';
+	$logo_link = ($ll = get_field('logo_link', 'option')) ? $ll : esc_url(home_url('/'));
 ?>
 <body <?php body_class(); ?>>
 	<div class="wrap" role="document">
@@ -33,7 +34,7 @@
 
 							<?php $logo_array = wp_get_attachment_image_src(get_field('logo', 'option'), 'full'); ?>
 
-							<a class="logo-link" href="<?php echo esc_url(home_url('/')); ?>">
+							<a class="logo-link" href="<?= $logo_link; ?>">
 								<?php if($logo_array[0]) {
 									echo '<img src="' . $logo_array[0] . '" alt="' . get_bloginfo('name') . '" width="' . $logo_array[1] / 2 . '" height="' . $logo_array[2] / 2 . '">';
 								} else {
