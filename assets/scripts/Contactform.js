@@ -190,6 +190,7 @@
 					$this.several = $('#several-countries');
 					$this.budget = $('.budget-checkbox');
 				}
+				var intContainer = form.find('.phone-group-wrap');
 
 
 				$this.phone.intlTelInput({
@@ -197,7 +198,7 @@
 					preferredCountries: [],
 					autoPlaceholder: false,
 					separateDialCode: true,
-					dropdownContainer: '.phone-group-wrap',
+					dropdownContainer: intContainer,
 					nationalMode: true,
 					geoIpLookup: function (callback) {
 						$.get(window.location.protocol + '//ipinfo.io/?token=7e9a08789b534d', function () {
