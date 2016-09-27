@@ -22,7 +22,16 @@
 	}
 	if($objects_obj->error) {
 		status_header(404);
+		add_filter('body_class', function($clasess) {
+			$clasess[] = 'error404';
+			$pos = array_search('page-single-object', $clasess);
+			if($pos) {
+				unset($clasess[$pos]);
+			}
+			return $clasess;
+		});
 		get_template_part(404);
+
 		die();
 	}
 
