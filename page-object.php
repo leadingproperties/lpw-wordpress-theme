@@ -20,6 +20,11 @@
 		$objects_obj->error = true;
 		$objects_obj->errorMessage  = 'Nothing found';
 	}
+	if($objects_obj->error) {
+		status_header(404);
+		get_template_part(404);
+		die();
+	}
 
 ?>
 <?php
