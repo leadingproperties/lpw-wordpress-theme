@@ -971,7 +971,7 @@ Number.prototype.formatMoney = function(c, d, t){
         function closeModal(ev) {
             ev.preventDefault();
             $('.single-object-modal').remove();
-            $('html').removeClass('overflow-height');
+            $('body').removeClass('overflow-height');
             if( Helpers.isHhistoryApiAvailable()) {
                 window.history.pushState(null, null, $this.location);
               /*  if(objectlist.type === 'list') {
@@ -1009,8 +1009,8 @@ Number.prototype.formatMoney = function(c, d, t){
             if( isModalExists() ) {
                 $('.single-object-modal').remove();
             }
-            $('html').addClass('overflow-height');
             objectWrapper.append(data);
+            $('body').addClass('overflow-height');
             if($this.prevLink) {
                 $('.object-prev a').attr('href', $this.prevLink);
             } else {
@@ -1026,7 +1026,6 @@ Number.prototype.formatMoney = function(c, d, t){
 
                 $('.single-object-menu .add-favorite-button').addClass('in-favorites').data('action', 'remove');
             }
-
 
         };
         this.getSingleObject = function(ev) {

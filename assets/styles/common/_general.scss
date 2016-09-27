@@ -3,11 +3,15 @@
     outline: none;
   }
 }
-html.side-menu-open, html.overflow-height {
+html.side-menu-open {
   height: 100%;
   body, .wrap {
     height: 100%;
   }
+}
+body.overflow-height {
+  height: 100%;
+  overflow: hidden;
 }
 a {
   cursor: pointer;
