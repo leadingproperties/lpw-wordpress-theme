@@ -243,6 +243,9 @@ msgstr "Propriété précédente"
 msgid "s_object:next"
 msgstr "Propriété suivante"
 
+msgid "s_object:ref_num"
+msgstr "numéro de référence"
+
 #: lib/objects/functions.php:450
 msgid "s_object:similar_label"
 msgstr "Trouvez des biens similaires dans la même zone"

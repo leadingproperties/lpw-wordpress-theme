@@ -243,6 +243,9 @@ msgstr "Proprietà precedente"
 msgid "s_object:next"
 msgstr "Prossima proprietà"
 
+msgid "s_object:ref_num"
+msgstr "nuorodos numeris"
+
 #: lib/objects/functions.php:450
 msgid "s_object:similar_label"
 msgstr "Trova proprietà simili nella stessa area"

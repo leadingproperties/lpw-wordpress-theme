@@ -243,6 +243,9 @@ msgstr "อสังหาริมทรัพย์ก่อนหน้า"
 msgid "s_object:next"
 msgstr "อสังหาริมทรัพย์ถัดไป"
 
+msgid "s_object:ref_num"
+msgstr "หมายเลขอ้างอิง"
+
 #: lib/objects/functions.php:450
 msgid "s_object:similar_label"
 msgstr "ค้นหาอสังหารมทรัพย์ที่คล้ายคลึงกันในพื้นที่ใกล้เคียง"

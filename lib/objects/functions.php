@@ -174,7 +174,6 @@ function single_object_html($args) {
 								$html .= '&nbsp;' . $objects_obj->parameters->price->currency;
 							}
 					$html .= '</p>';
-					$html .= '<p class="object-code icon">' . $objects_obj->code . '</p>';
 					$html .= '</div><!-- /.single-object-info -->';
 					elseif($object_type === 'rent') :
 					$html .= '<div class="rent-rate">';
@@ -339,6 +338,8 @@ function single_object_html($args) {
 				 endif;
 
 				$html .= '<ul class="object-properties">';
+				$html .= '<li>' . __('s_object:ref_num', 'leadingprops') . '</li>';
+				$html .= '<li>' . $objects_obj->code . '</li>';
 				$html .= '<li>' . __('s_object:property_type', 'leadingprops') . '</li>';
 				$html .= '<li>' . $objects_obj->parameters->property_object_type . '</li>';
 				if($objects_obj->parameters->rooms->min || $objects_obj->parameters->rooms->max) {

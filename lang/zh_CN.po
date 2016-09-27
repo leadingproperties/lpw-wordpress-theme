@@ -243,6 +243,9 @@ msgstr "前一物业"
 msgid "s_object:next"
 msgstr "下一处物业"
 
+msgid "s_object:ref_num"
+msgstr "参考编号"
+
 #: lib/objects/functions.php:450
 msgid "s_object:similar_label"
 msgstr "在相同区域找到相似物业"

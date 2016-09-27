@@ -243,6 +243,9 @@ msgstr "العقار السابق"
 msgid "s_object:next"
 msgstr "العقار التالي"
 
+msgid "s_object:ref_num"
+msgstr "رقم الاشار"
+
 #: lib/objects/functions.php:450
 msgid "s_object:similar_label"
 msgstr "اعثر على عقارات مشابهة في نفس المنطقة"

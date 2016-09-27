@@ -281,6 +281,9 @@ msgstr "Previous property"
 msgid "s_object:next"
 msgstr "Next property"
 
+msgid "s_object:ref_num"
+msgstr "reference number"
+
 #: lib/objects/functions.php:450
 msgid "s_object:similar_label"
 msgstr "Find similar properties in the same area"

@@ -164,7 +164,6 @@
 									echo '&nbsp;' . $objects_obj->parameters->price->currency;
 								} ?>
 							</p>
-							<?= '<p class="object-code icon">' . $objects_obj->code . '</p>'; ?>
 						</div><!-- /.single-object-info -->
 					<?php elseif($object_type === 'rent') : ?>
 						<div class="rent-rate">
@@ -330,6 +329,8 @@
 					<?php endif; ?>
 
 					<?php echo '<ul class="object-properties">
+								<li>' . __('s_object:ref_num', 'leadingprops') . '</li>
+								<li>' . $objects_obj->code . '</li>
 								<li>' . __('s_object:property type', 'leadingprops') . '</li>
 								<li>' . $objects_obj->parameters->property_object_type . '</li>';
 					if($objects_obj->parameters->rooms->min || $objects_obj->parameters->rooms->max) {

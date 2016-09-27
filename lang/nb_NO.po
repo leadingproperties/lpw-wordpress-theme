@@ -247,6 +247,9 @@ msgstr "Forrige eiendom"
 msgid "s_object:next"
 msgstr "Neste eiendom"
 
+msgid "s_object:ref_num"
+msgstr "referansenummer"
+
 #: lib/objects/functions.php:450
 msgid "s_object:similar_label"
 msgstr "Finn lignende eiendommer i samme område"
