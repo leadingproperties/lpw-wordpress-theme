@@ -55,8 +55,10 @@
       display: inline-block;
     }
     .price-onrequest {
-      line-height: 20px;
-      letter-spacing: 1px;
+      font-size: 16px;
+      letter-spacing: normal;
+      font-weight: 400;
+
       text-transform: none;
       display: inline-block;
       &:first-letter {
