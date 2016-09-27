@@ -366,7 +366,7 @@ class LP_ObjectList {
             if ( isset( $this->args['is_rent'] ) && $this->args['is_rent'] == true ) {
                 $data['is_rent'] = $this->args['is_rent'];
             }
-            if ( $this->args['form_type'] === 'off_market' && isset( $this->args['url'] ) ) {
+            if ( ($this->args['form_type'] === 'off_market' || $this->args['form_type'] === 'single_property') && isset( $this->args['url'] ) ) {
                 $data['url'] = $this->args['url'];
             }
             if($this->args['form_type'] === 'commercial') {

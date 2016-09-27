@@ -116,7 +116,7 @@
 					data.property_code = $this.property_code;
 					data.is_rent = $this.is_rent;
 				}
-				if($this.type === 'off_market') {
+				if($this.type === 'off_market' || $this.type === 'single_property') {
 					data.url = $this.url;
 				}
 				if($this.type === 'commercial') {
@@ -236,7 +236,7 @@
 				$this.property_id = btn.data('id');
 				$this.property_code = btn.data('code');
 			}
-			if($this.type === 'off_market') {
+			if($this.type === 'off_market' || $this.type === 'single_property') {
 				$this.url = window.location.href;
 			}
 		};
