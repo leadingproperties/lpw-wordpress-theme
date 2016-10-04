@@ -35,8 +35,8 @@ get_favorites_bar();
     <div class="container">
       <p><?php _e('favorites:delete_alert', 'leadingprops') ?></p>
       <div class="favorites-button-wrap">
-        <button type="button" class="btn btn-white btn-fav-confirm" data-action="delete">_e('favorites:delete_y', 'leadingprops')</button>
-        <button type="button" class="btn btn-white btn-fav-confirm" data-action="close"_e('favorites:delete_n', 'leadingprops')/button>
+        <button type="button" class="btn btn-white btn-fav-confirm" data-action="delete"><?php _e('favorites:delete_y', 'leadingprops'); ?></button>
+        <button type="button" class="btn btn-white btn-fav-confirm" data-action="close"><?php _e('favorites:delete_n', 'leadingprops'); ?></button>
       </div>
     </div>
 </div>
