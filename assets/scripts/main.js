@@ -1373,7 +1373,7 @@ Number.prototype.formatMoney = function(c, d, t){
             dataUrl = $this.args;
             data.action = 'do_ajax';
 
-            if( type === 'list' && eventType !== 'scroll' && eventType !== 'single') {
+            if( type === 'list' && $this.args.page === 1 && eventType !== 'single') {
 
                 $this.tags.buildTags(data);
 
