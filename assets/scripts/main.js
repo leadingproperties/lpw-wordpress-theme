@@ -1356,6 +1356,10 @@ Number.prototype.formatMoney = function(c, d, t){
             return r;
         };
         this.getObjects = function (callback, eventType) {
+            if($this.didScroll === true) {
+                return;
+            }
+            $this.didScroll = true;
             if(_.has($this.args, 'autocomplete') && !(_.has($this.args, 'location_point') || _.has($this.args, 'ids'))) {
                 delete $this.args.autocomplete;
             }
@@ -1368,7 +1372,6 @@ Number.prototype.formatMoney = function(c, d, t){
             data = $this.args;
             dataUrl = $this.args;
             data.action = 'do_ajax';
-
 
             if( type === 'list' && eventType !== 'scroll' && eventType !== 'single') {
 
@@ -1453,7 +1456,7 @@ Number.prototype.formatMoney = function(c, d, t){
         this.scrollPage = function() {
 
             if ( _.isEmpty($this.lastItem()) || !$this.didScroll && Helpers.isElementIntoView($this.lastItem()) ) {
-                $this.didScroll = true;
+               // $this.didScroll = true;
                 $this.getObjects(null, 'scroll');
             }
         };
