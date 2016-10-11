@@ -274,11 +274,10 @@ class LP_lang {
 				if(is_page_template('page-object.php') && isset($objects_obj->slugs->$language)) {
 					$href .= $objects_obj->slugs->$language;
 				}
-
 				$classes = ['lang-'.$language];
 				$alt = $q_config['language_name'][$language].' ('.$language.')';
 				$output .= '<div class="lang-option-wrapper">'.PHP_EOL;
-				$output .= '<a href="'.qtranxf_convertURL($href, $language, false, true) . '"';
+				$output .= '<a href="' . qtranxf_convertURL( $href, $language, false, true ) . '"';
 				$output .= ' hreflang="'.$language.'"';
 				$output .= ' title="'.$alt.'"';
 				$output .= '><span class="'. implode(' ', $classes) . '"></span>' . $q_config['language_name'][$language] . '</a>';
