@@ -1356,6 +1356,7 @@ Number.prototype.formatMoney = function(c, d, t){
             return r;
         };
         this.getObjects = function (callback, eventType) {
+
             if($this.didScroll === true) {
                 return;
             }
@@ -1442,13 +1443,13 @@ Number.prototype.formatMoney = function(c, d, t){
                             if( Helpers.isElementIntoView($this.lastItem()) ) {
                                 $this.getObjects();
                             }
-                            $this.didScroll = false;
                         } else {
                             $this.triggerId = 0;
                             $(window).off('scroll.lprop', $this.scrollPage);
                             $(window).off('load.lprop', $this.onLoadCheck);
                           //  $(window).off('resize.lprop', $this.onLoadCheck);
                         }
+                        $this.didScroll = false;
                     }
                 });
 
