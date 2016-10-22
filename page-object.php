@@ -345,7 +345,7 @@
 					<?php echo '<ul class="object-properties">
 								<li>' . __('s_object:ref_num', 'leadingprops') . '</li>
 								<li>' . $objects_obj->code . '</li>
-								<li>' . __('s_object:property type', 'leadingprops') . '</li>
+								<li>' . __('s_object:property_type', 'leadingprops') . '</li>
 								<li>' . $objects_obj->parameters->property_object_type . '</li>';
 					if($objects_obj->parameters->rooms->min || $objects_obj->parameters->rooms->max) {
 						echo '<li>' . __('s_object:number_of_rooms', 'leadingprops') . '</li>';
