@@ -3,7 +3,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Project-Id-Version: Leading Properties\n"
 "POT-Creation-Date: 2016-09-21 13:03+0300\n"
-"PO-Revision-Date: 2016-09-21 14:38+0300\n"
+"PO-Revision-Date: 2016-10-22 20:24+0300\n"
 "Language-Team: \n"
 "MIME-Ver§`sion: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -203,6 +203,9 @@ msgstr "antall rom"
 msgid "s_object:property_type"
 msgstr "eiendomstype"
 
+msgid "s_object:ref_num"
+msgstr "referansenummer"
+
 #: lib/objects/functions.php:356 page-object.php:347
 msgid "s_object:area_sq_m"
 msgstr "område, m²"
@@ -246,9 +249,6 @@ msgstr "Forrige eiendom"
 #: lib/objects/functions.php:443
 msgid "s_object:next"
 msgstr "Neste eiendom"
-
-msgid "s_object:ref_num"
-msgstr "referansenummer"
 
 #: lib/objects/functions.php:450
 msgid "s_object:similar_label"

@@ -3,7 +3,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Project-Id-Version: Leading Properties\n"
 "POT-Creation-Date: 2016-09-09 11:24+0300\n"
-"PO-Revision-Date: 2016-09-13 20:16+0300\n"
+"PO-Revision-Date: 2016-10-22 20:25+0300\n"
 "Language-Team: \n"
 "MIME-Ver§`sion: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -199,6 +199,9 @@ msgstr "จำนวนห้อง"
 msgid "s_object:property_type"
 msgstr "ประเภทอสังหาริมทรัพย์"
 
+msgid "s_object:ref_num"
+msgstr "หมายเลขอ้างอิง"
+
 #: lib/objects/functions.php:356 page-object.php:347
 msgid "s_object:area_sq_m"
 msgstr "พื้นที่, เมตร²"
@@ -242,9 +245,6 @@ msgstr "อสังหาริมทรัพย์ก่อนหน้า"
 #: lib/objects/functions.php:443
 msgid "s_object:next"
 msgstr "อสังหาริมทรัพย์ถัดไป"
-
-msgid "s_object:ref_num"
-msgstr "หมายเลขอ้างอิง"
 
 #: lib/objects/functions.php:450
 msgid "s_object:similar_label"
@@ -398,8 +398,8 @@ msgstr "ส่งคำร้องขอ"
 
 #: templates/form-contact.php:53 templates/form-offmarket.php:55
 #: templates/form-request.php:54
-msgid "I hereby agree and authorize %s to disclose my personal information collected on this form to the property developers and / or sale agents who have signed a Marketing services agreement with %s in respect to requested properties. Read more about our"
-msgstr "I hereby agree and authorize %s to disclose my personal information collected on this form to the property developers and / or sale agents who have signed a Marketing services agreement with %s in respect to requested properties."
+msgid "form:disclaimer_note"
+msgstr "I hereby agree and authorize LPW to disclose my personal information collected on this form to the property developers and / or sale agents who have signed a Marketing services agreement with LPW in respect to requested properties."
 
 #: templates/form-contact.php:53 templates/form-offmarket.php:55
 #: templates/form-request.php:54

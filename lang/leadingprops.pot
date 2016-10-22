@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Leading Properties\n"
-"POT-Creation-Date: 2016-09-02 19:17+0300\n"
+"POT-Creation-Date: 2016-09-21 13:02+0300\n"
 "PO-Revision-Date: 2016-09-02 19:17+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -15,8 +15,9 @@ msgstr ""
 "X-Poedit-WPHeader: style.css\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
-"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
+"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"MIME-Version: 1.0\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
@@ -200,10 +201,12 @@ msgstr ""
 msgid "s_object:property_type"
 msgstr ""
 
+msgid "s_object:ref_num"
+msgstr ""
+
 #: lib/objects/functions.php:356 page-object.php:347
 msgid "s_object:area_sq_m"
 msgstr ""
-
 
 #: lib/objects/functions.php:419 page-object.php:410
 msgid "s_object:pool"
@@ -243,9 +246,6 @@ msgstr ""
 
 #: lib/objects/functions.php:443
 msgid "s_object:next"
-msgstr ""
-
-msgid "s_object:ref_num"
 msgstr ""
 
 #: lib/objects/functions.php:450
@@ -400,7 +400,7 @@ msgstr ""
 
 #: templates/form-contact.php:53 templates/form-offmarket.php:55
 #: templates/form-request.php:54
-msgid "I hereby agree and authorize %s to disclose my personal information collected on this form to the property developers and / or sale agents who have signed a Marketing services agreement with %s in respect to requested properties. Read more about our"
+msgid "form:disclaimer_note"
 msgstr ""
 
 #: templates/form-contact.php:53 templates/form-offmarket.php:55
