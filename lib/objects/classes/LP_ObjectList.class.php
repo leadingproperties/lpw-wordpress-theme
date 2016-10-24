@@ -89,6 +89,7 @@ class LP_ObjectList {
         if($this->error) {
             return json_encode(['error' => true, 'errorMessage' => $this->error_message]);
         }
+
         $url = $this->api_url;
 
         switch($this->args['action']) {
@@ -143,7 +144,7 @@ class LP_ObjectList {
                 break;
             default:
 
-                $url .= $this->args['lang'] . '/property_objects/';
+                $url .= '/' .$this->args['lang'] . '/property_objects/';
                 if ( isset( $this->args['slug'] ) ) {
                     $url .= $this->args['slug'];
                 } else {
@@ -233,10 +234,11 @@ class LP_ObjectList {
 
         curl_setopt_array($ch, $curl_options);
         $resp = curl_exec($ch);
+
         if(!$resp) {
             curl_close($ch);
             $this->error = true;
-            $this->error_message = "No connection to API";
+            $this->error_message = "Server return empty body";
             return json_encode(['error' => true, 'errorMessage' => $this->error_message]);
         }
 

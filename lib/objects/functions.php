@@ -239,8 +239,6 @@ function single_object_html($args) {
 							$html .= '<li class="heading">' . __('s_object:rent:min_stay', 'leadingprops') . '</li>';
 							$html .= '<li class="heading">' . __('s_object:rent:low_season', 'leadingprops') . '</li>';
 							$html .= '<li>1 ' .__('s_object:rent:day', 'leadingprops') . '</li>';
-							$html .= '<li>1 ' .__('s_object:rent:day', 'leadingprops') . '</li>';
-							$html .= '<li>1 ' .__('s_object:rent:day', 'leadingprops') . '</li>';
 							$html .= '<li>';
 							$html .= ($objects_obj->property_rent->rent_short->ls_daily_rate) ? number_format($objects_obj->property_rent->rent_short->ls_daily_rate, 0, ".", " ")  : '&mdash;';
 							$html .= '</li>';
@@ -670,7 +668,7 @@ function get_object_list($args) {
 	} else {
 		return [
 			'error' => true,
-			'errorMessage'  => $object_array->error
+			'errorMessage'  => $objects->error_message
 		];
 	}
 }
