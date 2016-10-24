@@ -189,7 +189,7 @@ function single_object_html($args) {
 							 $html .= '<p class="footnote">* ';
 							if($objects_obj->property_rent->rent_long->vat_in_price === false) {
 								if($objects_obj->property_rent->rent_long->vat) {
-									$html .= __('s_object:rent:vat', 'leadingprops') . ' ' . $objects_obj->property_rent->rent_long->vat . '% ' . __('s_object:rent:not_included') . '; ';
+									$html .= __('s_object:rent:vat', 'leadingprops') . ' ' . $objects_obj->property_rent->rent_long->vat . '% ' . __('s_object:rent:not_included', 'leadingprops') . '; ';
 								}
 							} else {
 								$html .= __('s_object:rent:vat', 'leadingprops') . __('s_object:rent:included', 'leadingprops') . '; ';

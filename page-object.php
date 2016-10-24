@@ -295,7 +295,7 @@
 								echo '<p class="footnote">* ';
 								if($objects_obj->property_rent->rent_short->vat_in_price === false) {
 									if($objects_obj->property_rent->rent_short->vat) {
-										echo __('s_object:rent:vat', 'leadingprops') . ' ' . $objects_obj->property_rent->rent_short->vat . '% ' . __('s_object:rent:not_included') . '; ';
+										echo __('s_object:rent:vat', 'leadingprops') . ' ' . $objects_obj->property_rent->rent_short->vat . '% ' . __('s_object:rent:not_included', 'leadingprops') . '; ';
 									}
 								} else {
 									echo __('s_object:rent:vat', 'leadingprops') . ' ' . __('s_object:rent:included', 'leadingprops') . '; ';
