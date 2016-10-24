@@ -21,6 +21,8 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
+# comment
+
 #: 404.php:8
 msgid "page_404:title_404"
 msgstr ""
