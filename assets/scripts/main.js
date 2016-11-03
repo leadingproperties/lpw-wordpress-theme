@@ -1729,7 +1729,6 @@ Number.prototype.formatMoney = function(c, d, t){
       init: function() {
           var objects = new ObjectList('favorites', 'sale');
           objects.init();
-          FloatingBar.init();
 
       }
     },
