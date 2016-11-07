@@ -271,8 +271,15 @@ class LP_lang {
 
 			foreach(qtranxf_getSortedLanguages() as $language) {
 				$href = $url;
-				if(is_page_template('page-object.php') && isset($objects_obj->slugs->$language)) {
-					$href .= $objects_obj->slugs->$language;
+				if(is_page_template('page-object.php') && (isset($objects_obj->slugs->$language) || isset($objects_obj->rent_slugs))) {
+					if(isset($objects_obj->slug_type)) {
+						if($objects_obj->slug_type === 'PropertyObject') {
+							$href .= $objects_obj->slugs->$language;
+						} elseif($objects_obj->slug_type === 'PropertyRent') {
+							$href .= $objects_obj->rent_slugs->$language;
+						}
+					}
+
 				}
 				$classes = ['lang-'.$language];
 				$alt = $q_config['language_name'][$language].' ('.$language.')';
