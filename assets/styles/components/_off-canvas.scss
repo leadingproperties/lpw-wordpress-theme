@@ -132,6 +132,7 @@
           }
           &.menu-phone, &.menu-email {
             direction: ltr;
+            @include text-overflow;
           }
         }
       }
