@@ -255,7 +255,7 @@ msgid "s_object:similar_label"
 msgstr "Finn lignende eiendommer i samme område"
 
 #: lib/objects/functions.php:182
-msgid "s_object:rent:long-term_rent:"
+msgid "s_object:rent:long-term_rent"
 msgstr "Langtidsleie, leiesum per måned"
 
 #: lib/objects/functions.php:184 lib/objects/functions.php:200
@@ -302,7 +302,7 @@ msgstr "provisjon"
 
 #: lib/objects/functions.php:237 page-object.php:228
 msgid "s_object:rent:rent_short_title"
-msgstr "Korttidsleie, leiesum per dag, "
+msgstr "Korttidsleie, leiesum per dag"
 
 #: lib/objects/functions.php:240 lib/objects/functions.php:258
 #: lib/objects/functions.php:275 page-object.php:231 page-object.php:248

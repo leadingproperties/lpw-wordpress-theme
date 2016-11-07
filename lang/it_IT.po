@@ -251,7 +251,7 @@ msgid "s_object:similar_label"
 msgstr "Trova proprietà simili nella stessa area"
 
 #: lib/objects/functions.php:182
-msgid "s_object:rent:long-term_rent:"
+msgid "s_object:rent:long-term_rent"
 msgstr "Affitto a lungo termine, costo mensile"
 
 #: lib/objects/functions.php:184 lib/objects/functions.php:200
@@ -298,7 +298,7 @@ msgstr "commissione"
 
 #: lib/objects/functions.php:237 page-object.php:228
 msgid "s_object:rent:rent_short_title"
-msgstr "Affitto a breve termine, costo giornaliero,"
+msgstr "Affitto a breve termine, costo giornaliero"
 
 #: lib/objects/functions.php:240 lib/objects/functions.php:258
 #: lib/objects/functions.php:275 page-object.php:231 page-object.php:248

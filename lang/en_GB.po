@@ -132,7 +132,7 @@ msgid "s_object:on_demand"
 msgstr "Price on demand"
 
 #: lib/objects/functions.php:182
-msgid "s_object:rent:long-term_rent:"
+msgid "s_object:rent:long-term_rent"
 msgstr "Long term rental, monthly rate"
 
 #: lib/objects/functions.php:184 lib/objects/functions.php:200
@@ -343,10 +343,6 @@ msgstr "Lowest price"
 #: page-favorites-rent.php:36 page-favorites.php:36
 msgid "favorites:delete_alert"
 msgstr "Are you sure you want to delete all properties from favorites?"
-
-#: page-object.php:172
-msgid "s_object:rent:long-term_rent"
-msgstr "Long term rental, monthly rate"
 
 #: page-object.php:228
 msgid "rent_short_title"

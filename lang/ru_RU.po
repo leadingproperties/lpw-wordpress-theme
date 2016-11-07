@@ -134,7 +134,7 @@ msgid "s_object:on_demand"
 msgstr "Цена по запросу"
 
 #: lib/objects/functions.php:182
-msgid "s_object:rent:long-term_rent:"
+msgid "s_object:rent:long-term_rent"
 msgstr "Долгосрочная аренда, месячная ставка"
 
 #: lib/objects/functions.php:184 lib/objects/functions.php:200
@@ -181,7 +181,7 @@ msgstr "комиссионные"
 
 #: lib/objects/functions.php:237 page-object.php:228
 msgid "s_object:rent:rent_short_title"
-msgstr "Краткосрочная аренда, дневная ставка,"
+msgstr "Краткосрочная аренда, дневная ставка"
 
 #: lib/objects/functions.php:240 lib/objects/functions.php:258
 #: lib/objects/functions.php:275 page-object.php:231 page-object.php:248

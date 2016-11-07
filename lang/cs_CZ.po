@@ -256,7 +256,7 @@ msgid "s_object:similar_label"
 msgstr "Najít podobné nemovitosti ve stejné oblasti"
 
 #: lib/objects/functions.php:182
-msgid "s_object:rent:long-term_rent:"
+msgid "s_object:rent:long-term_rent"
 msgstr "Dlouhodobý pronájem, cena za měsíc"
 
 #: lib/objects/functions.php:184 lib/objects/functions.php:200
@@ -303,7 +303,7 @@ msgstr "poplatek"
 
 #: lib/objects/functions.php:237 page-object.php:228
 msgid "s_object:rent:rent_short_title"
-msgstr "Krátkodobý pronájem, denní cena, "
+msgstr "Krátkodobý pronájem, denní cena"
 
 #: lib/objects/functions.php:240 lib/objects/functions.php:258
 #: lib/objects/functions.php:275 page-object.php:231 page-object.php:248

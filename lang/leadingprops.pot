@@ -255,7 +255,7 @@ msgid "s_object:similar_label"
 msgstr ""
 
 #: lib/objects/functions.php:182
-msgid "s_object:rent:long-term_rent:"
+msgid "s_object:rent:long-term_rent"
 msgstr ""
 
 #: lib/objects/functions.php:184 lib/objects/functions.php:200

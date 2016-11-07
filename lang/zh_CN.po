@@ -251,7 +251,7 @@ msgid "s_object:similar_label"
 msgstr "在相同区域找到相似物业"
 
 #: lib/objects/functions.php:182
-msgid "s_object:rent:long-term_rent:"
+msgid "s_object:rent:long-term_rent"
 msgstr "长期出租，每月租金"
 
 #: lib/objects/functions.php:184 lib/objects/functions.php:200
@@ -298,7 +298,7 @@ msgstr "佣金"
 
 #: lib/objects/functions.php:237 page-object.php:228
 msgid "s_object:rent:rent_short_title"
-msgstr "短期出租，每日租金,"
+msgstr "短期出租，每日租金"
 
 #: lib/objects/functions.php:240 lib/objects/functions.php:258
 #: lib/objects/functions.php:275 page-object.php:231 page-object.php:248

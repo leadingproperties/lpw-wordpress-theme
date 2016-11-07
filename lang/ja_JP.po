@@ -255,7 +255,7 @@ msgid "s_object:similar_label"
 msgstr "同じ地域内の類似物件を探す"
 
 #: lib/objects/functions.php:182
-msgid "s_object:rent:long-term_rent:"
+msgid "s_object:rent:long-term_rent"
 msgstr "長期賃貸、月額家賃"
 
 #: lib/objects/functions.php:184 lib/objects/functions.php:200
@@ -302,7 +302,7 @@ msgstr "手数料"
 
 #: lib/objects/functions.php:237 page-object.php:228
 msgid "s_object:rent:rent_short_title"
-msgstr "短期賃貸、1泊の家賃, "
+msgstr "短期賃貸、1泊の家賃"
 
 #: lib/objects/functions.php:240 lib/objects/functions.php:258
 #: lib/objects/functions.php:275 page-object.php:231 page-object.php:248

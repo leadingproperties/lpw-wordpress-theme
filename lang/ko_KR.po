@@ -255,7 +255,7 @@ msgid "s_object:similar_label"
 msgstr "동일한 지역 내에서 비슷한 주택 찾기"
 
 #: lib/objects/functions.php:182
-msgid "s_object:rent:long-term_rent:"
+msgid "s_object:rent:long-term_rent"
 msgstr "장기 임대, 월세"
 
 #: lib/objects/functions.php:184 lib/objects/functions.php:200
@@ -302,7 +302,7 @@ msgstr "수수료"
 
 #: lib/objects/functions.php:237 page-object.php:228
 msgid "s_object:rent:rent_short_title"
-msgstr "단기 임대, 일일 요금, "
+msgstr "단기 임대, 일일 요금"
 
 #: lib/objects/functions.php:240 lib/objects/functions.php:258
 #: lib/objects/functions.php:275 page-object.php:231 page-object.php:248
