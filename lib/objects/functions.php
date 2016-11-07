@@ -178,7 +178,7 @@ function single_object_html($args) {
 					elseif($object_type === 'rent') :
 					$html .= '<div class="rent-rate">';
 						 if($objects_obj->property_rent->long_rent) {
-							$html .= '<p class="icon icon-month">' . __('s_object:rent:long-term_rent:', 'leadingprops') . ': ';
+							$html .= '<p class="icon icon-month">' . __('s_object:rent:long-term_rent', 'leadingprops') . ': ';
 							if($objects_obj->property_rent->rent_long->on_demand) {
 								$html .= __('s_object:rent:on_request', 'leadingprops') . '*';
 							} elseif($objects_obj->property_rent->rent_long->monthly_rate) {
