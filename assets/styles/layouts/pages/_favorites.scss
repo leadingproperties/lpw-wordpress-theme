@@ -112,6 +112,10 @@
     ul {
       font-size: 20px;
       li {
+        margin-left: 5px;
+        &:first-child {
+          margin-left: 0;
+        }
         a {
           @include square(50px);
           line-height: 50px;
@@ -149,10 +153,6 @@
       li {
         display: block;
         float: left;
-        margin-left: 5px;
-        &:first-child {
-          margin-left: 0;
-        }
       }
     }
   }
