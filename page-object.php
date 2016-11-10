@@ -138,7 +138,7 @@
 							echo '</li>';
 						}
 						if($objects_obj->features->bathrooms->min || $objects_obj->features->bathrooms->max) {
-							echo '<li class="icon icon-bedroom">';
+							echo '<li class="icon icon-bathroom">';
 							if($objects_obj->features->bathrooms->min) { echo $objects_obj->features->bathrooms->min; }
 							if($objects_obj->features->bathrooms->max) { echo ' - ' . $objects_obj->features->bathrooms->max; }
 							echo '</li>';
