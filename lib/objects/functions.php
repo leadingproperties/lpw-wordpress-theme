@@ -648,7 +648,7 @@ function get_object_list($args) {
 				$html .= '</article>';
 				$i ++;
 			}
-		} elseif($args['page'] === 1) {
+		} elseif($args['page'] === "1") {
 			$html .= '<div class="no-matches">';
 			$html .= '<div class="container">';
 			$html .= '<h5 class="text-red">' . __('alerts:no_results:title', 'leadingprops') . '</h5>';
