@@ -69,7 +69,7 @@ class LP_ObjectList {
             'query' => ''
         ];
         $this->args = array_merge($defaults, $args);
-	    $this->api_url = get_field('api_url', 'option');
+	    $this->api_url = rtrim(get_field('api_url', 'option'), "/");
 	    $this->token = get_field('api_key', 'option');
 	    if(empty($this->api_url) || empty($this->token)) {
 		    $this->error = true;
@@ -118,7 +118,7 @@ class LP_ObjectList {
                 }
                 break;
             case 'get_subtypes':
-                    $url .= 'subtype_counters?';
+                    $url .= '/subtype_counters?';
                 if($this->args['subtype_parent_id']) {
                     $url .= 'subtype_parent_id=' . $this->args['subtype_parent_id'];
                 }
@@ -146,7 +146,7 @@ class LP_ObjectList {
 
                 $url .= '/' .$this->args['lang'] . '/property_objects/';
                 if ( isset( $this->args['slug'] ) ) {
-                    $url .= $this->args['slug'];
+                    $url .= '/slug/' . $this->args['slug'];
                 } else {
                     $url .= '?page=' . $this->args['page'] . '&for_sale=' . $this->args['for_sale'] . '&for_rent=' . $this->args['for_rent'];
                     if ( isset( $this->args['ids'] ) && is_array( $this->args['ids'] ) ) {
