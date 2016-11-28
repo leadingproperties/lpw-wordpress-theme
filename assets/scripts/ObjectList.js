@@ -1,0 +1,481 @@
+(function($){
+    "use strict";
+
+    /* Object List */
+    function ObjectList(type, category) {
+        var $this = this,
+            loader = $('.loader'),
+            filter = new window.lpw.FilterMenu(type, category),
+            singleObject = new window.lpw.SingleObject(this);
+
+        function resetObjects() {
+            $this.objectContainer.html('');
+            $this.args.page = 1;
+            $this.onPage = 0;
+            $this.totalObjects = parseInt(LpData.totalObjects);
+            $(window).on('scroll.lprop', $this.scrollPage);
+        }
+
+        function setOffmarker(count) {
+            var omLink = $('.off-market-menu a'),
+                omMenu = $('.menu-offmarket'),
+                omFb = $('.off-market-link'),
+                omPanel = $('.off-marker-alert');
+            if(count > 0) {
+                omLink
+                    .off('click', window.lpw.Helpers.preventDefault)
+                    .removeClass('half-opaque')
+                    .find('sup')
+                    .text(count);
+                omMenu
+                    .on('click', window.lpw.Helpers.showOffmarketModal)
+                    .removeClass('half-opaque')
+                    .find('sup')
+                    .text(count);
+                omFb
+                    .on('click', window.lpw.Helpers.showOffmarketModal)
+                    .removeClass('half-opaque')
+                    .find('sup')
+                    .text(count);
+                setTimeout(function() {
+                    omPanel.show();
+                }, 2500);
+            } else {
+                omLink
+                    .on('click', window.lpw.Helpers.preventDefault)
+                    .addClass('half-opaque')
+                    .find('sup')
+                    .text('');
+                omMenu
+                    .off('click', window.lpw.Helpers.showOffmarketModal)
+                    .addClass('half-opaque')
+                    .find('sup')
+                    .text('');
+                omFb
+                    .off('click', window.lpw.Helpers.showOffmarketModal)
+                    .addClass('half-opaque')
+                    .find('sup')
+                    .text('');
+                omPanel.hide();
+            }
+
+        }
+
+        function clearAutoSearch() {
+            if($this.args.ids) {
+                delete $this.args.ids;
+            }
+            if($this.args.location_point) {
+                delete $this.args.location_point;
+            }
+            if($this.args.location_shape) {
+                delete $this.args.location_shape;
+            }
+            $this.usedFilters.location = false;
+        }
+        function clearFilters() {
+            if($this.args.price) {
+                delete $this.args.price;
+            }
+            if($this.args.rooms) {
+                delete $this.args.rooms;
+            }
+            if($this.args.area) {
+                delete $this.args.area;
+            }
+            if($this.args.property_types) {
+                delete $this.args.property_types;
+            }
+            if($this.args.rooms) {
+                delete $this.args.rooms;
+            }
+            if($this.args.hd_photos) {
+                delete $this.args.hd_photos;
+            }
+            if($this.args.persons) {
+                delete $this.args.persons;
+            }
+            if($this.args.long_rent) {
+                delete $this.args.long_rent;
+            }
+            if($this.args.short_rent) {
+                delete $this.args.short_rent;
+            }
+            if($this.args.child_friendly) {
+                delete $this.args.child_friendly;
+            }
+            if($this.args.pets_allowed) {
+                delete $this.args.pets_allowed;
+            }
+            if($this.args.order_by) {
+                delete $this.args.order_by;
+            }
+        }
+        function clearAllFilters() {
+            clearAutoSearch();
+            clearFilters();
+            if($this.args.autocomplete) {
+                delete $this.args.autocomplete;
+            }
+            $this.tags.autoComplete.autocompleteSelected = null;
+            $this.tags.autoComplete.jqInput.val(undefined);
+            filter.setValues($this.args);
+            $this.setUrls($this.args);
+        }
+
+        this.autoSearch = function(data, silent) {
+            resetObjects();
+            clearAutoSearch();
+            if(data) {
+                if (data.l_id) {
+                    $this.args.ids = [data.l_id];
+                    $this.usedFilters.location = false;
+                } else {
+                    if (data.location_point || data.location_shape) {
+                        $this.usedFilters.location = true;
+                    }
+                    if (data && data.location_point) {
+                        $this.args.location_point = {};
+                        if (data.location_point.country_code) {
+                            $this.args.location_point.country_code = data.location_point.country_code;
+                        }
+                        if (data.location_point.lat) {
+                            $this.args.location_point.lat = data.location_point.lat;
+                        }
+                        if (data.location_point.lon) {
+                            $this.args.location_point.lon = data.location_point.lon;
+                        }
+                        if ($this.lpwGoogleMap.map && $this.lpwGoogleMap.map instanceof google.maps.Map) {
+                            $this.lpwGoogleMap.map.setCenter({
+                                lat: data.location_point.lat,
+                                lng: data.location_point.lon
+                            });
+                            $this.lpwGoogleMap.map.setZoom(9);
+                        } else if ($this.lpwGoogleMap.mapOptions) {
+                            $this.lpwGoogleMap.mapOptions.center = new google.maps.LatLng(data.location_point.lat, data.location_point.lon);
+                            $this.lpwGoogleMap.mapOptions.zoom = 10;
+                        }
+                    }
+                    if (data && data.location_shape) {
+                        $this.args.location_shape = {};
+                        if (data.location_shape.country_code) {
+                            $this.args.location_shape.country_code = data.location_shape.country_code;
+                        }
+                        if (data.location_shape.bottom_left && data.location_shape.bottom_left.lat && data.location_shape.bottom_left.lon) {
+                            $this.args.location_shape.bottom_left = {
+                                lat: data.location_shape.bottom_left.lat,
+                                lon: data.location_shape.bottom_left.lon
+                            };
+                        }
+                        if (data.location_shape.top_right && data.location_shape.top_right.lat && data.location_shape.top_right.lon) {
+                            $this.args.location_shape.top_right = {
+                                lat: data.location_shape.top_right.lat,
+                                lon: data.location_shape.top_right.lon
+                            };
+                        }
+                    }
+                }
+            }
+
+            if(!silent){
+                $this.getObjects();
+            }
+        };
+        if(type === 'list') {
+            this.autoComplete = new window.lpw.AutoComplete(
+                '#sp-search',
+                $this.autoSearch
+            );
+            this.lpwGoogleMap = new window.lpw.Map(
+                '#map-modal',
+                category,
+                $this.autoComplete
+            );
+            this.tags = new window.lpw.Tags(
+                LpData.ajaxUrl,
+                $this.autoComplete,
+                filter.filterForm
+            );
+        }
+        this.lastItem = function() {
+            return $('.object-item').last();
+        };
+        this.type = type;
+        this.favorites = new window.lpw.Favorites(type, category);
+        this.favoritesIds = $this.favorites.favoritesIds;
+        this.objectContainer = $('#object-list');
+        this.onPage = 0;
+        this.totalObjects = parseInt(LpData.totalObjects);
+        this.didScroll = false;
+        this.triggerId = 0;
+        this.usedFilters = {
+            location: false,
+            filter: false
+        };
+        this.args = {
+            lang: LpData.lang,
+            page: 1,
+            per_page: 9,
+            for_sale: ( category === 'sale' ),
+            for_rent: ( category === 'rent' )
+        };
+
+        this.renderHTML = function(objects) {
+            var r = $.Deferred(),
+                $objects = $(objects);
+            var noMatches = $('.no-matches');
+            if(noMatches.length > 0) {
+                noMatches.remove();
+            }
+            if($this.totalObjects > 0 ) {
+
+                $this.objectContainer.append($objects);
+                $this.favorites.markButtons($objects, $this.favorites.favoritesIds);
+
+            } else if ($this.usedFilters.location || $this.usedFilters.filter ) {
+                $objects.insertBefore($this.objectContainer);
+            }
+            r.resolve();
+            return r;
+        };
+        this.getObjects = function (callback, eventType) {
+
+            if($this.didScroll === true) {
+                return;
+            }
+            $this.didScroll = true;
+            if(_.has($this.args, 'autocomplete') && !(_.has($this.args, 'location_point') || _.has($this.args, 'ids'))) {
+                delete $this.args.autocomplete;
+            }
+            var autocomplete = $this.args.autocomplete || null,
+                dataUrl;
+
+            loader.show();
+
+
+            var data = $this.args;
+            dataUrl = $this.args;
+            data.action = 'do_ajax';
+
+            if( type === 'list' && $this.args.page === 1 && eventType !== 'single') {
+
+                $this.tags.buildTags(data);
+
+                if($this.tags.autoComplete.autocompleteSelected) {
+                    autocomplete = $this.tags.getAutocompleteData(data);
+                }
+                if(autocomplete) {
+                    if (autocomplete.text) {
+                        dataUrl.autocomplete = {
+                            text: autocomplete.text
+                        };
+                    }
+                    if (autocomplete.data && autocomplete.data.l_id) {
+                        dataUrl.autocomplete = {
+                            data: {
+                                l_id: autocomplete.data.l_id
+                            }
+                        };
+                    }
+                }
+                if(! (eventType === 'load' && LpData.defaultLocation) ) {
+                    $this.setUrls(dataUrl, eventType);
+                }
+            }
+            // Check if we use filters and set flag if any
+
+            $this.isFiltersActive();
+            data.fn = 'get_objects';
+            $.ajax({
+                url: LpData.ajaxUrl,
+                dataType: 'json',
+                method: 'post',
+                data: data,
+                success: function (data) {
+                    if (data.error) {
+                        console.log(data.errorMessage);
+                    } else if( !_.isEmpty(data.html) ) {
+                        if($this.usedFilters.location === true) {
+                            setOffmarker(data.offmarket);
+                        } else {
+                            setOffmarker(0);
+                        }
+                        $this.args.page++;
+                        $this.onPage += data.count;
+                        $this.totalObjects = data.total;
+                        $this.triggerId = data.triggerID;
+                        $this.renderHTML(data.html)
+                            .done(function(){
+                                if( typeof callback === 'function') {
+                                    singleObject.nextLink = (!_.isNull(data.firstObject.slug)) ? LpData.propertyPage + data.firstObject.slug : false;
+                                    callback(data);
+                                }
+                            });
+                    }
+                },
+                error: function (error) {
+                    console.error(error);
+                },
+                complete: function () {
+                    loader.hide();
+
+                    var limit = (_.isEmpty($this.args.ids)) ? $this.totalObjects : $this.args.ids.length;
+
+                    if( ( limit > $this.onPage )) {
+                        if( window.lpw.Helpers.isElementIntoView($this.lastItem()) ) {
+                            $this.didScroll = false;
+                            $this.getObjects();
+                        }
+                    } else {
+                        $this.triggerId = 0;
+                        $(window).off('scroll.lprop', $this.scrollPage);
+                        $(window).off('load.lprop', $this.onLoadCheck);
+                        //  $(window).off('resize.lprop', $this.onLoadCheck);
+                    }
+                    $this.didScroll = false;
+                }
+            });
+
+        };
+        this.scrollPage = function() {
+
+            if ( _.isEmpty($this.lastItem()) || !$this.didScroll && window.lpw.Helpers.isElementIntoView($this.lastItem()) ) {
+                // $this.didScroll = true;
+                $this.getObjects(null, 'scroll');
+            }
+        };
+        this.onLoadCheck = function(ev) {
+
+            var query = window.lpw.Helpers.getParameterByName('filter'),
+                eventtype = ev.type;
+            if(eventtype === 'popstate' && window.location.href.search(LpData.propertyPage) !== -1) {
+                return false;
+            }
+            if(eventtype === 'popstate' && (window.location.href.search(LpData.propertyPage) === -1)) {
+                clearAllFilters();
+            }
+            if(query) {
+                try {
+                    query = JSON.parse(query);
+
+                    if(!_.isEmpty(query)) {
+                        _.forEach(query, function (value, key) {
+                            $this.args[key] = value;
+                        });
+                        $this.args = _.pickBy($this.args);
+                        if(query.autocomplete) {
+                            $this.args.autocomplete = query.autocomplete;
+
+                        }
+
+                        resetObjects();
+                        $this.getObjects(null, eventtype);
+                        filter.setValues(query);
+                    }
+                } catch(e) {
+                    console.log(e);
+                }
+            } else {
+                resetObjects();
+                $this.usedFilters.location = false;
+                $this.getObjects(null, eventtype);
+            }
+        };
+        this.setEventListeners = function () {
+            //Clear Filters button
+            $('body').on('click.lpropr', '.clear-filters-btn', function(ev) {
+                ev.preventDefault();
+                clearAllFilters();
+                $('.no-matches').remove();
+                resetObjects();
+                $this.getObjects();
+            });
+
+            $('.off-market-menu a').on('click.lprop', function(ev) {
+                ev.preventDefault();
+                if(!$(this).hasClass('half-opaque')) {
+                    $('.off-marker-alert').show();
+                }
+            });
+
+            if( this.onPage < this.totalObjects) {
+                $(window).on('scroll.lprop', $this.scrollPage);
+                $(window).on('popstate.lprop', $this.onLoadCheck);
+                if (_.isEmpty($this.lastItem()) || window.lpw.Helpers.isElementIntoView($this.lastItem())) {
+                    if(type !== 'share') {
+                        $(window).on('load.lprop', $this.onLoadCheck);
+                    }
+                    //   $(window).on('resize.lprop', $this.onLoadCheck);
+                }
+            }
+            if( type === 'list' ) {
+                filter.filterForm.on('submit', function (ev) {
+                    ev.preventDefault();
+                    var args = filter.getValues();
+
+                    if (!_.isEmpty(args)) {
+                        filter.closeFilter();
+                        _.forEach(args, function (value, key) {
+                            $this.args[key] = value;
+                        });
+                        $this.args = _.pickBy($this.args);
+                        resetObjects();
+                        $this.getObjects();
+                    }
+                });
+            }
+            filter.filterSorting.on('change', function() {
+                var val = $(this).val();
+                if(val === false) {
+                    if($this.args.order_by) {
+                        delete $this.args.order_by;
+                    }
+                } else {
+                    $this.args.order_by = {
+                        order: val
+                    };
+                }
+                resetObjects();
+                $this.getObjects();
+            });
+        };
+        this.init = function () {
+            $this.favorites.init();
+            if( type === 'favorites') {
+                this.args.ids = $this.favoritesIds;
+            }
+            filter.init();
+            singleObject.init();
+            $this.setEventListeners();
+
+        };
+    }
+    ObjectList.prototype.setUrls = function(data, eventtype) {
+        var url = window.location.protocol + '//' + window.location.hostname + window.location.pathname,
+            excluded = ['action', 'fn', 'page', 'per_page', 'for_sale', 'for_rent', 'lang'];
+        data = _.omit(data, excluded);
+
+        if(!_.isEmpty(data)) {
+            data = JSON.stringify(data);
+            if(eventtype !== 'popstate') {
+                window.history.pushState(null, null, url + '?filter=' + encodeURIComponent(data));
+            }
+
+        } else {
+            window.history.pushState(null, null, url);
+        }
+    };
+
+    ObjectList.prototype.isFiltersActive = function() {
+        if(this.args.price || this.args.rooms || this.args.area || this.args.property_types || this.args.rooms || this.args.hd_photos || this.args.persons || this.args.long_rent || this.args.short_rent || this.args.child_friendly || this.args.pets_allowed) {
+            this.usedFilters.filter = true;
+        }
+        if(this.args.location_point || this.args.location_shape) {
+            this.usedFilters.location = true;
+        }
+
+    };
+
+    window.lpw = window.lpw || {};
+    window.lpw.ObjectList = ObjectList;
+})(jQuery);

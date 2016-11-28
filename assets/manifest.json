@@ -2,6 +2,16 @@
   "dependencies": {
     "main.js": {
       "files": [
+        "scripts/Helpers.js",
+        "scripts/Offcanvas.js",
+        "scripts/FilterMenu.js",
+        "scripts/FloatingBar.js",
+        "scripts/Single.js",
+        "scripts/Blog.js",
+        "scripts/Favorites.js",
+        "scripts/ObjectShareBar.js",
+        "scripts/SingleObject.js",
+        "scripts/ObjectList.js",
         "scripts/Contactform.js",
         "scripts/Autocomplete.js",
         "scripts/Map.js",
@@ -34,6 +44,6 @@
     }
   },
   "config": {
-    "devUrl": "http://localhost:5000"
+    "devUrl": "http://wp-lp.loc"
   }
 }

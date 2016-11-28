@@ -1,8 +1,5 @@
 (function($){
 	"use strict";
-	window.lpw = window.lpw || {};
-	window.lpw.AutoComplete = AutoComplete;
-
 	/**
 	 * AutoComplete
 	 * @param apiPath - путь к контроллеру, который опрашивает апи на совпадения
@@ -402,4 +399,8 @@
 	AutoComplete.prototype.getPlaceDetailsError = function(status) {
 		console.error('getPlaceDetailsError');
 	};
+
+	window.lpw = window.lpw || {};
+	window.lpw.AutoComplete = AutoComplete;
+
 })(jQuery);

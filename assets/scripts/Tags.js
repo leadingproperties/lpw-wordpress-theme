@@ -1,7 +1,5 @@
 (function($) {
 	"use strict";
-	window.lpw = window.lpw || {};
-	window.lpw.Tags = Tags;
 
 	function Tags(
 		pathToBuilder,
@@ -130,5 +128,8 @@
 		}
 		return answer;
 	};
+
+	window.lpw = window.lpw || {};
+	window.lpw.Tags = Tags;
 
 })(jQuery);

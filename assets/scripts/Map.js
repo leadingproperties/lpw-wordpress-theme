@@ -1,10 +1,6 @@
 (function($) {
 	"use strict";
 
-	//для доступности в глобальном скоупе
-	window.lpw = window.lpw || {};
-	window.lpw.Map = Map;
-
 	/**
 	 * Карта
 	 * @param geoPointsAPIPath {String} - uri to geo points controller
@@ -248,5 +244,9 @@
 		this.map.setCenter(this.mapOptions.center);
 		this.map.setZoom(this.mapOptions.zoom);
 	};
+
+	//для доступности в глобальном скоупе
+	window.lpw = window.lpw || {};
+	window.lpw.Map = Map;
 
 })(jQuery);

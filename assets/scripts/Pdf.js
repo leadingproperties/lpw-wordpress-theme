@@ -1,7 +1,5 @@
 (function($) {
 	"use strict";
-	window.lpw = window.lpw || {};
-	window.lpw.Pdf = Pdf;
 
 	function Pdf() {
 		this.loading = false;
@@ -93,5 +91,8 @@
 	Pdf.prototype.hasPDFPath = function(data) {
 		return _.has(data, "pdf_path") && data.pdf_path;
 	};
+
+	window.lpw = window.lpw || {};
+	window.lpw.Pdf = Pdf;
 
 })(jQuery);
