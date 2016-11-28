@@ -5,7 +5,6 @@ $sage_includes = [
   'lib/extras.php',    // Custom functions
   'lib/setup.php',     // Theme setup
   'lib/titles.php',    // Page titles
-  'lib/customizer.php', // Theme customizer
   'lib/nav.php',         //Walker nav
   'lib/blog.php',       //Blog functions
   'lib/conditional_tags.php',
@@ -15,7 +14,9 @@ $sage_includes = [
   'lib/acf/acf.php',
   'lib/acf-settings.php',
   'lib/ajax/ajax-handlers.php',
-  'lib/admin/default-location.php'
+  'lib/admin/default-location.php',
+  'lib/theme-updates/config.php',
+  'lib/required/config.php'
 ];
 
 foreach ($sage_includes as $file) {
