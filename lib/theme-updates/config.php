@@ -2,5 +2,5 @@
 require 'theme-update-checker.php';
 $update = new ThemeUpdateChecker(
 	'leadingprops',
-	'http://alexgal.info/lpw/info.json'
+	'http://lpwdev.com/lpw_wordpress/info.json'
 );
