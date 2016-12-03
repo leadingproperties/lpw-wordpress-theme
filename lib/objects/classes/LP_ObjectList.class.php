@@ -146,7 +146,7 @@ class LP_ObjectList {
 
                 $url .= '/' .$this->args['lang'] . '/property_objects/';
                 if ( isset( $this->args['slug'] ) ) {
-                    $url .= '/slug/' . $this->args['slug'];
+                    $url .= $this->args['slug'];
                 } else {
                     $url .= '?page=' . $this->args['page'] . '&for_sale=' . $this->args['for_sale'] . '&for_rent=' . $this->args['for_rent'];
                     if ( isset( $this->args['ids'] ) && is_array( $this->args['ids'] ) ) {

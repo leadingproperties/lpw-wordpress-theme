@@ -18,12 +18,18 @@ class Tags
     );
 
     public function __construct() {
-        $this->api_url = get_field('api_url', 'option');
+        $this->api_url = rtrim(get_field('api_url', 'option'), "/");
         $this->token = get_field('api_key', 'option');
     }
 
     function get_tags_html($request_data){
         $answer = '';
+        if($request_data['raw']['action']) {
+            unset($request_data['raw']['action']);
+        }
+        if($request_data['raw']['fn']) {
+            unset($request_data['raw']['fn']);
+        }
         $counters = $this->get_counters($request_data['raw']);
 
         if(count($counters) > 0){
