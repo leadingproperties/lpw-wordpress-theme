@@ -1,0 +1,540 @@
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Project-Id-Version: Leading Properties\n"
+"POT-Creation-Date: 2016-12-07 10:42+0200\n"
+"PO-Revision-Date: 2016-12-07 11:12+0200\n"
+"Language-Team: \n"
+"MIME-Ver§`sion: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.11\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-WPHeader: style.css\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"MIME-Version: 1.0\n"
+"Last-Translator: \n"
+"Language: pt_PT\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+# comment
+#: 404.php:8
+msgid "page_404:title_404"
+msgstr "Error 404"
+
+#: 404.php:10
+msgid "page_404:title"
+msgstr "Sorry, that page doesn’t exist!"
+
+#: 404.php:11
+msgid "page_404:text"
+msgstr ""
+"The reasons that could cause the error: incorrectly typed address, the\n"
+"      page was never on this site or this page was, but can not be accessed anymore.\n"
+"      If you reached this page through a link from our website, please report this\n"
+"      at:"
+
+#: lib/extras.php:82
+msgid "menu:favorites"
+msgstr "Favoritos"
+
+#: lib/extras.php:83
+msgid "menu:offmarket"
+msgstr "Fora de mercado"
+
+#: templates/filter-rent.php:57 templates/filter-sale.php:44
+msgid "search_panel:area_label"
+msgstr "Área"
+
+#: templates/filter-rent.php:85 templates/filter-sale.php:22
+msgid "search_panel:price_label"
+msgstr "Preço"
+
+#: lib/objects/classes/Tags.php:122 templates/filter-rent.php:32
+#: templates/filter-sale.php:55
+msgid "search_panel:rooms_label"
+msgstr "Quartos"
+
+#: templates/filter-rent.php:15 templates/filter-sale.php:5
+msgid "search_panel:property_types:label"
+msgstr "Tipo de propriedade"
+
+#: lib/objects/classes/Tags.php:108 templates/filter-rent.php:26
+#: templates/filter-sale.php:16
+msgid "search_panel:property_types:commercial"
+msgstr "Propriedades comerciais"
+
+#: lib/objects/classes/Tags.php:102 templates/filter-rent.php:18
+#: templates/filter-sale.php:8
+msgid "search_panel:property_types:apartments"
+msgstr "Apartamentos"
+
+#: lib/objects/classes/Tags.php:105 templates/filter-rent.php:22
+#: templates/filter-sale.php:12
+msgid "search_panel:property_types:houses"
+msgstr "Habitações"
+
+#: lib/objects/classes/Tags.php:111
+msgid "search_panel:property_types:plots"
+msgstr "Lotes"
+
+#: templates/filter-rent.php:115 templates/filter-sale.php:82
+msgid "search_panel:hd_photos:label"
+msgstr "Listagens só com fotos de alta qualidade"
+
+#: lib/objects/classes/Tags.php:130
+msgid "search_panel:hd_photos:tag"
+msgstr "Fotos HQ"
+
+#: templates/filter-rent.php:119 templates/filter-sale.php:86
+msgid "search_panel:submit_button"
+msgstr "Mostrar resultados"
+
+#: page-favorites-rent.php:19 page-favorites.php:19 page-sharer-rent.php:17
+#: page-sharer.php:17 templates/sorting-panel.php:6
+msgid "search_panel:order:recent"
+msgstr "Mais recente"
+
+#: page-favorites-rent.php:21 page-favorites.php:21 page-sharer-rent.php:19
+#: page-sharer.php:19 templates/sorting-panel.php:8
+msgid "search_panel:order:price_asc"
+msgstr "Preço mais baixo"
+
+#: page-favorites-rent.php:20 page-favorites.php:20 page-sharer-rent.php:18
+#: page-sharer.php:18 templates/sorting-panel.php:7
+msgid "search_panel:order:price_desc"
+msgstr "Preço mais alto"
+
+#: templates/filter-rent.php:59 templates/filter-rent.php:87
+#: templates/filter-sale.php:24 templates/filter-sale.php:46
+msgid "search_panel:min"
+msgstr "mín"
+
+#: templates/filter-rent.php:62 templates/filter-rent.php:70
+#: templates/filter-rent.php:90 templates/filter-sale.php:27
+#: templates/filter-sale.php:49
+msgid "search_panel:max"
+msgstr "máx"
+
+#: templates/filter-rent.php:57 templates/filter-sale.php:44
+msgid "search_panel:sqm"
+msgstr "m²"
+
+#: templates/favorites-bar.php:3
+msgid "search_panel:share"
+msgstr "Partilhe as suas propriedades favoritas com amigos ou colegas"
+
+#: templates/favorites-bar.php:29
+msgid "search_panel:copy"
+msgstr "Copiar"
+
+#: templates/search-panel.php:7
+msgid "search_panel:autocomplete"
+msgstr "Suíça ou Londres ou Old Town, Praga ou 69783"
+
+#: lib/objects/classes/Tags.php:160 templates/filter-rent.php:11
+msgid "search_panel:long_rent"
+msgstr "Arrendamento de longa duração"
+
+#: lib/objects/classes/Tags.php:163 templates/filter-rent.php:7
+msgid "search_panel:short_rent"
+msgstr "Arrendamento de curta duração"
+
+#: lib/objects/classes/Tags.php:166 lib/objects/functions.php:429
+#: page-object.php:420 templates/filter-rent.php:75
+msgid "search_panel:child_friendly"
+msgstr "Adequado a crianças"
+
+#: lib/objects/classes/Tags.php:169 lib/objects/functions.php:432
+#: page-object.php:423 templates/filter-rent.php:79
+msgid "search_panel:pets_allowed"
+msgstr "Permitidos animais de estimação"
+
+#: lib/objects/classes/Tags.php:177 templates/filter-rent.php:68
+msgid "search_panel:persons"
+msgstr "Pessoas"
+
+#: lib/objects/classes/Tags.php:185
+msgid "search_panel:similar"
+msgstr "Semelhante: {radius} km de {code}"
+
+#: lib/objects/classes/Tags.php:185
+msgid "search_panel:km"
+msgstr "km"
+
+#: lib/objects/classes/Tags.php:185
+msgid "search_panel:from"
+msgstr "de"
+
+msgid "search_panel:toggle_map_y"
+msgstr "Mostrar mapa grande"
+
+msgid "search_panel:toggle_map_n"
+msgstr "Mostrar mapa pequeno"
+
+#: lib/objects/functions.php:36 lib/objects/functions.php:460
+#: page-object.php:46 page-object.php:446
+msgid "s_object:header:detailed_info"
+msgstr "Obtenha informações detalhadas"
+
+#: lib/objects/functions.php:109 page-object.php:106
+msgid "s_object:sold"
+msgstr "Vendida"
+
+#: lib/objects/functions.php:166 lib/objects/functions.php:589
+#: page-object.php:156
+msgid "s_object:on_demand"
+msgstr "Preço mediante pedido"
+
+#: lib/objects/functions.php:610
+msgid "s_object:rooms"
+msgstr "quartos"
+
+#: lib/objects/functions.php:630
+msgid "s_object:m_short"
+msgstr "m"
+
+#: lib/objects/functions.php:345 page-object.php:336
+msgid "s_object:number_of_rooms"
+msgstr "número de quartos"
+
+#: lib/objects/functions.php:342
+msgid "s_object:property_type"
+msgstr "tipo de propriedade"
+
+msgid "s_object:ref_num"
+msgstr "número de referência"
+
+#: lib/objects/functions.php:356 page-object.php:347
+msgid "s_object:area_sq_m"
+msgstr "área, m²"
+
+#: lib/objects/functions.php:419 page-object.php:410
+msgid "s_object:pool"
+msgstr "piscina"
+
+#: lib/objects/functions.php:422 page-object.php:413
+msgid "s_object:garage_parking"
+msgstr "estacionamento/garagem"
+
+#: lib/objects/functions.php:416 page-object.php:407
+msgid "s_object:terrace_balcony"
+msgstr "terraço/varanda"
+
+#: lib/objects/functions.php:367 page-object.php:358
+msgid "s_object:bedrooms"
+msgstr "quartos de dormir"
+
+#: lib/objects/functions.php:378 page-object.php:369
+msgid "s_object:bathrooms"
+msgstr "casas de banho"
+
+#: lib/objects/functions.php:405 page-object.php:396
+msgid "s_object:building_storeys"
+msgstr "pisos do edifício"
+
+#: lib/objects/functions.php:394 page-object.php:385
+msgid "s_object:land_area"
+msgstr "área do terreno"
+
+#: lib/objects/functions.php:425 page-object.php:416
+msgid "s_object:utility_rooms"
+msgstr "caves"
+
+#: lib/objects/functions.php:440
+msgid "s_object:prev"
+msgstr "Propriedade anterior"
+
+#: lib/objects/functions.php:443
+msgid "s_object:next"
+msgstr "Propriedade seguinte"
+
+#: lib/objects/functions.php:450
+msgid "s_object:similar_label"
+msgstr "Encontrar propriedades semelhantes na mesma área"
+
+#: lib/objects/functions.php:182
+msgid "s_object:rent:long-term_rent"
+msgstr "Arrendamento de longa duração, valor mensal"
+
+#: lib/objects/functions.php:184 lib/objects/functions.php:200
+#: lib/objects/functions.php:206 lib/objects/functions.php:212
+#: lib/objects/functions.php:218 lib/objects/functions.php:224
+#: lib/objects/functions.php:230 lib/objects/functions.php:302
+#: lib/objects/functions.php:308 lib/objects/functions.php:314
+#: lib/objects/functions.php:320 lib/objects/functions.php:326
+#: lib/objects/functions.php:332 lib/objects/functions.php:519
+#: lib/objects/functions.php:538 page-object.php:174 page-object.php:190
+#: page-object.php:196 page-object.php:202 page-object.php:208
+#: page-object.php:214 page-object.php:220 page-object.php:292
+#: page-object.php:298 page-object.php:304 page-object.php:310
+#: page-object.php:316 page-object.php:322 page-sharer-rent.php:44
+msgid "s_object:rent:on_request"
+msgstr "a pedido"
+
+#: lib/objects/functions.php:193 lib/objects/functions.php:196
+#: lib/objects/functions.php:295 lib/objects/functions.php:298
+#: page-object.php:183 page-object.php:186 page-object.php:285
+#: page-object.php:288
+msgid "s_object:rent:vat"
+msgstr "IVA"
+
+#: lib/objects/functions.php:193 lib/objects/functions.php:295
+#: page-object.php:183 page-object.php:285
+msgid "s_object:rent:not_included"
+msgstr "não está incluído"
+
+#: lib/objects/functions.php:196 lib/objects/functions.php:298
+#: page-object.php:186 page-object.php:288
+msgid "s_object:rent:included"
+msgstr "está incluído"
+
+#: lib/objects/functions.php:198 lib/objects/functions.php:300
+#: page-object.php:188 page-object.php:290
+msgid "s_object:rent:deposit"
+msgstr "depósito"
+
+#: lib/objects/functions.php:216 lib/objects/functions.php:318
+#: page-object.php:206 page-object.php:308
+msgid "s_object:rent:commission"
+msgstr "comissão"
+
+#: lib/objects/functions.php:237 page-object.php:228
+msgid "s_object:rent:rent_short_title"
+msgstr "Arrendamento de curta duração, valor diário,"
+
+#: lib/objects/functions.php:240 lib/objects/functions.php:258
+#: lib/objects/functions.php:275 page-object.php:231 page-object.php:248
+#: page-object.php:265
+msgid "s_object:rent:min_stay"
+msgstr "estadia mín."
+
+#: lib/objects/functions.php:242 lib/objects/functions.php:243
+#: lib/objects/functions.php:244 lib/objects/functions.php:260
+#: lib/objects/functions.php:277 lib/objects/functions.php:522
+#: lib/objects/functions.php:532 lib/objects/functions.php:543
+#: page-object.php:233 page-object.php:250 page-object.php:267
+#: page-sharer-rent.php:47 page-sharer-rent.php:57 page-sharer-rent.php:65
+#: templates/filter-rent.php:104
+msgid "s_object:rent:day"
+msgstr "dia"
+
+#: lib/objects/functions.php:248 lib/objects/functions.php:264
+#: lib/objects/functions.php:281 lib/objects/functions.php:524
+#: page-object.php:237 page-object.php:254 page-object.php:271
+#: page-sharer-rent.php:49
+msgid "s_object:rent:week"
+msgstr "semana"
+
+#: lib/objects/functions.php:252 lib/objects/functions.php:268
+#: lib/objects/functions.php:285 lib/objects/functions.php:526
+#: lib/objects/functions.php:534 lib/objects/functions.php:541
+#: page-object.php:241 page-object.php:258 page-object.php:275
+#: page-sharer-rent.php:51 page-sharer-rent.php:59 page-sharer-rent.php:63
+#: templates/filter-rent.php:105
+msgid "s_object:rent:month"
+msgstr "mês"
+
+#: lib/objects/functions.php:241 page-object.php:232
+msgid "s_object:rent:low_season"
+msgstr "época baixa"
+
+#: lib/objects/functions.php:259 page-object.php:249
+msgid "s_object:rent:medium_season"
+msgstr "época média"
+
+#: lib/objects/functions.php:276 page-object.php:266
+msgid "s_object:rent:hight_season"
+msgstr "época alta"
+
+#: lib/objects/functions.php:390 page-object.php:381
+msgid "s_object:rent:max_persons"
+msgstr "máximo de pessoas"
+
+#: lib/objects/functions.php:627 page-sharer-rent.php:97
+msgid "s_object:rent:min_stay_full"
+msgstr "Estadia mínima"
+
+#: templates/form-contact.php:6
+msgid "form:title_default"
+msgstr "Queira entrar em contacto connosco se tiver quaisquer perguntas, se precisar de mais informações ou de ajuda para escolher uma propriedade"
+
+#: templates/form-contact.php:13 templates/form-offmarket.php:13
+#: templates/form-request.php:14
+msgid "form:first_name"
+msgstr "Introduza o seu nome próprio"
+
+#: templates/form-contact.php:17 templates/form-offmarket.php:17
+#: templates/form-request.php:18
+msgid "form:last_name"
+msgstr "e o seu apelido"
+
+#: templates/form-contact.php:24 templates/form-offmarket.php:24
+#: templates/form-request.php:25
+msgid "form:how_can_reach"
+msgstr "Como entrar em contacto consigo?"
+
+#: templates/form-contact.php:27 templates/form-offmarket.php:28
+#: templates/form-request.php:28
+msgid "form:your_phone"
+msgstr "o seu telefone"
+
+#: templates/form-contact.php:34 templates/form-offmarket.php:36
+#: templates/form-request.php:35
+msgid "form:your_email"
+msgstr "o seu e-mail"
+
+#: templates/form-contact.php:38 templates/form-offmarket.php:40
+#: templates/form-request.php:39
+msgid "form:your_skype"
+msgstr "o seu nome de Skype"
+
+#: templates/form-contact.php:44 templates/form-offmarket.php:46
+#: templates/form-request.php:45
+msgid "form:have_questions"
+msgstr "Tem perguntas ou comentários?"
+
+#: templates/form-contact.php:50 templates/form-offmarket.php:52
+#: templates/form-request.php:51
+msgid "form:send"
+msgstr "Enviar pedido"
+
+#: templates/form-contact.php:53 templates/form-offmarket.php:55
+#: templates/form-request.php:54
+msgid "form:disclaimer_note"
+msgstr "I hereby agree and authorize LPW to disclose my personal information collected on this form to the property developers and / or sale agents who have signed a Marketing services agreement with LPW in respect to requested properties. Saiba mais sobre a nossa"
+
+#: templates/form-contact.php:53 templates/form-offmarket.php:55
+#: templates/form-request.php:54
+msgid "form:privacy_policy"
+msgstr "Política de privacidade"
+
+#: templates/form-offmarket.php:6
+msgid "form:title_off_market"
+msgstr "Precisamos dos seus dados de contacto para lhe dar informações sobre as propriedades Fora de Mercado"
+
+#: templates/form-request.php:7
+msgid "form:title_single"
+msgstr "Obtenha informações detalhadas sobre a propriedade, fotos adicionais, planos e preços ou marque uma visita"
+
+msgid "form:thank_you"
+msgstr "Obrigado, o seu pedido foi recebido. Entraremos em contacto consigo brevemente."
+
+msgid "form:thank_you_default"
+msgstr "Obrigado, o seu pedido foi recebido. Entraremos em contacto consigo brevemente."
+
+msgid "form:error_default"
+msgstr ""
+
+msgid "form:country_label"
+msgstr "Procura imóveis em que país?"
+
+msgid "form:country_default"
+msgstr "Todos os países"
+
+msgid "form:country_checkbox_label"
+msgstr "Estou interessado em vários países"
+
+msgid "form:budget_label"
+msgstr "O seu orçamento, EUR"
+
+msgid "form:budget_range_label_1"
+msgstr "até 1 milhão"
+
+msgid "form:budget_range_label_2"
+msgstr "1-5 milhões"
+
+msgid "form:budget_range_label_3"
+msgstr "5-10 milhões"
+
+msgid "form:budget_range_label_4"
+msgstr "10-50 milhões"
+
+msgid "form:budget_range_label_5"
+msgstr "50+ milhões"
+
+#: templates/search-panel.php:9
+msgid "alerts:advanced_search"
+msgstr "Pesquisa avançada"
+
+#: templates/search-panel.php:19
+msgid "alerts:favorite_properties"
+msgstr "Propriedades favoritas"
+
+#: templates/search-panel.php:20
+msgid "alerts:offmarket_properties"
+msgstr "Propriedades Fora de Mercado"
+
+#: templates/search-panel.php:26
+msgid "alerts:offmarket_found:text"
+msgstr "Encontrámos propriedades Fora de Mercado que podem corresponder aos seus critérios de pesquisa."
+
+#: templates/search-panel.php:26
+msgid "alerts:offmarket_found:link"
+msgstr "Pedir informações"
+
+#: lib/extras.php:81 templates/search-panel.php:18
+msgid "alerts:show_map_tooltip"
+msgstr "Mostrar mapa"
+
+msgid "alerts:no_results:title"
+msgstr "Sem propriedades que correspondam ao seu pedido"
+
+msgid "alerts:no_results:text"
+msgstr "Tente editar o seu intervalo de preços ou remover filtros para ver mais resultados"
+
+msgid "alerts:no_results:button"
+msgstr "Remover filtros"
+
+#: templates/favorites-bar.php:18
+msgid "favorites:facebook_message"
+msgstr "Seleção de propriedades criada pela The Leading Properties of the World. As melhores propriedades escolhidas a dedo com belas fotos. Deseja ver propriedades selecionadas exclusivamente para si? Visite o nosso website e obtenha a sua recomendação pessoal hoje."
+
+#: page-favorites-rent.php:14 page-favorites.php:14
+msgid "favorites:title"
+msgstr "As suas propriedades favoritas:"
+
+#: page-favorites-rent.php:36 page-favorites.php:36
+msgid "favorites:delete_alert"
+msgstr "Tem a certeza de que deseja remover todas as propriedades dos favoritos?"
+
+msgid "favorites:delete_y"
+msgstr "Sim, remover"
+
+msgid "favorites:delete_n"
+msgstr "Não"
+
+msgid "commercial:main_title"
+msgstr "Propriedades comerciais"
+
+msgid "commercial:sub_title_1"
+msgstr "3 passos para obter informações sobre propriedades comerciais"
+
+msgid "commercial:sub_title_2"
+msgstr "está interessado em*"
+
+msgid "commercial:step_1"
+msgstr "Preencher o formulário"
+
+msgid "commercial:step_2"
+msgstr "Falar com o nosso diretor"
+
+msgid "commercial:step_3"
+msgstr "Obter informação"
+
+msgid "commercial:note_text"
+msgstr "*Nalguns casos, a informação é fornecida apenas após a assinatura de um acordo de não divulgação (NDA)."
+
+msgid "commercial:note_link"
+msgstr "Descarregar um modelo de NDA"
+
+#. Theme Name of the plugin/theme
+#. Author of the plugin/theme
+msgid "Leading Properties"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://www.leadingproperties.com/"
+msgstr ""

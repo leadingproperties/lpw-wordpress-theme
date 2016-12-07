@@ -1,0 +1,540 @@
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Project-Id-Version: Leading Properties\n"
+"POT-Creation-Date: 2016-12-07 12:13+0200\n"
+"PO-Revision-Date: 2016-12-07 12:39+0200\n"
+"Language-Team: \n"
+"MIME-Ver§`sion: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.11\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-WPHeader: style.css\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"MIME-Version: 1.0\n"
+"Last-Translator: \n"
+"Language: sv_SE\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+# comment
+#: 404.php:8
+msgid "page_404:title_404"
+msgstr "Error 404"
+
+#: 404.php:10
+msgid "page_404:title"
+msgstr "Sorry, that page doesn’t exist!"
+
+#: 404.php:11
+msgid "page_404:text"
+msgstr ""
+"The reasons that could cause the error: incorrectly typed address, the\n"
+"      page was never on this site or this page was, but can not be accessed anymore.\n"
+"      If you reached this page through a link from our website, please report this\n"
+"      at:"
+
+#: lib/extras.php:82
+msgid "menu:favorites"
+msgstr "Favoriter"
+
+#: lib/extras.php:83
+msgid "menu:offmarket"
+msgstr "Utanför marknaden"
+
+#: templates/filter-rent.php:57 templates/filter-sale.php:44
+msgid "search_panel:area_label"
+msgstr "Yta"
+
+#: templates/filter-rent.php:85 templates/filter-sale.php:22
+msgid "search_panel:price_label"
+msgstr "Pris"
+
+#: lib/objects/classes/Tags.php:122 templates/filter-rent.php:32
+#: templates/filter-sale.php:55
+msgid "search_panel:rooms_label"
+msgstr "Rum"
+
+#: templates/filter-rent.php:15 templates/filter-sale.php:5
+msgid "search_panel:property_types:label"
+msgstr "Fastighetstyp"
+
+#: lib/objects/classes/Tags.php:108 templates/filter-rent.php:26
+#: templates/filter-sale.php:16
+msgid "search_panel:property_types:commercial"
+msgstr "Kommersiella fastigheter"
+
+#: lib/objects/classes/Tags.php:102 templates/filter-rent.php:18
+#: templates/filter-sale.php:8
+msgid "search_panel:property_types:apartments"
+msgstr "Lägenheter"
+
+#: lib/objects/classes/Tags.php:105 templates/filter-rent.php:22
+#: templates/filter-sale.php:12
+msgid "search_panel:property_types:houses"
+msgstr "Hus"
+
+#: lib/objects/classes/Tags.php:111
+msgid "search_panel:property_types:plots"
+msgstr "Tomter"
+
+#: templates/filter-rent.php:115 templates/filter-sale.php:82
+msgid "search_panel:hd_photos:label"
+msgstr "Endast annonser med foton av hög kvalitet"
+
+#: lib/objects/classes/Tags.php:130
+msgid "search_panel:hd_photos:tag"
+msgstr "HQ-foton"
+
+#: templates/filter-rent.php:119 templates/filter-sale.php:86
+msgid "search_panel:submit_button"
+msgstr "Visa resultat"
+
+#: page-favorites-rent.php:19 page-favorites.php:19 page-sharer-rent.php:17
+#: page-sharer.php:17 templates/sorting-panel.php:6
+msgid "search_panel:order:recent"
+msgstr "Senaste"
+
+#: page-favorites-rent.php:21 page-favorites.php:21 page-sharer-rent.php:19
+#: page-sharer.php:19 templates/sorting-panel.php:8
+msgid "search_panel:order:price_asc"
+msgstr "Lägsta pris"
+
+#: page-favorites-rent.php:20 page-favorites.php:20 page-sharer-rent.php:18
+#: page-sharer.php:18 templates/sorting-panel.php:7
+msgid "search_panel:order:price_desc"
+msgstr "Högsta pris"
+
+#: templates/filter-rent.php:59 templates/filter-rent.php:87
+#: templates/filter-sale.php:24 templates/filter-sale.php:46
+msgid "search_panel:min"
+msgstr "min"
+
+#: templates/filter-rent.php:62 templates/filter-rent.php:70
+#: templates/filter-rent.php:90 templates/filter-sale.php:27
+#: templates/filter-sale.php:49
+msgid "search_panel:max"
+msgstr "max"
+
+#: templates/filter-rent.php:57 templates/filter-sale.php:44
+msgid "search_panel:sqm"
+msgstr "m²"
+
+#: templates/favorites-bar.php:3
+msgid "search_panel:share"
+msgstr "Dela dina favoritfastigheter med vänner eller kollegor"
+
+#: templates/favorites-bar.php:29
+msgid "search_panel:copy"
+msgstr "Kopiera"
+
+#: templates/search-panel.php:7
+msgid "search_panel:autocomplete"
+msgstr "Schweiz eller London eller Gamla Stan, Prag eller 69783"
+
+#: lib/objects/classes/Tags.php:160 templates/filter-rent.php:11
+msgid "search_panel:long_rent"
+msgstr "Långtidsuthyrning"
+
+#: lib/objects/classes/Tags.php:163 templates/filter-rent.php:7
+msgid "search_panel:short_rent"
+msgstr "Korttidsuthyrning"
+
+#: lib/objects/classes/Tags.php:166 lib/objects/functions.php:429
+#: page-object.php:420 templates/filter-rent.php:75
+msgid "search_panel:child_friendly"
+msgstr "Barnvänligt"
+
+#: lib/objects/classes/Tags.php:169 lib/objects/functions.php:432
+#: page-object.php:423 templates/filter-rent.php:79
+msgid "search_panel:pets_allowed"
+msgstr "Husdjur tillåtna"
+
+#: lib/objects/classes/Tags.php:177 templates/filter-rent.php:68
+msgid "search_panel:persons"
+msgstr "Personer"
+
+#: lib/objects/classes/Tags.php:185
+msgid "search_panel:similar"
+msgstr "Liknande: {radius} km från {code}"
+
+#: lib/objects/classes/Tags.php:185
+msgid "search_panel:km"
+msgstr "km"
+
+#: lib/objects/classes/Tags.php:185
+msgid "search_panel:from"
+msgstr "från"
+
+msgid "search_panel:toggle_map_y"
+msgstr "Visa stor karta"
+
+msgid "search_panel:toggle_map_n"
+msgstr "Visa liten karta"
+
+#: lib/objects/functions.php:36 lib/objects/functions.php:460
+#: page-object.php:46 page-object.php:446
+msgid "s_object:header:detailed_info"
+msgstr "Få detaljerad information"
+
+#: lib/objects/functions.php:109 page-object.php:106
+msgid "s_object:sold"
+msgstr "Såld"
+
+#: lib/objects/functions.php:166 lib/objects/functions.php:589
+#: page-object.php:156
+msgid "s_object:on_demand"
+msgstr "Pris på begäran"
+
+#: lib/objects/functions.php:610
+msgid "s_object:rooms"
+msgstr "rum"
+
+#: lib/objects/functions.php:630
+msgid "s_object:m_short"
+msgstr "m"
+
+#: lib/objects/functions.php:345 page-object.php:336
+msgid "s_object:number_of_rooms"
+msgstr "antal rum"
+
+#: lib/objects/functions.php:342
+msgid "s_object:property_type"
+msgstr "fastighetstyp"
+
+msgid "s_object:ref_num"
+msgstr "referensnummer"
+
+#: lib/objects/functions.php:356 page-object.php:347
+msgid "s_object:area_sq_m"
+msgstr "yta, m²"
+
+#: lib/objects/functions.php:419 page-object.php:410
+msgid "s_object:pool"
+msgstr "pool"
+
+#: lib/objects/functions.php:422 page-object.php:413
+msgid "s_object:garage_parking"
+msgstr "parkering/garage"
+
+#: lib/objects/functions.php:416 page-object.php:407
+msgid "s_object:terrace_balcony"
+msgstr "terrass/balkong"
+
+#: lib/objects/functions.php:367 page-object.php:358
+msgid "s_object:bedrooms"
+msgstr "sovrum"
+
+#: lib/objects/functions.php:378 page-object.php:369
+msgid "s_object:bathrooms"
+msgstr "badrum"
+
+#: lib/objects/functions.php:405 page-object.php:396
+msgid "s_object:building_storeys"
+msgstr "byggnadsvåningar"
+
+#: lib/objects/functions.php:394 page-object.php:385
+msgid "s_object:land_area"
+msgstr "landyta"
+
+#: lib/objects/functions.php:425 page-object.php:416
+msgid "s_object:utility_rooms"
+msgstr "källare"
+
+#: lib/objects/functions.php:440
+msgid "s_object:prev"
+msgstr "Föregående fastighet"
+
+#: lib/objects/functions.php:443
+msgid "s_object:next"
+msgstr "Nästa fastighet"
+
+#: lib/objects/functions.php:450
+msgid "s_object:similar_label"
+msgstr "Hitta liknande fastigheter i samma område"
+
+#: lib/objects/functions.php:182
+msgid "s_object:rent:long-term_rent"
+msgstr "Långtidsuthyrning, månadshyra"
+
+#: lib/objects/functions.php:184 lib/objects/functions.php:200
+#: lib/objects/functions.php:206 lib/objects/functions.php:212
+#: lib/objects/functions.php:218 lib/objects/functions.php:224
+#: lib/objects/functions.php:230 lib/objects/functions.php:302
+#: lib/objects/functions.php:308 lib/objects/functions.php:314
+#: lib/objects/functions.php:320 lib/objects/functions.php:326
+#: lib/objects/functions.php:332 lib/objects/functions.php:519
+#: lib/objects/functions.php:538 page-object.php:174 page-object.php:190
+#: page-object.php:196 page-object.php:202 page-object.php:208
+#: page-object.php:214 page-object.php:220 page-object.php:292
+#: page-object.php:298 page-object.php:304 page-object.php:310
+#: page-object.php:316 page-object.php:322 page-sharer-rent.php:44
+msgid "s_object:rent:on_request"
+msgstr "begäran"
+
+#: lib/objects/functions.php:193 lib/objects/functions.php:196
+#: lib/objects/functions.php:295 lib/objects/functions.php:298
+#: page-object.php:183 page-object.php:186 page-object.php:285
+#: page-object.php:288
+msgid "s_object:rent:vat"
+msgstr "MOMS"
+
+#: lib/objects/functions.php:193 lib/objects/functions.php:295
+#: page-object.php:183 page-object.php:285
+msgid "s_object:rent:not_included"
+msgstr "ingår inte"
+
+#: lib/objects/functions.php:196 lib/objects/functions.php:298
+#: page-object.php:186 page-object.php:288
+msgid "s_object:rent:included"
+msgstr "ingår"
+
+#: lib/objects/functions.php:198 lib/objects/functions.php:300
+#: page-object.php:188 page-object.php:290
+msgid "s_object:rent:deposit"
+msgstr "deposition"
+
+#: lib/objects/functions.php:216 lib/objects/functions.php:318
+#: page-object.php:206 page-object.php:308
+msgid "s_object:rent:commission"
+msgstr "provision"
+
+#: lib/objects/functions.php:237 page-object.php:228
+msgid "s_object:rent:rent_short_title"
+msgstr "Korttidsuthyrning, dagshyra, "
+
+#: lib/objects/functions.php:240 lib/objects/functions.php:258
+#: lib/objects/functions.php:275 page-object.php:231 page-object.php:248
+#: page-object.php:265
+msgid "s_object:rent:min_stay"
+msgstr "min. vistelse"
+
+#: lib/objects/functions.php:242 lib/objects/functions.php:243
+#: lib/objects/functions.php:244 lib/objects/functions.php:260
+#: lib/objects/functions.php:277 lib/objects/functions.php:522
+#: lib/objects/functions.php:532 lib/objects/functions.php:543
+#: page-object.php:233 page-object.php:250 page-object.php:267
+#: page-sharer-rent.php:47 page-sharer-rent.php:57 page-sharer-rent.php:65
+#: templates/filter-rent.php:104
+msgid "s_object:rent:day"
+msgstr "dag"
+
+#: lib/objects/functions.php:248 lib/objects/functions.php:264
+#: lib/objects/functions.php:281 lib/objects/functions.php:524
+#: page-object.php:237 page-object.php:254 page-object.php:271
+#: page-sharer-rent.php:49
+msgid "s_object:rent:week"
+msgstr "vecka"
+
+#: lib/objects/functions.php:252 lib/objects/functions.php:268
+#: lib/objects/functions.php:285 lib/objects/functions.php:526
+#: lib/objects/functions.php:534 lib/objects/functions.php:541
+#: page-object.php:241 page-object.php:258 page-object.php:275
+#: page-sharer-rent.php:51 page-sharer-rent.php:59 page-sharer-rent.php:63
+#: templates/filter-rent.php:105
+msgid "s_object:rent:month"
+msgstr "månad"
+
+#: lib/objects/functions.php:241 page-object.php:232
+msgid "s_object:rent:low_season"
+msgstr "lågsäsong"
+
+#: lib/objects/functions.php:259 page-object.php:249
+msgid "s_object:rent:medium_season"
+msgstr "medelsäsong"
+
+#: lib/objects/functions.php:276 page-object.php:266
+msgid "s_object:rent:hight_season"
+msgstr "högsäsong"
+
+#: lib/objects/functions.php:390 page-object.php:381
+msgid "s_object:rent:max_persons"
+msgstr "max antal personer"
+
+#: lib/objects/functions.php:627 page-sharer-rent.php:97
+msgid "s_object:rent:min_stay_full"
+msgstr "Minsta vistelse"
+
+#: templates/form-contact.php:6
+msgid "form:title_default"
+msgstr "Var god kontakta oss om du har några frågor, om du behöver ytterligare information eller hjälp med att välja en fastighet"
+
+#: templates/form-contact.php:13 templates/form-offmarket.php:13
+#: templates/form-request.php:14
+msgid "form:first_name"
+msgstr "Ange ditt förnamn"
+
+#: templates/form-contact.php:17 templates/form-offmarket.php:17
+#: templates/form-request.php:18
+msgid "form:last_name"
+msgstr "och ditt efternamn"
+
+#: templates/form-contact.php:24 templates/form-offmarket.php:24
+#: templates/form-request.php:25
+msgid "form:how_can_reach"
+msgstr "Hur man kontaktar dig?"
+
+#: templates/form-contact.php:27 templates/form-offmarket.php:28
+#: templates/form-request.php:28
+msgid "form:your_phone"
+msgstr "ditt telefonnummer"
+
+#: templates/form-contact.php:34 templates/form-offmarket.php:36
+#: templates/form-request.php:35
+msgid "form:your_email"
+msgstr "din e-postadress"
+
+#: templates/form-contact.php:38 templates/form-offmarket.php:40
+#: templates/form-request.php:39
+msgid "form:your_skype"
+msgstr "ditt Skypenamn"
+
+#: templates/form-contact.php:44 templates/form-offmarket.php:46
+#: templates/form-request.php:45
+msgid "form:have_questions"
+msgstr "Eventuella frågor eller kommentarer?"
+
+#: templates/form-contact.php:50 templates/form-offmarket.php:52
+#: templates/form-request.php:51
+msgid "form:send"
+msgstr "Skicka förfrågan"
+
+#: templates/form-contact.php:53 templates/form-offmarket.php:55
+#: templates/form-request.php:54
+msgid "form:disclaimer_note"
+msgstr "I hereby agree and authorize LPW to disclose my personal information collected on this form to the property developers and / or sale agents who have signed a Marketing services agreement with LPW in respect to requested properties. Läs mer om vår"
+
+#: templates/form-contact.php:53 templates/form-offmarket.php:55
+#: templates/form-request.php:54
+msgid "form:privacy_policy"
+msgstr "Integritetspolicy"
+
+#: templates/form-offmarket.php:6
+msgid "form:title_off_market"
+msgstr "Vi behöver dina kontaktuppgifter för att förse dig med information om de fastigheter som inte är på marknaden"
+
+#: templates/form-request.php:7
+msgid "form:title_single"
+msgstr "Få detaljerad information om fastigheten, ytterligare foton, planritningar och priser eller arrangera en visning"
+
+msgid "form:thank_you"
+msgstr "Tack så mycket, din förfrågan har tagits emot. Vi kommer att kontakta dig inom kort."
+
+msgid "form:thank_you_default"
+msgstr "Tack så mycket, din förfrågan har tagits emot. Vi kommer att kontakta dig inom kort."
+
+msgid "form:error_default"
+msgstr ""
+
+msgid "form:country_label"
+msgstr "I vilket land letar du efter fastigheter?"
+
+msgid "form:country_default"
+msgstr "Alla länder"
+
+msgid "form:country_checkbox_label"
+msgstr "Jag är intresserad av flera länder"
+
+msgid "form:budget_label"
+msgstr "Din budget, EUR"
+
+msgid "form:budget_range_label_1"
+msgstr "upp till 1 miljon"
+
+msgid "form:budget_range_label_2"
+msgstr "1-5 miljoner"
+
+msgid "form:budget_range_label_3"
+msgstr "5-10 miljoner"
+
+msgid "form:budget_range_label_4"
+msgstr "10-50 miljoner"
+
+msgid "form:budget_range_label_5"
+msgstr "50+ miljoner"
+
+#: templates/search-panel.php:9
+msgid "alerts:advanced_search"
+msgstr "Avancerad sökning"
+
+#: templates/search-panel.php:19
+msgid "alerts:favorite_properties"
+msgstr "Favoritfastigheter"
+
+#: templates/search-panel.php:20
+msgid "alerts:offmarket_properties"
+msgstr "Fastigheter utanför marknaden"
+
+#: templates/search-panel.php:26
+msgid "alerts:offmarket_found:text"
+msgstr "Vi har hittat fastigheter som inte är på marknaden som kan passa dina sökkriterier."
+
+#: templates/search-panel.php:26
+msgid "alerts:offmarket_found:link"
+msgstr "Begär information"
+
+#: lib/extras.php:81 templates/search-panel.php:18
+msgid "alerts:show_map_tooltip"
+msgstr "Visa karta"
+
+msgid "alerts:no_results:title"
+msgstr "Inga fastigheter matchar din förfrågan"
+
+msgid "alerts:no_results:text"
+msgstr "Prova att ändra ditt prisintervall eller ta bort filter för att se fler resultat"
+
+msgid "alerts:no_results:button"
+msgstr "Ta bort filter"
+
+#: templates/favorites-bar.php:18
+msgid "favorites:facebook_message"
+msgstr "Fastighetsurval drivet av Världens ledande fastigheter. De bästa handplockade fastigheterna med fina foton. Vill du se fastigheter utvalda bara för dig? Besök vår webbplats och få din personliga rekommendation idag."
+
+#: page-favorites-rent.php:14 page-favorites.php:14
+msgid "favorites:title"
+msgstr "Dina favoritfastigheter:"
+
+#: page-favorites-rent.php:36 page-favorites.php:36
+msgid "favorites:delete_alert"
+msgstr "Är du säker på att du vill ta bort alla fastigheter från favoriter?"
+
+msgid "favorites:delete_y"
+msgstr "Ja, ta bort"
+
+msgid "favorites:delete_n"
+msgstr "Nej"
+
+msgid "commercial:main_title"
+msgstr "Kommersiella fastigheter"
+
+msgid "commercial:sub_title_1"
+msgstr "3 steg för att få information om kommersiella fastigheter"
+
+msgid "commercial:sub_title_2"
+msgstr "du är intresserad av*"
+
+msgid "commercial:step_1"
+msgstr "Fyll i formuläret"
+
+msgid "commercial:step_2"
+msgstr "Tala med vår företagschef"
+
+msgid "commercial:step_3"
+msgstr "Få information"
+
+msgid "commercial:note_text"
+msgstr "* I vissa fall lämnas information endast ut efter att ett sekretessavtal har undertecknats."
+
+msgid "commercial:note_link"
+msgstr "Ladda ned en mall för sekretessavtal"
+
+#. Theme Name of the plugin/theme
+#. Author of the plugin/theme
+msgid "Leading Properties"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://www.leadingproperties.com/"
+msgstr ""
