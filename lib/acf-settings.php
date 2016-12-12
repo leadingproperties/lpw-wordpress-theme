@@ -15,15 +15,305 @@ function my_acf_settings_dir( $dir ) {
 	// return
 	return $dir;
 }
-acf_add_options_page([
-	'page_title' => 'Options',
-	'menu_title' => 'Options',
-	'menu_slug' => 'lp-options',
-	'capability' => 'manage_options',
-	'autoload' => true
-]);
+if( function_exists('acf_add_options_page') ) {
+	acf_add_options_page( [
+		'page_title' => 'Options',
+		'menu_title' => 'Options',
+		'menu_slug'  => 'lp-options',
+		'capability' => 'manage_options',
+		'autoload'   => true
+	] );
+	acf_add_options_sub_page( [
+		'page_title'  => 'General Options',
+		'menu_title'  => 'General',
+		'capability' => 'manage_options',
+		'parent_slug' => 'lp-options',
+		'autoload'   => true
+	] );
+	acf_add_options_sub_page( [
+		'page_title'  => 'Advanced Options',
+		'menu_title'  => 'Advanced',
+		'capability' => 'manage_options',
+		'parent_slug' => 'lp-options',
+		'autoload'   => true
+	] );
+}
 
 if( function_exists('acf_add_local_field_group') ):
+
+	acf_add_local_field_group(array (
+		'key' => 'group_584e8b72b692e',
+		'title' => 'Advanced Options',
+		'fields' => array (
+			array (
+				'key' => 'field_584e8b9109cd1',
+				'label' => 'Warning! Advanced options area. Changes here can break theme work. Don\'t change this values if you don\'t understand what is going on.',
+				'name' => 'warning',
+				'type' => 'true_false',
+				'instructions' => '',
+				'required' => 0,
+				'conditional_logic' => 0,
+				'wrapper' => array (
+					'width' => '',
+					'class' => '',
+					'id' => '',
+				),
+				'message' => '',
+				'default_value' => 0,
+			),
+			array (
+				'key' => 'field_584e8c1c09cd2',
+				'label' => '',
+				'name' => '',
+				'type' => 'message',
+				'instructions' => '',
+				'required' => 0,
+				'conditional_logic' => array (
+					array (
+						array (
+							'field' => 'field_584e8b9109cd1',
+							'operator' => '==',
+							'value' => '1',
+						),
+					),
+				),
+				'wrapper' => array (
+					'width' => '',
+					'class' => '',
+					'id' => '',
+				),
+				'message' => 'This selectors assign wordpress theme pages to api views.
+Example:
+_Page Single Property. Have permalink: http://domain.net/single-property/_
+_In this case rpoperty in frontend will have URL http://domain.net/single-property/ch-80447-designer-chalet-for-sale-in-st-moritz_
+You can cahnge permaink, but be aware that this will change ALL yur direct properties link.',
+				'new_lines' => 'wpautop',
+				'esc_html' => 0,
+			),
+			array (
+				'key' => 'field_584e8c4009cd3',
+				'label' => 'Sale',
+				'name' => 'sale',
+				'type' => 'page_link',
+				'instructions' => '',
+				'required' => 1,
+				'conditional_logic' => array (
+					array (
+						array (
+							'field' => 'field_584e8b9109cd1',
+							'operator' => '==',
+							'value' => '1',
+						),
+					),
+				),
+				'wrapper' => array (
+					'width' => '',
+					'class' => '',
+					'id' => '',
+				),
+				'post_type' => array (
+					0 => 'page',
+				),
+				'taxonomy' => array (
+				),
+				'allow_null' => 0,
+				'multiple' => 0,
+			),
+			array (
+				'key' => 'field_584e8c6b09cd4',
+				'label' => 'Rent',
+				'name' => 'rent',
+				'type' => 'page_link',
+				'instructions' => '',
+				'required' => 1,
+				'conditional_logic' => array (
+					array (
+						array (
+							'field' => 'field_584e8b9109cd1',
+							'operator' => '==',
+							'value' => '1',
+						),
+					),
+				),
+				'wrapper' => array (
+					'width' => '',
+					'class' => '',
+					'id' => '',
+				),
+				'post_type' => array (
+					0 => 'page',
+				),
+				'taxonomy' => array (
+				),
+				'allow_null' => 0,
+				'multiple' => 0,
+			),
+			array (
+				'key' => 'field_584e8c9709cd5',
+				'label' => 'Sale Favorites',
+				'name' => 'sale_favorites',
+				'type' => 'page_link',
+				'instructions' => '',
+				'required' => 1,
+				'conditional_logic' => array (
+					array (
+						array (
+							'field' => 'field_584e8b9109cd1',
+							'operator' => '==',
+							'value' => '1',
+						),
+					),
+				),
+				'wrapper' => array (
+					'width' => '',
+					'class' => '',
+					'id' => '',
+				),
+				'post_type' => array (
+					0 => 'page',
+				),
+				'taxonomy' => array (
+				),
+				'allow_null' => 0,
+				'multiple' => 0,
+			),
+			array (
+				'key' => 'field_584e8cb009cd6',
+				'label' => 'Rent Favorites',
+				'name' => 'rent_favorites',
+				'type' => 'page_link',
+				'instructions' => '',
+				'required' => 1,
+				'conditional_logic' => array (
+					array (
+						array (
+							'field' => 'field_584e8b9109cd1',
+							'operator' => '==',
+							'value' => '1',
+						),
+					),
+				),
+				'wrapper' => array (
+					'width' => '',
+					'class' => '',
+					'id' => '',
+				),
+				'post_type' => array (
+					0 => 'page',
+				),
+				'taxonomy' => array (
+				),
+				'allow_null' => 0,
+				'multiple' => 0,
+			),
+			array (
+				'key' => 'field_584e8cdb09cd7',
+				'label' => 'Sale Share',
+				'name' => 'sale_share',
+				'type' => 'page_link',
+				'instructions' => '',
+				'required' => 1,
+				'conditional_logic' => array (
+					array (
+						array (
+							'field' => 'field_584e8b9109cd1',
+							'operator' => '==',
+							'value' => '1',
+						),
+					),
+				),
+				'wrapper' => array (
+					'width' => '',
+					'class' => '',
+					'id' => '',
+				),
+				'post_type' => array (
+					0 => 'page',
+				),
+				'taxonomy' => array (
+				),
+				'allow_null' => 0,
+				'multiple' => 0,
+			),
+			array (
+				'key' => 'field_584e8cf109cd8',
+				'label' => 'Rent Share',
+				'name' => 'rent_share',
+				'type' => 'page_link',
+				'instructions' => '',
+				'required' => 1,
+				'conditional_logic' => array (
+					array (
+						array (
+							'field' => 'field_584e8b9109cd1',
+							'operator' => '==',
+							'value' => '1',
+						),
+					),
+				),
+				'wrapper' => array (
+					'width' => '',
+					'class' => '',
+					'id' => '',
+				),
+				'post_type' => array (
+					0 => 'page',
+				),
+				'taxonomy' => array (
+				),
+				'allow_null' => 0,
+				'multiple' => 0,
+			),
+			array (
+				'key' => 'field_584e8d0309cd9',
+				'label' => 'Single Object',
+				'name' => 'single_object',
+				'type' => 'post_object',
+				'instructions' => '',
+				'required' => 1,
+				'conditional_logic' => array (
+					array (
+						array (
+							'field' => 'field_584e8b9109cd1',
+							'operator' => '==',
+							'value' => '1',
+						),
+					),
+				),
+				'wrapper' => array (
+					'width' => '',
+					'class' => '',
+					'id' => '',
+				),
+				'post_type' => array (
+					0 => 'page',
+				),
+				'taxonomy' => array (
+				),
+				'allow_null' => 0,
+				'multiple' => 0,
+				'return_format' => 'id',
+				'ui' => 1,
+			),
+		),
+		'location' => array (
+			array (
+				array (
+					'param' => 'options_page',
+					'operator' => '==',
+					'value' => 'acf-options-advanced',
+				),
+			),
+		),
+		'menu_order' => 0,
+		'position' => 'normal',
+		'style' => 'default',
+		'label_placement' => 'top',
+		'instruction_placement' => 'label',
+		'hide_on_screen' => '',
+		'active' => 1,
+		'description' => '',
+	));
 
 	acf_add_local_field_group(array (
 		'key' => 'group_57d299cb5ea31',
@@ -375,27 +665,12 @@ if( function_exists('acf_add_local_field_group') ):
 				'endpoint' => 0,
 			),
 			array (
-				'key' => 'field_574f312c22b18',
-				'label' => 'API url',
-				'name' => 'api_url',
-				'type' => 'url',
-				'instructions' => '',
-				'required' => 1,
-				'conditional_logic' => 0,
-				'wrapper' => array (
-					'width' => '',
-					'class' => '',
-					'id' => '',
-				),
-				'default_value' => 'https://api-mylpw.herokuapp.com/v1/',
-				'placeholder' => '',
-			),
-			array (
 				'key' => 'field_574f315822b19',
-				'label' => 'API key',
+				'label' => 'API KEY',
 				'name' => 'api_key',
 				'type' => 'text',
-				'instructions' => '',
+				'instructions' => 'Enter API KEY provided by leadingproperties.com
+Contact support support@leadingproperties.com for subscription',
 				'required' => 1,
 				'conditional_logic' => 0,
 				'wrapper' => array (
@@ -412,171 +687,6 @@ if( function_exists('acf_add_local_field_group') ):
 				'disabled' => 0,
 			),
 			array (
-				'key' => 'field_57ab60ff32728',
-				'label' => 'Pages',
-				'name' => '',
-				'type' => 'tab',
-				'instructions' => '',
-				'required' => 0,
-				'conditional_logic' => 0,
-				'wrapper' => array (
-					'width' => '',
-					'class' => '',
-					'id' => '',
-				),
-				'placement' => 'top',
-				'endpoint' => 0,
-			),
-			array (
-				'key' => 'field_57ab612332729',
-				'label' => 'Sale',
-				'name' => 'sale',
-				'type' => 'page_link',
-				'instructions' => '',
-				'required' => 0,
-				'conditional_logic' => 0,
-				'wrapper' => array (
-					'width' => '',
-					'class' => '',
-					'id' => '',
-				),
-				'post_type' => array (
-					0 => 'page',
-				),
-				'taxonomy' => array (
-				),
-				'allow_null' => 0,
-				'multiple' => 0,
-			),
-			array (
-				'key' => 'field_57ab61693272a',
-				'label' => 'Rent',
-				'name' => 'rent',
-				'type' => 'page_link',
-				'instructions' => '',
-				'required' => 0,
-				'conditional_logic' => 0,
-				'wrapper' => array (
-					'width' => '',
-					'class' => '',
-					'id' => '',
-				),
-				'post_type' => array (
-					0 => 'page',
-				),
-				'taxonomy' => array (
-				),
-				'allow_null' => 0,
-				'multiple' => 0,
-			),
-			array (
-				'key' => 'field_57ab61793272b',
-				'label' => 'Sale Favorites',
-				'name' => 'sale_favorites',
-				'type' => 'page_link',
-				'instructions' => '',
-				'required' => 0,
-				'conditional_logic' => 0,
-				'wrapper' => array (
-					'width' => '',
-					'class' => '',
-					'id' => '',
-				),
-				'post_type' => array (
-					0 => 'page',
-				),
-				'taxonomy' => array (
-				),
-				'allow_null' => 0,
-				'multiple' => 0,
-			),
-			array (
-				'key' => 'field_57ab61b23272c',
-				'label' => 'Rent Favorites',
-				'name' => 'rent_favorites',
-				'type' => 'page_link',
-				'instructions' => '',
-				'required' => 0,
-				'conditional_logic' => 0,
-				'wrapper' => array (
-					'width' => '',
-					'class' => '',
-					'id' => '',
-				),
-				'post_type' => array (
-					0 => 'page',
-				),
-				'taxonomy' => array (
-				),
-				'allow_null' => 0,
-				'multiple' => 0,
-			),
-			array (
-				'key' => 'field_57b730b82cb0f',
-				'label' => 'Single Object',
-				'name' => 'single_object',
-				'type' => 'post_object',
-				'instructions' => '',
-				'required' => 0,
-				'conditional_logic' => 0,
-				'wrapper' => array (
-					'width' => '',
-					'class' => '',
-					'id' => '',
-				),
-				'post_type' => array (
-					0 => 'page',
-				),
-				'taxonomy' => array (
-				),
-				'allow_null' => 0,
-				'multiple' => 0,
-				'return_format' => 'id',
-				'ui' => 1,
-			),
-			array (
-				'key' => 'field_57c81f54e9c44',
-				'label' => 'Sale Share',
-				'name' => 'sale_share',
-				'type' => 'page_link',
-				'instructions' => '',
-				'required' => 0,
-				'conditional_logic' => 0,
-				'wrapper' => array (
-					'width' => '',
-					'class' => '',
-					'id' => '',
-				),
-				'post_type' => array (
-					0 => 'page',
-				),
-				'taxonomy' => array (
-				),
-				'allow_null' => 0,
-				'multiple' => 0,
-			),
-			array (
-				'key' => 'field_57c81faae9c45',
-				'label' => 'Rent Share',
-				'name' => 'rent_share',
-				'type' => 'page_link',
-				'instructions' => '',
-				'required' => 0,
-				'conditional_logic' => 0,
-				'wrapper' => array (
-					'width' => '',
-					'class' => '',
-					'id' => '',
-				),
-				'post_type' => array (
-					0 => 'page',
-				),
-				'taxonomy' => array (
-				),
-				'allow_null' => 0,
-				'multiple' => 0,
-			),
-			array (
 				'key' => 'field_574ec8c604d9c',
 				'label' => 'Header',
 				'name' => '',
@@ -591,6 +701,23 @@ if( function_exists('acf_add_local_field_group') ):
 				),
 				'placement' => 'top',
 				'endpoint' => 0,
+			),
+			array (
+				'key' => 'field_584e8838929ab',
+				'label' => '',
+				'name' => '',
+				'type' => 'message',
+				'instructions' => '',
+				'required' => 0,
+				'conditional_logic' => 0,
+				'wrapper' => array (
+					'width' => '',
+					'class' => '',
+					'id' => '',
+				),
+				'message' => 'Here you can customise header (top part) of your website',
+				'new_lines' => 'wpautop',
+				'esc_html' => 0,
 			),
 			array (
 				'key' => 'field_57c81feae9c46',
@@ -739,6 +866,23 @@ if( function_exists('acf_add_local_field_group') ):
 				'endpoint' => 0,
 			),
 			array (
+				'key' => 'field_584e88da8a395',
+				'label' => '',
+				'name' => '',
+				'type' => 'message',
+				'instructions' => '',
+				'required' => 0,
+				'conditional_logic' => 0,
+				'wrapper' => array (
+					'width' => '',
+					'class' => '',
+					'id' => '',
+				),
+				'message' => 'Here you can customise footer (bottom part) of your website',
+				'new_lines' => 'wpautop',
+				'esc_html' => 0,
+			),
+			array (
 				'key' => 'field_575457b087913',
 				'label' => 'Address',
 				'name' => 'address',
@@ -751,16 +895,46 @@ if( function_exists('acf_add_local_field_group') ):
 					'class' => '',
 					'id' => '',
 				),
-				'default_value' => 'The Leading Properties of the World
-Grand-Rue 3, 1820 Montreux, Switzerland info@leadingproperties.com
-Montreux +41 21 966 03 03
-Moscow +7 495 565 34 09',
+				'default_value' => '',
 				'placeholder' => '',
 				'maxlength' => '',
 				'rows' => '',
 				'new_lines' => 'br',
 				'readonly' => 0,
 				'disabled' => 0,
+			),
+			array (
+				'key' => 'field_584e88f58a396',
+				'label' => 'Social Links',
+				'name' => '',
+				'type' => 'tab',
+				'instructions' => '',
+				'required' => 0,
+				'conditional_logic' => 0,
+				'wrapper' => array (
+					'width' => '',
+					'class' => '',
+					'id' => '',
+				),
+				'placement' => 'top',
+				'endpoint' => 0,
+			),
+			array (
+				'key' => 'field_584e89288a397',
+				'label' => '',
+				'name' => '',
+				'type' => 'message',
+				'instructions' => '',
+				'required' => 0,
+				'conditional_logic' => 0,
+				'wrapper' => array (
+					'width' => '',
+					'class' => '',
+					'id' => '',
+				),
+				'message' => 'You can set link to your social pages here (if you have some)',
+				'new_lines' => 'wpautop',
+				'esc_html' => 0,
 			),
 			array (
 				'key' => 'field_57504cb26e9e4',
@@ -859,12 +1033,32 @@ Moscow +7 495 565 34 09',
 				'endpoint' => 0,
 			),
 			array (
+				'key' => 'field_584e8a6b8a398',
+				'label' => '',
+				'name' => '',
+				'type' => 'message',
+				'instructions' => '',
+				'required' => 0,
+				'conditional_logic' => 0,
+				'wrapper' => array (
+					'width' => '',
+					'class' => '',
+					'id' => '',
+				),
+				'message' => 'To make Autocomplete and Google shortener work, need to register Google API keys.
+Website key for Address autocomplete
+Server key for shortener
+more on <a href="http://lpwdev.com/wordpress.html">http://lpwdev.com/wordpress.html</a>',
+				'new_lines' => 'wpautop',
+				'esc_html' => 0,
+			),
+			array (
 				'key' => 'field_57c82047e9c47',
 				'label' => 'Google API key',
 				'name' => 'google_api_key',
 				'type' => 'text',
 				'instructions' => '',
-				'required' => 1,
+				'required' => 0,
 				'conditional_logic' => 0,
 				'wrapper' => array (
 					'width' => '',
@@ -1146,7 +1340,7 @@ ex:
 				array (
 					'param' => 'options_page',
 					'operator' => '==',
-					'value' => 'lp-options',
+					'value' => 'acf-options-general',
 				),
 			),
 		),
