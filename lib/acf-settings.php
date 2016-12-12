@@ -84,9 +84,9 @@ if( function_exists('acf_add_local_field_group') ):
 				),
 				'message' => 'This selectors assign wordpress theme pages to api views.
 Example:
-_Page Single Property. Have permalink: http://domain.net/single-property/_
-_In this case rpoperty in frontend will have URL http://domain.net/single-property/ch-80447-designer-chalet-for-sale-in-st-moritz_
-You can cahnge permaink, but be aware that this will change ALL yur direct properties link.',
+Page Single Property have permalink: http://domain.net/single-property/
+In this case property in frontend will have URL http://domain.net/single-property/ch-80447-designer-chalet-for-sale-in-st-moritz
+You can change permaink, but be aware, this will change ALL your direct properties url links.',
 				'new_lines' => 'wpautop',
 				'esc_html' => 0,
 			),
