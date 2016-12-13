@@ -27,7 +27,8 @@ function ajax_handler() {
 			if(isset($_GET['query']) && !empty($_GET['query'])) {
 				$output = ajax_get_suggestions( [
 					'query' => $_GET['query'],
-					'action' => 'get_suggestions'
+					'action' => 'get_suggestions',
+					'scope' => ($_GET['scope']) ? $_GET['scope'] : false
 				] );
 			} else {
 				$output = '';

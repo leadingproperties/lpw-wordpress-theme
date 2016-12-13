@@ -69,7 +69,9 @@ class LP_ObjectList {
             'query' => ''
         ];
         $this->args = array_merge($defaults, $args);
-	    $this->api_url = "https://lpw-public-api.herokuapp.com";
+	    //$this->api_url = "https://lpw-public-api.herokuapp.com";
+        $this->api_url = "https://staging-lpw-public-api.herokuapp.com";
+
 	    $this->token = get_field('api_key', 'option');
 	    if(empty($this->api_url) || empty($this->token)) {
 		    $this->error = true;
@@ -98,6 +100,9 @@ class LP_ObjectList {
                 break;
             case 'get_suggestions':
                 $url .= '/suggest?q=' . urlencode($this->args['query']);
+                if($this->args['scope']) {
+                    $url .= '&scope=' . $this->args['scope'];
+                }
                 break;
             case 'get_geopoints':
                 if($this->args['type'] === 'sale') {

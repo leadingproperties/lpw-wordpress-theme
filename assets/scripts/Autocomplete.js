@@ -2,8 +2,10 @@
 	"use strict";
 	/**
 	 * AutoComplete
-	 * @param apiPath - путь к контроллеру, который опрашивает апи на совпадения
 	 * @param inputSelectorString - строка с селектором для jQuery
+	 * @param callback - callback function
+	 * @param category -ex. sale, rent, invest
+	 * @param invest - if it is Invest object
 	 * @constructor
 	 */
 	function AutoComplete(
@@ -72,15 +74,22 @@
 	 * @returns {Promise} - jQuery promise (http://api.jquery.com/Types/#Deferred)
 	 */
 	AutoComplete.prototype.askAPI = function(query){
+		var data = {
+			query: query,
+			dataType: 'json',
+			action: 'do_ajax',
+			fn: 'get_suggestions'
+		};
+		if(this.category === 'sale') {
+			data.scope = 'for_sale';
+		} else if(this.category === 'rent') {
+			data.scope = 'for_rent';
+		}
 		return $.ajax(
 			{
 				url: LpData.ajaxUrl,
-				data: {
-					query: query,
-					dataType: 'json',
-					action: 'do_ajax',
-					fn: 'get_suggestions'
-				}
+				data: data
+
 			}
 		);
 	};
@@ -105,7 +114,7 @@
 
 	/**
 	 * Обрабатывает ответ апи (массив совпадений) в удобоваримый для typeahead плагина формат.
-	 * Меняет имя свойства 'text' на 'name'.
+	 * Меняет имя свойства 'suggest_output' на 'name'.
 	 *
 	 * @param optionsArray - массив хэшей совпадений (см. fixtures/autocomplete-answer-api.json)
 	 * @returns {Array}
@@ -114,7 +123,7 @@
 		var answer = [];
 		_.forEach(optionsArray, function(item){
 			answer.push(_.mapKeys(item, function(v, k){
-				if(k === 'text'){
+				if(k === 'suggest_output'){
 					k = 'name';
 				}
 				return k;
@@ -311,10 +320,9 @@
 	 * @param jqXHR - см. аргументы jQuery.ajax.success
 	 */
 	AutoComplete.prototype.askAPISuccess = function(query, processCallback, data, textStatus, jqXHR){
-		//console.debug(typeof jqXHR.responseText);
 		var jsonData = (data) ? JSON.parse(data) : false;
-		if(jsonData.options && jsonData.options.length > 0){
-			var items = this.getParsedAPIAnswer(jsonData.options);
+		if(jsonData.length > 0){
+			var items = this.getParsedAPIAnswer(jsonData);
 			processCallback(items);
 		}else{
 			this.askGoogleAPI(query)
@@ -368,11 +376,11 @@
 	 * @param item
 	 */
 	AutoComplete.prototype.afterSelect = function(item) {
-		if(item && item.payload){ //ответ от АПИ
+		if(item && item.parent_id){ //ответ от АПИ
 			this.setSelected({
-				l_id: item.payload.property_object._id,
-				l_type: item.payload.property_object.type
-			}, item.payload.property_object.name);
+				l_id: item.parent_id,
+				l_type: "PropertyObject"
+			}, item.code);
 		}
 		else if(item && item.place_id){ // ответ от гугла
 			this.getPlaceDetails(item.place_id)

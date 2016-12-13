@@ -184,7 +184,8 @@
         if(type === 'list') {
             this.autoComplete = new window.lpw.AutoComplete(
                 '#sp-search',
-                $this.autoSearch
+                $this.autoSearch,
+                category
             );
             this.lpwGoogleMap = new window.lpw.Map(
                 '#map-modal',
