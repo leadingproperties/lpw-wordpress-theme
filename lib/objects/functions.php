@@ -411,16 +411,16 @@ function single_object_html($args) {
 					}
 					$html .= '</li>';
 				}
-				if(isset($objects_obj->features->terrace_balcony->present) && $objects_obj->features->terrace_balcony->present === true) {
+				if(isset($objects_obj->features->terrace_balcony) && $objects_obj->features->terrace_balcony === true) {
 					$html .= '<li>' . __('s_object:terrace_balcony', 'leadingprops') . '</li><li><i class="icon icon-checkmark-circle"></i></li>';
 				}
-				if(isset($objects_obj->features->pool->present) && $objects_obj->features->pool->present === true) {
+				if(isset($objects_obj->features->pool) && $objects_obj->features->pool === true) {
 					$html .= '<li>' . __('s_object:pool', 'leadingprops') . '</li><li><i class="icon icon-checkmark-circle"></i></li>';
 				}
-				if(isset($objects_obj->features->garage_parking->present) && $objects_obj->features->garage_parking->present === true) {
+				if(isset($objects_obj->features->garage_parking) && $objects_obj->features->garage_parking === true) {
 					$html .= '<li>' . __('s_object:garage_parking', 'leadingprops') . '</li><li><i class="icon icon-checkmark-circle"></i></li>';
 				}
-				if(isset($objects_obj->features->utility_rooms->present) && $objects_obj->features->utility_rooms->present === true) {
+				if(isset($objects_obj->features->utility_rooms) && $objects_obj->features->utility_rooms === true) {
 					$html .= '<li>' . __('s_object:utility_rooms', 'leadingprops') . '</li><li><i class="icon icon-checkmark-circle"></i></li>';
 				}
 				if($object_type === 'rent') {
