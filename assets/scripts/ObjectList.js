@@ -458,12 +458,14 @@
 
         if(!_.isEmpty(data)) {
             data = JSON.stringify(data);
-            if(eventtype !== 'popstate') {
+            if(eventtype !== 'popstate' && window.lpw.Helpers.isHhistoryApiAvailable()) {
                 window.history.pushState(null, null, url + '?filter=' + encodeURIComponent(data));
             }
 
         } else {
-            window.history.pushState(null, null, url);
+            if(window.lpw.Helpers.isHhistoryApiAvailable()){
+	            window.history.pushState(null, null, url);
+            }
         }
     };
 
