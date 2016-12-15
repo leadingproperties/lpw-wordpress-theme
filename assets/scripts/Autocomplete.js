@@ -45,19 +45,20 @@
 		this.jqInput.typeahead(
 			{
 				delay: 500,
+				items: 'all',
 				fitToElement: true,
 				matcher: function(item){ //нам не нужна доп. фильтрация совпадений плагином, так что переназначаем нативный метод
 					return true;
 				},
 				menu: '<ul class="sp-search-dropdown" role="listbox"></ul>',
-				item: '<li><a href="#" role="option"></a></li>',
+				item: '<li role="option"><a href="#" tabindex="-1"></a></li>',
 				afterSelect: $this.afterSelect.bind($this),
-				minLength: 0,
+				minLength: 2,
 				source: function(query, process){
 					if(query && query.length > 0){
-						$this.askAPI(query)
-							.done($this.askAPISuccess.bind($this, query, process))
-							.fail($this.askAPIError.bind($this, query, process));
+						$this.getMatches(query)
+							.done($this.getMatchesSuccess.bind($this, query, process))
+							.fail($this.getMatchesError.bind($this, query, process));
 					}else{
 						$this.autocompleteSelected = null;
 						$this.callback();
@@ -65,6 +66,19 @@
 				}
 			}
 		);
+
+		this.jqInput.on('keydown', this.scrollOnKeydown);
+		this.jqInput.on('blur', this.onBlur.bind(this));
+	};
+
+	/**
+	 * Call api suggester and google maps api requesters
+	 *
+	 * @param {String} query
+	 * @returns {Promise}
+	 */
+	AutoComplete.prototype.getMatches = function(query){
+		return $.when(this.askAPI(query), this.askGoogleAPI(query));
 	};
 
 	/**
@@ -310,6 +324,40 @@
 	};
 
 	/**
+	 * Success Callback for getMatches
+	 * @param query
+	 * @param processCallback
+	 * @param {Array} apiAnswer - jquery ajax answer
+	 * @see http://api.jquery.com/jQuery.ajax/ success/error
+	 * @param {Array} dataGoogle
+	 */
+	AutoComplete.prototype.getMatchesSuccess = function(query, processCallback, apiAnswer, dataGoogle){
+		var items = [];
+
+		console.debug('getMatchesSuccess', apiAnswer, dataGoogle);
+		var apiData = (apiAnswer[0]) ? JSON.parse(apiAnswer[0]) : false;
+		if(apiData.length > 0){
+			items = items.concat(this.getParsedAPIAnswer(apiData));
+		}
+		if(dataGoogle){
+			items = items.concat(dataGoogle);
+		}
+
+		this.toggleNoResultsMessage(items.length === 0);
+		processCallback(items);
+	};
+
+	/**
+	 * Error Callback for getMatches
+	 * @param query
+	 * @param processCallback
+	 */
+	AutoComplete.prototype.getMatchesError = function(query, processCallback) {
+		this.toggleNoResultsMessage(true);
+		processCallback([]);
+	};
+
+	/**
 	 * Success Callback для askAPI.
 	 * Если есть ответ с совпадениями, то отдаем в Typeahead. Если нет - делаем запрос к GoogleAPI
 	 *
@@ -318,6 +366,8 @@
 	 * @param data - ответ
 	 * @param textStatus - см. аргументы jQuery.ajax.success
 	 * @param jqXHR - см. аргументы jQuery.ajax.success
+	 *
+	 * @deprecated
 	 */
 	AutoComplete.prototype.askAPISuccess = function(query, processCallback, data, textStatus, jqXHR){
 		var jsonData = (data) ? JSON.parse(data) : false;
@@ -340,6 +390,8 @@
 	 * @param jqXHR - см. аргументы jQuery.ajax.error
 	 * @param textStatus - см. аргументы jQuery.ajax.error
 	 * @param errorThrown - см. аргументы jQuery.ajax.error
+	 *
+	 * @deprecated
 	 */
 	AutoComplete.prototype.askAPIError = function(query, processCallback, jqXHR, textStatus, errorThrown){
 		this.askGoogleAPI(query)
@@ -353,6 +405,8 @@
 	 * @param query - значение из инпута автокомплита
 	 * @param processCallback - суперр-пупер ресолвер плагина typeahead, он получает массив готовых итемов-совпадений
 	 * @param array - массив готовых совпадений для typeahead
+	 *
+	 * @deprecated
 	 */
 	AutoComplete.prototype.askGoogleAPISuccess = function(query, processCallback, array){
 		processCallback(array); //отдаем итемы в typeahead
@@ -365,6 +419,8 @@
 	 * @param query - значение из инпута автокомплита
 	 * @param processCallback - суперр-пупер ресолвер плагина typeahead, он получает массив готовых итемов-совпадений
 	 * @param statusString - строка статуса ответа от гугла (https://developers.google.com/maps/documentation/javascript/3.exp/reference#PlacesServiceStatus)
+	 *
+	 * @deprecated
 	 */
 	AutoComplete.prototype.askGoogleAPIError = function(query, processCallback, statusString){
 		console.debug('askGoogleAPIError', query, processCallback, statusString);
@@ -406,6 +462,55 @@
 	 */
 	AutoComplete.prototype.getPlaceDetailsError = function(status) {
 		console.error('getPlaceDetailsError');
+	};
+
+	/**
+	 * Scrolls dropdown on down/up arrow keys press
+	 * @param e - keydown event
+	 */
+	AutoComplete.prototype.scrollOnKeydown = function(e) {
+		var dropdown = $(this).siblings('.sp-search-dropdown'),
+		    active = dropdown.find('.active'),
+		    activeTop,
+		    dropdownScrolltop,
+		    dropdownHeight = dropdown.height();
+
+		if(active.length > 0){
+			if(e.keyCode === 40 || e.keyCode === 38){
+				dropdownScrolltop = dropdown.scrollTop();
+				activeTop = active.position().top;
+
+				if(activeTop > dropdownHeight){
+					if(dropdownScrolltop > dropdownHeight){//out of viewport - down
+						dropdown.scrollTop(activeTop + dropdownScrolltop);
+					}else {
+						dropdown.scrollTop(activeTop);
+					}
+				}else if(activeTop < 0){//out of viewport - top
+					if(e.keyCode === 38){//down arrow
+						dropdown.scrollTop(dropdownScrolltop - (activeTop * -1));
+					}else {
+						dropdown.scrollTop(0);
+					}
+				}
+			}
+
+		}
+	};
+
+	/**
+	 * Hides No results message
+	 */
+	AutoComplete.prototype.onBlur = function() {
+		this.toggleNoResultsMessage(false);
+	};
+
+	/**
+	 * Toggles No results message visibility
+	 * @param {Boolean} bool
+	 */
+	AutoComplete.prototype.toggleNoResultsMessage = function(bool) {
+		$('#autocomplete-no-results').toggle(bool);
 	};
 
 	window.lpw = window.lpw || {};
