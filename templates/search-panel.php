@@ -5,6 +5,7 @@
 			<label for="sp-search" class="sr-only">Search</label>
 			<div class="sp-input-wrap">
 				<input id="sp-search" type="text" class="sp-input text-input dropdown-trigger" placeholder="<?php _e('search_panel:autocomplete', 'leadingprops'); ?>">
+				<div id="autocomplete-no-results" class='autocomplete-no-results'><span>No matches</span></div>
 			</div>
 			<a href="#" class="filter-toggle tooltip-type-search icon" data-toggle="tooltip" data-placement="bottom" title="<?php _e('alerts:advanced_search', 'leadingprops'); ?>"><span class="sr-only">Filter</span></a>
 			<?php if( is_page_template('page-buy.php') ) {
