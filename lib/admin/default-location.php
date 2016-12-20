@@ -207,6 +207,12 @@ class LP_Theme_Options {
 			'section' => 'locations',
 			'desc'  => ''
 		);
+		$this->settings['use_default_rent'] = array(
+			'section' => 'locations',
+			'title'   => __( 'Use default locations' ),
+			'type'    => 'checkbox',
+			'std'     => 0
+		);
 		$this->settings['rent_location'] = array(
 			'title'   => __( 'Rent default location' ),
 			'std'   => 'Switzerland or London or Old Town, Prague',

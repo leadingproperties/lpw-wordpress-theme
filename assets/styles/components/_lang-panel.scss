@@ -193,6 +193,9 @@ span[class*=" lang-"] {
     //not sure about this one - Traditional Chinese
     background-position: center (-$flag-height * 41);
   }
+  &-ka {
+    background-position: center (-$flag-height * 42);
+  }
 
 }
 .section-lang-lists {
