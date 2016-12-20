@@ -452,18 +452,20 @@
         };
     }
     ObjectList.prototype.setUrls = function(data, eventtype) {
-        var url = window.location.protocol + '//' + window.location.hostname + window.location.pathname,
+        var url = window.location.origin ? window.location.origin :  (window.location.protocol + '//' + window.location.hostname + window.location.pathname + window.location.port),
             excluded = ['action', 'fn', 'page', 'per_page', 'for_sale', 'for_rent', 'lang'];
         data = _.omit(data, excluded);
 
         if(!_.isEmpty(data)) {
             data = JSON.stringify(data);
-            if(eventtype !== 'popstate') {
+            if(eventtype !== 'popstate' && window.lpw.Helpers.isHhistoryApiAvailable()) {
                 window.history.pushState(null, null, url + '?filter=' + encodeURIComponent(data));
             }
 
         } else {
-            window.history.pushState(null, null, url);
+            if(window.lpw.Helpers.isHhistoryApiAvailable()){
+	            window.history.pushState(null, null, url);
+            }
         }
     };
 

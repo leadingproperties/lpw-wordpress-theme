@@ -219,3 +219,19 @@ a.filter-toggle {
     }
   }
 }
+
+.autocomplete-no-results {
+  @extend .sp-search-dropdown;
+  span {
+    display: block;
+    padding: 5.5px 10px;
+    text-decoration: none;
+    overflow: hidden;
+    text-indent: 2px;
+    background: #fff;
+    color: $color-red;
+  }
+  @media (min-width: $screen370) {
+    font-size: 16px;
+  }
+}
