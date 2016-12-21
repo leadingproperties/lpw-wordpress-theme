@@ -69,8 +69,8 @@ class LP_ObjectList {
             'query' => ''
         ];
         $this->args = array_merge($defaults, $args);
-	    //$this->api_url = "https://lpw-public-api.herokuapp.com";
-        $this->api_url = "https://staging-lpw-public-api.herokuapp.com";
+	    $this->api_url = "https://lpw-public-api.herokuapp.com";
+        //$this->api_url = "https://staging-lpw-public-api.herokuapp.com";
 
 	    $this->token = get_field('api_key', 'option');
 	    if(empty($this->api_url) || empty($this->token)) {
@@ -114,7 +114,7 @@ class LP_ObjectList {
                 }
                 break;
             case 'get_pdf':
-                $url .= $this->args['lang'] . '/pdf/';
+                $url .= '/' . $this->args['lang'] . '/pdf/';
                 if($this->args['property_id']) {
                     $url .= $this->args['property_id'];
                 }
@@ -224,7 +224,6 @@ class LP_ObjectList {
                 }
 
         }
-
         $curl_options = [
             CURLOPT_URL => $url,
             CURLOPT_HTTPHEADER => [
