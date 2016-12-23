@@ -125,7 +125,11 @@
 		this.autocompleteService.getQueryPredictions(
 			{input: query},
 			function(array, status){
-				status === "OK" ? deferred.resolve($this.getParsedPlacesArray(array)) : deferred.reject(status); // jshint ignore:line, strict:true
+				var answer = [];
+				if(status === "OK"){
+					answer = $this.getParsedPlacesArray(array);
+				}
+				deferred.resolve(answer);
 			}
 		);
 		return deferred.promise();
