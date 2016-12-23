@@ -63,7 +63,8 @@
 						$this.autocompleteSelected = null;
 						$this.callback();
 					}
-				}
+				},
+				render: $this.renderForTypeahead
 			}
 		);
 
@@ -511,6 +512,86 @@
 	 */
 	AutoComplete.prototype.toggleNoResultsMessage = function(bool) {
 		$('#autocomplete-no-results').toggle(bool);
+	};
+
+	/**
+	 * Overrides `render` method of Typeahed plugin to add css class for google items.
+	 * It's copy+paste version of Typeahed.render method, because `render` method inserts items directly in DOM
+	 * and returns only `this` reference.
+	 *
+	 *
+	 * @param {Array} items
+	 * @returns {Object} - Typeahead instance
+	 *
+	 * @see bower_components/bootstrap3-typeahead/bootstrap3-typeahead.js:259 (original render method)
+	 */
+	AutoComplete.prototype.renderForTypeahead = function(items) {
+		var that = this;
+		var self = this;
+		var activeFound = false;
+		var data = [];
+		var _category = that.options.separator;
+		var hasApiItems = false;
+
+		$.each(items, function (key,value) {
+			// inject separator
+			if (key > 0 && value[_category] !== items[key - 1][_category]){
+				data.push({
+					__type: 'divider'
+				});
+			}
+
+			// inject category header
+			if (value[_category] && (key === 0 || value[_category] !== items[key - 1][_category])){
+				data.push({
+					__type: 'category',
+					name: value[_category]
+				});
+			}
+			data.push(value);
+		});
+
+		items = $(data).map(function (i, item) {
+			if ((item.__type || false) == 'category'){
+				return $(that.options.headerHtml).text(item.name)[0];
+			}
+
+			if ((item.__type || false) == 'divider'){
+				return $(that.options.headerDivider)[0];
+			}
+
+			var text = self.displayText(item);
+			i = $(that.options.item).data('value', item);
+			i.find('a').html(that.highlighter(text, item));
+			if (text == self.$element.val()) {
+				i.addClass('active');
+				self.$element.data('active', item);
+				activeFound = true;
+			}
+
+			// set hasApiItems to true once
+			if(!hasApiItems && item.parent_id){
+				hasApiItems = true;
+			}
+			// add pbgoogle class for google matches
+			if(item.place_id){
+				i.addClass('pbgoogle');
+			}
+			return i[0];
+		});
+
+		//add item-divider class
+		if(hasApiItems){
+			items.filter('.pbgoogle').first().addClass('item-divider');
+		}
+
+		if (this.autoSelect && !activeFound) {
+			items.filter(':not(.dropdown-header)').first().addClass('active');
+			this.$element.data('active', items.first().data('value'));
+		}
+		this.$menu.html(items);
+		return this;
+
 	};
 
 	window.lpw = window.lpw || {};
