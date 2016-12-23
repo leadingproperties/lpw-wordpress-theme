@@ -67,7 +67,7 @@ function lp_rewrite_rule(){
  */
 function assets() {
   global $lp_settings;
-  $ver = "1.0";
+  $ver = "1.1";
   wp_enqueue_style('lprop/css', Assets\asset_path('styles/main.css'), false, $ver);
 
   if (is_single() && comments_open() && get_option('thread_comments')) {
