@@ -334,7 +334,6 @@
 	AutoComplete.prototype.getMatchesSuccess = function(query, processCallback, apiAnswer, dataGoogle){
 		var items = [];
 
-		console.debug('getMatchesSuccess', apiAnswer, dataGoogle);
 		var apiData = (apiAnswer[0]) ? JSON.parse(apiAnswer[0]) : false;
 		if(apiData.length > 0){
 			items = items.concat(this.getParsedAPIAnswer(apiData));
