@@ -99,7 +99,7 @@ function get_shorten_url($url) {
 		$curl = curl_init($api_url);
 		curl_setopt($curl, CURLOPT_HEADER, false);
 		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
-		curl_setopt($curl, CURLOPT_REFERER, $_SERVER["HTTP_REFERER"]);
+		curl_setopt($curl, CURLOPT_REFERER, home_url('/'));
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($curl, CURLOPT_HTTPHEADER,
 			["Content-type: application/json"]);
