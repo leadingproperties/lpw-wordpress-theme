@@ -21,10 +21,6 @@
 					<input id="houses" class="property_type" type="checkbox" value="2" name="type">
 					<label for="houses"><?php _e('search_panel:property_types:houses', 'leadingprops'); ?></label>
 				</div>
-				<div class="sp-checkbox">
-					<input id="commercial" class="property_type" type="checkbox" value="3" name="type">
-					<label for="commercial"><?php _e('search_panel:property_types:commercial', 'leadingprops'); ?></label>
-				</div>
 			</div>
 			<div class="sp-760-group sp-760-middle">
 				<div class="sp-filters-group filter-rooms">
