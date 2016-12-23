@@ -120,7 +120,11 @@
 		this.autocompleteService.getQueryPredictions(
 			{input: query},
 			function(array, status){
-				status === "OK" ? deferred.resolve($this.getParsedPlacesArray(array)) : deferred.reject(status); // jshint ignore:line, strict:true
+				var answer = [];
+				if(status === "OK"){
+					answer = $this.getParsedPlacesArray(array);
+				}
+				deferred.resolve(answer);
 			}
 		);
 		return deferred.promise();
@@ -334,7 +338,6 @@
 	AutoComplete.prototype.getMatchesSuccess = function(query, processCallback, apiAnswer, dataGoogle){
 		var items = [];
 
-		console.debug('getMatchesSuccess', apiAnswer, dataGoogle);
 		var apiData = (apiAnswer[0]) ? JSON.parse(apiAnswer[0]) : false;
 		if(apiData.length > 0){
 			items = items.concat(this.getParsedAPIAnswer(apiData));
