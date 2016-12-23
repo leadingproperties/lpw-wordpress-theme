@@ -44,7 +44,6 @@
   margin: 0;
   background: #fff;
   list-style: none;
-  max-height: 175px;
   overflow-x: hidden;
   overflow-y: auto;
   li {
@@ -196,7 +195,7 @@ a.filter-toggle {
     padding-right: 65px;
   }
   .sp-search-dropdown {
-    width: if($map, $container-width-2 - 385, $container-width-2 - 285);
+    width: 555px;
     border-top: 0;
     top: 100%;
   }
