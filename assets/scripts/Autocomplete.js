@@ -54,6 +54,10 @@
 				item: '<li role="option"><a href="#" tabindex="-1"></a></li>',
 				afterSelect: $this.afterSelect.bind($this),
 				minLength: 2,
+				// override default sorter (causes WP-109)
+				sorter: function(items) {
+					return items;
+				},
 				source: function(query, process){
 					if(query && query.length > 0){
 						$this.getMatches(query)
