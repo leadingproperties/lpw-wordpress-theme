@@ -10,6 +10,7 @@
 		$link = get_permalink() . '?ids=' .  $_GET['ids'];
 		if(get_field('use_google_shortener', 'option')) {
 			$shorten_url = get_shorten_url($link);
+			print_r($shorten_url);
 			if(!isset($shorten_url->error) && isset($shorten_url->id)) {
 				$link = $shorten_url->id;
 			}
