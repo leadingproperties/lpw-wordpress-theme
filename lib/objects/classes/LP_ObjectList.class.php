@@ -10,14 +10,14 @@ class LP_ObjectList {
      */
     private $args = [];
 
-    /**
-     * API url
-     * @since 1.0
-     * @access private
-     * @var string
-     */
+	/**
+	 * API url
+	 * @since 1.0
+	 * @access private
+	 * @var string
+	 */
 
-    private $api_url;
+	private $api_url;
     /**
      * Authorazation token
      * @since 1.0
@@ -38,7 +38,7 @@ class LP_ObjectList {
     public $objects;
 
 
-    /**
+      /**
      * Error
      *
      * @since 1.0
@@ -48,13 +48,13 @@ class LP_ObjectList {
 
     public $error = false;
 
-    /**
-     * Error Message
-     *
-     * @since 1.0
-     * @access public
-     * @var string
-     */
+	/**
+	 * Error Message
+	 *
+	 * @since 1.0
+	 * @access public
+	 * @var string
+	 */
 
     public $error_message;
 
@@ -69,12 +69,14 @@ class LP_ObjectList {
             'query' => ''
         ];
         $this->args = array_merge($defaults, $args);
-        $this->api_url = "https://lpw-public-api.herokuapp.com";
-        $this->token = get_field('api_key', 'option');
-        if(empty($this->api_url) || empty($this->token)) {
-            $this->error = true;
-            $this->error_message = 'Set the API url and API key';
-        }
+	  //  $this->api_url = "https://lpw-public-api.herokuapp.com";
+        $this->api_url = "https://staging-lpw-public-api.herokuapp.com";
+
+	    $this->token = get_field('api_key', 'option');
+	    if(empty($this->api_url) || empty($this->token)) {
+		    $this->error = true;
+		    $this->error_message = 'Set the API url and API key';
+	    }
     }
 
     /**
@@ -98,6 +100,9 @@ class LP_ObjectList {
                 break;
             case 'get_suggestions':
                 $url .= '/suggest?q=' . urlencode($this->args['query']);
+                if($this->args['scope']) {
+                    $url .= '&scope=' . $this->args['scope'];
+                }
                 break;
             case 'get_geopoints':
                 if($this->args['type'] === 'sale') {
@@ -118,7 +123,7 @@ class LP_ObjectList {
                 }
                 break;
             case 'get_subtypes':
-                $url .= '/subtype_counters?';
+                    $url .= '/subtype_counters?';
                 if($this->args['subtype_parent_id']) {
                     $url .= 'subtype_parent_id=' . $this->args['subtype_parent_id'];
                 }
@@ -140,13 +145,13 @@ class LP_ObjectList {
                 }
                 break;
             case 'get_countries':
-                $url .= '/countries/commercial';
+                    $url .= '/countries/commercial';
                 break;
             default:
 
                 $url .= '/' .$this->args['lang'] . '/property_objects/';
                 if ( isset( $this->args['slug'] ) ) {
-                    $url .= $this->args['slug'];
+                    $url .= 'slug/' . $this->args['slug'];
                 } else {
                     $url .= '?page=' . $this->args['page'] . '&for_sale=' . $this->args['for_sale'] . '&for_rent=' . $this->args['for_rent'];
                     if ( isset( $this->args['ids'] ) && is_array( $this->args['ids'] ) ) {
@@ -219,7 +224,6 @@ class LP_ObjectList {
                 }
 
         }
-
         $curl_options = [
             CURLOPT_URL => $url,
             CURLOPT_HTTPHEADER => [
@@ -227,8 +231,8 @@ class LP_ObjectList {
                 'Accept-Language: ' . $this->args['lang']
             ],
             CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_HEADER => true,
-            CURLOPT_VERBOSE => true
+	        CURLOPT_HEADER => true,
+	        CURLOPT_VERBOSE => true
         ];
         $ch = curl_init();
 
@@ -242,22 +246,22 @@ class LP_ObjectList {
             return json_encode(['error' => true, 'errorMessage' => $this->error_message]);
         }
 
-        $header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
-        $header = substr($resp, 0, $header_size);
-        $body = substr($resp, $header_size);
+	    $header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
+	    $header = substr($resp, 0, $header_size);
+	    $body = substr($resp, $header_size);
 
         curl_close($ch);
-        $headers = $this->parse_headers($header);
-        if($headers && $headers[0] === 'HTTP/1.1 401 Unauthorized') {
-            $this->error = true;
-            $this->error_message = "Authorization failed";
-            return json_encode(['error' => true, 'errorMessage' => $this->error_message]);
-        }
-        if(!$this->isJson($body)) {
-            $this->error = true;
-            $this->error_message = "Service returns wrong format";
-            return json_encode(['error' => true, 'errorMessage' => $this->error_message]);
-        }
+	    $headers = $this->parse_headers($header);
+	    if($headers && $headers[0] === 'HTTP/1.1 401 Unauthorized') {
+		    $this->error = true;
+		    $this->error_message = "Authorization failed";
+		    return json_encode(['error' => true, 'errorMessage' => $this->error_message]);
+	    }
+	    if(!$this->isJson($body)) {
+		    $this->error = true;
+		    $this->error_message = "Service returns wrong format";
+		    return json_encode(['error' => true, 'errorMessage' => $this->error_message]);
+	    }
         return $body;
     }
 
@@ -272,7 +276,7 @@ class LP_ObjectList {
 
     public function get_json_objects() {
         if($this->error) {
-            return json_encode(['error' => true, 'errorMessage' => $this->error_message]);
+	        return json_encode(['error' => true, 'errorMessage' => $this->error_message]);
         }
         return $objects = $this->get_api_objects();
     }
@@ -451,27 +455,27 @@ class LP_ObjectList {
         return (json_last_error() == JSON_ERROR_NONE);
     }
 
-    private function parse_headers($header) {
-        $headersAssociative = [];
+	private function parse_headers($header) {
+		$headersAssociative = [];
 
-        $headers = ($header) ? $header : '';
-        $headers = explode("\r\n", $headers);
-        if(is_array($headers)) {
-            foreach ( $headers as $i => $headerLine ) {
-                if ( $headerLine === '' ) { //skip empty lines.
-                    continue;
-                }
+		$headers = ($header) ? $header : '';
+		$headers = explode("\r\n", $headers);
+		if(is_array($headers)) {
+			foreach ( $headers as $i => $headerLine ) {
+				if ( $headerLine === '' ) { //skip empty lines.
+					continue;
+				}
 
-                $parts = explode( ': ', $headerLine );
-                if ( isset( $parts[1] ) ) {
-                    $headersAssociative[ $parts[0] ] = $parts[1]; //use key name
-                } else {
-                    $headersAssociative[ $i ] = $headerLine; //use index as key name
-                }
-            }
-        } else {
-            $headersAssociative = false;
-        }
-        return $headersAssociative;
-    }
+				$parts = explode( ': ', $headerLine );
+				if ( isset( $parts[1] ) ) {
+					$headersAssociative[ $parts[0] ] = $parts[1]; //use key name
+				} else {
+					$headersAssociative[ $i ] = $headerLine; //use index as key name
+				}
+			}
+		} else {
+			$headersAssociative = false;
+		}
+		return $headersAssociative;
+	}
 }
