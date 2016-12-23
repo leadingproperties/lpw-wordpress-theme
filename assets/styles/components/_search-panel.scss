@@ -52,6 +52,27 @@
     text-decoration: none;
     overflow: hidden;
     text-indent: 2px;
+    &.divider {
+      height: 1px;
+      padding: 0;
+      margin: 9px -5px;
+      overflow: hidden;
+      background-color: #e5e5e5;
+    }
+    &.pbgoogle {
+      position: relative;
+      &::after {
+        content: " ";
+        display: block;
+        position: absolute;
+        right: 10px;
+        bottom: 0;
+        width: 100px;
+        height: 13px;
+        background: url('../images/powered_by_google_on_white_hdpi.png') no-repeat 50%;
+        background-size: contain;
+      }
+    }
     @include text-overflow();
     span {
       color: #333;
