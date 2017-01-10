@@ -18,7 +18,7 @@ class Tags
     );
 
     public function __construct() {
-        $this->api_url = rtrim(get_field('api_url', 'option'), "/");
+        $this->api_url = 'https://lpw-public-api.herokuapp.com';
         $this->token = get_field('api_key', 'option');
     }
 
