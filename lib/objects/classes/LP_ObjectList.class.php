@@ -69,7 +69,9 @@ class LP_ObjectList {
             'query' => ''
         ];
         $this->args = array_merge($defaults, $args);
-	    $this->api_url = "https://lpw-public-api.herokuapp.com";
+	    //$this->api_url = "https://lpw-public-api.herokuapp.com";
+        $this->api_url = "https://staging-lpw-public-api.herokuapp.com";
+
 
 	    $this->token = get_field('api_key', 'option');
 	    if(empty($this->api_url) || empty($this->token)) {
@@ -119,7 +121,11 @@ class LP_ObjectList {
                 }
                 if($this->args['for_rent']) {
                     $url .= '?for_rent=true';
+                } else {
+                    $url .=  '?for_rent=false';
                 }
+                $url .= urlencode($this->add_remote_data());
+
                 break;
             case 'get_subtypes':
                     $url .= '/subtype_counters?';
@@ -220,6 +226,7 @@ class LP_ObjectList {
                     if(isset($this->args['order_by']['order'])) {
                         $url .= '&order_by[order]=' . $this->args['order_by']['order'];
                     }
+                    $url .= $this->add_remote_data();
                 }
 
         }
@@ -262,6 +269,17 @@ class LP_ObjectList {
 		    return json_encode(['error' => true, 'errorMessage' => $this->error_message]);
 	    }
         return $body;
+    }
+
+    private function add_remote_data($type = 'get') {
+        $return = '';
+        if($_SERVER['REMOTE_ADDR']) {
+            $return .= '&ip=' . urlencode($_SERVER['REMOTE_ADDR']);
+        }
+        if($_SERVER['HTTP_USER_AGENT']) {
+            $return .= '&user_agent=' . urlencode($_SERVER['HTTP_USER_AGENT']);
+        }
+        return $return;
     }
 
     /**
