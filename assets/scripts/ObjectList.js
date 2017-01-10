@@ -287,7 +287,6 @@
 
             $this.isFiltersActive();
             data.fn = 'get_objects';
-            data.ip = LpData.ip;
             $.ajax({
                 url: LpData.ajaxUrl,
                 dataType: 'json',

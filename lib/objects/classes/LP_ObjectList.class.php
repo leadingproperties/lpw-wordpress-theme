@@ -273,8 +273,16 @@ class LP_ObjectList {
 
     private function add_remote_data($type = 'get') {
         $return = '';
-        if($this->args['ip']) {
-            $return .= '&ip=' . urlencode($this->args['ip']);
+        $ip = null;
+        if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+            $ip = $_SERVER['HTTP_CLIENT_IP'];
+        } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        } else {
+            $ip = $_SERVER['REMOTE_ADDR'];
+        }
+        if($ip) {
+            $return .= '&ip=' . urlencode($ip);
         }
         if($_SERVER['HTTP_USER_AGENT']) {
             $return .= '&user_agent=' . urlencode($_SERVER['HTTP_USER_AGENT']);
