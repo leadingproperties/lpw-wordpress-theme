@@ -87,7 +87,8 @@
                 'action' : 'do_ajax',
                 'fn' : 'get_object',
                 'lang': objectlist.args.lang,
-                'slug': _.replace(url, LpData.propertyPage, '')
+                'slug': _.replace(url, LpData.propertyPage, ''),
+                'ip': LpData.ip
             };
             $this.showLoader(true);
 
