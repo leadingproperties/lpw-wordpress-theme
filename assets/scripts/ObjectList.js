@@ -452,9 +452,12 @@
         };
     }
     ObjectList.prototype.setUrls = function(data, eventtype) {
-        var url = window.location.origin ? window.location.origin :  (window.location.protocol + '//' + window.location.hostname + window.location.pathname + window.location.port),
+        //var url = window.location.origin ? window.location.origin :  (window.location.protocol + '//' + window.location.hostname + window.location.pathname + window.location.port),
+        var url = window.location.protocol + '//' + window.location.hostname + window.location.pathname,
             excluded = ['action', 'fn', 'page', 'per_page', 'for_sale', 'for_rent', 'lang'];
         data = _.omit(data, excluded);
+
+
 
         if(!_.isEmpty(data)) {
             data = JSON.stringify(data);
