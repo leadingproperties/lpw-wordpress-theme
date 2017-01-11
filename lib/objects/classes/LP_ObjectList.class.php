@@ -235,6 +235,7 @@ class LP_ObjectList {
                 }
 
         }
+
         $curl_options = [
             CURLOPT_URL => $url,
             CURLOPT_HTTPHEADER => [
@@ -310,7 +311,7 @@ class LP_ObjectList {
                 } else {
                     $return .= $prepend;
                 }
-                $return .= 'query_text=' . urlencode($useragent);
+                $return .= 'query_text=' . urlencode($queryText);
             }
         } elseif($returnType === 'array') {
             if($ip) {
