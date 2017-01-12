@@ -147,7 +147,7 @@
 		if(this.map.getZoom() === $this.mapOptions.maxZoom){//когда достигли максимально допустимого зума
 			var place = cluster.markers_[0].getPlace();
 			if(place && place.placeId){
-				var shape = this.getShapeFromBound(cluster.getBounds());
+				var shape = this.getShapeFromBound(cluster.bounds_);
 				this.autoComplete.getPlaceDetails(place.placeId).done(function(place){
 					var coordinates = $this.autoComplete.getCoordinatesFromGooglePlace(place);
 					if(shape && $this.autoComplete.isValidLocationShape(shape)){
