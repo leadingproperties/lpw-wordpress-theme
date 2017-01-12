@@ -125,7 +125,7 @@ class LP_ObjectList {
                     $url .=  '?for_rent=false';
                 }
 
-                $url .= $this->add_remote_data();
+                $url .= self::add_remote_data();
 
                 break;
             case 'get_subtypes':
@@ -159,7 +159,7 @@ class LP_ObjectList {
                 if ( isset( $this->args['slug'] ) ) {
                     $url .= 'slug/' . $this->args['slug'];
 
-                    $url .= $this->add_remote_data('string', '?');
+                    $url .= self::add_remote_data('string', '?');
                 } else {
                     $url .= '?page=' . $this->args['page'] . '&for_sale=' . $this->args['for_sale'] . '&for_rent=' . $this->args['for_rent'];
                     if ( isset( $this->args['ids'] ) && is_array( $this->args['ids'] ) ) {
@@ -229,9 +229,6 @@ class LP_ObjectList {
                     if(isset($this->args['order_by']['order'])) {
                         $url .= '&order_by[order]=' . $this->args['order_by']['order'];
                     }
-
-                    $autocompleteText = (isset($this->args['autocomplete']['text'])) ? $this->args['autocomplete']['text'] : null;
-                    $url .= $this->add_remote_data('string', '&', $autocompleteText);
                 }
 
         }
@@ -277,7 +274,7 @@ class LP_ObjectList {
         return $body;
     }
 
-    private function add_remote_data($returnType = 'string', $prepend = '&', $queryText = null) {
+    public static function add_remote_data($returnType = 'string', $prepend = '&', $queryText = null) {
         $return = null;
         if($returnType === 'string') {
             $return = '';
@@ -286,6 +283,11 @@ class LP_ObjectList {
         }
         $ip = null;
         $useragent = ($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : null;
+
+        if(!session_id()) {
+            session_start();
+        }
+        $sessionId = session_id();
         if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
             $ip = $_SERVER['HTTP_CLIENT_IP'];
         } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
@@ -313,6 +315,14 @@ class LP_ObjectList {
                 }
                 $return .= 'query_text=' . urlencode($queryText);
             }
+            if($sessionId = session_id()) {
+                if($ip || $useragent || $queryText) {
+                    $return .= '&';
+                } else {
+                    $return .= $prepend;
+                }
+                $return .= 'session_id=' . urlencode($sessionId);
+            }
         } elseif($returnType === 'array') {
             if($ip) {
                 $return['ip'] = $ip;
@@ -320,7 +330,9 @@ class LP_ObjectList {
             if($useragent) {
                 $return['user_agent'] = $useragent;
             }
+            $return['session_id'] = $sessionId;
         }
+        echo $return;
         return $return;
     }
 
@@ -445,7 +457,7 @@ class LP_ObjectList {
                     $data['several_countries'] = true;
                 }
             }
-            $data = array_merge($data, $this->add_remote_data('array'));
+            $data = array_merge($data, self::add_remote_data('array'));
 
             $content = json_encode( $data );
 

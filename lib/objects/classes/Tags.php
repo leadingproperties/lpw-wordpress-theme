@@ -18,7 +18,7 @@ class Tags
     );
 
     public function __construct() {
-        $this->api_url = 'https://lpw-public-api.herokuapp.com';
+        $this->api_url = 'https://staging-lpw-public-api.herokuapp.com';
         $this->token = get_field('api_key', 'option');
     }
 
@@ -30,7 +30,9 @@ class Tags
         if($request_data['raw']['fn']) {
             unset($request_data['raw']['fn']);
         }
-        $counters = $this->get_counters($request_data['raw']);
+        $query_text = (isset($request_data['autocomplete']['text']) && !empty($request_data['autocomplete']['text'])) ? $request_data['autocomplete']['text'] : null;
+
+        $counters = $this->get_counters($request_data['raw'], $query_text);
 
         if(count($counters) > 0){
             $format = '<ul class="tag-list">%1$s%2$s%3$s%4$s%5$s%6$s%7$s%8$s%9$s<li><span class="tag-remove-all" data-tag_type="all"></span></li></ul>';
@@ -61,11 +63,11 @@ class Tags
         return $answer;
     }
 
-    function get_counters($params){
+    function get_counters($params, $query_text = null) {
         if($params['l_id']){
             $params['property_object'] = $params['l_id'];
         }
-        $url = $this->api_url . '/counters?' . preg_replace('/%5B[0-9]+%5D/simU', '%5B%5D', http_build_query($params));
+        $url = $this->api_url . '/counters?' . preg_replace('/%5B[0-9]+%5D/simU', '%5B%5D', http_build_query($params)) . \LP_ObjectList::add_remote_data('string', '&', $query_text);
 
         $curl_options = [
             CURLOPT_URL => $url,
