@@ -321,7 +321,7 @@ class LP_ObjectList {
                 } else {
                     $return .= $prepend;
                 }
-                $return .= 'session_id=' . urlencode($sessionId);
+                $return .= 'session_id=' . $sessionId;
             }
         } elseif($returnType === 'array') {
             if($ip) {
