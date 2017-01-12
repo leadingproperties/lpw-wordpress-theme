@@ -29,32 +29,39 @@ foreach ($sage_includes as $file) {
 unset($file, $filepath);
 
 /* Global Settings */
-global $lp_settings;
-$lp_settings = [
-  'contact_phone' => get_field('contact_phone', 'option'),
-  'contact_email' => get_field('contact_email', 'option'),
-  'use_shortener' => get_field('use_google_shortener', 'option'),
-  'google_api_key' => (get_field('google_api_key', 'option')) ? get_field('google_api_key', 'option') : 'AIzaSyB9AMFYWn5z8QYptnbetxXckrldFpsZyGA',
-  'site_title' => get_bloginfo('name'),
-  'sale_page' => (get_field('sale', 'option')) ? get_field('sale', 'option') : get_page_by_title('Buy')->guid,
-  'rent_page' => (get_field('rent', 'option')) ? get_field('rent', 'option'): get_page_by_title('Rent')->guid,
-  'sale_share' => (get_field('sale_share', 'option')) ? get_field('sale_share', 'option'): get_page_by_title('Buy share')->guid,
-  'rent_share' => (get_field('rent_share', 'option')) ? get_field('rent_share', 'option'): get_page_by_title('Rent share')->guid,
-  'property_page_id' => (get_field('single_object', 'option')) ? get_field('single_object', 'option'): get_page_by_title('Single property')->id,
-  'favorites' => esc_url((get_field('sale_favorites', 'option'))?get_field('sale_favorites', 'option'):get_page_by_title('Favorites Sale')->guid),
-  'favorites_rent' => esc_url((get_field('rent_favorites', 'option'))?get_field('rent_favorites', 'option'):get_page_by_title('Favorites Rent')->guid),
-  'lang' => lpw_get_current_lang()
-];
-$property_page = get_page_link($lp_settings['property_page_id']);
-$lp_settings['property_page'] = is_ssl() ? str_replace('http:', 'https:', $property_page) : $property_page;
+function lpw_set_globals() {
+	global $lp_settings;
+	if(!is_admin()) {
+		$lp_settings = [
+			'contact_phone'    => get_field( 'contact_phone', 'option' ),
+			'contact_email'    => get_field( 'contact_email', 'option' ),
+			'use_shortener'    => get_field( 'use_google_shortener', 'option' ),
+			'google_api_key'   => ( get_field( 'google_api_key', 'option' ) ) ? get_field( 'google_api_key', 'option' ) : 'AIzaSyB9AMFYWn5z8QYptnbetxXckrldFpsZyGA',
+			'site_title'       => get_bloginfo( 'name' ),
+			'sale_page'        => ( get_field( 'sale', 'option' ) ) ? get_field( 'sale', 'option' ) : get_page_by_title( 'Buy' )->guid,
+			'rent_page'        => ( get_field( 'rent', 'option' ) ) ? get_field( 'rent', 'option' ) : get_page_by_title( 'Rent' )->guid,
+			'sale_share'       => ( get_field( 'sale_share', 'option' ) ) ? get_field( 'sale_share', 'option' ) : get_page_by_title( 'Buy share' )->guid,
+			'rent_share'       => ( get_field( 'rent_share', 'option' ) ) ? get_field( 'rent_share', 'option' ) : get_page_by_title( 'Rent share' )->guid,
+			'property_page_id' => ( get_field( 'single_object', 'option' ) ) ? get_field( 'single_object', 'option' ) : get_page_by_title( 'Single property' )->id,
+			'favorites'        => esc_url( ( get_field( 'sale_favorites', 'option' ) ) ? get_field( 'sale_favorites', 'option' ) : get_page_by_title( 'Favorites Sale' )->guid ),
+			'favorites_rent'   => esc_url( ( get_field( 'rent_favorites', 'option' ) ) ? get_field( 'rent_favorites', 'option' ) : get_page_by_title( 'Favorites Rent' )->guid ),
+			'lang'             => lpw_get_current_lang()
+		];
+		$property_page                = get_page_link( $lp_settings['property_page_id'] );
+		$lp_settings['property_page'] = is_ssl() ? str_replace( 'http:', 'https:', $property_page ) : $property_page;
+		if(!(defined( 'DOING_AJAX' ) && DOING_AJAX)) {
+			$objects                 = new LP_ObjectList();
+			$counters                = $objects->get_global_counters();
+			$lp_settings['counters'] = [
+				'for_sale'   => ( $counters['global_counters']['for_sale'] ) ? $counters['global_counters']['for_sale'] : '',
+				'for_rent'   => ( $counters['global_counters']['for_rent'] ) ? $counters['global_counters']['for_rent'] : '',
+				'commercial' => ( $counters['global_counters']['commercial'] ) ? $counters['global_counters']['commercial'] : ''
+			];
+		}
+	}
+}
 
-$objects = new LP_ObjectList();
-$counters = $objects->get_global_counters();
-$lp_settings['counters'] = [
-	'for_sale' => ($counters['global_counters']['for_sale']) ? $counters['global_counters']['for_sale'] : '',
-	'for_rent' => ($counters['global_counters']['for_rent']) ? $counters['global_counters']['for_rent'] : '',
-	'commercial' => ($counters['global_counters']['commercial']) ? $counters['global_counters']['commercial'] : ''
-];
+add_action('init', 'lpw_set_globals');
 
 
 

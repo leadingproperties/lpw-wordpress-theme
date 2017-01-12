@@ -68,64 +68,77 @@ function lp_rewrite_rule(){
 function assets() {
   global $lp_settings;
   $ver = "1.2";
-  wp_enqueue_style('lprop/css', Assets\asset_path('styles/main.css'), false, $ver);
+    if(!is_admin()) {
+        wp_enqueue_style( 'lprop/css', Assets\asset_path( 'styles/main.css' ), false, $ver );
 
-  if (is_single() && comments_open() && get_option('thread_comments')) {
-    wp_enqueue_script('comment-reply');
-  }
-  if(is_page_template('page-buy.php') || is_page_template('page-rent.php') || is_page_template('page-invest.php')) {
+        if ( is_single() && comments_open() && get_option( 'thread_comments' ) ) {
+            wp_enqueue_script( 'comment-reply' );
+        }
+        if ( is_page_template( 'page-buy.php' ) || is_page_template( 'page-rent.php' ) || is_page_template( 'page-invest.php' ) ) {
 
- 	 wp_enqueue_script('google-map', 'https://maps.googleapis.com/maps/api/js?key=' . $lp_settings['google_api_key'] . '&libraries=places&language=en', null, true);
-      wp_enqueue_script('js-marker-clusterer', Assets\asset_path('/scripts/js-marker-clusterer.js'), ['jquery', 'google-map'], null, true);
-	 wp_register_script('lprop/js', Assets\asset_path('scripts/main.js'), ['jquery', 'lodash', 'google-map', 'js-marker-clusterer'], $ver, true);
-  } else {
-	  wp_register_script('lprop/js', Assets\asset_path('scripts/main.js'), ['jquery', 'lodash'], $ver, true);
-  }
-  wp_enqueue_script('lodash', Assets\asset_path('scripts/lodash.js'), [], null, true);
-  $count_posts = wp_count_posts('post');
-  $data = [
-	  'siteTitle'   => $lp_settings['site_title'],
-	  'homeUrl' => home_url('/'),
-	  'ajaxUrl' => admin_url('admin-ajax.php'),
-	  'useShortener' => $lp_settings['use_shortener'],
-	  'salePage'    => $lp_settings['sale_page'],
-	  'rentPage'    => $lp_settings['rent_page'],
-	  'propertyPage'    => $lp_settings['property_page'],
-      'saleSharer'  => $lp_settings['sale_share'],
-      'rentSharer'  => $lp_settings['rent_share'],
-	  'totalPost' => $count_posts->publish,
-	  'perPage' => get_option('posts_per_page'),
-	  'lang'    => $lp_settings['lang'],
-	  'totalSale' => $lp_settings['counters']['for_sale'],
-	  'totalRent'   => $lp_settings['counters']['for_rent'],
-      'totalInvest'   => $lp_settings['counters']['commercial']
-  ];
-	$data['totalObjects'] = (is_page_template('page-buy.php')) ? $lp_settings['counters']['for_sale'] : $lp_settings['counters']['for_rent'];
-    if((is_page_template('page-sharer.php') || is_page_template('page-sharer-rent.php')) && isset($_GET['ids'])) {
-      $data['ids'] = explode('.', $_GET['ids']);
-    }
-	if(is_tag()) {
-		$tag_id = get_query_var('tag_id');
-		$tag = get_tags( ['include' => $tag_id] );
-		$data['tag'] = $tag_id;
-		$data['totalPost'] = $tag[0]->count;
-	}
-    if(is_page_template('page-buy.php')) {
-        if(1 == lwp_option('use_default')) {
-            $data['defaultLocation'] = true;
-            $data['saleDefault'] = lwp_option('sale_location');
-            $data['saleDefaultCoords'] = json_decode(lwp_option('sale_location_geodata'));
+            wp_enqueue_script( 'google-map', 'https://maps.googleapis.com/maps/api/js?key=' . $lp_settings['google_api_key'] . '&libraries=places&language=en', null, true );
+            wp_enqueue_script( 'js-marker-clusterer', Assets\asset_path( '/scripts/js-marker-clusterer.js' ), [
+                'jquery',
+                'google-map'
+            ], null, true );
+            wp_register_script( 'lprop/js', Assets\asset_path( 'scripts/main.js' ), [
+                'jquery',
+                'lodash',
+                'google-map',
+                'js-marker-clusterer'
+            ], $ver, true );
+        } else {
+            wp_register_script( 'lprop/js', Assets\asset_path( 'scripts/main.js' ), [
+                'jquery',
+                'lodash'
+            ], $ver, true );
         }
-    }
-    if(is_page_template('page-rent.php')) {
-        if(1 == lwp_option('use_default_rent')) {
-            $data['defaultLocation'] = true;
-            $data['rentDefault'] = lwp_option('rent_location');
-            $data['rentDefaultCoords'] = json_decode(lwp_option('rent_location_geodata'));
+        wp_enqueue_script( 'lodash', Assets\asset_path( 'scripts/lodash.js' ), [ ], null, true );
+        $count_posts          = wp_count_posts( 'post' );
+        $data                 = [
+            'siteTitle'    => $lp_settings['site_title'],
+            'homeUrl'      => home_url( '/' ),
+            'ajaxUrl'      => admin_url( 'admin-ajax.php' ),
+            'useShortener' => $lp_settings['use_shortener'],
+            'salePage'     => $lp_settings['sale_page'],
+            'rentPage'     => $lp_settings['rent_page'],
+            'propertyPage' => $lp_settings['property_page'],
+            'saleSharer'   => $lp_settings['sale_share'],
+            'rentSharer'   => $lp_settings['rent_share'],
+            'totalPost'    => $count_posts->publish,
+            'perPage'      => get_option( 'posts_per_page' ),
+            'lang'         => $lp_settings['lang'],
+            'totalSale'    => $lp_settings['counters']['for_sale'],
+            'totalRent'    => $lp_settings['counters']['for_rent'],
+            'totalInvest'  => $lp_settings['counters']['commercial']
+        ];
+        $data['totalObjects'] = ( is_page_template( 'page-buy.php' ) ) ? $lp_settings['counters']['for_sale'] : $lp_settings['counters']['for_rent'];
+        if ( ( is_page_template( 'page-sharer.php' ) || is_page_template( 'page-sharer-rent.php' ) ) && isset( $_GET['ids'] ) ) {
+            $data['ids'] = explode( '.', $_GET['ids'] );
         }
+        if ( is_tag() ) {
+            $tag_id            = get_query_var( 'tag_id' );
+            $tag               = get_tags( [ 'include' => $tag_id ] );
+            $data['tag']       = $tag_id;
+            $data['totalPost'] = $tag[0]->count;
+        }
+        if ( is_page_template( 'page-buy.php' ) ) {
+            if ( 1 == lwp_option( 'use_default' ) ) {
+                $data['defaultLocation']   = true;
+                $data['saleDefault']       = lwp_option( 'sale_location' );
+                $data['saleDefaultCoords'] = json_decode( lwp_option( 'sale_location_geodata' ) );
+            }
+        }
+        if ( is_page_template( 'page-rent.php' ) ) {
+            if ( 1 == lwp_option( 'use_default_rent' ) ) {
+                $data['defaultLocation']   = true;
+                $data['rentDefault']       = lwp_option( 'rent_location' );
+                $data['rentDefaultCoords'] = json_decode( lwp_option( 'rent_location_geodata' ) );
+            }
+        }
+        wp_localize_script( 'lprop/js', 'LpData', $data );
+        wp_enqueue_script( 'lprop/js' );
     }
-  wp_localize_script('lprop/js', 'LpData', $data);
-  wp_enqueue_script('lprop/js');
 }
 add_action('wp_enqueue_scripts', __NAMESPACE__ . '\\assets', 100);
 
