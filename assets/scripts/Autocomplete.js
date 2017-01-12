@@ -313,7 +313,11 @@
 		var order = [
 			    "country",
 			    "administrative_area_level_1",
-			    "locality"
+			    "locality",
+			    "administrative_area_level_3",
+			    "sublocality_level_1",
+			    "sublocality_level_2",
+			    "neighborhood"
 		    ],
 		    parts = [];
 		_.forEach(
