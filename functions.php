@@ -61,16 +61,7 @@ function lpw_set_globals() {
 	}
 }
 
-add_action('init', 'lpw_set_globals');
-
-
-
-
-
-/*if(is_page_template('page-object.php')) {
-
-}*/
-
+add_action('init', 'lpw_set_globals', 1);
 
 
 function lpw_get_current_lang() {
