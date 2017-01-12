@@ -7,6 +7,7 @@
 	global $lp_settings, $objects_obj;
 	$object_slug = get_query_var('object_slug', false);
 
+
 	$list_url = '';
 
 	$objects_obj = new StdClass;
