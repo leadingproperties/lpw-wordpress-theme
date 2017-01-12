@@ -31,6 +31,7 @@ unset($file, $filepath);
 /* Global Settings */
 function lpw_set_globals() {
 	global $lp_settings;
+	$lp_settings = [];
 	if(!is_admin()) {
 		$lp_settings = [
 			'contact_phone'    => get_field( 'contact_phone', 'option' ),
@@ -42,13 +43,12 @@ function lpw_set_globals() {
 			'rent_page'        => ( get_field( 'rent', 'option' ) ) ? get_field( 'rent', 'option' ) : get_page_by_title( 'Rent' )->guid,
 			'sale_share'       => ( get_field( 'sale_share', 'option' ) ) ? get_field( 'sale_share', 'option' ) : get_page_by_title( 'Buy share' )->guid,
 			'rent_share'       => ( get_field( 'rent_share', 'option' ) ) ? get_field( 'rent_share', 'option' ) : get_page_by_title( 'Rent share' )->guid,
-			'property_page_id' => ( get_field( 'single_object', 'option' ) ) ? get_field( 'single_object', 'option' ) : get_page_by_title( 'Single property' )->id,
 			'favorites'        => esc_url( ( get_field( 'sale_favorites', 'option' ) ) ? get_field( 'sale_favorites', 'option' ) : get_page_by_title( 'Favorites Sale' )->guid ),
 			'favorites_rent'   => esc_url( ( get_field( 'rent_favorites', 'option' ) ) ? get_field( 'rent_favorites', 'option' ) : get_page_by_title( 'Favorites Rent' )->guid ),
 			'lang'             => lpw_get_current_lang()
 		];
-		$property_page                = get_page_link( $lp_settings['property_page_id'] );
-		$lp_settings['property_page'] = is_ssl() ? str_replace( 'http:', 'https:', $property_page ) : $property_page;
+
+
 		if(!(defined( 'DOING_AJAX' ) && DOING_AJAX)) {
 			$objects                 = new LP_ObjectList();
 			$counters                = $objects->get_global_counters();
@@ -59,6 +59,11 @@ function lpw_set_globals() {
 			];
 		}
 	}
+
+	$lp_settings['property_page_id'] = ( get_field( 'single_object', 'option' ) ) ? get_field( 'single_object', 'option' ) : get_page_by_title( 'Single property' )->id;
+	$property_page                = get_page_link( $lp_settings['property_page_id'] );
+	$lp_settings['property_page'] = is_ssl() ? str_replace( 'http:', 'https:', $property_page ) : $property_page;
+
 }
 
 add_action('init', 'lpw_set_globals', 1);

@@ -49,7 +49,7 @@ add_action('after_setup_theme', __NAMESPACE__ . '\\setup');
  * Rewrite rule for single object page
  */
 
-add_action('init', __NAMESPACE__ . '\\lp_rewrite_rule');
+add_action('init', __NAMESPACE__ . '\\lp_rewrite_rule', 10);
 function lp_rewrite_rule(){
 	global $lp_settings;
 
