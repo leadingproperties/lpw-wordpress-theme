@@ -332,7 +332,6 @@ class LP_ObjectList {
             }
             $return['session_id'] = $sessionId;
         }
-        echo $return;
         return $return;
     }
 
