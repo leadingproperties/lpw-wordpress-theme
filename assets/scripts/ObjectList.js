@@ -71,6 +71,9 @@
             if($this.args.location_shape) {
                 delete $this.args.location_shape;
             }
+	        if($this.args.place_id) {
+		        delete $this.args.place_id;
+	        }
             $this.usedFilters.location = false;
         }
         function clearFilters() {
