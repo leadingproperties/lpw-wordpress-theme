@@ -145,6 +145,10 @@
                         if (data.location_point.lon) {
                             $this.args.location_point.lon = data.location_point.lon;
                         }
+	                    if (data.place_id) {
+		                    $this.args.place_id = data.place_id;
+	                    }
+
                         if ($this.lpwGoogleMap.map && $this.lpwGoogleMap.map instanceof google.maps.Map) {
                             $this.lpwGoogleMap.map.setCenter({
                                 lat: data.location_point.lat,
@@ -454,7 +458,7 @@
     ObjectList.prototype.setUrls = function(data, eventtype) {
         //var url = window.location.origin ? window.location.origin :  (window.location.protocol + '//' + window.location.hostname + window.location.pathname + window.location.port),
         var url = window.location.protocol + '//' + window.location.hostname + window.location.pathname,
-            excluded = ['action', 'fn', 'page', 'per_page', 'for_sale', 'for_rent', 'lang'];
+            excluded = ['action', 'fn', 'page', 'per_page', 'for_sale', 'for_rent', 'lang', 'place_id'];
         data = _.omit(data, excluded);
 
 
