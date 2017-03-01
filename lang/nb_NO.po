@@ -173,6 +173,9 @@ msgstr "Vis stort kart"
 msgid "search_panel:toggle_map_n"
 msgstr "Vis lite kart"
 
+msgid "search_panel:tips"
+msgstr "Du kan søke på land, regioner, byer, distrikt, gatenavn, boliger, severdigheter eller på referansenummer på boligen. For eksempel:"
+
 #: lib/objects/functions.php:36 lib/objects/functions.php:460
 #: page-object.php:46 page-object.php:446
 msgid "s_object:header:detailed_info"

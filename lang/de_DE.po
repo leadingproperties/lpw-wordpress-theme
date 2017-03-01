@@ -123,6 +123,9 @@ msgstr "Große Karte zeigen"
 msgid "search_panel:toggle_map_n"
 msgstr "Kleine Karte zeigen"
 
+msgid "search_panel:tips"
+msgstr "Sie können nach Ländern suchen, nach Regionen, Städten, Stadtteilen, Straßennamen, Wohnungen, Sehenswürdigkeiten oder nach der Referenznummer einer Immobilie. Zum Beispiel:"
+
 #: lib/objects/functions.php:36 lib/objects/functions.php:460
 #: page-object.php:46 page-object.php:446
 msgid "s_object:header:detailed_info"

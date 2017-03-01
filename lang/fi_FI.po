@@ -174,6 +174,9 @@ msgstr "Näytä suuri kartta"
 msgid "search_panel:toggle_map_n"
 msgstr "Näytä pieni kartta"
 
+msgid "search_panel:tips"
+msgstr "Voit hakea maan, alueen, kaupungin, kaupunginosan, kadun nimen, asunnon, kiinnostavan paikan tai kiinteistön viitenumeron perusteella. Esimerkiksi:"
+
 #: lib/objects/functions.php:36 lib/objects/functions.php:460
 #: page-object.php:46 page-object.php:446
 msgid "s_object:header:detailed_info"

@@ -69,7 +69,8 @@ class LP_ObjectList {
             'query' => ''
         ];
         $this->args = array_merge($defaults, $args);
-	    $this->api_url = "https://lpw-public-api.herokuapp.com";
+	    //$this->api_url = "https://lpw-public-api.herokuapp.com";
+        $this->api_url = "https://staging-lpw-public-api.herokuapp.com";
 
 
 	    $this->token = get_field('api_key', 'option');
@@ -151,6 +152,9 @@ class LP_ObjectList {
                 break;
             case 'get_countries':
                     $url .= '/countries/commercial';
+                break;
+            case 'get_tips':
+                    $url .= '/suggest/tips';
                 break;
             default:
 
