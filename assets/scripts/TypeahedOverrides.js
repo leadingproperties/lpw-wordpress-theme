@@ -85,24 +85,20 @@
 	 */
 	TypeaheadOverrides.prototype.lookupForTypeahead = function(query) {
 		if (typeof(query) != 'undefined' && query !== null) {
-			console.debug('case 1');
 			this.query = query;
 		} else {
 			this.query = this.$element.val() || '';
 		}
 
 		if (this.query.length < this.options.minLength && !this.options.showHintOnFocus) {
-			console.debug('case 3');
 			return this.shown ? this.hide() : this;
 		}
 
 		var worker = $.proxy(function () {
 
 			if ($.isFunction(this.source)) {
-				console.debug('case 4');
 				this.source(this.query, $.proxy(this.process, this));
 			} else if (this.source) {
-				console.debug('case 5');
 				this.process(this.source);
 			}
 		}, this);
@@ -149,8 +145,15 @@
 		});
 
 		items = $(data).map(function (i, item) {
-			if (((item.__type || false) == 'category') || item._type === 'dropdownHeader'){
-				return $(that.options.headerHtml).text(item.name)[0];
+			if (((item.__type || false) == 'category') ||
+				item._type === 'dropdownHeader' ||
+				item._type === 'noResults'
+			){
+				var headerHtml = $(that.options.headerHtml);
+				if(item._cssClass){
+					headerHtml.addClass(item._cssClass);
+				}
+				return headerHtml.text(item.name)[0];
 			}
 
 			if ((item.__type || false) == 'divider'){
