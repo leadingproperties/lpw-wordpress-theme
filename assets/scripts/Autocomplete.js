@@ -21,7 +21,7 @@
 			google: false
 		};
 		this.tipsRequestConfig = {
-			url: 'http://localhost:8000/views/tips.json',
+			url: LpData.ajaxUrl,
 			data: {
 				action: 'do_ajax',
 				fn: 'get_tips',
@@ -489,7 +489,7 @@
 				this.tipsRequestConfig.url,
 				this.tipsRequestConfig.data,
 				function(answer){
-					defer.resolve($this.getTParsedTips(answer));
+					defer.resolve($this.getParsedTips(answer));
 				}
 			);
 		}
@@ -508,11 +508,11 @@
 	 * @param {Object} rawTips
 	 * @returns {Array}
 	 */
-	AutoComplete.prototype.getTParsedTips = function(rawTips) {
+	AutoComplete.prototype.getParsedTips = function(rawTips) {
 		var tips = [],
 		    $this = this;
 		tips.push({
-			name: rawTips.text,
+			name: rawTips.search_string,
 			_type: 'dropdownHeader',
 			_cssClass: 'dropdown-header high-dropdown-header'
 		});
