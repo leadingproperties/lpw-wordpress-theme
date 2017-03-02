@@ -152,3 +152,17 @@ function add_cf_modals() {
 
 }
 add_action('wp_footer', 'add_cf_modals');
+
+/**
+ * Function to detect LPW API pages
+ */
+
+function is_lpw_page() {
+	return is_page_template('page-buy.php') ||
+	       is_page_template('page-rent.php') ||
+	       is_page_template('page-favorites.php') ||
+	       is_page_template('page-favorites-rent.php') ||
+	       is_page_template('page-object.php') ||
+	       is_page_template('page-sharer.php') ||
+	       is_page_template('page-sharer-rent.php');
+}

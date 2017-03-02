@@ -10,15 +10,7 @@ use Lprop\Tags;
  */
 function body_class($classes) {
   // Add page slug if it doesn't exist
-  if (is_page() && !(is_page_template('page-buy.php') ||
-                     is_page_template('page-rent.php') ||
-                     is_page_template('page-favorites.php') ||
-                     is_page_template('page-favorites-rent.php') ||
-                     is_page_template('page-object.php') ||
-                     is_page_template('page-sharer.php') ||
-                     is_page_template('page-sharer-rent.php')
-	  )
-  ) {
+  if (is_page() && !is_lpw_page()) {
     if (!in_array(basename(get_permalink()), $classes)) {
       $classes[] = basename(get_permalink());
 	  $classes[] = 'page-static';

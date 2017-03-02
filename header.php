@@ -52,7 +52,7 @@
 							</div>
 
 						</div>
-						<div class="header-inner">
+						<div class="header-inner<?php if(is_lpw_page()) { echo ' currency-selector-active';} ?>">
 							<div class="container">
 								<?php if (has_nav_menu('primary_navigation')) : ?>
 									<?php wp_nav_menu([
@@ -65,6 +65,19 @@
 								<?php endif; ?>
 								<div class="map-col"><a href="#" class="map-toggle icon" data-toggle="modal" data-target="#map-modal"><span class="sr-only">Select region</span></a></div>
 								<div class="menu-col"><a href="#" class="menu-toggle"><span class="sr-only">Menu</span></a></div>
+								<?php if(is_lpw_page()) { ?>
+									<div class="currency-col">
+										<select id="global-currency-switcher" class="currency-switcher" name="currency">
+											<option value="1">EUR</option>
+											<option value="4">USD</option>
+											<option value="5">GBR</option>
+											<option value="2">CHF</option>
+											<option value="3">CZK</option>
+											<option value="7">AED</option>
+											<option value="8">THB</option>
+										</select>
+									</div>
+								<?php } ?>
 								<div class="lang-col"><a class="lang-toggle collapsed<?= $lang_class; ?>" data-toggle="collapse" data-target="#lang-panel" aria-expanded="false" aria-controls="lang-panel"><span class="lang-<?= $lp_settings['lang']; ?>"></span><span class="ln-code icon"><?= $lp_settings['lang']; ?></span> </a></div>
 							</div>
 						</div><!-- /.header-inner -->

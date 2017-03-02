@@ -53,6 +53,15 @@ Number.prototype.formatMoney = function(c, d, t){
               delay: { "show": 200, "hide": 300 }
           });
 
+          /* Global currency switcher select2 init */
+
+          $('#global-currency-switcher').select2({
+              minimumResultsForSearch: Infinity,
+              containerCssClass : "price-select",
+              dropdownCssClass: "price-select-dropdown currency-switcher-dropdown",
+              width: "100%"
+          });
+
           var pdf = new window.lpw.Pdf();
 
           /* Favorites copy link to clipboard functionality */
