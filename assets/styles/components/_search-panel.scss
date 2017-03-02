@@ -90,6 +90,9 @@
         background-size: contain;
       }
     }
+    &.text-red {
+      color: $color-red;
+    }
     @include text-overflow();
     span {
       color: #333;
