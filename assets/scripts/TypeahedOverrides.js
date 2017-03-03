@@ -14,6 +14,8 @@
 		$.fn.typeahead.Constructor.prototype.input = this.inputForTypeahead;
 		$.fn.typeahead.Constructor.prototype.lookup = this.lookupForTypeahead;
 		$.fn.typeahead.Constructor.prototype.render = this.renderForTypeahead;
+		$.fn.typeahead.Constructor.prototype.focus = this.focusForTypeahead;
+		$.fn.typeahead.Constructor.prototype.blur = this.blurForTypeahead;
 	}
 
 	/**
@@ -61,7 +63,6 @@
 		if(!$(e.target).hasClass('dropdown-header')){
 			this.skipShowHintOnFocus = true;
 			this.select();
-			this.$element.focus();
 			this.hide();
 		}
 	};
@@ -105,6 +106,40 @@
 
 		clearTimeout(this.lookupWorker);
 		this.lookupWorker = setTimeout(worker, this.delay);
+	};
+
+	/**
+	 * Modified to call lookup() every time on focus
+	 * @param e
+	 *
+	 * @see bower_components/bootstrap3-typeahead/bootstrap3-typeahead.js:461
+	 */
+	TypeaheadOverrides.prototype.focusForTypeahead = function(e) {
+		if ( !this.focused ) {
+			this.focused = true;
+		}
+		this.lookup();
+		if ( this.skipShowHintOnFocus ) {
+			this.skipShowHintOnFocus = false;
+		}
+	};
+
+	/**
+	 * Modified to remove this.$element.focus call
+	 * @param e
+	 *
+	 * @see bower_components/bootstrap3-typeahead/bootstrap3-typeahead.js:477
+	 */
+	TypeaheadOverrides.prototype.blurForTypeahead = function (e) {
+		if (!this.mousedover && !this.mouseddown && this.shown) {
+			this.hide();
+			this.focused = false;
+		} else if (this.mouseddown) {
+			// This is for IE that blurs the input when user clicks on scroll.
+			// We set the focus back on the input and prevent the lookup to occur again
+			this.skipShowHintOnFocus = true;
+			this.mouseddown = false;
+		}
 	};
 
 	/**
