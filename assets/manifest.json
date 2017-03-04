@@ -29,11 +29,6 @@
       ],
       "main": true
     },
-    "customizer.js": {
-      "files": [
-        "scripts/customizer.js"
-      ]
-    },
     "lodash.js": {
       "bower": ["lodash"]
     },
