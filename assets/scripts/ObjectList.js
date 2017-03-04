@@ -279,6 +279,7 @@
                     dataUrl[key] = $this.args[key];
                 }
             }
+
             data.action = 'do_ajax';
 
             if( type === 'list' && $this.args.page === 1 && eventType !== 'single') {
