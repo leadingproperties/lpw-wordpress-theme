@@ -119,6 +119,9 @@ msgstr "Показать большую карту"
 msgid "search_panel:toggle_map_n"
 msgstr "Показать маленькую карту"
 
+msgid "search_panel:tips"
+msgstr "Вы можете искать по названиям страны, регионa, города, района, улицы, резиденции, point of interest или коду объекта, например:"
+
 #: lib/objects/functions.php:36 lib/objects/functions.php:460
 #: page-object.php:46 page-object.php:446
 msgid "s_object:header:detailed_info"

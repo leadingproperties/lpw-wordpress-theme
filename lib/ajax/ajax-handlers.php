@@ -41,7 +41,7 @@ function ajax_handler() {
 			]);
 			break;
 		case 'contact_form':
-			$output = ajax_contsct_form($_REQUEST);
+			$output = ajax_contact_form($_REQUEST);
 			break;
         case 'get_tags':
             $output = ajax_build_tags($_REQUEST);
@@ -51,6 +51,9 @@ function ajax_handler() {
 			break;
 		case 'get_subtypes':
 			$output = ajax_get_subtypes($_REQUEST);
+			break;
+			case 'get_tips':
+				$output = ajax_get_tips($_REQUEST);
 			break;
 		default :
 			$output = 'No function specified, check your jQuery.ajax() call';
@@ -117,7 +120,6 @@ function get_shorten_url($url) {
 		return ['id' => $url, 'error' => true, 'error_message' => 'No API key'];
 	endif;
 }
-
 function ajax_get_posts($per_page, $offset, $tag) {
 
 	$args = [
@@ -159,7 +161,6 @@ function ajax_get_posts($per_page, $offset, $tag) {
 		return false;
 	}
 }
-
 function ajax_get_single_post($id, $type) {
 	$args = [
 		'post_type'         => 'post'
@@ -215,16 +216,14 @@ function ajax_get_geopoints($args) {
 	$return = new LP_ObjectList($args);
 	return $return->get_json_objects();
 }
-
-function ajax_contsct_form($args) {
+function ajax_contact_form($args) {
 	if(isset($args['fn'])) {
 		unset($args['fn']);
 	}
 	$args['action'] = 'request_form';
 	$return = new LP_ObjectList($args);
 	return $return->send_request_form();
-};
-
+}
 function ajax_build_tags($args){
     $tags = new \LPW\Tags($args);
     return $tags->get_tags_html($args);
@@ -240,4 +239,12 @@ function ajax_get_subtypes($args) {
 	$args['lang'] = $lp_settings['lang'];
 	$return = new LP_ObjectList($args);
 	return $return->get_json_objects();
+}
+function ajax_get_tips($args) {
+	$args['action'] = 'get_tips';
+	$tips = new LP_ObjectList($args);
+	return json_encode([
+		'tips'  => $tips->get_objects_array(),
+		'search_string' => __('search_panel:tips', 'leadingprops')
+	]);
 }

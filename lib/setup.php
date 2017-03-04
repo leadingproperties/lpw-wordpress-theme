@@ -67,7 +67,7 @@ function lp_rewrite_rule(){
  */
 function assets() {
   global $lp_settings;
-  $ver = "1.2";
+  $ver = wp_get_theme()->get('Version');
     if(!is_admin()) {
         wp_enqueue_style( 'lprop/css', Assets\asset_path( 'styles/main.css' ), false, $ver );
 
@@ -110,7 +110,8 @@ function assets() {
             'lang'         => $lp_settings['lang'],
             'totalSale'    => $lp_settings['counters']['for_sale'],
             'totalRent'    => $lp_settings['counters']['for_rent'],
-            'totalInvest'  => $lp_settings['counters']['commercial']
+            'totalInvest'  => $lp_settings['counters']['commercial'],
+	        'currency_id'   => $lp_settings['currency_id']
         ];
         $data['totalObjects'] = ( is_page_template( 'page-buy.php' ) ) ? $lp_settings['counters']['for_sale'] : $lp_settings['counters']['for_rent'];
         if ( ( is_page_template( 'page-sharer.php' ) || is_page_template( 'page-sharer-rent.php' ) ) && isset( $_GET['ids'] ) ) {

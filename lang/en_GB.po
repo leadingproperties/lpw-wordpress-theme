@@ -117,6 +117,9 @@ msgstr "km"
 msgid "search_panel:from"
 msgstr "from"
 
+msgid "search_panel:tips"
+msgstr "You can search by countries, regions, cities, districts, street, residences, points of interest or by a reference number of the property. For example:"
+
 #: lib/objects/functions.php:36 lib/objects/functions.php:460
 #: page-object.php:46 page-object.php:446
 msgid "s_object:header:detailed_info"

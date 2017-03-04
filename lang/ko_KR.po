@@ -173,6 +173,9 @@ msgstr "큰 지도 보기"
 msgid "search_panel:toggle_map_n"
 msgstr "작은 지도 보기"
 
+msgid "search_panel:tips"
+msgstr "국가, 지역, 도시, 지구, 거리명, 거주지, 관광지 또는 해당 부동산의 참조 번호별로 검색할 수 있습니다. 예를 들어:"
+
 #: lib/objects/functions.php:36 lib/objects/functions.php:460
 #: page-object.php:46 page-object.php:446
 msgid "s_object:header:detailed_info"

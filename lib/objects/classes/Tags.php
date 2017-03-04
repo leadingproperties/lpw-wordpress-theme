@@ -18,7 +18,7 @@ class Tags
     );
 
     public function __construct() {
-        $this->api_url = 'https://staging-lpw-public-api.herokuapp.com';
+        $this->api_url = 'https://lpw-public-api.herokuapp.com';
         $this->token = get_field('api_key', 'option');
     }
 

@@ -52,7 +52,7 @@
 							</div>
 
 						</div>
-						<div class="header-inner">
+						<div class="header-inner<?php if(is_lpw_page()) { echo ' currency-selector-active';} ?>">
 							<div class="container">
 								<?php if (has_nav_menu('primary_navigation')) : ?>
 									<?php wp_nav_menu([
@@ -65,6 +65,19 @@
 								<?php endif; ?>
 								<div class="map-col"><a href="#" class="map-toggle icon" data-toggle="modal" data-target="#map-modal"><span class="sr-only">Select region</span></a></div>
 								<div class="menu-col"><a href="#" class="menu-toggle"><span class="sr-only">Menu</span></a></div>
+								<?php if(is_lpw_page()) { ?>
+									<div class="currency-col">
+										<select id="global-currency-switcher" class="currency-switcher" name="currency">
+                                            <option value="1"<?php if($lp_settings['currency_id'] === 1) echo ' selected'; ?>>EUR</option>
+											<option value="4"<?php if($lp_settings['currency_id'] === 4) echo ' selected'; ?>>USD</option>
+											<option value="5"<?php if($lp_settings['currency_id'] === 5) echo ' selected'; ?>>GBR</option>
+											<option value="2"<?php if($lp_settings['currency_id'] === 2) echo ' selected'; ?>>CHF</option>
+											<option value="3"<?php if($lp_settings['currency_id'] === 3) echo ' selected'; ?>>CZK</option>
+											<option value="7"<?php if($lp_settings['currency_id'] === 7) echo ' selected'; ?>>AED</option>
+											<option value="8"<?php if($lp_settings['currency_id'] === 8) echo ' selected'; ?>>THB</option>
+										</select>
+									</div>
+								<?php } ?>
 								<div class="lang-col"><a class="lang-toggle collapsed<?= $lang_class; ?>" data-toggle="collapse" data-target="#lang-panel" aria-expanded="false" aria-controls="lang-panel"><span class="lang-<?= $lp_settings['lang']; ?>"></span><span class="ln-code icon"><?= $lp_settings['lang']; ?></span> </a></div>
 							</div>
 						</div><!-- /.header-inner -->

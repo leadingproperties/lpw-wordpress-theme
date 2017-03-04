@@ -173,6 +173,9 @@ msgstr "大きな地図を表示"
 msgid "search_panel:toggle_map_n"
 msgstr "小さな地図を表示"
 
+msgid "search_panel:tips"
+msgstr "国、地域、都市、地区、通りの名前、住所、興味ある所や所有地の参照番号で検索することができます。例えば:"
+
 #: lib/objects/functions.php:36 lib/objects/functions.php:460
 #: page-object.php:46 page-object.php:446
 msgid "s_object:header:detailed_info"

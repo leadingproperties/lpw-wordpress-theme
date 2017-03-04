@@ -1,7 +1,5 @@
 (function($){
 	"use strict";
-	window.lpw = window.lpw || {};
-	window.lpw.ContactForm = ContactForm;
 
 		function ContactForm(invest) {
 			var $this = this,
@@ -47,10 +45,7 @@
 				} else {
 					el.removeClass('has-error');
 				}
-				if(valid && isValidName($this.fname) && isValidName($this.lname)
-					&& isValidPhone($this.phone) && isValidEmail($this.email) && validSkype
-					&&(($this.phone.val().trim().length > 0) || ($this.email.val().trim().length > 0)
-					|| (skypeVal.trim().length > 0))) {
+				if(valid && isValidName($this.fname) && isValidName($this.lname) && isValidPhone($this.phone) && isValidEmail($this.email) && validSkype &&(($this.phone.val().trim().length > 0) || ($this.email.val().trim().length > 0) || (skypeVal.trim().length > 0))) {
 					$this.formValid = true;
 					$this.submit.prop("disabled", false);
 				} else {
@@ -247,5 +242,7 @@
 		};
 	}
 
+    window.lpw = window.lpw || {};
+    window.lpw.ContactForm = ContactForm;
 
 })(jQuery);
