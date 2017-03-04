@@ -71,7 +71,7 @@
 	Tags.prototype.getTags = function(params) {
 		var $this = this,
 		    data = {
-			    action: params.action,
+			    action: 'do_ajax',
 			    fn: 'get_tags',
 			    raw: params //we need it for tag counters
 		    };
