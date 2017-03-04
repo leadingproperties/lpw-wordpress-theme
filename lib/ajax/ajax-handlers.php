@@ -53,7 +53,7 @@ function ajax_handler() {
 			$output = ajax_get_subtypes($_REQUEST);
 			break;
 			case 'get_tips':
-				$output = ajax_get_tips();
+				$output = ajax_get_tips($_REQUEST);
 			break;
 		default :
 			$output = 'No function specified, check your jQuery.ajax() call';
@@ -240,10 +240,9 @@ function ajax_get_subtypes($args) {
 	$return = new LP_ObjectList($args);
 	return $return->get_json_objects();
 }
-function ajax_get_tips() {
-	$tips = new LP_ObjectList([
-		'action'    => 'get_tips'
-	]);
+function ajax_get_tips($args) {
+	$args['action'] = 'get_tips';
+	$tips = new LP_ObjectList($args);
 	return json_encode([
 		'tips'  => $tips->get_objects_array(),
 		'search_string' => __('search_panel:tips', 'leadingprops')

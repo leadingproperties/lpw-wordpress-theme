@@ -54,13 +54,15 @@ Number.prototype.formatMoney = function(c, d, t){
           });
 
           /* Global currency switcher select2 init */
-
-          $('#global-currency-switcher').select2({
+           var glCurrencySwitcher = $('#global-currency-switcher');
+          glCurrencySwitcher.select2({
               minimumResultsForSearch: Infinity,
               containerCssClass : "price-select",
               dropdownCssClass: "price-select-dropdown currency-switcher-dropdown",
               width: "100%"
           });
+
+
 
           var pdf = new window.lpw.Pdf();
 
@@ -229,6 +231,12 @@ Number.prototype.formatMoney = function(c, d, t){
               }
               init();
           })();
+
+          //Set global currency cookie and reload page
+          $('#global-currency-switcher').on('change', function() {
+              window.lpw.Helpers.createCookie('lpw_currency_id', $(this).val());
+              window.location.reload();
+          });
           function getCategory() {
               var container = $('.single-object-container');
               if(container.hasClass('object-rent')) {

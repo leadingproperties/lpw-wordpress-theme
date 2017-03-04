@@ -14,14 +14,17 @@
 	if($object_slug) {
 		$objects = new LP_ObjectList([
 			'lang' => $lp_settings['lang'],
-			'slug'  => $object_slug
+			'slug'  => $object_slug,
+            'price' => [
+                    'currency'  => $lp_settings['currency_id']
+            ]
 		]);
 		$objects_obj = $objects->get_objects_array();
 	} else {
 		$objects_obj->error = true;
 		$objects_obj->errorMessage  = 'Nothing found';
 	}
-	if($objects_obj->error) {
+	if(isset($objects_obj->error) && $objects_obj->error) {
 		status_header(404);
 		add_filter('body_class', function($clasess) {
 			$clasess[] = 'error404';

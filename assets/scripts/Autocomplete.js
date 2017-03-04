@@ -399,9 +399,9 @@
 		}else if(item && item._type === 'tip'){ //подсказка
 			var params = {};
 			if (item.location_shape){
-				params.location_shape = item.location_shape
+				params.location_shape = item.location_shape;
 			}else if(item.location_point){
-				params.location_point = item.location_point
+				params.location_point = item.location_point;
 			}
 			this.setSelected(params, item.name);
 		}
@@ -588,7 +588,7 @@
 	 */
 	AutoComplete.prototype.getTipsSuccess = function(process, tips) {
 		if(process && _.isFunction(process)){
-			process(tips)
+			process(tips);
 		}
 	};
 
@@ -601,7 +601,7 @@
 	AutoComplete.prototype.getTipsError = function(process, error) {
 		console.error('getTipsError', error);
 		if(process && _.isFunction(process)){
-			process([])
+			process([]);
 		}
 	};
 
@@ -621,7 +621,7 @@
 				answer.push(tip);
 			}
 		});
-		return answer
+		return answer;
 	};
 
 	window.lpw = window.lpw || {};

@@ -45,7 +45,7 @@
 				break;
 			case 'price':
 				$('#price-min').add('#price-max').val(undefined);
-				$('#price-currency').val('1').change();
+				//$('#price-currency').val('1').change();
 				this.filterForm.trigger('submit');
 				break;
 			case 'area':

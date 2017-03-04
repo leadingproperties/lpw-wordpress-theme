@@ -175,6 +175,9 @@
   }
 }
 .currency-col {
+  select {
+    display: none;
+  }
   .select2-container,
   .price-select,
   .select2-selection__rendered {

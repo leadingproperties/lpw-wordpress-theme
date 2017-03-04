@@ -93,9 +93,15 @@
     &.text-red {
       color: $color-red;
     }
+    &.high-dropdown-header {
+      white-space: normal;
+    }
     @include text-overflow();
     span {
       color: #333;
+    }
+    sup {
+      color: $color-red;
     }
     &:hover, &.active {
       background: #f2f2f2;

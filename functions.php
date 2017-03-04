@@ -45,7 +45,8 @@ function lpw_set_globals() {
 			'rent_share'       => ( get_field( 'rent_share', 'option' ) ) ? get_field( 'rent_share', 'option' ) : get_page_by_title( 'Rent share' )->guid,
 			'favorites'        => esc_url( ( get_field( 'sale_favorites', 'option' ) ) ? get_field( 'sale_favorites', 'option' ) : get_page_by_title( 'Favorites Sale' )->guid ),
 			'favorites_rent'   => esc_url( ( get_field( 'rent_favorites', 'option' ) ) ? get_field( 'rent_favorites', 'option' ) : get_page_by_title( 'Favorites Rent' )->guid ),
-			'lang'             => lpw_get_current_lang()
+			'lang'             => lpw_get_current_lang(),
+			'currency_id'      =>  isset($_COOKIE['lpw_currency_id']) ? (int) $_COOKIE['lpw_currency_id'] : 1
 		];
 
 

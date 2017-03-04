@@ -30,6 +30,9 @@ get_favorites_bar(false);
 						'per_page'  => 9,
 						'for_sale'  => 'true',
 						'for_rent'  => 'false',
+						'price' => [
+							'currency'  => $lp_settings['currency_id']
+						],
 						'action' => 'get_objects',
 						'ids'   => $ids
 					];

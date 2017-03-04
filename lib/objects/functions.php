@@ -8,10 +8,7 @@ function get_favorites_bar($is_bottom = false) {
 function single_object_html($args) {
 	global $lp_settings;
 	$html = '';
-	$objects = new LP_ObjectList([
-		'lang' => $args['lang'],
-		'slug'  => $args['slug']
-	]);
+	$objects = new LP_ObjectList($args);
 	$objects_obj = $objects->get_objects_array();
 
 	$list_url = '';
