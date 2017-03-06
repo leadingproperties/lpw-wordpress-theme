@@ -525,10 +525,14 @@ function get_object_list($args) {
 					}
 
 					if ( $object->property_rent->short_rent === true ) {
-						if ( $object->property_rent->rent_short->sort_price->day ) {
-							$rent_price = '<span dir="ltr" class="price-num">' . number_format( $object->property_rent->rent_short->sort_price->day, 0, ".", " " ) . ' </span>' . $object->property_rent->rent_short->sort_price->currency_code . '&nbsp;/&nbsp;' . __( 's_object:rent:day', 'leadingprops' );
-						} elseif ( $object->roperty_rent->rent_short->sort_price->month ) {
-							$rent_price = '<span dir="ltr" class="price-num">' . number_format( $object->property_rent->rent_short->sort_price->month, 0, ".", " " ) . ' </span>' . $object->property_rent->rent_short->sort_price->currency_code . '&nbsp;/&nbsp;' . __( 's_object:rent:month', 'leadingprops' );
+						if ( $object->property_rent->rent_short->on_demand === true ) {
+							$rent_price = '<span dir="ltr" class="price-onrequest">' . __( 's_object:rent:on_request', 'leadingprops' ) . '</span>';
+						} else {
+							if ( $object->property_rent->rent_short->sort_price->day ) {
+								$rent_price = '<span dir="ltr" class="price-num">' . number_format( $object->property_rent->rent_short->sort_price->day, 0, ".", " " ) . ' </span>' . $object->property_rent->rent_short->sort_price->currency_code . '&nbsp;/&nbsp;' . __( 's_object:rent:day', 'leadingprops' );
+							} elseif ( $object->roperty_rent->rent_short->sort_price->month ) {
+								$rent_price = '<span dir="ltr" class="price-num">' . number_format( $object->property_rent->rent_short->sort_price->month, 0, ".", " " ) . ' </span>' . $object->property_rent->rent_short->sort_price->currency_code . '&nbsp;/&nbsp;' . __( 's_object:rent:month', 'leadingprops' );
+							}
 						}
 					} elseif ( $object->property_rent->long_rent === true ) {
 						if ( $object->property_rent->rent_long->on_demand === true ) {
@@ -570,7 +574,7 @@ function get_object_list($args) {
 				if ( $object->country && $object->country->title ) {
 					$html .= '<a>' . $object->country->title . '</a>';
 				}
-				if ( $object->region && $object->region->title ) {
+				if ( isset($object->region) && $object->region && $object->region->title ) {
 					$html .= '<a>' . $object->region->title . '</a>';
 				}
 				if ( $object->city && $object->city->title ) {

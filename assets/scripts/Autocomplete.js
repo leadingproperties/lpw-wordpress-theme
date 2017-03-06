@@ -395,7 +395,7 @@
 		else if(item && item.place_id){ // ответ от гугла
 			this.getPlaceDetails(item.place_id)
 				.done(this.getPlaceDetailsSuccess.bind(this))
-				.fail(this.getPlaceDetailsError.bind(this));
+				.fail(this.getPlaceDetailsError.bind(this, status, item));
 		}else if(item && item._type === 'tip'){ //подсказка
 			var params = {};
 			if (item.location_shape){
@@ -421,8 +421,12 @@
 	 * Error Callback для getPlaceDetails
 	 *
 	 * @param status - https://developers.google.com/maps/documentation/javascript/3.exp/reference#PlacesServiceStatus
+	 * @param item - выбранный объект из списка typehead
 	 */
-	AutoComplete.prototype.getPlaceDetailsError = function(status) {
+	AutoComplete.prototype.getPlaceDetailsError = function(status, item) {
+		var name = item.name ? item.name : null;
+		item.place_error = true;
+		this.setSelected(item, name);
 		console.error('getPlaceDetailsError');
 	};
 
