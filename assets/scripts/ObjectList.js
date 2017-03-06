@@ -187,6 +187,9 @@
                         }
                     }
                 }
+
+                // Если Google API не вернул координаты
+                $this.place_error = !!(data.place_error);
             }
 
             if(!silent){
@@ -226,6 +229,7 @@
             location: false,
             filter: false
         };
+        this.place_error = false;
         this.args = {
             lang: LpData.lang,
             page: 1,
@@ -286,6 +290,10 @@
 
                 if( dataUrl.price && !( dataUrl.price.min || dataUrl.price.max ) ) {
                     delete dataUrl.price;
+                }
+
+                if($this.place_error) {
+                    dataUrl.place_error = true;
                 }
 
                 $this.tags.buildTags(dataUrl);
@@ -464,7 +472,7 @@
             }
             filter.filterSorting.on('change', function() {
                 var val = $(this).val();
-                if(val === false) {
+                if(val === 'false') {
                     if($this.args.order_by) {
                         delete $this.args.order_by;
                     }
@@ -506,7 +514,7 @@
     ObjectList.prototype.setUrls = function(data, eventtype) {
         //var url = window.location.origin ? window.location.origin :  (window.location.protocol + '//' + window.location.hostname + window.location.pathname + window.location.port),
         var url = window.location.protocol + '//' + window.location.hostname + window.location.pathname,
-            excluded = ['action', 'fn', 'page', 'per_page', 'for_sale', 'for_rent', 'lang', 'place_id'];
+            excluded = ['action', 'fn', 'page', 'per_page', 'for_sale', 'for_rent', 'lang', 'place_id', 'place_error'];
         data = _.omit(data, excluded);
         // Unset data.price if no min or max values
 

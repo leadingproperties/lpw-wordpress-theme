@@ -74,9 +74,9 @@ class LP_ObjectList {
 
 
 	    $this->token = get_field('api_key', 'option');
-	    if(empty($this->api_url) || empty($this->token)) {
+	    if(empty($this->token)) {
 		    $this->error = true;
-		    $this->error_message = 'Set the API url and API key';
+		    $this->error_message = 'API key not set';
 	    }
     }
 
@@ -241,7 +241,6 @@ class LP_ObjectList {
                 }
 
         }
-
         $curl_options = [
             CURLOPT_URL => $url,
             CURLOPT_HTTPHEADER => [
@@ -260,7 +259,7 @@ class LP_ObjectList {
         if(!$resp) {
             curl_close($ch);
             $this->error = true;
-            $this->error_message = "Server return empty body";
+	        $this->error_message = (curl_error($ch)) ? "Curl error: " . curl_error($ch) : "Server return empty body";
             return json_encode(['error' => true, 'errorMessage' => $this->error_message]);
         }
 
