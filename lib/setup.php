@@ -68,6 +68,7 @@ function lp_rewrite_rule(){
 function assets() {
   global $lp_settings;
   $ver = wp_get_theme()->get('Version');
+	print_r(wp_get_theme());
     if(!is_admin()) {
         wp_enqueue_style( 'lprop/css', Assets\asset_path( 'styles/main.css' ), false, $ver );
 
