@@ -110,7 +110,8 @@ function assets() {
             'lang'         => $lp_settings['lang'],
             'totalSale'    => $lp_settings['counters']['for_sale'],
             'totalRent'    => $lp_settings['counters']['for_rent'],
-            'totalInvest'  => $lp_settings['counters']['commercial']
+            'totalInvest'  => $lp_settings['counters']['commercial'],
+	        'currency_id'   => $lp_settings['currency_id']
         ];
         $data['totalObjects'] = ( is_page_template( 'page-buy.php' ) ) ? $lp_settings['counters']['for_sale'] : $lp_settings['counters']['for_rent'];
         if ( ( is_page_template( 'page-sharer.php' ) || is_page_template( 'page-sharer-rent.php' ) ) && isset( $_GET['ids'] ) ) {

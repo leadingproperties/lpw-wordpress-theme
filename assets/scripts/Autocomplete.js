@@ -20,6 +20,14 @@
 		this.errors = {
 			google: false
 		};
+		this.tipsRequestConfig = {
+			url: LpData.ajaxUrl,
+			data: {
+				action: 'do_ajax',
+				fn: 'get_tips',
+				scope: category === 'rent' ? 'for_rent' : 'for_sale'
+			}
+		};
 
 		try {
 			//https://developers.google.com/maps/documentation/javascript/3.exp/reference#AutocompleteService
@@ -31,7 +39,9 @@
 			console.error("Google maps service not loaded");
 		}
 		if(this.category !== 'invest') {
+			new window.lpw.TypeaheadOverrides();
 			this.attachTypeAheadPlugin();
+			this.setupTips();
 		}
 	}
 
@@ -53,7 +63,8 @@
 				menu: '<ul class="sp-search-dropdown" role="listbox"></ul>',
 				item: '<li role="option"><a href="#" tabindex="-1"></a></li>',
 				afterSelect: $this.afterSelect.bind($this),
-				minLength: 2,
+				minLength: 0,
+				showHintOnFocus: 'all',
 				// override default sorter (causes WP-109)
 				sorter: function(items) {
 					return items;
@@ -64,11 +75,9 @@
 							.done($this.getMatchesSuccess.bind($this, query, process))
 							.fail($this.getMatchesError.bind($this, query, process));
 					}else{
-						$this.autocompleteSelected = null;
-						$this.callback();
+						$this.getTips().then($this.getTipsSuccess.bind($this, process), $this.getTipsError.bind($this, process));
 					}
-				},
-				render: $this.renderForTypeahead
+				}
 			}
 		);
 
@@ -167,7 +176,8 @@
 			parsedArray.push(
 				{
 					name    : value.description,
-					place_id: value.place_id
+					place_id: value.place_id,
+					_cssClass: 'pbgoogle'
 				}
 			);
 		});
@@ -355,7 +365,9 @@
 			items = items.concat(dataGoogle);
 		}
 
-		this.toggleNoResultsMessage(items.length === 0);
+		if(items.length === 0){
+			items = this.getNoResultsItems();
+		}
 		processCallback(items);
 	};
 
@@ -365,77 +377,7 @@
 	 * @param processCallback
 	 */
 	AutoComplete.prototype.getMatchesError = function(query, processCallback) {
-		this.toggleNoResultsMessage(true);
-		processCallback([]);
-	};
-
-	/**
-	 * Success Callback для askAPI.
-	 * Если есть ответ с совпадениями, то отдаем в Typeahead. Если нет - делаем запрос к GoogleAPI
-	 *
-	 * @param query - значение из инпута автокомплита
-	 * @param processCallback - суперр-пупер ресолвер плагина typeahead, он получает массив готовых итемов-совпадений
-	 * @param data - ответ
-	 * @param textStatus - см. аргументы jQuery.ajax.success
-	 * @param jqXHR - см. аргументы jQuery.ajax.success
-	 *
-	 * @deprecated
-	 */
-	AutoComplete.prototype.askAPISuccess = function(query, processCallback, data, textStatus, jqXHR){
-		var jsonData = (data) ? JSON.parse(data) : false;
-		if(jsonData.length > 0){
-			var items = this.getParsedAPIAnswer(jsonData);
-			processCallback(items);
-		}else{
-			this.askGoogleAPI(query)
-				.done(this.askGoogleAPISuccess.bind(this, query, processCallback))
-				.fail(this.askGoogleAPIError.bind(this, query, processCallback));
-		}
-	};
-
-	/**
-	 * Error Callback для askAPI
-	 * Если попали сюда - делаем запрос к GoogleAPI
-	 *
-	 * @param query - значение из инпута автокомплита
-	 * @param processCallback - суперр-пупер ресолвер плагина typeahead, он получает массив готовых итемов-совпадений
-	 * @param jqXHR - см. аргументы jQuery.ajax.error
-	 * @param textStatus - см. аргументы jQuery.ajax.error
-	 * @param errorThrown - см. аргументы jQuery.ajax.error
-	 *
-	 * @deprecated
-	 */
-	AutoComplete.prototype.askAPIError = function(query, processCallback, jqXHR, textStatus, errorThrown){
-		this.askGoogleAPI(query)
-			.done(this.askGoogleAPISuccess.bind(this, query, processCallback))
-			.fail(this.askGoogleAPIError.bind(this, query, processCallback));
-	};
-
-	/**
-	 * Success Callback для askGoogleAPI
-	 *
-	 * @param query - значение из инпута автокомплита
-	 * @param processCallback - суперр-пупер ресолвер плагина typeahead, он получает массив готовых итемов-совпадений
-	 * @param array - массив готовых совпадений для typeahead
-	 *
-	 * @deprecated
-	 */
-	AutoComplete.prototype.askGoogleAPISuccess = function(query, processCallback, array){
-		processCallback(array); //отдаем итемы в typeahead
-	};
-
-	/**
-	 * Error Callback для askGoogleAPI.
-	 * Если мы попали сюда - нужно выводить Not Found
-	 *
-	 * @param query - значение из инпута автокомплита
-	 * @param processCallback - суперр-пупер ресолвер плагина typeahead, он получает массив готовых итемов-совпадений
-	 * @param statusString - строка статуса ответа от гугла (https://developers.google.com/maps/documentation/javascript/3.exp/reference#PlacesServiceStatus)
-	 *
-	 * @deprecated
-	 */
-	AutoComplete.prototype.askGoogleAPIError = function(query, processCallback, statusString){
-		console.debug('askGoogleAPIError', query, processCallback, statusString);
+		processCallback(this.getNoResultsItems());
 	};
 
 	/**
@@ -453,7 +395,15 @@
 		else if(item && item.place_id){ // ответ от гугла
 			this.getPlaceDetails(item.place_id)
 				.done(this.getPlaceDetailsSuccess.bind(this))
-				.fail(this.getPlaceDetailsError.bind(this));
+				.fail(this.getPlaceDetailsError.bind(this, status, item));
+		}else if(item && item._type === 'tip'){ //подсказка
+			var params = {};
+			if (item.location_shape){
+				params.location_shape = item.location_shape;
+			}else if(item.location_point){
+				params.location_point = item.location_point;
+			}
+			this.setSelected(params, item.name);
 		}
 	};
 
@@ -471,8 +421,12 @@
 	 * Error Callback для getPlaceDetails
 	 *
 	 * @param status - https://developers.google.com/maps/documentation/javascript/3.exp/reference#PlacesServiceStatus
+	 * @param item - выбранный объект из списка typehead
 	 */
-	AutoComplete.prototype.getPlaceDetailsError = function(status) {
+	AutoComplete.prototype.getPlaceDetailsError = function(status, item) {
+		var name = item.name ? item.name : null;
+		item.place_error = true;
+		this.setSelected(item, name);
 		console.error('getPlaceDetailsError');
 	};
 
@@ -526,83 +480,152 @@
 	};
 
 	/**
-	 * Overrides `render` method of Typeahed plugin to add css class for google items.
-	 * It's copy+paste version of Typeahed.render method, because `render` method inserts items directly in DOM
-	 * and returns only `this` reference.
-	 *
-	 *
-	 * @param {Array} items
-	 * @returns {Object} - Typeahead instance
-	 *
-	 * @see bower_components/bootstrap3-typeahead/bootstrap3-typeahead.js:259 (original render method)
+	 * Returns already loaded tips (resolves as promise) or makes request to server
+	 * @returns {Promise}
 	 */
-	AutoComplete.prototype.renderForTypeahead = function(items) {
-		var that = this;
-		var self = this;
-		var activeFound = false;
-		var data = [];
-		var _category = that.options.separator;
-		var hasApiItems = false;
+	AutoComplete.prototype.getTips = function() {
+		var defer = $.Deferred(),
+		    $this = this;
+		if(this.tips && this.tips.length > 0){
+			defer.resolve(this.tips);
+		}else{
+			$.getJSON(
+				this.tipsRequestConfig.url,
+				this.tipsRequestConfig.data,
+				function(answer){
+					defer.resolve($this.getParsedTips(answer));
+				}
+			);
+		}
+		return 	defer.promise();
+	};
 
-		$.each(items, function (key,value) {
-			// inject separator
-			if (key > 0 && value[_category] !== items[key - 1][_category]){
-				data.push({
-					__type: 'divider'
-				});
-			}
+	/**
+	 * Retrieves tips. Used in constructor.
+	 */
+	AutoComplete.prototype.setupTips = function() {
+		this.getTips().then(this.getTipsSuccess.bind(this, null), this.getTipsError.bind(this, null));
+	};
 
-			// inject category header
-			if (value[_category] && (key === 0 || value[_category] !== items[key - 1][_category])){
-				data.push({
-					__type: 'category',
-					name: value[_category]
-				});
+	/**
+	 * Parses raw server answer and returns array of tips as items for Typeahead
+	 * @param {Object} rawTips
+	 * @returns {Array}
+	 */
+	AutoComplete.prototype.getParsedTips = function(rawTips) {
+		var tips = [],
+		    $this = this;
+		tips.push({
+			name: rawTips.search_string,
+			_type: 'dropdownHeader',
+			_cssClass: 'dropdown-header high-dropdown-header'
+		});
+		_.forEach(rawTips.tips, function(tip) {
+			var structuredTip = {
+				name: tip.query_text,
+				counter: tip.property_objects_total,
+				_type: 'tip'
+			};
+			if($this.tipIsShape(tip.query_geo_shape.coordinates)){
+				structuredTip.location_shape = $this.elasticSearchGeoShapeToLocationShape(tip.query_geo_shape.coordinates);
+			}else{
+				structuredTip.location_point = $this.elasticSearchGeoShapeToLocationPoint(tip.query_geo_shape);
 			}
-			data.push(value);
+			tips.push(structuredTip);
 		});
 
-		items = $(data).map(function (i, item) {
-			if ((item.__type || false) == 'category'){
-				return $(that.options.headerHtml).text(item.name)[0];
-			}
+		this.tips = tips;
+		return tips;
+	};
 
-			if ((item.__type || false) == 'divider'){
-				return $(that.options.headerDivider)[0];
+	/**
+	 * Converts elasticSearch geoShape to API location_shape request format
+	 * @param geoShape
+	 * @returns {*}
+	 */
+	AutoComplete.prototype.elasticSearchGeoShapeToLocationShape = function (geoShape){
+		if(!(_.isArray(geoShape) && geoShape[1] && geoShape[1].length === 2)){
+			return null;
+		}
+		return {
+			top_right: {
+				lat: geoShape[1][1],
+				lon: geoShape[0][0]
+			},
+			bottom_left: {
+				lat: geoShape[0][1],
+				lon: geoShape[1][0]
 			}
+		};
+	};
 
-			var text = self.displayText(item);
-			i = $(that.options.item).data('value', item);
-			i.find('a').html(that.highlighter(text, item));
-			if (text == self.$element.val()) {
-				i.addClass('active');
-				self.$element.data('active', item);
-				activeFound = true;
-			}
+	/**
+	 * Converts elasticSearch geoShape to API location_point request format
+	 * @param geoShape
+	 * @returns {*}
+	 */
+	AutoComplete.prototype.elasticSearchGeoShapeToLocationPoint = function (geoShape) {
+		if ( !(geoShape && (_.isArray(geoShape.coordinates) && geoShape.type === 'circle')) ) {
+			return null;
+		}
+		return {
+			lat : geoShape.coordinates[1],
+			lon : geoShape.coordinates[0],
+			radius: geoShape.radius.replace(/\D/g, '')
+		};
+	};
 
-			// set hasApiItems to true once
-			if(!hasApiItems && item.parent_id){
-				hasApiItems = true;
-			}
-			// add pbgoogle class for google matches
-			if(item.place_id){
-				i.addClass('pbgoogle');
-			}
-			return i[0];
+	/**
+	 * Check geoShape is shape indeed
+	 * @param geoShape
+	 * @returns {*|boolean}
+	 */
+	AutoComplete.prototype.tipIsShape = function (geoShape){
+		return _.isArray(geoShape) && _.isArray(geoShape[0]);
+	};
+
+	/**
+	 * Success callback for getTips.
+	 * Calls Typeahead process callback (if present) with prepared items.
+	 * @param process - Typeahead plugin callback
+	 * @param tips
+	 */
+	AutoComplete.prototype.getTipsSuccess = function(process, tips) {
+		if(process && _.isFunction(process)){
+			process(tips);
+		}
+	};
+
+	/**
+	 * Error callback for getTips
+	 * Calls Typeahead process callback (if present) with empty array.
+	 * @param process - Typeahead plugin callback
+	 * @param error
+	 */
+	AutoComplete.prototype.getTipsError = function(process, error) {
+		console.error('getTipsError', error);
+		if(process && _.isFunction(process)){
+			process([]);
+		}
+	};
+
+	/**
+	 * Returns array of items for Typeahead in case of no results
+	 * @returns {Array}
+	 */
+	AutoComplete.prototype.getNoResultsItems = function() {
+		var answer = [];
+		answer.push({
+			name: 'No results',
+			_type: 'noResults',
+			_cssClass: 'dropdown-header text-red'
 		});
-
-		//add item-divider class
-		if(hasApiItems){
-			items.filter('.pbgoogle').first().addClass('item-divider');
-		}
-
-		if (this.autoSelect && !activeFound) {
-			items.filter(':not(.dropdown-header)').first().addClass('active');
-			this.$element.data('active', items.first().data('value'));
-		}
-		this.$menu.html(items);
-		return this;
-
+		_.forEach(this.tips, function(tip) {
+			if(tip._type === 'tip'){
+				answer.push(tip);
+			}
+		});
+		return answer;
 	};
 
 	window.lpw = window.lpw || {};

@@ -34,9 +34,8 @@ class Tags
 
         $counters = $this->get_counters($request_data['raw'], $query_text);
 
-        if(count($counters) > 0){
+        if(count($counters) >= 0){
             $format = '<ul class="tag-list">%1$s%2$s%3$s%4$s%5$s%6$s%7$s%8$s%9$s<li><span class="tag-remove-all" data-tag_type="all"></span></li></ul>';
-
             $autocomplete =  $this->get_autocomplete_tag_html($request_data['autocomplete'], $counters, $request_data['raw']);
             $rent_bool_tags = $request_data['raw']['for_rent'] ? $this->get_rent_bool_tags($request_data['raw'], $counters) : '';
             $rent_persons = $request_data['raw']['for_rent'] ? $this->get_rent_persons_tag($request_data['raw']['persons'], $counters) : '';
@@ -47,18 +46,20 @@ class Tags
             $area = $this->get_area_tag_html($request_data['raw']['area'], $counters);
             $similar = $this->get_similar_tag_html($request_data['raw']['similar'], $request_data['raw']['location_point']['radius'], $counters);
 
-            $answer = sprintf(
-                $format,
-                $autocomplete,
-                $rent_bool_tags,
-                $rent_persons,
-                $property_type,
-                $rooms,
-                $hq_photos,
-                $price,
-                $area,
-                $similar
-            );
+	        if($autocomplete || $rent_bool_tags || $rent_persons || $property_type || $rooms || $hq_photos || $price || $area || $similar) {
+		        $answer = sprintf(
+			        $format,
+			        $autocomplete,
+			        $rent_bool_tags,
+			        $rent_persons,
+			        $property_type,
+			        $rooms,
+			        $hq_photos,
+			        $price,
+			        $area,
+			        $similar
+		        );
+	        }
         }
         return $answer;
     }
@@ -66,6 +67,14 @@ class Tags
     function get_counters($params, $query_text = null) {
         if($params['l_id']){
             $params['property_object'] = $params['l_id'];
+        }
+        // Return 0 if there was geolocation errior
+        if($params['place_error']) {
+	        return [
+		        'geo_location' => [
+			        'doc_count'   => 0
+		        ]
+	        ];
         }
         $url = $this->api_url . '/counters?' . preg_replace('/%5B[0-9]+%5D/simU', '%5B%5D', http_build_query($params)) . \LP_ObjectList::add_remote_data('string', '&', $query_text);
 

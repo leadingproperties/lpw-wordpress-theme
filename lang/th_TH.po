@@ -169,6 +169,9 @@ msgstr "แสดงแผนที่ใหญ่"
 msgid "search_panel:toggle_map_n"
 msgstr "แสดงแผนที่เล็ก"
 
+msgid "search_panel:tips"
+msgstr "คุณสามารถค้นหาได้โดยใช้ข้อมูลประเทศ ภูมิภาค เมือง อำเภอ ชื่อถนน ที่อยู่อาศัย สถานที่ที่เป็นจุดสนใจ หรือโดยหมายเลขอ้างอิงของสินทรัพย์ ตัวอย่างเช่น:"
+
 #: lib/objects/functions.php:36 lib/objects/functions.php:460
 #: page-object.php:46 page-object.php:446
 msgid "s_object:header:detailed_info"

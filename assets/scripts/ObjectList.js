@@ -1,7 +1,12 @@
 (function($){
     "use strict";
 
-    /* Object List */
+    /**
+     * ObjectList
+     * @param type - строка c типом листинга list - обычный листинг, favorites - листинг обьектов favorites, share - листинг обьектов share
+     * @param category - sale, rent
+     */
+
     function ObjectList(type, category) {
         var $this = this,
             loader = $('.loader'),
@@ -182,6 +187,9 @@
                         }
                     }
                 }
+
+                // Если Google API не вернул координаты
+                $this.place_error = !!(data.place_error);
             }
 
             if(!silent){
@@ -208,6 +216,7 @@
         this.lastItem = function() {
             return $('.object-item').last();
         };
+        this.globalCurrencySwitcher = $('#global-currency-switcher');
         this.type = type;
         this.favorites = new window.lpw.Favorites(type, category);
         this.favoritesIds = $this.favorites.favoritesIds;
@@ -220,10 +229,14 @@
             location: false,
             filter: false
         };
+        this.place_error = false;
         this.args = {
             lang: LpData.lang,
             page: 1,
             per_page: 9,
+            price: {
+               currency: LpData.currency_id
+            },
             for_sale: ( category === 'sale' ),
             for_rent: ( category === 'rent' )
         };
@@ -247,27 +260,43 @@
             return r;
         };
         this.getObjects = function (callback, eventType) {
+            loader.show();
+            // Check if we use filters and set flag if any
+
+            $this.isFiltersActive();
 
             if($this.didScroll === true) {
                 return;
             }
             $this.didScroll = true;
-            if(_.has($this.args, 'autocomplete') && !(_.has($this.args, 'location_point') || _.has($this.args, 'ids'))) {
+
+            if(_.has($this.args, 'autocomplete') && !(_.has($this.args, 'location_point') || _.has($this.args, 'location_shape') || _.has($this.args, 'ids'))) {
                 delete $this.args.autocomplete;
             }
-            var autocomplete = $this.args.autocomplete || null,
-                dataUrl;
 
-            loader.show();
+            var data = {},
+                dataUrl = {},
+                autocomplete = $this.args.autocomplete || null;
+            for (var key in $this.args) {
+                if($this.args.hasOwnProperty(key)) {
+                    data[key] = $this.args[key];
+                    dataUrl[key] = $this.args[key];
+                }
+            }
 
-
-            var data = $this.args;
-            dataUrl = $this.args;
             data.action = 'do_ajax';
 
             if( type === 'list' && $this.args.page === 1 && eventType !== 'single') {
 
-                $this.tags.buildTags(data);
+                if( dataUrl.price && !( dataUrl.price.min || dataUrl.price.max ) ) {
+                    delete dataUrl.price;
+                }
+
+                if($this.place_error) {
+                    dataUrl.place_error = true;
+                }
+
+                $this.tags.buildTags(dataUrl);
 
                 if($this.tags.autoComplete.autocompleteSelected) {
                     autocomplete = $this.tags.getAutocompleteData(data);
@@ -290,9 +319,7 @@
                     $this.setUrls(dataUrl, eventType);
                 }
             }
-            // Check if we use filters and set flag if any
 
-            $this.isFiltersActive();
             data.fn = 'get_objects';
             $.ajax({
                 url: LpData.ajaxUrl,
@@ -341,6 +368,7 @@
                         //  $(window).off('resize.lprop', $this.onLoadCheck);
                     }
                     $this.didScroll = false;
+
                 }
             });
 
@@ -353,6 +381,7 @@
             }
         };
         this.onLoadCheck = function(ev) {
+
 
             var query = window.lpw.Helpers.getParameterByName('filter'),
                 eventtype = ev.type;
@@ -374,8 +403,12 @@
                         if(query.autocomplete) {
                             $this.args.autocomplete = query.autocomplete;
 
-                        }
+                            //Set value to autocomplete input if any
+                            if(query.autocomplete.text) {
+                                $this.autoComplete.jqInput.val(query.autocomplete.text);
+                            }
 
+                        }
                         resetObjects();
                         $this.getObjects(null, eventtype);
                         filter.setValues(query);
@@ -420,6 +453,11 @@
                 filter.filterForm.on('submit', function (ev) {
                     ev.preventDefault();
                     var args = filter.getValues();
+                    // Change global currency switcher if value was changed in filter menu
+                    if(args.price && args.price.currency && args.price.currency !== $this.args.price.currency) {
+                        $this.globalCurrencySwitcher.val(args.price.currency).trigger('change');
+                        window.lpw.Helpers.createCookie('lpw_currency_id', args.price.currency);
+                    }
 
                     if (!_.isEmpty(args)) {
                         filter.closeFilter();
@@ -434,7 +472,7 @@
             }
             filter.filterSorting.on('change', function() {
                 var val = $(this).val();
-                if(val === false) {
+                if(val === 'false') {
                     if($this.args.order_by) {
                         delete $this.args.order_by;
                     }
@@ -442,6 +480,21 @@
                     $this.args.order_by = {
                         order: val
                     };
+                }
+                resetObjects();
+                $this.getObjects();
+            });
+
+
+
+            //Get objects when global currency is changed, set cookie, and change filter currency
+            this.globalCurrencySwitcher.on('select2:select', function(ev) {
+                var value = $(this).val();
+                window.lpw.Helpers.createCookie('lpw_currency_id', value);
+                $this.args.price = $this.args.price || {};
+                $this.args.price.currency = value;
+                if( type === 'list' ) {
+                    filter.filterCurrency.val(value).trigger('change');
                 }
                 resetObjects();
                 $this.getObjects();
@@ -461,9 +514,9 @@
     ObjectList.prototype.setUrls = function(data, eventtype) {
         //var url = window.location.origin ? window.location.origin :  (window.location.protocol + '//' + window.location.hostname + window.location.pathname + window.location.port),
         var url = window.location.protocol + '//' + window.location.hostname + window.location.pathname,
-            excluded = ['action', 'fn', 'page', 'per_page', 'for_sale', 'for_rent', 'lang', 'place_id'];
+            excluded = ['action', 'fn', 'page', 'per_page', 'for_sale', 'for_rent', 'lang', 'place_id', 'place_error'];
         data = _.omit(data, excluded);
-
+        // Unset data.price if no min or max values
 
 
         if(!_.isEmpty(data)) {
@@ -480,10 +533,10 @@
     };
 
     ObjectList.prototype.isFiltersActive = function() {
-        if(this.args.price || this.args.rooms || this.args.area || this.args.property_types || this.args.rooms || this.args.hd_photos || this.args.persons || this.args.long_rent || this.args.short_rent || this.args.child_friendly || this.args.pets_allowed) {
+        if((this.args.price && (this.args.price.min || this.args.price.max)) || this.args.rooms || this.args.area || this.args.property_types || this.args.rooms || this.args.hd_photos || this.args.persons || this.args.long_rent || this.args.short_rent || this.args.child_friendly || this.args.pets_allowed) {
             this.usedFilters.filter = true;
         }
-        if(this.args.location_point || this.args.location_shape) {
+        if(this.args.location_point || this.args.location_shape || this.args.ids) {
             this.usedFilters.location = true;
         }
 

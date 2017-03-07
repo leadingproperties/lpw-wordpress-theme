@@ -28,12 +28,16 @@ get_favorites_bar(false);
 						'lang'  => $lp_settings['lang'],
 						'page'  => 1,
 						'per_page'  => 9,
-						'for_sale'  => 'true',
-						'for_rent'  => 'false',
+						'for_sale'  => 'false',
+						'for_rent'  => 'true',
+						'price' => [
+							'currency'  => $lp_settings['currency_id']
+						],
 						'action' => 'get_objects',
 						'ids'   => $ids
 					];
 					$list = get_object_list($args);
+
 					if(isset($list['html'])) {
 						echo $list['html'];
 					}

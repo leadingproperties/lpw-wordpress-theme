@@ -84,10 +84,13 @@
                 url = window.location.href;
             }
             var data = {
-                'action' : 'do_ajax',
-                'fn' : 'get_object',
-                'lang': objectlist.args.lang,
-                'slug': _.replace(url, LpData.propertyPage, '')
+                action: 'do_ajax',
+                fn: 'get_object',
+                lang: objectlist.args.lang,
+                price: {
+                    currency: objectlist.args.price.currency
+                },
+                slug: _.replace(url, LpData.propertyPage, '')
             };
             $this.showLoader(true);
 

@@ -55,8 +55,8 @@ $searchfiield1280:               720px !default;
 
 
 $top-col-width370:               100px !default;
-$top-menu-width740:              $container-width-2 - 2 * $top-col-width370 - 2 * $container-padding !default;
-$top-menu-width1070:             $container-width-3 -  $top-col-width370 - 2 * $container-padding !default;
+$top-menu-width740:              $container-width-2 - 3 * $top-col-width370 - 2 * $container-padding !default;
+$top-menu-width1070:             $container-width-3 - 2 * $top-col-width370 - 2 * $container-padding !default;
 
 /* z-indexes */
 

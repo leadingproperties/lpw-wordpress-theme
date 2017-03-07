@@ -2,6 +2,7 @@
   "dependencies": {
     "main.js": {
       "files": [
+        "scripts/TypeahedOverrides.js",
         "scripts/Helpers.js",
         "scripts/Offcanvas.js",
         "scripts/FilterMenu.js",
@@ -27,11 +28,6 @@
         "styles/main.scss"
       ],
       "main": true
-    },
-    "customizer.js": {
-      "files": [
-        "scripts/customizer.js"
-      ]
     },
     "lodash.js": {
       "bower": ["lodash"]

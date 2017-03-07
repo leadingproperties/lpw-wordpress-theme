@@ -45,7 +45,7 @@
 				break;
 			case 'price':
 				$('#price-min').add('#price-max').val(undefined);
-				$('#price-currency').val('1').change();
+				//$('#price-currency').val('1').change();
 				this.filterForm.trigger('submit');
 				break;
 			case 'area':
@@ -71,7 +71,7 @@
 	Tags.prototype.getTags = function(params) {
 		var $this = this,
 		    data = {
-			    action: params.action,
+			    action: 'do_ajax',
 			    fn: 'get_tags',
 			    raw: params //we need it for tag counters
 		    };

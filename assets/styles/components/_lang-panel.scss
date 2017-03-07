@@ -43,9 +43,11 @@
       right: 0;
     }
   }
-  &.with-code {
-    .ln-code {
-      display: inline;
+  @media (min-width: $container-width-1) {
+    &.with-code {
+      .ln-code {
+        display: inline;
+      }
     }
   }
 }
@@ -207,7 +209,7 @@ span[class*=" lang-"] {
   padding-top: 10px;
   padding-bottom: 10px;
   @include clearfix();
-  @media (max-width: $container-width-2) {
+  @media (min-width: $container-width-1) and (max-width: $container-width-2) {
     width: $object-width;
   }
   @media (min-width: $screen1280) {

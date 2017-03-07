@@ -3,11 +3,13 @@
 
     /* Filter toggle */
     function FilterMenu(type, catogory) {
+
+        this.filterCurrency = $('#price-currency');
+
         var $this = this,
             container = $('.sp-filters'),
             filterToggleBtn = $('.filter-toggle'),
             filterCloseBtn = $('.filter-close'),
-            filterCurrency = $('#price-currency'),
             filterPeriod = $('#price-period'),
             tooltipOpt = {
                 template: '<div class="tooltip tooltip-search" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>',
@@ -17,7 +19,7 @@
                 price: {
                     min: $('#price-min'),
                     max: $('#price-max'),
-                    currency: filterCurrency,
+                    currency: this.filterCurrency,
                     period: filterPeriod
                 },
                 area:  {
@@ -49,7 +51,7 @@
                 if(values.price.currency) {
                     filterInp.price.currency.val(values.price.currency).trigger("change");
                 } else {
-                    filterInp.price.currency.val(1).trigger("change");
+                    //filterInp.price.currency.val(1).trigger("change");
                 }
                 if(values.price.period) {
                     filterInp.price.period.val(values.price.period).trigger("change");
@@ -59,7 +61,7 @@
             } else {
                 filterInp.price.min.val(undefined);
                 filterInp.price.max.val(undefined);
-                filterInp.price.currency.val(1).trigger("change");
+                //filterInp.price.currency.val(1).trigger("change");
                 filterInp.price.period.val("day").trigger("change");
             }
             if(values.area) {
@@ -157,17 +159,16 @@
             }else{
                 values.area = null;
             }
+            values.price = {
+                currency: filterInp.price.currency.val()
+            };
             if(price.min || price.max) {
-                values.price = {};
                 if(price.min) {
                     values.price.min = price.min;
                 }
                 if(price.max) {
                     values.price.max = price.max;
                 }
-                values.price.currency = filterInp.price.currency.val();
-            }else{
-                values.price = null;
             }
             values.property_types = _.isEmpty(property_types) ? null : property_types;
             values.rooms = _.isEmpty(rooms) ? null : rooms;
@@ -211,7 +212,7 @@
                 width: "100%"
             });
             if( type === 'list' ) {
-                filterCurrency.select2({
+                this.filterCurrency.select2({
                     minimumResultsForSearch: Infinity,
                     containerCssClass: "price-select",
                     dropdownCssClass: "price-select-dropdown"

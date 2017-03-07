@@ -169,6 +169,9 @@ msgstr "Afficher la carte en grand format"
 msgid "search_panel:toggle_map_n"
 msgstr "SAfficher la carte en petit format"
 
+msgid "search_panel:tips"
+msgstr "Vous pouvez rechercher par pays, régions, villes, districts, noms de rues, résidences, points d'intérêt ou par un numéro de référence de la propriété. Par exemple:"
+
 #: lib/objects/functions.php:36 lib/objects/functions.php:460
 #: page-object.php:46 page-object.php:446
 msgid "s_object:header:detailed_info"

@@ -169,6 +169,9 @@ msgstr "显示大地图"
 msgid "search_panel:toggle_map_n"
 msgstr "显示小地图"
 
+msgid "search_panel:tips"
+msgstr "您可按照国家、地区、城市、行政区、街道名、住宅区、兴趣点或物业参考号进行搜索。例如："
+
 #: lib/objects/functions.php:36 lib/objects/functions.php:460
 #: page-object.php:46 page-object.php:446
 msgid "s_object:header:detailed_info"

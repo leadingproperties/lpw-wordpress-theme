@@ -1,3 +1,4 @@
+<?php  global $lp_settings; ?>
 <div class="sp-filters sp-filters-buy">
 	<div class="sp-filter-wrap">
 		<form action="" id="filter-form">
@@ -24,13 +25,13 @@
 						<label for="price-currency" class="sr-only">Currency</label>
 						<div class="price-select-wrap">
 							<select name="price[currency]" id="price-currency" class="price-input price-select">
-								<option value="1">EUR</option>
-								<option value="4">USD</option>
-								<option value="5">GBR</option>
-								<option value="2">CHF</option>
-								<option value="3">CZK</option>
-								<option value="7">AED</option>
-								<option value="8">THB</option>
+                                <option value="1"<?php if($lp_settings['currency_id'] === 1) echo ' selected'; ?>>EUR</option>
+                                <option value="4"<?php if($lp_settings['currency_id'] === 4) echo ' selected'; ?>>USD</option>
+                                <option value="5"<?php if($lp_settings['currency_id'] === 5) echo ' selected'; ?>>GBR</option>
+                                <option value="2"<?php if($lp_settings['currency_id'] === 2) echo ' selected'; ?>>CHF</option>
+                                <option value="3"<?php if($lp_settings['currency_id'] === 3) echo ' selected'; ?>>CZK</option>
+                                <option value="7"<?php if($lp_settings['currency_id'] === 7) echo ' selected'; ?>>AED</option>
+                                <option value="8"<?php if($lp_settings['currency_id'] === 8) echo ' selected'; ?>>THB</option>
 							</select>
 						</div>
 					</div>

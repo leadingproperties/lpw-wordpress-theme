@@ -174,6 +174,9 @@ msgstr "Visa stor karta"
 msgid "search_panel:toggle_map_n"
 msgstr "Visa liten karta"
 
+msgid "search_panel:tips"
+msgstr "Du kan söka via länder, regioner, städer, distrikt, gatunamn, vistelseorter, intressanta platser eller via ett referensnummer för fastigheten. Till exempel:"
+
 #: lib/objects/functions.php:36 lib/objects/functions.php:460
 #: page-object.php:46 page-object.php:446
 msgid "s_object:header:detailed_info"

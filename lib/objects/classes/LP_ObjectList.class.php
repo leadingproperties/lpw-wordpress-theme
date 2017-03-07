@@ -73,9 +73,9 @@ class LP_ObjectList {
 
 
 	    $this->token = get_field('api_key', 'option');
-	    if(empty($this->api_url) || empty($this->token)) {
+	    if(empty($this->token)) {
 		    $this->error = true;
-		    $this->error_message = 'Set the API url and API key';
+		    $this->error_message = 'API key not set';
 	    }
     }
 
@@ -152,13 +152,22 @@ class LP_ObjectList {
             case 'get_countries':
                     $url .= '/countries/commercial';
                 break;
+            case 'get_tips':
+                    $url .= '/suggest/tips';
+                    if($this->args['scope']) {
+                    	$url .= '?scope=' . $this->args['scope'];
+                    }
+                break;
             default:
 
                 $url .= '/' .$this->args['lang'] . '/property_objects/';
                 if ( isset( $this->args['slug'] ) ) {
                     $url .= 'slug/' . $this->args['slug'];
-
                     $url .= self::add_remote_data('string', '?');
+                    if(isset($this->args['price']['currency'])) {
+	                    $url .= '&price[currency]='	. $this->args['price']['currency'];
+                    }
+
                 } else {
                     $url .= '?page=' . $this->args['page'] . '&for_sale=' . $this->args['for_sale'] . '&for_rent=' . $this->args['for_rent'];
                     if ( isset( $this->args['ids'] ) && is_array( $this->args['ids'] ) ) {
@@ -231,7 +240,6 @@ class LP_ObjectList {
                 }
 
         }
-
         $curl_options = [
             CURLOPT_URL => $url,
             CURLOPT_HTTPHEADER => [
@@ -250,7 +258,7 @@ class LP_ObjectList {
         if(!$resp) {
             curl_close($ch);
             $this->error = true;
-            $this->error_message = "Server return empty body";
+	        $this->error_message = (curl_error($ch)) ? "Curl error: " . curl_error($ch) : "Server return empty body";
             return json_encode(['error' => true, 'errorMessage' => $this->error_message]);
         }
 
