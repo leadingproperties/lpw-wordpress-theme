@@ -19,9 +19,9 @@ function body_class($classes) {
 	if(is_archive() || is_home()) {
 		$classes[]  = 'blog-list';
 	}
-	if( is_page_template('page-buy.php') ) {
+	if( is_page_template('page-buy.php') || is_page_template('page-location-buy.php') ) {
 		$classes[] = 'page-sales';
-	} elseif( is_page_template('page-rent.php') ) {
+	} elseif( is_page_template('page-rent.php') || is_page_template('page-location-rent.php') ) {
 		$classes[] = 'page-rent';
 	} elseif(is_page_template('page-favorites.php')) {
 		$classes[] = 'page-favorites';

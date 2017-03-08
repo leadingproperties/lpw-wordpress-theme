@@ -315,7 +315,7 @@
                         };
                     }
                 }
-                if(! (eventType === 'load' && LpData.defaultLocation) ) {
+                if(! (eventType === 'load' && LpData.defaultLocation) && ! LpData.isLocationPage) {
                     $this.setUrls(dataUrl, eventType);
                 }
             }

@@ -37,7 +37,6 @@ function lpw_set_globals() {
 			'contact_phone'    => get_field( 'contact_phone', 'option' ),
 			'contact_email'    => get_field( 'contact_email', 'option' ),
 			'use_shortener'    => get_field( 'use_google_shortener', 'option' ),
-			'google_api_key'   => ( get_field( 'google_api_key', 'option' ) ) ? get_field( 'google_api_key', 'option' ) : 'AIzaSyB9AMFYWn5z8QYptnbetxXckrldFpsZyGA',
 			'site_title'       => get_bloginfo( 'name' ),
 			'sale_page'        => ( get_field( 'sale', 'option' ) ) ? get_field( 'sale', 'option' ) : get_page_by_title( 'Buy' )->guid,
 			'rent_page'        => ( get_field( 'rent', 'option' ) ) ? get_field( 'rent', 'option' ) : get_page_by_title( 'Rent' )->guid,
@@ -60,7 +59,7 @@ function lpw_set_globals() {
 			];
 		}
 	}
-
+	$lp_settings['google_api_key'] = ( get_field( 'google_api_key', 'option' ) ) ? get_field( 'google_api_key', 'option' ) : 'AIzaSyB9AMFYWn5z8QYptnbetxXckrldFpsZyGA';
 	$lp_settings['property_page_id'] = ( get_field( 'single_object', 'option' ) ) ? get_field( 'single_object', 'option' ) : get_page_by_title( 'Single property' )->id;
 	$property_page                = get_page_link( $lp_settings['property_page_id'] );
 	$lp_settings['property_page'] = is_ssl() ? str_replace( 'http:', 'https:', $property_page ) : $property_page;
@@ -165,5 +164,7 @@ function is_lpw_page() {
 	       is_page_template('page-favorites-rent.php') ||
 	       is_page_template('page-object.php') ||
 	       is_page_template('page-sharer.php') ||
-	       is_page_template('page-sharer-rent.php');
+	       is_page_template('page-sharer-rent.php') ||
+		   is_page_template('page-location-buy.php') ||
+		   is_page_template('page-location-rent.php');
 }

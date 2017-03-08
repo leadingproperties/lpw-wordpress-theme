@@ -75,7 +75,7 @@ function assets() {
         if ( is_single() && comments_open() && get_option( 'thread_comments' ) ) {
             wp_enqueue_script( 'comment-reply' );
         }
-        if ( is_page_template( 'page-buy.php' ) || is_page_template( 'page-rent.php' ) || is_page_template( 'page-invest.php' ) ) {
+        if ( is_page_template( 'page-buy.php' ) || is_page_template( 'page-rent.php' ) || is_page_template( 'page-invest.php' ) || is_page_template( 'page-location-buy.php' ) || is_page_template( 'page-location-rent.php' )) {
 
             wp_enqueue_script( 'google-map', 'https://maps.googleapis.com/maps/api/js?key=' . $lp_settings['google_api_key'] . '&libraries=places&language=en', null, true );
             wp_enqueue_script( 'js-marker-clusterer', Assets\asset_path( '/scripts/js-marker-clusterer.js' ), [
@@ -137,6 +137,13 @@ function assets() {
                 $data['rentDefault']       = lwp_option( 'rent_location' );
                 $data['rentDefaultCoords'] = json_decode( lwp_option( 'rent_location_geodata' ) );
             }
+        }
+        if( is_page_template('page-location-buy.php') || is_page_template('page-location-rent.php')) {
+	        $data['isLocationPage']   = true;
+	        $data['defaultCoords'] = json_decode( get_field('geodata', get_queried_object_id()) );
+	        $data['defaultGeoTitle'] = get_field('location', get_queried_object_id());
+	        $data['propertyType']  = get_field('property_type', get_queried_object_id());
+
         }
         wp_localize_script( 'lprop/js', 'LpData', $data );
         wp_enqueue_script( 'lprop/js' );
