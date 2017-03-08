@@ -13,7 +13,7 @@
   display: none;
   border: 1px solid #D9D9D9;
   position: absolute;
-  z-index: 1000;
+  z-index: 100000;
   top: 44px;
   left: 0;
   width: 100%;
@@ -49,5 +49,14 @@
       padding-bottom: 5.5px;
     }
   }
-
+}
+.acf-field {
+  &.default-location {
+    .acf-input-wrap {
+      overflow: visible;
+    }
+  }
+}
+#default_location_geodata {
+  display: none;
 }

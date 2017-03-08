@@ -84,9 +84,9 @@ if( function_exists('acf_add_local_field_group') ):
 				),
 				'message' => 'This selectors assign wordpress theme pages to api views.
 Example:
-Page Single Property have permalink: http://domain.net/single-property/
-In this case property in frontend will have URL http://domain.net/single-property/ch-80447-designer-chalet-for-sale-in-st-moritz
-You can change permaink, but be aware, this will change ALL your direct properties url links.',
+_Page Single Property. Have permalink: http://domain.net/single-property/_
+_In this case rpoperty in frontend will have URL http://domain.net/single-property/ch-80447-designer-chalet-for-sale-in-st-moritz_
+You can cahnge permaink, but be aware that this will change ALL yur direct properties link.',
 				'new_lines' => 'wpautop',
 				'esc_html' => 0,
 			),
@@ -307,6 +307,101 @@ You can change permaink, but be aware, this will change ALL your direct properti
 		),
 		'menu_order' => 0,
 		'position' => 'normal',
+		'style' => 'default',
+		'label_placement' => 'top',
+		'instruction_placement' => 'label',
+		'hide_on_screen' => '',
+		'active' => 1,
+		'description' => '',
+	));
+
+	acf_add_local_field_group(array (
+		'key' => 'group_58bfe44f883e9',
+		'title' => 'Filters',
+		'fields' => array (
+			array (
+				'key' => 'field_58bfe45a29587',
+				'label' => 'Location',
+				'name' => 'location',
+				'type' => 'text',
+				'instructions' => '',
+				'required' => 0,
+				'conditional_logic' => 0,
+				'wrapper' => array (
+					'width' => '',
+					'class' => 'default-location',
+					'id' => 'default_location',
+				),
+				'default_value' => '',
+				'placeholder' => '',
+				'prepend' => '',
+				'append' => '',
+				'maxlength' => '',
+				'readonly' => 0,
+				'disabled' => 0,
+			),
+			array (
+				'key' => 'field_58bfe4e729588',
+				'label' => 'Geodata',
+				'name' => 'geodata',
+				'type' => 'text',
+				'instructions' => '',
+				'required' => 0,
+				'conditional_logic' => 0,
+				'wrapper' => array (
+					'width' => '',
+					'class' => 'default-location',
+					'id' => 'default_location_geodata',
+				),
+				'default_value' => '',
+				'placeholder' => '',
+				'prepend' => '',
+				'append' => '',
+				'maxlength' => '',
+				'readonly' => 0,
+				'disabled' => 0,
+			),
+			array (
+				'key' => 'field_58c0100ec5d7e',
+				'label' => 'Propetry type',
+				'name' => 'property_type',
+				'type' => 'checkbox',
+				'instructions' => '',
+				'required' => 0,
+				'conditional_logic' => 0,
+				'wrapper' => array (
+					'width' => '',
+					'class' => '',
+					'id' => '',
+				),
+				'choices' => array (
+					1 => 'Apartments',
+					2 => 'Houses',
+				),
+				'default_value' => array (
+				),
+				'layout' => 'vertical',
+				'toggle' => 0,
+			),
+		),
+		'location' => array (
+			array (
+				array (
+					'param' => 'page_template',
+					'operator' => '==',
+					'value' => 'page-location-buy.php',
+				),
+			),
+			array (
+				array (
+					'param' => 'page_template',
+					'operator' => '==',
+					'value' => 'page-location-rent.php',
+				),
+			),
+		),
+		'menu_order' => 0,
+		'position' => 'acf_after_title',
 		'style' => 'default',
 		'label_placement' => 'top',
 		'instruction_placement' => 'label',
@@ -1274,7 +1369,7 @@ more on <a href="http://lpwdev.com/wordpress.html">http://lpwdev.com/wordpress.h
 				),
 				'message' => 'We take no responsibility for the scripts used
 
-The code will NOT be wrapped in &lt;script&gt; tag. You need to do it manually
+The code will NOT be wrapped in &lt;script&gt; tag. You need to do it manually 
 ex:
 &lt;script type="text/javascript"&gt;
 
@@ -1355,3 +1450,4 @@ ex:
 	));
 
 endif;
+

@@ -130,8 +130,37 @@ Number.prototype.formatMoney = function(c, d, t){
                     text: LpData.saleDefault
                 };
             }
-            objects.init();
 
+            if(LpData.isLocationPage) {
+                if(LpData.defaultCoords) {
+                    objects.args.location_point = {
+                        country_code: LpData.defaultCoords.location_point.country_code || null,
+                        lat: LpData.defaultCoords.location_point.lat || null,
+                        lon: LpData.defaultCoords.location_point.lon || null
+                    };
+                    objects.args.location_shape = {
+                        country_code: LpData.defaultCoords.location_shape.country_code || null,
+                        bottom_left: {
+                            lat: LpData.defaultCoords.location_shape.bottom_left.lat || null,
+                            lon: LpData.defaultCoords.location_shape.bottom_left.lon || null
+                        },
+                        top_right: {
+                            lat: LpData.defaultCoords.location_shape.top_right.lat || null,
+                            lon: LpData.defaultCoords.location_shape.top_right.lon || null
+                        }
+                    };
+                }
+                objects.args.autocomplete = {
+                    text: LpData.defaultGeoTitle || null
+                };
+                if(objects.args.autocomplete.text) {
+                    objects.autoComplete.jqInput.val(objects.args.autocomplete.text);
+                }
+                objects.args.property_types = LpData.propertyType || [];
+
+            }
+
+            objects.init();
 
         }
     },
@@ -159,6 +188,35 @@ Number.prototype.formatMoney = function(c, d, t){
                 objects.args.autocomplete = {
                     text: LpData.rentDefault
                 };
+            }
+
+            if(LpData.isLocationPage) {
+                if(LpData.defaultCoords) {
+                    objects.args.location_point = {
+                        country_code: LpData.defaultCoords.location_point.country_code || null,
+                        lat: LpData.defaultCoords.location_point.lat || null,
+                        lon: LpData.defaultCoords.location_point.lon || null
+                    };
+                    objects.args.location_shape = {
+                        country_code: LpData.defaultCoords.location_shape.country_code || null,
+                        bottom_left: {
+                            lat: LpData.defaultCoords.location_shape.bottom_left.lat || null,
+                            lon: LpData.defaultCoords.location_shape.bottom_left.lon || null
+                        },
+                        top_right: {
+                            lat: LpData.defaultCoords.location_shape.top_right.lat || null,
+                            lon: LpData.defaultCoords.location_shape.top_right.lon || null
+                        }
+                    };
+                }
+                objects.args.autocomplete = {
+                    text: LpData.defaultGeoTitle || null
+                };
+                if(objects.args.autocomplete.text) {
+                    objects.autoComplete.jqInput.val(objects.args.autocomplete.text);
+                }
+                objects.args.property_types = LpData.propertyType || [];
+
             }
 
             objects.init();
