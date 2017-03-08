@@ -69,7 +69,7 @@ class LP_ObjectList {
             'query' => ''
         ];
         $this->args = array_merge($defaults, $args);
-	    $this->api_url = "https://lpw-public-api.herokuapp.com";
+	    $this->api_url = "http://78.26.248.168:3006";
 
 
 	    $this->token = get_field('api_key', 'option');
