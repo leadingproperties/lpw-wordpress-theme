@@ -510,8 +510,6 @@
                 }
             });
 
-
-
             //Get objects when global currency is changed, set cookie, and change filter currency
             this.globalCurrencySwitcher.on('select2:select', function(ev) {
                 var value = $(this).val();
@@ -524,6 +522,8 @@
                 resetObjects();
                 $this.getObjects();
             });
+
+            $(window).on('resize.lprop', this.fixContentBoxPosition.bind(this));
         };
         this.init = function () {
             $this.favorites.init();
@@ -594,6 +594,31 @@
                     cbCloned.insertAfter(objectItem.last());
                 }
             }
+        }
+    };
+
+    ObjectList.prototype.fixContentBoxPosition = function() {
+        var contentBox = $('.seo-block-wrap'),
+            inRow = window.lpw.Helpers.inRow('#object-list', '.object-item'),
+            objectItem = $('.object-item'),
+            cloned;
+        if(contentBox.length === 0 || this.onPage <= 3) {
+            return false;
+        }
+        switch(inRow) {
+            case 1:
+            case 2:
+                if(this.onPage > 4) {
+                    cloned = contentBox.remove();
+                    cloned.insertAfter(objectItem.eq(3));
+                }
+                break;
+            case 3:
+                if(this.onPage >= 6) {
+                    cloned = contentBox.remove();
+                    cloned.insertAfter(objectItem.eq(5));
+                }
+                break;
         }
     };
 
