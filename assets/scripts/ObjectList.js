@@ -14,7 +14,8 @@
             singleObject = new window.lpw.SingleObject(this);
 
         function resetObjects() {
-            $this.objectContainer.html('');
+            //this.objectContainer.html('');
+            $('.object-item').remove();
             $this.args.page = 1;
             $this.onPage = 0;
             $this.totalObjects = parseInt(LpData.totalObjects);
@@ -82,8 +83,11 @@
             $this.usedFilters.location = false;
         }
         function clearFilters() {
-            if($this.args.price) {
-                delete $this.args.price;
+            if($this.args.price.min) {
+                delete $this.args.price.min;
+            }
+            if($this.args.price.max) {
+                delete $this.args.price.max;
             }
             if($this.args.rooms) {
                 delete $this.args.rooms;
@@ -210,7 +214,8 @@
             this.tags = new window.lpw.Tags(
                 LpData.ajaxUrl,
                 $this.autoComplete,
-                filter.filterForm
+                filter.filterForm,
+                filter.filterSorting
             );
         }
         this.lastItem = function() {
@@ -345,6 +350,8 @@
                                     singleObject.nextLink = (!_.isNull(data.firstObject.slug)) ? LpData.propertyPage + data.firstObject.slug : false;
                                     callback(data);
                                 }
+                                $this.setContentBox();
+
                             });
                     }
                 },
@@ -388,9 +395,10 @@
             if(eventtype === 'popstate' && window.location.href.search(LpData.propertyPage) !== -1) {
                 return false;
             }
-            if(eventtype === 'popstate' && (window.location.href.search(LpData.propertyPage) === -1)) {
-                clearAllFilters();
+            if(window.history.state && window.history.state.action && window.history.state.action === "object-close") {
+                return false;
             }
+
             if(query) {
                 try {
                     query = JSON.parse(query);
@@ -412,11 +420,16 @@
                         resetObjects();
                         $this.getObjects(null, eventtype);
                         filter.setValues(query);
+
                     }
                 } catch(e) {
                     console.log(e);
                 }
             } else {
+                if(eventtype === 'popstate' && (window.location.href.search(LpData.propertyPage) === -1)) {
+                    clearAllFilters();
+                    //console.log(window.history);
+                }
                 resetObjects();
                 $this.usedFilters.location = false;
                 $this.getObjects(null, eventtype);
@@ -470,7 +483,7 @@
                     }
                 });
             }
-            filter.filterSorting.on('change', function() {
+            filter.filterSorting.on('select2:select', function() {
                 var val = $(this).val();
                 if(val === 'false') {
                     if($this.args.order_by) {
@@ -483,6 +496,18 @@
                 }
                 resetObjects();
                 $this.getObjects();
+            });
+            filter.filterSorting.on('change', function() {
+                var val = $(this).val();
+                if(val === 'false') {
+                    if($this.args.order_by) {
+                        delete $this.args.order_by;
+                    }
+                } else {
+                    $this.args.order_by = {
+                        order: val
+                    };
+                }
             });
 
 
@@ -517,6 +542,9 @@
             excluded = ['action', 'fn', 'page', 'per_page', 'for_sale', 'for_rent', 'lang', 'place_id', 'place_error'];
         data = _.omit(data, excluded);
         // Unset data.price if no min or max values
+        if(data.price && !( data.price.min || data.price.max )) {
+            delete data.price;
+        }
 
 
         if(!_.isEmpty(data)) {
@@ -527,7 +555,7 @@
 
         } else {
             if(window.lpw.Helpers.isHhistoryApiAvailable()){
-	            window.history.pushState(null, null, url);
+	            window.history.replaceState(null, null, url);
             }
         }
     };
@@ -540,6 +568,33 @@
             this.usedFilters.location = true;
         }
 
+    };
+
+    ObjectList.prototype.setContentBox = function() {
+        var contentBox = $('.seo-block-wrap');
+        if(contentBox.length === 0 || this.onPage === 0) {
+            return false;
+        }
+        var cbCloned = contentBox.remove(),
+            objectItem = $('.object-item');
+        if(this.onPage <= 3) {
+            cbCloned.insertAfter(objectItem.last());
+        } else {
+            var inRow = window.lpw.Helpers.inRow('#object-list', '.object-item');
+            if(inRow === 3 ) {
+                if(this.onPage >= 6 ) {
+                    cbCloned.insertAfter(objectItem.eq(5));
+                } else {
+                    cbCloned.insertAfter(objectItem.last());
+                }
+            } else {
+                if(this.onPage >= 4 ) {
+                    cbCloned.insertAfter(objectItem.eq(3));
+                } else {
+                    cbCloned.insertAfter(objectItem.last());
+                }
+            }
+        }
     };
 
     window.lpw = window.lpw || {};
