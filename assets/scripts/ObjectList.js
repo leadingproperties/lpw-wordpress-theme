@@ -10,7 +10,6 @@
     function ObjectList(type, category) {
         var $this = this,
             loader = $('.loader'),
-            filter = new window.lpw.FilterMenu(type, category),
             singleObject = new window.lpw.SingleObject(this);
 
         function resetObjects() {
@@ -135,6 +134,8 @@
             $this.setUrls($this.args);
         }
 
+        this.filter = new window.lpw.FilterMenu(type, category),
+
         this.autoSearch = function(data, silent) {
             resetObjects();
             clearAutoSearch();
@@ -214,8 +215,8 @@
             this.tags = new window.lpw.Tags(
                 LpData.ajaxUrl,
                 $this.autoComplete,
-                filter.filterForm,
-                filter.filterSorting
+                this.filter.filterForm,
+                this.filter.filterSorting
             );
         }
         this.lastItem = function() {
@@ -419,7 +420,7 @@
                         }
                         resetObjects();
                         $this.getObjects(null, eventtype);
-                        filter.setValues(query);
+                        $this.filter.setValues(query);
 
                     }
                 } catch(e) {
@@ -463,9 +464,9 @@
                 }
             }
             if( type === 'list' ) {
-                filter.filterForm.on('submit', function (ev) {
+                this.filter.filterForm.on('submit', function (ev) {
                     ev.preventDefault();
-                    var args = filter.getValues();
+                    var args = $this.filter.getValues();
                     // Change global currency switcher if value was changed in filter menu
                     if(args.price && args.price.currency && args.price.currency !== $this.args.price.currency) {
                         $this.globalCurrencySwitcher.val(args.price.currency).trigger('change');
@@ -473,7 +474,7 @@
                     }
 
                     if (!_.isEmpty(args)) {
-                        filter.closeFilter();
+                        $this.filter.closeFilter();
                         _.forEach(args, function (value, key) {
                             $this.args[key] = value;
                         });
@@ -483,7 +484,7 @@
                     }
                 });
             }
-            filter.filterSorting.on('select2:select', function() {
+            this.filter.filterSorting.on('select2:select', function() {
                 var val = $(this).val();
                 if(val === 'false') {
                     if($this.args.order_by) {
@@ -497,7 +498,7 @@
                 resetObjects();
                 $this.getObjects();
             });
-            filter.filterSorting.on('change', function() {
+            this.filter.filterSorting.on('change', function() {
                 var val = $(this).val();
                 if(val === 'false') {
                     if($this.args.order_by) {
@@ -517,7 +518,7 @@
                 $this.args.price = $this.args.price || {};
                 $this.args.price.currency = value;
                 if( type === 'list' ) {
-                    filter.filterCurrency.val(value).trigger('change');
+                    $this.filter.filterCurrency.val(value).trigger('change');
                 }
                 resetObjects();
                 $this.getObjects();
@@ -530,7 +531,7 @@
             if( type === 'favorites') {
                 this.args.ids = $this.favoritesIds;
             }
-            filter.init();
+            $this.filter.init();
             singleObject.init();
             $this.setEventListeners();
 
