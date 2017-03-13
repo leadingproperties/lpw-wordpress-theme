@@ -156,9 +156,12 @@ Number.prototype.formatMoney = function(c, d, t){
                 if(objects.args.autocomplete.text) {
                     objects.autoComplete.jqInput.val(objects.args.autocomplete.text);
                 }
-                objects.args.property_types = LpData.propertyType || [];
+
                 if(LpData.propertyType) {
-                    objects.filter.setValues(objects.args);
+                    if(! (LpData.propertyType[0] && LpData.propertyType[1]) ) {
+                        objects.args.property_types = LpData.propertyType;
+                        objects.filter.setValues(objects.args);
+                    }
                 }
 
             }
@@ -218,10 +221,11 @@ Number.prototype.formatMoney = function(c, d, t){
                 if(objects.args.autocomplete.text) {
                     objects.autoComplete.jqInput.val(objects.args.autocomplete.text);
                 }
-                objects.args.property_types = LpData.propertyType || [];
-
                 if(LpData.propertyType) {
-                    objects.filter.setValues(objects.args);
+                    if(! (LpData.propertyType[0] && LpData.propertyType[1]) ) {
+                        objects.args.property_types = LpData.propertyType;
+                        objects.filter.setValues(objects.args);
+                    }
                 }
 
             }
