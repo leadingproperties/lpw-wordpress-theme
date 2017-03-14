@@ -4,11 +4,13 @@
 	function Tags(
 		pathToBuilder,
 		autoCompleteInstance,
-		filterFormInstance
+		filterFormInstance,
+		filterSortingInstance
 	) {
 		this.pathToBuilder = pathToBuilder;
 		this.autoComplete = autoCompleteInstance;
 		this.filterForm = filterFormInstance;
+		this.filterSorting = filterSortingInstance;
 
 		this.soptingPanel = $('.sorting-wrapper');
 
@@ -57,6 +59,7 @@
 				this.filterForm.trigger('submit');
 				break;
 			case 'all':
+				this.filterSorting.val('false').trigger('change');
 				this.filterForm[0].reset();
 				this.autoComplete.setSelected(null, null, true);
 				this.filterForm.trigger('submit');

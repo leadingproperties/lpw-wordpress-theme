@@ -1,6 +1,6 @@
 <?php
 /**
- *  Template Name: Sales
+ *  Template Name: Location Rent
  */
 ?>
 
@@ -21,15 +21,15 @@
 						if(has_excerpt()) { ?>
                             <div class="seo-block-wrap">
                                 <div class="seo-block">
-                                    <?= apply_filters('the_content', $excerpt); ?>
-                                    <?php if($content) { ?>
+									<?= apply_filters('the_content', $excerpt); ?>
+									<?php if($content) { ?>
                                         <div id="seo-hidden-text" class="seo-hidden-text collapse">
-	                                        <?= apply_filters('the_content', $content); ?>
+											<?= apply_filters('the_content', $content); ?>
                                         </div>
                                         <a class="seo-toggle collapsed" role="button" data-toggle="collapse" href="#seo-hidden-text" aria-expanded="false" aria-controls="seo-hidden-text">
                                             <span class="sr-only">Expand</span>
                                         </a>
-                                    <?php } ?>
+									<?php } ?>
                                 </div>
                             </div>
 						<? }
@@ -45,4 +45,3 @@
 <?php
 	get_template_part('templates/modal', 'map');
 	get_footer();
-

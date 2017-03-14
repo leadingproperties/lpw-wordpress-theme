@@ -136,6 +136,20 @@
         },
         eraseCookie: function(name) {
             this.createCookie(name, "", -1);
+        },
+        inRow: function (parentSelector, childSelector) {
+            var count = 0, theTop = undefined;
+            $(parentSelector + " > " + childSelector).each(function(){
+                var thisTop = $(this).offset().top;
+                if(theTop === undefined){
+                    theTop = thisTop;
+                }
+                if(thisTop != theTop){
+                    return false;
+                }
+                count++;
+            });
+            return count;
         }
     };
 
