@@ -174,10 +174,10 @@ $pages = array(
      // Page Title and URL (a blank space will end up becomeing a dash "-")
     'Buy' => array(
         // Page Content     // Template to use (if left blank the default template will be used)
-        'Buy page template. Please do not delete this page!'=>'page-buy.php'),
+        ''=>'page-buy.php'),
 
     'Rent' => array(
-        'Rent page template. Please do not delete this page!'=>'page-rent.php'),
+        ''=>'page-rent.php'),
 
     'Favorites Sale' => array(
         'Favorites Sale page template. Please do not delete this page!'=>'page-favorites.php'),
