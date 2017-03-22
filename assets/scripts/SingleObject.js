@@ -18,7 +18,7 @@
             $('.single-object-modal').remove();
             $('body').removeClass('overflow-height');
             if( window.lpw.Helpers.isHhistoryApiAvailable()) {
-                window.history.pushState(null, null, $this.location);
+                window.history.pushState({ action: 'object-close' }, null, $this.location);
                 /*  if(objectlist.type === 'list') {
                  objectlist.setUrls(objectlist.args);
                  }
@@ -79,6 +79,9 @@
 
             if( 'click' === ev.type ) {
                 url = $(this).attr('href');
+                if(ev.currentTarget.className.indexOf('object-thumbnail-holder') !== -1) {
+                    $this.location = window.location.href;
+                }
 
             } else {
                 url = window.location.href;
@@ -138,12 +141,12 @@
 
         };
         this.testPopstste = function(ev) {
+
+            if ( window.location.href === $this.location && isModalExists()) {
+                $('.btn-single-close').trigger('click.lprop');
+            }
             if(window.location.href.search(LpData.propertyPage) !== -1) {
-                if (isModalExists() && window.location.pathname === $this.location) {
-                    $('.btn-single-close').trigger('click.lprop');
-                } else {
-                    $this.getSingleObject(ev);
-                }
+                $this.getSingleObject(ev);
             }
         };
         this.showLoader = function(state) {

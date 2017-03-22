@@ -29,9 +29,11 @@ class LP_Theme_Options {
 		add_action( 'admin_menu', array( &$this, 'add_pages' ) );
 		add_action( 'admin_init', array( &$this, 'register_settings' ) );
 
-		if ( ! get_option( 'lp_options' ) )
-			$this->initialize_settings();
+		add_action( 'admin_enqueue_scripts', [&$this, 'add_location_page_scripts'], 10, 1 );
 
+		if ( ! get_option( 'lp_options' ) ) {
+			$this->initialize_settings();
+		}
 	}
 
 	/**
@@ -313,6 +315,21 @@ class LP_Theme_Options {
 
 	}
 
+	public function add_location_page_scripts( $hook ) {
+		global $post, $lp_settings;
+		if ( $hook == 'post-new.php' || $hook == 'post.php' ) {
+			if ( 'page' === $post->post_type ) {
+				wp_enqueue_script('lodash', get_template_directory_uri() . '/dist/scripts/lodash.js', [], null, true);
+				wp_enqueue_script('lwp-google-map', 'https://maps.googleapis.com/maps/api/js?key=' . $lp_settings['google_api_key'] . '&libraries=places&language=en', null, true);
+				wp_enqueue_script('typehead', get_template_directory_uri() . '/lib/admin/assets/js/bootstrap3-typeahead.min.js', ['jquery'], null, true);
+				wp_enqueue_script('lwp-autocomplete', get_template_directory_uri() . '/lib/admin/assets/js/Autocomplete.js', ['jquery', 'lwp-google-map', 'typehead', 'lodash']);
+				wp_enqueue_script('lwp-location-page', get_template_directory_uri() . '/lib/admin/assets/js/location-page.js', ['lwp-autocomplete'], null, true);
+
+				wp_enqueue_style('lwp-admin', get_template_directory_uri() . '/lib/admin/assets/css/style.css');
+			}
+		}
+	}
+
 }
 $theme_options = new LP_Theme_Options();
 function lwp_option( $option ) {
@@ -322,4 +339,3 @@ function lwp_option( $option ) {
 	else
 		return false;
 }
-?>

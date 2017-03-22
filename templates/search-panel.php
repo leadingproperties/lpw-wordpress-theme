@@ -7,16 +7,16 @@
 				<input id="sp-search" type="text" class="sp-input text-input dropdown-trigger" placeholder="<?php _e('search_panel:autocomplete', 'leadingprops'); ?>">
 			</div>
 			<a href="#" class="filter-toggle tooltip-type-search icon" data-toggle="tooltip" data-placement="bottom" title="<?php _e('alerts:advanced_search', 'leadingprops'); ?>"><span class="sr-only">Filter</span></a>
-			<?php if( is_page_template('page-buy.php') ) {
+			<?php if( is_page_template('page-buy.php') || is_page_template('page-location-buy.php') ) {
 				get_template_part('templates/filter', 'sale');
-			} elseif( is_page_template('page-rent.php') ) {
+			} elseif( is_page_template('page-rent.php') || is_page_template('page-location-rent.php')) {
 				get_template_part('templates/filter', 'rent');
 			} ?>
 		</div><!-- /.sp-search-field-->
 		<nav class="sp-menu">
 			<ul>
 				<li class="regions-menu tooltip-type-1" data-toggle="tooltip" data-placement="bottom" title="<?php _e('alerts:show_map_tooltip', 'leadingprops'); ?>"><a class="menu-link" data-toggle="modal" data-target="#map-modal"></a></li>
-				<li class="favorites-menu tooltip-type-1" data-toggle="tooltip" data-placement="bottom" title="<?php _e('alerts:favorite_properties', 'leadingprops'); ?>"><a class="menu-link" href="<?php if( is_page_template('page-buy.php' ) ) { echo $lp_settings['favorites']; } else { echo $lp_settings['favorites_rent']; } ?>"><sup class="text-red"></sup></a></li>
+				<li class="favorites-menu tooltip-type-1" data-toggle="tooltip" data-placement="bottom" title="<?php _e('alerts:favorite_properties', 'leadingprops'); ?>"><a class="menu-link" href="<?php if( is_page_template('page-buy.php' ) || is_page_template('page-location-buy.php' ) ) { echo $lp_settings['favorites']; } else { echo $lp_settings['favorites_rent']; } ?>"><sup class="text-red"></sup></a></li>
 				<li class="off-market-menu tooltip-type-1" data-toggle="tooltip" data-placement="bottom" title="<?php _e('alerts:offmarket_properties', 'leadingprops'); ?>"><a class="menu-link half-opaque"><sup class="text-red"></sup></a></li>
 			</ul>
 		</nav><!-- /.favorites-menu -->

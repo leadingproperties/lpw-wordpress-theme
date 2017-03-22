@@ -67,7 +67,7 @@ function lp_rewrite_rule(){
  */
 function assets() {
   global $lp_settings;
-  $ver = "3.1.1";
+  $ver = "3.2.1";
 	  //TODO Check why wp_get_theme()->get('Version'); not working
     if(!is_admin()) {
         wp_enqueue_style( 'lprop/css', Assets\asset_path( 'styles/main.css' ), false, $ver );
@@ -75,7 +75,7 @@ function assets() {
         if ( is_single() && comments_open() && get_option( 'thread_comments' ) ) {
             wp_enqueue_script( 'comment-reply' );
         }
-        if ( is_page_template( 'page-buy.php' ) || is_page_template( 'page-rent.php' ) || is_page_template( 'page-invest.php' ) ) {
+        if ( is_page_template( 'page-buy.php' ) || is_page_template( 'page-rent.php' ) || is_page_template( 'page-invest.php' ) || is_page_template( 'page-location-buy.php' ) || is_page_template( 'page-location-rent.php' )) {
 
             wp_enqueue_script( 'google-map', 'https://maps.googleapis.com/maps/api/js?key=' . $lp_settings['google_api_key'] . '&libraries=places&language=en', null, true );
             wp_enqueue_script( 'js-marker-clusterer', Assets\asset_path( '/scripts/js-marker-clusterer.js' ), [
@@ -138,6 +138,13 @@ function assets() {
                 $data['rentDefaultCoords'] = json_decode( lwp_option( 'rent_location_geodata' ) );
             }
         }
+        if( is_page_template('page-location-buy.php') || is_page_template('page-location-rent.php')) {
+	        $data['isLocationPage']   = true;
+	        $data['defaultCoords'] = json_decode( get_field('geodata', get_queried_object_id()) );
+	        $data['defaultGeoTitle'] = get_field('location', get_queried_object_id());
+	        $data['propertyType']  = get_field('property_type', get_queried_object_id());
+
+        }
         wp_localize_script( 'lprop/js', 'LpData', $data );
         wp_enqueue_script( 'lprop/js' );
     }
@@ -157,89 +164,99 @@ function lp_activation() {
 // @howtwizer
 // 2.09.2016
 
-if (isset($_GET['activated']) && is_admin()){
-    add_action('init', __NAMESPACE__ . '\\create_initial_pages');
-    add_action('init', __NAMESPACE__ . '\\set_home_page');
-}
+
+add_action('after_switch_theme', __NAMESPACE__ . '\\create_initial_pages');
+add_action('after_switch_theme', __NAMESPACE__ . '\\set_home_page');
+
 function create_initial_pages() {
+	$pages = array(
+	     // Page Title and URL (a blank space will end up becomeing a dash "-")
+	    'Buy' => array(
+	        // Page Content     // Template to use (if left blank the default template will be used)
+	        'template' => 'page-buy.php',
+		    'content'  => ''
+	    ),
 
-$pages = array(
-     // Page Title and URL (a blank space will end up becomeing a dash "-")
-    'Buy' => array(
-        // Page Content     // Template to use (if left blank the default template will be used)
-        'Buy page template. Please do not delete this page!'=>'page-buy.php'),
+	    'Rent' => array(
+	        'template' => 'page-rent.php',
+		    'content'   => ''
+	    ),
 
-    'Rent' => array(
-        'Rent page template. Please do not delete this page!'=>'page-rent.php'),
+	    'Favorites Sale' => array(
+	        'template'  => 'page-favorites.php',
+	        'content'   => 'Favorites Sale page template. Please do not delete this page!'
+	    ),
 
-    'Favorites Sale' => array(
-        'Favorites Sale page template. Please do not delete this page!'=>'page-favorites.php'),
+	    'Favorites Rent' => array(
+	        'template'  => 'page-favorites-rent.php',
+	        'content'   => 'Favorites Rent page template. Please do not delete this page!'
+	    ),
 
-    'Favorites Rent' => array(
-        'Favorites Rent page template. Please do not delete this page!'=>'page-favorites-rent.php'),
+	    'Single property' => array(
+		    'template'  => 'page-object.php',
+	        'content'   => 'Single property page template. Please do not delete this page!'
+	    ),
 
-    'Single property' => array(
-        'Single property page template. Please do not delete this page!'=>'page-object.php'),
+	    'Buy share' => array(
+		    'template'  => 'page-sharer.php',
+	        'content'   => 'Buy share page template. Please do not delete this page!'
+	    ),
 
-    'Buy share' => array(
-        'Buy share page template. Please do not delete this page!'=>'page-sharer.php'),
+	    'Rent share' => array(
+		    'template'  => 'page-sharer-rent.php',
+	        'content'   => 'Rent share page template. Please do not delete this page!'
+	    ),
 
-    'Rent share' => array(
-        'Rent share page template. Please do not delete this page!'=>'page-rent.php'),
+	    'Invest' => array(
+		    'template'  => 'page-invest.php',
+	        'content'   => 'Invest page template. Please do not delete this page!'
+	    )
 
-    'Invest' => array(
-        'Invest page template. Please do not delete this page!'=>'page-invest.php'),
+	);
+	foreach($pages as $page_url_title => $page_meta) {
+	        $id = get_page_by_title($page_url_title);
 
-);
+		$page = array(
+			'post_type'   => 'page',
+			'post_title'  => $page_url_title,
+			'post_name'   => $page_url_title,
+			'post_status' => 'publish',
+			'post_content' => $page_meta['content'],
+			'post_author' => 1,
+			'post_parent' => ''
+		);
+		if(!isset($id->ID)){
+			$new_page_id = wp_insert_post($page);
+			switch ($page_url_title) {
+				case 'Buy':
+					update_field('sale', $new_page_id, 'option');
+					break;
+				case 'Rent':
+					update_field('rent', $new_page_id, 'option');
+					break;
+				case 'Favorites Sale':
+					update_field('sale_favorites', $new_page_id, 'option');
+					break;
+				case 'Favorites Rent':
+					update_field('rent_favorites', $new_page_id, 'option');
+					break;
+				case 'Single property':
+					update_field('single_object', $new_page_id, 'option');
+					break;
+				case 'Buy share':
+					update_field('sale_share', $new_page_id, 'option');
+					break;
+				case 'Rent share':
+					update_field('rent_share', $new_page_id, 'option');
+					break;
+				default:
+			}
 
-foreach($pages as $page_url_title => $page_meta) {
-        $id = get_page_by_title($page_url_title);
-
-    foreach ($page_meta as $page_content=>$page_template){
-    $page = array(
-        'post_type'   => 'page',
-        'post_title'  => $page_url_title,
-        'post_name'   => $page_url_title,
-        'post_status' => 'publish',
-        'post_content' => $page_content,
-        'post_author' => 1,
-        'post_parent' => ''
-    );
-
-      if(!isset($id->ID)){
-        $new_page_id = wp_insert_post($page);
-
-        switch ($page_url_title) {
-            case 'Buy':
-                update_field('sale', $new_page_id, 'option');
-                break;
-            case 'Rent':
-                update_field('rent', $new_page_id, 'option');
-                break;
-            case 'Favorites Sale':
-                update_field('sale_favorites', $new_page_id, 'option');
-                break;
-            case 'Favorites Rent':
-                update_field('rent_favorites', $new_page_id, 'option');
-                break;
-            case 'Single property':
-                update_field('single_object', $new_page_id, 'option');
-                break;
-            case 'Buy share':
-                update_field('sale_share', $new_page_id, 'option');
-                break;
-            case 'Rent share':
-                update_field('rent_share', $new_page_id, 'option');
-                break;
-            default:
-        }
-
-        if(!empty($page_template)){
-             update_post_meta($new_page_id, '_wp_page_template', $page_template);
-        }
-      }
-    }
-  };
+			if(isset($page_meta['template']) && !empty($page_meta['template'])){
+				update_post_meta($new_page_id, '_wp_page_template', $page_meta['template']);
+			}
+		}
+	  };
 }
 // XXX -> Generate pages on activation end
 //
