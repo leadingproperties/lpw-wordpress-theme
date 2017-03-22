@@ -18,7 +18,7 @@ class Tags
     );
 
     public function __construct() {
-        $this->api_url = 'http://78.26.248.168:3006';
+        $this->api_url = 'http://176.114.240.27:3006';
         $this->token = get_field('api_key', 'option');
     }
 
