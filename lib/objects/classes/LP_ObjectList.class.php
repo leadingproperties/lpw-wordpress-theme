@@ -70,6 +70,7 @@ class LP_ObjectList {
         ];
         $this->args = array_merge($defaults, $args);
 	    $this->api_url = "https://lpw-public-api.herokuapp.com";
+	    //$this->api_url = "https://staging-lpw-public-api.herokuapp.com";
 
 
 	    $this->token = get_field('api_key', 'option');

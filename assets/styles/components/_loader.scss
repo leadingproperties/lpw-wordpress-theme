@@ -11,3 +11,11 @@
     }
   }
 }
+.pdf-loader {
+  font-size: 15px;
+  display: inline-block;
+  @include square(15px);
+  &::before {
+    @include make-linicon("\e8dd");
+  }
+}

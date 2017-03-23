@@ -18,7 +18,10 @@
 		var $this = this,
 		    item = $(event.target),
 		    propertyId = item.data('id'),
-		    isRent = item.data('is_rent');
+		    isRent = item.data('is_rent'),
+			link = $( event.target );
+
+		link.html('<sup class="text-red"><span class="pdf-loader spin"></span></sup>');
 
 		if(!propertyId || this.loading){
 			return;
@@ -27,6 +30,11 @@
 		this.loading = true;
 
 		this.getPDFLink(propertyId, isRent)
+			.always(
+				function() {
+                    link.html('<sup class="text-red">PDF</sup>');
+				}
+			)
 			.done(
 				function(pdfPath){
 					$this.loading = false;
@@ -71,10 +79,13 @@
 			data: ajaxData,
 			success: function(answer) {
 				if($this.hasPDFPath(answer)){
-					defer.resolve(answer.pdf_path);
-				}else if(attempt >= $this.attemptsMax){
+					defer.resolve(answer.location);
+				}else if($this.hasPDFError(answer)) {
+                    defer.reject(answer.error);
+				} else if(attempt >= $this.attemptsMax){
 					defer.reject("No pdf link yet");
 				}else{
+					console.log('Waiting for PDF');
 					if(timeout){
 						clearTimeout(timeout);
 					}
@@ -89,8 +100,11 @@
 	};
 
 	Pdf.prototype.hasPDFPath = function(data) {
-		return _.has(data, "pdf_path") && data.pdf_path;
+		return _.has(data, "location") && data.location;
 	};
+    Pdf.prototype.hasPDFError = function(data) {
+        return _.has(data, "error") && data.error;
+    };
 
 	window.lpw = window.lpw || {};
 	window.lpw.Pdf = Pdf;
