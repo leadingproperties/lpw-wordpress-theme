@@ -80,9 +80,12 @@
 			success: function(answer) {
 				if($this.hasPDFPath(answer)){
 					defer.resolve(answer.location);
-				}else if(attempt >= $this.attemptsMax){
+				}else if($this.hasPDFError(answer)) {
+                    defer.reject(answer.error);
+				} else if(attempt >= $this.attemptsMax){
 					defer.reject("No pdf link yet");
 				}else{
+					console.log('Waiting for PDF');
 					if(timeout){
 						clearTimeout(timeout);
 					}
@@ -99,6 +102,9 @@
 	Pdf.prototype.hasPDFPath = function(data) {
 		return _.has(data, "location") && data.location;
 	};
+    Pdf.prototype.hasPDFError = function(data) {
+        return _.has(data, "error") && data.error;
+    };
 
 	window.lpw = window.lpw || {};
 	window.lpw.Pdf = Pdf;
