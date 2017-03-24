@@ -3,7 +3,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Project-Id-Version: Leading Properties\n"
 "POT-Creation-Date: 2016-12-12 11:37+0200\n"
-"PO-Revision-Date: 2017-03-24 14:40+0200\n"
+"PO-Revision-Date: 2017-03-24 16:19+0200\n"
 "Language-Team: \n"
 "MIME-Ver§`sion: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -158,7 +158,7 @@ msgstr "კაცი"
 
 #: lib/objects/classes/Tags.php:185
 msgid "search_panel:similar"
-msgstr "მსგავსი:  კმ დან "
+msgstr "მსგავსი: {radius} კმ დან {code}"
 
 #: lib/objects/classes/Tags.php:185
 msgid "search_panel:km"
