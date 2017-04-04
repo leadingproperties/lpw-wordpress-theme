@@ -128,7 +128,7 @@ function single_object_html($args) {
 								$html .= '</li>';
 							}
 							if($objects_obj->features->bathrooms->min || $objects_obj->features->bathrooms->max) {
-								$html .= '<li class="icon icon-bedroom">';
+								$html .= '<li class="icon icon-bathroom">';
 								if($objects_obj->features->bathrooms->min) {
 									$html .= $objects_obj->features->bathrooms->min;
 									}
