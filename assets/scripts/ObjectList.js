@@ -389,15 +389,15 @@
             }
         };
         this.onLoadCheck = function(ev) {
-
-
             var query = window.lpw.Helpers.getParameterByName('filter'),
                 eventtype = ev.type;
-            if(eventtype === 'popstate' && window.location.href.search(LpData.propertyPage) !== -1) {
-                return false;
-            }
-            if(window.history.state && window.history.state.action && window.history.state.action === "object-close") {
-                return false;
+            if(eventtype === 'popstate') {
+                if(window.location.href.search(LpData.propertyPage) !== -1) {
+                    return false;
+                }
+                if(window.history.state && window.history.state.action && window.history.state.action === "object-close") {
+                    return false;
+                }
             }
 
             if(query) {
@@ -429,7 +429,7 @@
             } else {
                 if(eventtype === 'popstate' && (window.location.href.search(LpData.propertyPage) === -1)) {
                     clearAllFilters();
-                    //console.log(window.history);
+
                 }
                 resetObjects();
                 $this.usedFilters.location = false;
@@ -437,6 +437,13 @@
             }
         };
         this.setEventListeners = function () {
+            // remove window.history.state.action = object-close is set
+            $(window).on('load', function() {
+                if(window.history.state && window.history.state.action && window.history.state.action === "object-close") {
+                    delete window.history.state.action;
+                }
+            });
+
             //Clear Filters button
             $('body').on('click.lpropr', '.clear-filters-btn', function(ev) {
                 ev.preventDefault();
