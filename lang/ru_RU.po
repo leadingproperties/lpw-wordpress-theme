@@ -460,12 +460,12 @@ msgstr "Отправить запрос"
 #: templates/form-contact.php:53 templates/form-offmarket.php:55
 #: templates/form-request.php:54
 msgid "I hereby agree and authorize %s to disclose my personal information collected on this form to the property developers and / or sale agents who have signed a Marketing services agreement with %s in respect to requested properties. Read more about our"
-msgstr "I hereby agree and authorize %s to disclose my personal information collected on this form to the property developers and / or sale agents who have signed a Marketing services agreement with %s in respect to requested properties. Узнайте подробнее о нашей"
+msgstr "Настоящим я разрешаю %s передавать мою личную информацию, собранную на этом вебсайте, разработчикам и / или агентам по продаже недвижимости, которые подписали соглашение о рекламных услугах с %s в отношении запрашиваемых объектов недвижимости. Узнайте подробнее о нашей"
 
 #: templates/form-contact.php:53 templates/form-offmarket.php:55
 #: templates/form-request.php:54
 msgid "form:privacy_policy"
-msgstr "Политика Конфиденциальности"
+msgstr "политике конфиденциальности"
 
 #: templates/form-offmarket.php:6
 msgid "form:title_off_market"
