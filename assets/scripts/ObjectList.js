@@ -79,6 +79,9 @@
 	        if($this.args.place_id) {
 		        delete $this.args.place_id;
 	        }
+            if($this.args.similar && ! ( $this.args.location_point && $this.args.location_point.radius ) ) {
+                delete $this.args.similar;
+            }
             $this.usedFilters.location = false;
         }
         function clearFilters() {
@@ -552,6 +555,10 @@
         // Unset data.price if no min or max values
         if(data.price && !( data.price.min || data.price.max )) {
             delete data.price;
+        }
+        // Unset data.similar if no data.location_point.radius
+        if(data.similar && ! ( data.location_point && data.location_point.radius) ) {
+            delete data.similar;
         }
 
 

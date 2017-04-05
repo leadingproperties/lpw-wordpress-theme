@@ -105,17 +105,8 @@
 				<div class="single-object-details">
 					<ul class="single-object-locations">
 						<li><a class="icon cursor-default"><span>
-							<?php if(isset($objects_obj->country) && $objects_obj->country->title) {
-								echo $objects_obj->country->title;
-							}
-							if(isset($objects_obj->region) && $objects_obj->region->title) {
-								echo ', ' . $objects_obj->region->title;
-							}
-							if(isset($objects_obj->city) && $objects_obj->city->title) {
-								echo ', ' . $objects_obj->city->title;
-							}
-							if(isset($objects_obj->district) && $objects_obj->district->title) {
-								echo ', ' . $objects_obj->district->title;
+							<?php if(isset($objects_obj->address)) {
+								echo $objects_obj->address;
 							}
 							?>
 						</span></a></li>

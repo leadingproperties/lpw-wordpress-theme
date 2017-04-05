@@ -38,8 +38,6 @@ function lpw_set_globals() {
 			'contact_email'    => get_field( 'contact_email', 'option' ),
 			'use_shortener'    => get_field( 'use_google_shortener', 'option' ),
 			'site_title'       => get_bloginfo( 'name' ),
-			'sale_page'        => ( get_field( 'sale', 'option' ) ) ? get_field( 'sale', 'option' ) : get_page_by_title( 'Buy' )->guid,
-			'rent_page'        => ( get_field( 'rent', 'option' ) ) ? get_field( 'rent', 'option' ) : get_page_by_title( 'Rent' )->guid,
 			'sale_share'       => ( get_field( 'sale_share', 'option' ) ) ? get_field( 'sale_share', 'option' ) : get_page_by_title( 'Buy share' )->guid,
 			'rent_share'       => ( get_field( 'rent_share', 'option' ) ) ? get_field( 'rent_share', 'option' ) : get_page_by_title( 'Rent share' )->guid,
 			'favorites'        => esc_url( ( get_field( 'sale_favorites', 'option' ) ) ? get_field( 'sale_favorites', 'option' ) : get_page_by_title( 'Favorites Sale' )->guid ),
@@ -63,6 +61,9 @@ function lpw_set_globals() {
 	$lp_settings['property_page_id'] = ( get_field( 'single_object', 'option' ) ) ? get_field( 'single_object', 'option' ) : get_page_by_title( 'Single property' )->id;
 	$property_page                = get_page_link( $lp_settings['property_page_id'] );
 	$lp_settings['property_page'] = is_ssl() ? str_replace( 'http:', 'https:', $property_page ) : $property_page;
+	$lp_settings['sale_page'] = ( get_field( 'sale', 'option' ) ) ? get_field( 'sale', 'option' ) : get_page_by_title( 'Buy' )->guid;
+	$lp_settings['rent_page'] = ( get_field( 'rent', 'option' ) ) ? get_field( 'rent', 'option' ) : get_page_by_title( 'Rent' )->guid;
+
 
 }
 
