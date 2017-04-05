@@ -42,6 +42,7 @@
 					this.filterForm.trigger('submit');
 				}
 				break;
+			case 'similar':
 			case 'autocomplete':
 				this.autoComplete.setSelected(null);
 				break;

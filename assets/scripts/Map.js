@@ -118,6 +118,7 @@
 		//собираем все поинты в один массив
 		for (var i = 0; i < this.points.length; i++) {
 			var latLng = new google.maps.LatLng(this.points[i].location.lat, this.points[i].location.lon);
+
 			markers.push(
 				new google.maps.Marker(
 					{

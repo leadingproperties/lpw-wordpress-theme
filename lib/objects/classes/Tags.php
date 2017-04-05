@@ -44,7 +44,7 @@ class Tags
             $hq_photos = $this->get_hq_photos_tag_html($request_data['raw']['hd_photos'], $counters);
             $price = $this->get_price_tag_html($request_data['raw']['price'], $counters);
             $area = $this->get_area_tag_html($request_data['raw']['area'], $counters);
-            $similar = $this->get_similar_tag_html($request_data['raw']['similar'], $request_data['raw']['location_point']['radius'], $counters);
+            $similar = ( $request_data['raw']['location_point'] ) ? $this->get_similar_tag_html($request_data['raw']['similar'], $request_data['raw']['location_point']['radius'], $counters) : false;
 
 	        if($autocomplete || $rent_bool_tags || $rent_persons || $property_type || $rooms || $hq_photos || $price || $area || $similar) {
 		        $answer = sprintf(

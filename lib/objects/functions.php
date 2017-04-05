@@ -85,17 +85,8 @@ function single_object_html($args) {
 		$html .= '<div class="single-object-details">';
 		$html .= '<ul class="single-object-locations">';
 		$html .= '<li><a class="icon cursor-default"><span>';
-				if(isset($objects_obj->country) && $objects_obj->country->title) {
-					$html .= $objects_obj->country->title;
-				}
-				if(isset($objects_obj->region) && $objects_obj->region->title) {
-					$html .= ', ' . $objects_obj->region->title;
-				}
-				if(isset($objects_obj->city) && $objects_obj->city->title) {
-					$html .= ', ' . $objects_obj->city->title;
-				}
-				if(isset($objects_obj->district) && $objects_obj->district->title) {
-					$html .= ', ' . $objects_obj->district->title;
+				if(isset($objects_obj->address)) {
+					$html .= $objects_obj->address;
 				}
 		$html .= '</span>';
 		$html .= '</a>';
