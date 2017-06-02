@@ -5,9 +5,10 @@
      * ObjectList
      * @param type - строка c типом листинга list - обычный листинг, favorites - листинг обьектов favorites, share - листинг обьектов share
      * @param category - sale, rent
+     * @param rent_category - 'long_rent', 'short_rent'
      */
 
-    function ObjectList(type, category) {
+    function ObjectList(type, category, rent_category) {
         var $this = this,
             loader = $('.loader'),
             singleObject = new window.lpw.SingleObject(this);
@@ -79,6 +80,9 @@
 	        if($this.args.place_id) {
 		        delete $this.args.place_id;
 	        }
+            if($this.args.similar && ! ( $this.args.location_point && $this.args.location_point.radius ) ) {
+                delete $this.args.similar;
+            }
             $this.usedFilters.location = false;
         }
         function clearFilters() {
@@ -106,12 +110,7 @@
             if($this.args.persons) {
                 delete $this.args.persons;
             }
-            if($this.args.long_rent) {
-                delete $this.args.long_rent;
-            }
-            if($this.args.short_rent) {
-                delete $this.args.short_rent;
-            }
+
             if($this.args.child_friendly) {
                 delete $this.args.child_friendly;
             }
@@ -134,7 +133,7 @@
             $this.setUrls($this.args);
         }
 
-        this.filter = new window.lpw.FilterMenu(type, category),
+        this.filter = new window.lpw.FilterMenu(type, category, rent_category);
 
         this.autoSearch = function(data, silent) {
             resetObjects();
@@ -205,12 +204,15 @@
             this.autoComplete = new window.lpw.AutoComplete(
                 '#sp-search',
                 $this.autoSearch,
-                category
+                category,
+                null,
+                rent_category
             );
             this.lpwGoogleMap = new window.lpw.Map(
                 '#map-modal',
                 category,
-                $this.autoComplete
+                $this.autoComplete,
+                rent_category
             );
             this.tags = new window.lpw.Tags(
                 LpData.ajaxUrl,
@@ -389,15 +391,15 @@
             }
         };
         this.onLoadCheck = function(ev) {
-
-
             var query = window.lpw.Helpers.getParameterByName('filter'),
                 eventtype = ev.type;
-            if(eventtype === 'popstate' && window.location.href.search(LpData.propertyPage) !== -1) {
-                return false;
-            }
-            if(window.history.state && window.history.state.action && window.history.state.action === "object-close") {
-                return false;
+            if(eventtype === 'popstate') {
+                if(window.location.href.search(LpData.propertyPage) !== -1) {
+                    return false;
+                }
+                if(window.history.state && window.history.state.action && window.history.state.action === "object-close") {
+                    return false;
+                }
             }
 
             if(query) {
@@ -418,6 +420,17 @@
                             }
 
                         }
+                        if($this.args.short_rent) {
+                            $this.filter.rentLongBtn.removeClass('active');
+                            $this.filter.rentShortBtn.addClass('active');
+                            $this.args.long_rent = false;
+                            $this.args.short_rent = true;
+                        } else {
+                            $this.filter.rentShortBtn.removeClass('active');
+                            $this.filter.rentLongBtn.addClass('active');
+                            $this.args.long_rent = true;
+                            $this.args.short_rent = false;
+                        }
                         resetObjects();
                         $this.getObjects(null, eventtype);
                         $this.filter.setValues(query);
@@ -429,7 +442,12 @@
             } else {
                 if(eventtype === 'popstate' && (window.location.href.search(LpData.propertyPage) === -1)) {
                     clearAllFilters();
-                    //console.log(window.history);
+                }
+                // Set filter to long rent
+                if($this.args.long_rent) {
+                    $this.filter.rentLongBtn.addClass('active');
+                    $this.filter.rentShortBtn.removeClass('active');
+                    $this.args.short_rent = false;
                 }
                 resetObjects();
                 $this.usedFilters.location = false;
@@ -437,6 +455,14 @@
             }
         };
         this.setEventListeners = function () {
+            // remove window.history.state.action = object-close is set
+            $(window).on('load', function() {
+                if(window.history.state && window.history.state.action && window.history.state.action === "object-close") {
+                    delete window.history.state.action;
+                }
+               // $this.filterPeriod.val('month').trigger('change');
+            });
+
             //Clear Filters button
             $('body').on('click.lpropr', '.clear-filters-btn', function(ev) {
                 ev.preventDefault();
@@ -524,6 +550,39 @@
                 $this.getObjects();
             });
 
+            // Rent term selectors action
+            $('.btn-term-selector').on('click.lprop', function(ev) {
+                ev.preventDefault();
+                // Do nothing if clicked on active button
+                if( $(this).hasClass('active') ) { return false; }
+
+                //Period select Array
+                var periodSelect = [];
+
+                $('.btn-term-selector').removeClass('active');
+                $(this).addClass('active');
+
+                var term = $(this).data('rent');
+
+                $this.args.long_rent = ( term === 'long' );
+                $this.args.short_rent = ( term === 'short' );
+                resetObjects();
+                $this.totalObjects = ( term === 'long' ) ? parseInt(LpData.totalLongRent) : parseInt(LpData.totalShortRent);
+                if(term === 'long') {
+                    $this.autoComplete.rentCategory = 'long_rent';
+                    $this.filter.rentCategory = 'long_rent';
+                    periodSelect.push(LpData.filterPeriod[2]);
+                } else {
+                    $this.autoComplete.rentCategory = 'short_rent';
+                    $this.filter.rentCategory = 'short_rent';
+                    periodSelect = LpData.filterPeriod;
+                }
+                $this.filter.periodFilterInit(periodSelect);
+                $this.lpwGoogleMap.getNewGeopoints(term);
+
+                $this.getObjects();
+            });
+
             $(window).on('resize.lprop', this.fixContentBoxPosition.bind(this));
         };
         this.init = function () {
@@ -545,6 +604,10 @@
         // Unset data.price if no min or max values
         if(data.price && !( data.price.min || data.price.max )) {
             delete data.price;
+        }
+        // Unset data.similar if no data.location_point.radius
+        if(data.similar && ! ( data.location_point && data.location_point.radius) ) {
+            delete data.similar;
         }
 
 

@@ -105,17 +105,8 @@
 				<div class="single-object-details">
 					<ul class="single-object-locations">
 						<li><a class="icon cursor-default"><span>
-							<?php if(isset($objects_obj->country) && $objects_obj->country->title) {
-								echo $objects_obj->country->title;
-							}
-							if(isset($objects_obj->region) && $objects_obj->region->title) {
-								echo ', ' . $objects_obj->region->title;
-							}
-							if(isset($objects_obj->city) && $objects_obj->city->title) {
-								echo ', ' . $objects_obj->city->title;
-							}
-							if(isset($objects_obj->district) && $objects_obj->district->title) {
-								echo ', ' . $objects_obj->district->title;
+							<?php if(isset($objects_obj->address)) {
+								echo $objects_obj->address;
 							}
 							?>
 						</span></a></li>
@@ -242,61 +233,79 @@
 							} ?>
 
 							<?php if($objects_obj->property_rent->short_rent === true) {
+
+								$rentMinStay = '';
+								$billingPeriod = '';
+								if($objects_obj->property_rent->rent_short->min_stay_period_title) {
+									switch($objects_obj->property_rent->rent_short->min_stay_period_title) {
+										case 'day':
+											$rentMinStay = __( 's_object:rent:day', 'leadingprops' );
+											break;
+										case 'week':
+											$rentMinStay = __( 's_object:rent:week', 'leadingprops' );
+											break;
+										default:
+											$rentMinStay = __( 's_object:rent:month', 'leadingprops' );
+											break;
+									}
+								}
+								if($objects_obj->property_rent->rent_short->billing_period_title) {
+									switch($objects_obj->property_rent->rent_short->billing_period_title) {
+										case 'day':
+											$billingPeriod = __( 's_object:rent:day', 'leadingprops' );
+											break;
+										case 'week':
+											$billingPeriod = __( 's_object:rent:week', 'leadingprops' );
+											break;
+										default:
+											$billingPeriod = __( 's_object:rent:month', 'leadingprops' );
+											break;
+									}
+								}
+
 								echo '<p class="icon icon-day">' . __('s_object:rent:rent_short_title', 'leadingprops') . ', ' . $objects_obj->property_rent->rent_short->currency_code . '*</p>
-									  <div class="rent-price-wrap">
-                                      <ul class="rent-price-list">
-                                      <li class="heading">' . __('s_object:rent:min_stay', 'leadingprops') . '</li>
-                                      <li class="heading">' . __('s_object:rent:low_season', 'leadingprops') . '</li>
-                                      <li>1 ' .__('s_object:rent:day', 'leadingprops') . '</li>
-                                      <li>';
-								echo ($objects_obj->property_rent->rent_short->ls_daily_rate) ? number_format($objects_obj->property_rent->rent_short->ls_daily_rate, 0, ".", " ")  : '&mdash;';
-								echo '</li>
-								      <li>1 ' . __('s_object:rent:week', 'leadingprops') . '</li>
-								      <li>';
-								echo ($objects_obj->property_rent->rent_short->ls_weekly_rate) ? number_format($objects_obj->property_rent->rent_short->ls_weekly_rate, 0, ".", " ")  : '&mdash;';
-								echo '</li>
-								      <li>1 ' . __('s_object:rent:month', 'leadingprops') . '</li>
-								      <li>';
-								echo ($objects_obj->property_rent->rent_short->ls_monthly_rate) ? number_format($objects_obj->property_rent->rent_short->ls_monthly_rate, 0, ".", " ")  : '&mdash;';
-								echo '</li>
-								      </ul>';
+									  <div class="rent-price-wrap">';
+								if($objects_obj->property_rent->rent_short->prices && is_array($objects_obj->property_rent->rent_short->prices)) {
+									echo '<table class="rent-price-table">
+                                                <tbody>';
+									foreach ($objects_obj->property_rent->rent_short->prices as $rentShortPrice) {
+										echo '<tr><td class="rent-date-cell">';
+										if($rentShortPrice->from) {
+											echo $rentShortPrice->from;
+											if($rentShortPrice->to) {
+												echo '–' . $rentShortPrice->to;
+											}
+										} elseif($rentShortPrice->period_name) {
+											switch ($rentShortPrice->period_name) {
+												case 'low_season':
+													 _e('s_object:rent:low_season', 'leadingprops');
+													break;
+												case 'medium_season':
+													 _e('s_object:rent:medium_season', 'leadingprops');
+													break;
+												case 'high_season':
+													 _e('s_object:rent:hight_season', 'leadingprops');
+													break;
+											}
+										}
+										echo '</td><td class="rent-price-cell">';
+										if($rentShortPrice->on_demand) {
+											 _e('s_object:on_demand', 'leadingprops');
+										} elseif($rentShortPrice->price) {
+											echo number_format($rentShortPrice->price, 0, ".", " ") . '&nbsp;' . $objects_obj->property_rent->rent_short->currency_code . '&nbsp;/&nbsp;' . $billingPeriod;
+										}
+										echo '</td></tr>';
+									}
+									echo '</tbody>
+										</table>';
+								}
 
-								echo  '<ul class="rent-price-list">
-                                      <li class="heading hidden-760">' . __('s_object:rent:min_stay', 'leadingprops') . '</li>
-                                      <li class="heading">' . __('s_object:rent:medium_season', 'leadingprops') . '</li>
-                                      <li class="hidden-760">1 ' .__('s_object:rent:day', 'leadingprops') . '</li>
-                                      <li>';
-								echo ($objects_obj->property_rent->rent_short->ms_daily_rate) ? number_format($objects_obj->property_rent->rent_short->ms_daily_rate, 0, ".", " ")  : '&mdash;';
-								echo '</li>
-									  <li class="hidden-760">1 ' . __('s_object:rent:week', 'leadingprops') . '</li>
-									  <li>';
-								echo ($objects_obj->property_rent->rent_short->ms_weekly_rate) ? number_format($objects_obj->property_rent->rent_short->ms_weekly_rate, 0, ".", " ")  : '&mdash;';
-								echo '</li>
-									  <li class="hidden-760">1 ' . __('s_object:rent:month', 'leadingprops') . '</li>
-									  <li>';
-								echo ($objects_obj->property_rent->rent_short->ms_monthly_rate) ? number_format($objects_obj->property_rent->rent_short->ms_monthly_rate, 0, ".", " ") : '&mdash;';
-								echo '</li>
-									 </ul>';
-
-								echo  '<ul class="rent-price-list">
-                                      <li class="heading hidden-760">' . __('s_object:rent:min_stay', 'leadingprops') . '</li>
-                                      <li class="heading">' . __('s_object:rent:hight_season', 'leadingprops') . '</li>
-                                      <li class="hidden-760">1 ' .__('s_object:rent:day', 'leadingprops') . '</li>
-                                      <li>';
-								echo ($objects_obj->property_rent->rent_short->hs_daily_rate) ? number_format($objects_obj->property_rent->rent_short->hs_daily_rate, 0, ".", " ")  : '&mdash;';
-								echo '</li>
-									  <li class="hidden-760">1 ' . __('s_object:rent:week', 'leadingprops') . '</li>
-									  <li>';
-								echo ($objects_obj->property_rent->rent_short->hs_weekly_rate) ? number_format($objects_obj->property_rent->rent_short->hs_weekly_rate, 0, ".", " ")  : '&mdash;';
-								echo '</li>
-									  <li class="hidden-760">1 ' . __('s_object:rent:month', 'leadingprops') . '</li>
-									  <li>';
-								echo ($objects_obj->property_rent->rent_short->hs_monthly_rate) ? number_format($objects_obj->property_rent->rent_short->hs_monthly_rate, 0, ".", " ")  : '&mdash;';
-								echo '</li>
-									 </ul>
-									 </div>';
+								echo '</div>';
 
 								echo '<p class="footnote">* ';
+								if($rentMinStay) {
+									 echo __( 's_object:rent:min_stay_full', 'leadingprops' ) . ': ' . $rentMinStay .'; ';
+								}
 								if($objects_obj->property_rent->rent_short->vat_in_price === false) {
 									if($objects_obj->property_rent->rent_short->vat) {
 										echo __('s_object:rent:vat', 'leadingprops') . ' ' . $objects_obj->property_rent->rent_short->vat . '% ' . __('s_object:rent:not_included', 'leadingprops') . '; ';

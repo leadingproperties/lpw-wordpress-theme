@@ -11,15 +11,18 @@
 	function Map(
 		mapModal,
 	    category,
-	    autoComplete
+	    autoComplete,
+		rent_category
 	){
 		var $this = this;
 		this.mapModal = $(mapModal);
 		this.category = category;
 		this.autoComplete = autoComplete;
+		this.rent_category = rent_category;
 
 		this.geopointsError = false;
 		this.points = null;
+		this.markers = [];
 		this.markerCluster = null;
 
 		this.mapOptions = {
@@ -112,13 +115,13 @@
 	 *
 	 */
 	Map.prototype.setupMarkerCluster = function(){
-		var markers = [],
-		    $this = this;
+		    var $this = this;
 
 		//собираем все поинты в один массив
 		for (var i = 0; i < this.points.length; i++) {
 			var latLng = new google.maps.LatLng(this.points[i].location.lat, this.points[i].location.lon);
-			markers.push(
+
+			this.markers.push(
 				new google.maps.Marker(
 					{
 						position: latLng,
@@ -131,7 +134,7 @@
 			);
 		}
 		//создаем инстанс MarkerClusterer
-		this.markerCluster = new MarkerClusterer(this.map, markers, this.markerClusterOptions);
+		this.markerCluster = new MarkerClusterer(this.map, this.markers, this.markerClusterOptions);
 
 		//цепляем ивент на клик по кластеру на карте
 		google.maps.event.addListener(this.markerCluster, 'clusterclick', this.onClusterClick.bind(this));
@@ -199,6 +202,9 @@
 			fn: 'get_geopoints',
 			type: this.category
 		};
+		if(this.category === 'rent') {
+			data.rent_category = this.rent_category;
+		}
 		return $.get(LpData.ajaxUrl, data, function(data) {
 			$this.geoPoints = data;
 		});
@@ -243,6 +249,23 @@
 	Map.prototype.mapReset = function() {
 		this.map.setCenter(this.mapOptions.center);
 		this.map.setZoom(this.mapOptions.zoom);
+	};
+
+	Map.prototype.getNewGeopoints = function(term) {
+		this.rent_category = ( term === 'long' ) ? 'long_rent' : 'short_rent';
+		if(this.map) {
+            if (this.markerCluster) {
+                this.markerCluster.clearMarkers();
+            }
+            this.markers = [];
+            this.getGeoPoints()
+                .done(this.getGeoPointsSuccess.bind(this))
+                .fail(this.getGeoPointsError.bind(this));
+            this.mapReset();
+        } else {
+            this.getGeoPoints()
+                .fail(this.getGeoPointsError.bind(this));
+		}
 	};
 
 	//для доступности в глобальном скоупе

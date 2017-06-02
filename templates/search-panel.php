@@ -27,4 +27,14 @@
 			</div>
 		</div>
 	</div><!-- /.container -->
+    <?php if( is_page_template('page-rent.php') || is_page_template('page-location-rent.php') ) { ?>
+        <div class="term-selector-wrap">
+            <button id="selector-rent-long" class="btn btn-term-selector" data-rent="long">
+                <span><?php _e('search_panel:long_rent', 'leadingprops'); ?> <sup><?= $lp_settings['counters']['long_rent']; ?></sup></span>
+            </button>
+            <button id="selector-rent-short" class="btn btn-term-selector" data-rent="short">
+                <span><?php _e('search_panel:short_rent', 'leadingprops'); ?> <sup><?= $lp_settings['counters']['short_rent']; ?></sup></span>
+            </button>
+        </div><!-- /.term-selector-wrap -->
+    <?php } ?>
 </section><!-- /.search-panel -->

@@ -44,7 +44,7 @@ class Tags
             $hq_photos = $this->get_hq_photos_tag_html($request_data['raw']['hd_photos'], $counters);
             $price = $this->get_price_tag_html($request_data['raw']['price'], $counters);
             $area = $this->get_area_tag_html($request_data['raw']['area'], $counters);
-            $similar = $this->get_similar_tag_html($request_data['raw']['similar'], $request_data['raw']['location_point']['radius'], $counters);
+            $similar = ( $request_data['raw']['location_point'] ) ? $this->get_similar_tag_html($request_data['raw']['similar'], $request_data['raw']['location_point']['radius'], $counters) : false;
 
 	        if($autocomplete || $rent_bool_tags || $rent_persons || $property_type || $rooms || $hq_photos || $price || $area || $similar) {
 		        $answer = sprintf(
@@ -181,12 +181,12 @@ class Tags
 
     function get_rent_bool_tags($params, $counters){
         $rent_bool_tags = '';
-        if($params['long_rent']){
+       /* if($params['long_rent']){
             $rent_bool_tags .= '<li>' . __('search_panel:long_rent', 'leadingprops') . ' <sup>' . $counters['long_rent']['doc_count'] . '</sup> <span class="tag-remove" data-tag_type="long-term" data-tag_data="long-term"></span></li>';
         }
         if($params['short_rent']){
             $rent_bool_tags .= '<li>' . __('search_panel:short_rent', 'leadingprops') . ' <sup>' . $counters['short_rent']['doc_count'] . '</sup> <span class="tag-remove" data-tag_type="short-term" data-tag_data="short-term"></span></li>';
-        }
+        } */
         if($params['child_friendly']){
             $rent_bool_tags .= '<li>' . __('search_panel:child_friendly', 'leadingprops') . ' <sup>' . $counters['child_friendly']['doc_count'] . '</sup> <span class="tag-remove" data-tag_type="child-friendly" data-tag_data="child-friendly"></span></li>';
         }

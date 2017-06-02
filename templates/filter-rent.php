@@ -2,16 +2,6 @@
 <div class="sp-filters sp-filters-rent">
 	<div class="sp-filter-wrap">
 		<form action="" id="filter-form">
-			<div class="sp-filters-group filter-rent-type">
-				<div class="sp-checkbox">
-					<input id="short-term" type="checkbox" name="rent-type">
-					<label for="short-term"><?php _e('search_panel:short_rent', 'leadingprops'); ?></label>
-				</div>
-				<div class="sp-checkbox">
-					<input id="long-term" type="checkbox" name="rent-type">
-					<label for="long-term"><?php _e('search_panel:long_rent', 'leadingprops'); ?></label>
-				</div>
-			</div>
 			<div class="sp-filters-group filter-type">
 				<span class="sp-group-title"><?php _e('search_panel:property_types:label', 'leadingprops'); ?></span>
 				<div class="sp-checkbox">
@@ -98,7 +88,11 @@
 						</select>
 						&nbsp;&frasl;&nbsp;
 						<select name="period" id="price-period" class="price-input">
-							<option value="day"><?php _e('s_object:rent:day', 'leadingprops'); ?></option>
+                            <?php $rentType = getParametersByName('filter');
+                            if ($rentType && isset($rentType['short_rent']) && !empty($rentType['short_rent'])) { ?>
+                                <option value="day"><?php _e('s_object:rent:day', 'leadingprops'); ?></option>
+                                <option value="week"><?php _e('s_object:rent:week', 'leadingprops'); ?></option>
+                            <?php } ?>
 							<option value="month"><?php _e('s_object:rent:month', 'leadingprops'); ?></option>
 						</select>
 					</div>

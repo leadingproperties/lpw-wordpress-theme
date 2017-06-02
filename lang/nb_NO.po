@@ -3,12 +3,12 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Project-Id-Version: Leading Properties\n"
 "POT-Creation-Date: 2016-09-21 13:03+0300\n"
-"PO-Revision-Date: 2016-10-23 10:57+0300\n"
+"PO-Revision-Date: 2017-03-24 18:53+0200\n"
 "Language-Team: \n"
 "MIME-Ver§`sion: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.9\n"
+"X-Generator: Poedit 1.8.11\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: style.css\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -157,7 +157,7 @@ msgstr "Personer"
 
 #: lib/objects/classes/Tags.php:185
 msgid "search_panel:similar"
-msgstr "Lignende: {radius} km unna {code}"
+msgstr "Lignende"
 
 #: lib/objects/classes/Tags.php:185
 msgid "search_panel:km"
@@ -165,7 +165,7 @@ msgstr "km"
 
 #: lib/objects/classes/Tags.php:185
 msgid "search_panel:from"
-msgstr "fra"
+msgstr "unna"
 
 msgid "search_panel:toggle_map_y"
 msgstr "Vis stort kart"

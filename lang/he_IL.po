@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Project-Id-Version: Leading Properties\n"
-"POT-Creation-Date: 2016-12-07 12:40+0200\n"
-"PO-Revision-Date: 2017-03-24 18:35+0200\n"
+"POT-Creation-Date: 2017-01-17 10:22+0200\n"
+"PO-Revision-Date: 2017-03-24 18:44+0200\n"
 "Language-Team: \n"
 "MIME-Ver§`sion: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -15,7 +15,7 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "MIME-Version: 1.0\n"
 "Last-Translator: \n"
-"Language: da_DK\n"
+"Language: he_IL\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
@@ -38,229 +38,226 @@ msgstr ""
 
 #: lib/extras.php:82
 msgid "menu:favorites"
-msgstr "Favoritter"
+msgstr "מועדפים"
 
 #: lib/extras.php:83
 msgid "menu:offmarket"
-msgstr "Ikke på markedet"
+msgstr "מחוץ לשוק"
 
 #: templates/filter-rent.php:57 templates/filter-sale.php:44
 msgid "search_panel:area_label"
-msgstr "Område"
+msgstr "שטח"
 
 #: templates/filter-rent.php:85 templates/filter-sale.php:22
 msgid "search_panel:price_label"
-msgstr "Pris"
+msgstr "מחיר"
 
 #: lib/objects/classes/Tags.php:122 templates/filter-rent.php:32
 #: templates/filter-sale.php:55
 msgid "search_panel:rooms_label"
-msgstr "Rum"
+msgstr "חדרים"
 
 #: templates/filter-rent.php:15 templates/filter-sale.php:5
 msgid "search_panel:property_types:label"
-msgstr "Ejendomstype"
+msgstr "סוג הנכס"
 
 #: lib/objects/classes/Tags.php:108 templates/filter-rent.php:26
 #: templates/filter-sale.php:16
 msgid "search_panel:property_types:commercial"
-msgstr "Erhvervsejendomme"
+msgstr "נכסים מסחריים"
 
 #: lib/objects/classes/Tags.php:102 templates/filter-rent.php:18
 #: templates/filter-sale.php:8
 msgid "search_panel:property_types:apartments"
-msgstr "Lejligheder"
+msgstr "דירות"
 
 #: lib/objects/classes/Tags.php:105 templates/filter-rent.php:22
 #: templates/filter-sale.php:12
 msgid "search_panel:property_types:houses"
-msgstr "Huse"
+msgstr "בתים"
 
 #: lib/objects/classes/Tags.php:111
 msgid "search_panel:property_types:plots"
-msgstr "Grunde"
+msgstr "מגרשים"
 
 #: templates/filter-rent.php:115 templates/filter-sale.php:82
 msgid "search_panel:hd_photos:label"
-msgstr "Noterede ejendomme med fotos af udelukkende høj kvalitet"
+msgstr "רק רשומות עם תמונות באיכות גבוהה"
 
 #: lib/objects/classes/Tags.php:130
 msgid "search_panel:hd_photos:tag"
-msgstr "Fotos af høj kvalitet"
+msgstr "תמונות באיכות גבוהה"
 
 #: templates/filter-rent.php:119 templates/filter-sale.php:86
 msgid "search_panel:submit_button"
-msgstr "Vis resultater"
+msgstr "הצג תוצאות"
 
 #: page-favorites-rent.php:19 page-favorites.php:19 page-sharer-rent.php:17
 #: page-sharer.php:17 templates/sorting-panel.php:6
 msgid "search_panel:order:recent"
-msgstr "Nyeste"
+msgstr "האחרונים"
 
 #: page-favorites-rent.php:21 page-favorites.php:21 page-sharer-rent.php:19
 #: page-sharer.php:19 templates/sorting-panel.php:8
 msgid "search_panel:order:price_asc"
-msgstr "Laveste pris"
+msgstr "המחיר הנמוך ביותר"
 
 #: page-favorites-rent.php:20 page-favorites.php:20 page-sharer-rent.php:18
 #: page-sharer.php:18 templates/sorting-panel.php:7
 msgid "search_panel:order:price_desc"
-msgstr "Højeste pris"
+msgstr "המחיר הגבוה ביותר"
 
 #: templates/filter-rent.php:59 templates/filter-rent.php:87
 #: templates/filter-sale.php:24 templates/filter-sale.php:46
 msgid "search_panel:min"
-msgstr "min"
+msgstr "מינ'"
 
 #: templates/filter-rent.php:62 templates/filter-rent.php:70
 #: templates/filter-rent.php:90 templates/filter-sale.php:27
 #: templates/filter-sale.php:49
 msgid "search_panel:max"
-msgstr "maks"
+msgstr "מקס'"
 
 #: templates/filter-rent.php:57 templates/filter-sale.php:44
 msgid "search_panel:sqm"
-msgstr "m²"
+msgstr "מ²"
 
 #: templates/favorites-bar.php:3
 msgid "search_panel:share"
-msgstr "Del dine foretrukne ejendomme med venner eller kolleger"
+msgstr "שתף את הנכסים המועדפים עליך עם חברים או עמיתים"
 
 #: templates/favorites-bar.php:29
 msgid "search_panel:copy"
-msgstr "Kopi"
+msgstr "העתק"
 
 #: templates/search-panel.php:7
 msgid "search_panel:autocomplete"
-msgstr "Schweiz eller London eller Den gamle bydel, Prag eller 69783"
+msgstr "שווייץ או לונדון או העיר העתיקה, פראג או 69783"
 
 #: lib/objects/classes/Tags.php:160 templates/filter-rent.php:11
 msgid "search_panel:long_rent"
-msgstr "Langtids leje"
+msgstr "השכרה לטווח ארוך"
 
 #: lib/objects/classes/Tags.php:163 templates/filter-rent.php:7
 msgid "search_panel:short_rent"
-msgstr "Korttids leje"
+msgstr "השכרה לטווח קצר"
 
 #: lib/objects/classes/Tags.php:166 lib/objects/functions.php:429
 #: page-object.php:420 templates/filter-rent.php:75
 msgid "search_panel:child_friendly"
-msgstr "Børnevenlig"
+msgstr "ידידותי לילדים"
 
 #: lib/objects/classes/Tags.php:169 lib/objects/functions.php:432
 #: page-object.php:423 templates/filter-rent.php:79
 msgid "search_panel:pets_allowed"
-msgstr "Kæledyr tilladt"
+msgstr "מותר להכניס בעלי חיים"
 
 #: lib/objects/classes/Tags.php:177 templates/filter-rent.php:68
 msgid "search_panel:persons"
-msgstr "Antal personer"
+msgstr "אנשים"
 
 #: lib/objects/classes/Tags.php:185
 msgid "search_panel:similar"
-msgstr "Lignende"
+msgstr "דומה: "
 
 #: lib/objects/classes/Tags.php:185
 msgid "search_panel:km"
-msgstr "km"
+msgstr "ק\"מ"
 
 #: lib/objects/classes/Tags.php:185
 msgid "search_panel:from"
-msgstr "fra"
+msgstr "מאת"
 
 msgid "search_panel:toggle_map_y"
-msgstr "Vis stort kort"
+msgstr "הצג מפה גדולה"
 
 msgid "search_panel:toggle_map_n"
-msgstr "Vis lille kort"
-
-msgid "search_panel:tips"
-msgstr "U kunt zoeken op landen, regio’s, steden, districten, straatnamen, woonplaatsen, bezienswaardigheden of op een referentienummer van het pand. Bijvoorbeeld:"
+msgstr "הצג מפה קטנה"
 
 #: lib/objects/functions.php:36 lib/objects/functions.php:460
 #: page-object.php:46 page-object.php:446
 msgid "s_object:header:detailed_info"
-msgstr "s_object:header:detailed_infoFå detaljerede oplysninger"
+msgstr "קבל מידע מפורט"
 
 #: lib/objects/functions.php:109 page-object.php:106
 msgid "s_object:sold"
-msgstr "Solgt"
+msgstr "נמכר"
 
 #: lib/objects/functions.php:166 lib/objects/functions.php:589
 #: page-object.php:156
 msgid "s_object:on_demand"
-msgstr "Pris ved forespørgsel"
+msgstr "מחיר על-פי בקשה"
 
 #: lib/objects/functions.php:610
 msgid "s_object:rooms"
-msgstr "rum"
+msgstr "חדר"
 
 #: lib/objects/functions.php:630
 msgid "s_object:m_short"
-msgstr "m"
+msgstr "מ"
 
 #: lib/objects/functions.php:345 page-object.php:336
 msgid "s_object:number_of_rooms"
-msgstr "antal rum"
+msgstr "מספר חדרים"
 
 #: lib/objects/functions.php:342
 msgid "s_object:property_type"
-msgstr "ejendomstype"
+msgstr "סוג הנכס"
 
 msgid "s_object:ref_num"
-msgstr "referencenummer"
+msgstr "מספר אסמכתה"
 
 #: lib/objects/functions.php:356 page-object.php:347
 msgid "s_object:area_sq_m"
-msgstr "område, m²"
+msgstr "שטח, מ²"
 
 #: lib/objects/functions.php:419 page-object.php:410
 msgid "s_object:pool"
-msgstr "pool"
+msgstr "בריכה"
 
 #: lib/objects/functions.php:422 page-object.php:413
 msgid "s_object:garage_parking"
-msgstr "parkering/garage"
+msgstr "חניה/מוסך"
 
 #: lib/objects/functions.php:416 page-object.php:407
 msgid "s_object:terrace_balcony"
-msgstr "terrasse/altan"
+msgstr "טרסה/מרפסת"
 
 #: lib/objects/functions.php:367 page-object.php:358
 msgid "s_object:bedrooms"
-msgstr "soveværelser"
+msgstr "חדרי שינה"
 
 #: lib/objects/functions.php:378 page-object.php:369
 msgid "s_object:bathrooms"
-msgstr "badeværelser"
+msgstr "חדרי אמבטיה"
 
 #: lib/objects/functions.php:405 page-object.php:396
 msgid "s_object:building_storeys"
-msgstr "etager"
+msgstr "קומות בבניין"
 
 #: lib/objects/functions.php:394 page-object.php:385
 msgid "s_object:land_area"
-msgstr "landområde"
+msgstr "שטח הקרקע"
 
 #: lib/objects/functions.php:425 page-object.php:416
 msgid "s_object:utility_rooms"
-msgstr "kældre"
+msgstr "מרתפים"
 
 #: lib/objects/functions.php:440
 msgid "s_object:prev"
-msgstr "Foregående ejendom"
+msgstr "הנכס הקודם"
 
 #: lib/objects/functions.php:443
 msgid "s_object:next"
-msgstr "Næste ejendom"
+msgstr "הנכס הבא"
 
 #: lib/objects/functions.php:450
 msgid "s_object:similar_label"
-msgstr "Find lignende ejendomme i samme område"
+msgstr "מצא נכסים דומים באותו האזור"
 
 #: lib/objects/functions.php:182
 msgid "s_object:rent:long-term_rent"
-msgstr "Langtids leje, månedlig rate"
+msgstr "השכרה לטווח ארוך, תשלום חודשי"
 
 #: lib/objects/functions.php:184 lib/objects/functions.php:200
 #: lib/objects/functions.php:206 lib/objects/functions.php:212
@@ -275,44 +272,44 @@ msgstr "Langtids leje, månedlig rate"
 #: page-object.php:298 page-object.php:304 page-object.php:310
 #: page-object.php:316 page-object.php:322 page-sharer-rent.php:44
 msgid "s_object:rent:on_request"
-msgstr "efter forespørgsel"
+msgstr "לפי בקשה"
 
 #: lib/objects/functions.php:193 lib/objects/functions.php:196
 #: lib/objects/functions.php:295 lib/objects/functions.php:298
 #: page-object.php:183 page-object.php:186 page-object.php:285
 #: page-object.php:288
 msgid "s_object:rent:vat"
-msgstr "MOMS"
+msgstr "המע\"מ"
 
 #: lib/objects/functions.php:193 lib/objects/functions.php:295
 #: page-object.php:183 page-object.php:285
 msgid "s_object:rent:not_included"
-msgstr "er ikke inkluderet"
+msgstr "לא כלול"
 
 #: lib/objects/functions.php:196 lib/objects/functions.php:298
 #: page-object.php:186 page-object.php:288
 msgid "s_object:rent:included"
-msgstr "er inkluderet"
+msgstr "כלול"
 
 #: lib/objects/functions.php:198 lib/objects/functions.php:300
 #: page-object.php:188 page-object.php:290
 msgid "s_object:rent:deposit"
-msgstr "depositum"
+msgstr "הפקדה"
 
 #: lib/objects/functions.php:216 lib/objects/functions.php:318
 #: page-object.php:206 page-object.php:308
 msgid "s_object:rent:commission"
-msgstr "agenturets gebyr"
+msgstr "עמלה"
 
 #: lib/objects/functions.php:237 page-object.php:228
 msgid "s_object:rent:rent_short_title"
-msgstr "Korttids leje, daglige rater, *"
+msgstr "השכרה לטווח קצר, תשלום יומי, "
 
 #: lib/objects/functions.php:240 lib/objects/functions.php:258
 #: lib/objects/functions.php:275 page-object.php:231 page-object.php:248
 #: page-object.php:265
 msgid "s_object:rent:min_stay"
-msgstr "min. ophold"
+msgstr "שהייה מינ'"
 
 #: lib/objects/functions.php:242 lib/objects/functions.php:243
 #: lib/objects/functions.php:244 lib/objects/functions.php:260
@@ -322,14 +319,14 @@ msgstr "min. ophold"
 #: page-sharer-rent.php:47 page-sharer-rent.php:57 page-sharer-rent.php:65
 #: templates/filter-rent.php:104
 msgid "s_object:rent:day"
-msgstr "dag"
+msgstr "יום"
 
 #: lib/objects/functions.php:248 lib/objects/functions.php:264
 #: lib/objects/functions.php:281 lib/objects/functions.php:524
 #: page-object.php:237 page-object.php:254 page-object.php:271
 #: page-sharer-rent.php:49
 msgid "s_object:rent:week"
-msgstr "uge"
+msgstr "שבוע"
 
 #: lib/objects/functions.php:252 lib/objects/functions.php:268
 #: lib/objects/functions.php:285 lib/objects/functions.php:526
@@ -338,200 +335,200 @@ msgstr "uge"
 #: page-sharer-rent.php:51 page-sharer-rent.php:59 page-sharer-rent.php:63
 #: templates/filter-rent.php:105
 msgid "s_object:rent:month"
-msgstr "måned"
+msgstr "חודש"
 
 #: lib/objects/functions.php:241 page-object.php:232
 msgid "s_object:rent:low_season"
-msgstr "lavsæson"
+msgstr "עונת השפל"
 
 #: lib/objects/functions.php:259 page-object.php:249
 msgid "s_object:rent:medium_season"
-msgstr "mellemsæson"
+msgstr "עונת ביניים"
 
 #: lib/objects/functions.php:276 page-object.php:266
 msgid "s_object:rent:hight_season"
-msgstr "højsæson"
+msgstr "עונת שיא"
 
 #: lib/objects/functions.php:390 page-object.php:381
 msgid "s_object:rent:max_persons"
-msgstr "max. antal personer"
+msgstr "מס' מרבי של אנשים"
 
 #: lib/objects/functions.php:627 page-sharer-rent.php:97
 msgid "s_object:rent:min_stay_full"
-msgstr "Minimum ophold"
+msgstr "שהייה מינימלית"
 
 #: templates/form-contact.php:6
 msgid "form:title_default"
-msgstr "Kontakt os hvis du har spørgsmål, hvis du har brug for yderligere oplysninger eller hjælp til at vælge en ejendom"
+msgstr "נא לפנות אלינו אם יש לך שאלות, אם אתה זקוק למידע נוסף או לעזרה בבחירת נכס"
 
 #: templates/form-contact.php:13 templates/form-offmarket.php:13
 #: templates/form-request.php:14
 msgid "form:first_name"
-msgstr "Indtast dit fornavn"
+msgstr "הזן את השם הפרטי"
 
 #: templates/form-contact.php:17 templates/form-offmarket.php:17
 #: templates/form-request.php:18
 msgid "form:last_name"
-msgstr "og dit efternavn"
+msgstr "ואת שם המשפחה שלך"
 
 #: templates/form-contact.php:24 templates/form-offmarket.php:24
 #: templates/form-request.php:25
 msgid "form:how_can_reach"
-msgstr "Hvordan kontakter vi dig?"
+msgstr "איך אפשר ליצור קשר אתך?"
 
 #: templates/form-contact.php:27 templates/form-offmarket.php:28
 #: templates/form-request.php:28
 msgid "form:your_phone"
-msgstr "din telefon"
+msgstr "מס' הטלפון שלך"
 
 #: templates/form-contact.php:34 templates/form-offmarket.php:36
 #: templates/form-request.php:35
 msgid "form:your_email"
-msgstr "din e-mail"
+msgstr "כתובת הדוא\"ל שלך"
 
 #: templates/form-contact.php:38 templates/form-offmarket.php:40
 #: templates/form-request.php:39
 msgid "form:your_skype"
-msgstr "dit Skype-navn"
+msgstr "שם המשתמש שלך בסקייפ"
 
 #: templates/form-contact.php:44 templates/form-offmarket.php:46
 #: templates/form-request.php:45
 msgid "form:have_questions"
-msgstr "Har du spørgsmål eller kommentarer?"
+msgstr "כל שאלה או הערה?"
 
 #: templates/form-contact.php:50 templates/form-offmarket.php:52
 #: templates/form-request.php:51
 msgid "form:send"
-msgstr "Send forespørgsel"
+msgstr "שלח בקשה"
 
 #: templates/form-contact.php:53 templates/form-offmarket.php:55
 #: templates/form-request.php:54
 msgid "form:disclaimer_note"
-msgstr "I hereby agree and authorize LPW to disclose my personal information collected on this form to the property developers and / or sale agents who have signed a Marketing services agreement with LPW in respect to requested properties. Læs mere om vores"
+msgstr "הפרטים שלך ליצירת קשר I hereby agree and authorize LPW to disclose my personal information collected on this form to the property developers and / or sale agents who have signed a Marketing services agreement with LPW in respect to requested properties."
 
 #: templates/form-contact.php:53 templates/form-offmarket.php:55
 #: templates/form-request.php:54
 msgid "form:privacy_policy"
-msgstr "Fortrolighedspolitik"
+msgstr "מדיניות הפרטיות"
 
 #: templates/form-offmarket.php:6
 msgid "form:title_off_market"
-msgstr "Vi har brug for dine kontaktoplysninger, så vi kan forsyne dig med oplysninger om ejendomme, som ikke er på markedet"
+msgstr "אנחנו זקוקים לפרטים שלך ליצירת קשר כדי לספק לך מידע על נכסים מחוץ לשוק"
 
 #: templates/form-request.php:7
 msgid "form:title_single"
-msgstr "Få detaljerede oplysninger om ejendommen, flere fotos, planer og priser eller arranger en besigtigelse"
+msgstr "קבל מידע מפורט על הנכס עם תמונות נוספות, תכניות ומחירים או קבע ביקור התרשמות"
 
 msgid "form:thank_you"
-msgstr "Tak, din anmodning er modtaget. Vi kontakter dig snarest."
+msgstr "תודה, בקשתך התקבלה. נפנה אליך בהקדם."
 
 msgid "form:thank_you_default"
-msgstr "Tak, din anmodning er modtaget. Vi kontakter dig snarest."
+msgstr "תודה, בקשתך התקבלה. נפנה אליך בהקדם."
 
 msgid "form:error_default"
 msgstr ""
 
 msgid "form:country_label"
-msgstr "I hvillket land leder du efter ejendomme?"
+msgstr "מה המדינה שבה אתם מחפשים נכסים?"
 
 msgid "form:country_default"
-msgstr "Alle lande"
+msgstr "כל המדינות"
 
 msgid "form:country_checkbox_label"
-msgstr "Jeg er interesseret i adskillelige lande"
+msgstr "אני מעוניין/ת במספר מדינות"
 
 msgid "form:budget_label"
-msgstr "Dit budget, EUR"
+msgstr "התקציב שלכם, באירו"
 
 msgid "form:budget_range_label_1"
-msgstr "op til 1 mio"
+msgstr "עד מיליון 1"
 
 msgid "form:budget_range_label_2"
-msgstr "1-5 millioner"
+msgstr "1-5 מיליון"
 
 msgid "form:budget_range_label_3"
-msgstr "5-10 millioner"
+msgstr "form:budget_range_label_35-10 מיליון"
 
 msgid "form:budget_range_label_4"
-msgstr "10-50 millioner"
+msgstr "10-50 מיליון"
 
 msgid "form:budget_range_label_5"
-msgstr "50+ millioner"
+msgstr "50+ מיליון"
 
 #: templates/search-panel.php:9
 msgid "alerts:advanced_search"
-msgstr "Avanceret søgning"
+msgstr "חיפוש מתקדם"
 
 #: templates/search-panel.php:19
 msgid "alerts:favorite_properties"
-msgstr "Foretrukne ejendomme"
+msgstr "נכסים מועדפים"
 
 #: templates/search-panel.php:20
 msgid "alerts:offmarket_properties"
-msgstr "Ejendomme som ikke er på markedet"
+msgstr "נכסים מחוץ לשוק"
 
 #: templates/search-panel.php:26
 msgid "alerts:offmarket_found:text"
-msgstr "Vi har fundet ejendomme, der ikke er på markedet, som passer til dine søgekriterier."
+msgstr "מצאנו נכסים מחוץ לשוק שעשויים להתאים לקריטריוני החיפוש שלך."
 
 #: templates/search-panel.php:26
 msgid "alerts:offmarket_found:link"
-msgstr "Bed om information"
+msgstr "בקש מידע"
 
 #: lib/extras.php:81 templates/search-panel.php:18
 msgid "alerts:show_map_tooltip"
-msgstr "Vis kort"
+msgstr "הצג מפה"
 
 msgid "alerts:no_results:title"
-msgstr "Ingen ejendomme passer til din anmodning"
+msgstr "אין נכסים שעונים להגדרות שלך"
 
 msgid "alerts:no_results:text"
-msgstr "Prøv at redigere din prisklasse eller at fjerne filtre for at se flere resultater"
+msgstr "נסה לשנות את טווח המחירים או להסיר מסננים כדי לראות תוצאות נוספות"
 
 msgid "alerts:no_results:button"
-msgstr "Fjern filtre"
+msgstr "הסר מסננים"
 
 #: templates/favorites-bar.php:18
 msgid "favorites:facebook_message"
-msgstr "Ejendomsudvælgelse drevet af Leading Properties of the World. Bedste håndplukkede ejendomme med smukke fotografier. Ønsker du at se ejendomme, der er udvalgt kun til dig? Besøg vores hjemmeside og få din personlige anbefaling i dag."
+msgstr "בחירת הנכסים בחסות The Leading Properties of the World. הנכסים הטובים ביותר שנבחרו בקפידה עם תמונות יפות. רוצה לראות את הנכסים שנבחרו במיוחד בשבילך? בקר באתר האינטרנט שלנו וקבל המלצה אישית בשבילך כבר היום."
 
 #: page-favorites-rent.php:14 page-favorites.php:14
 msgid "favorites:title"
-msgstr "Dine foretrukne ejendomme:"
+msgstr "הנכסים המועדפים שלך:"
 
 #: page-favorites-rent.php:36 page-favorites.php:36
 msgid "favorites:delete_alert"
-msgstr "Er du sikker på at du ønsker at fjerne alle ejendomme fra favoritter?"
+msgstr "האם אתה בטוח שברצונך להסיר את כל הנכסים מרשימת המועדפים שלך?"
 
 msgid "favorites:delete_y"
-msgstr "Ja, fjern"
+msgstr "כן, להסיר"
 
 msgid "favorites:delete_n"
-msgstr "Nej"
+msgstr "לא"
 
 msgid "commercial:main_title"
-msgstr "Erhvervsmæssige ejendomme"
+msgstr "נכסים מסחריים"
 
 msgid "commercial:sub_title_1"
-msgstr "3 trin til at opnå information om erhvervsmæssige ejendomme som"
+msgstr "3 צעדים לקבלת מידע אודות נכסים מסחריים"
 
 msgid "commercial:sub_title_2"
-msgstr "du er interesseret i*"
+msgstr "אתם מעוניינים ב-*"
 
 msgid "commercial:step_1"
-msgstr "Udfyld formularen"
+msgstr "מלאו את הטופס"
 
 msgid "commercial:step_2"
-msgstr "Tag en snak med vores leder"
+msgstr "דברו עם המנהל שלנו"
 
 msgid "commercial:step_3"
-msgstr "Få information"
+msgstr "קבלו מידע"
 
 msgid "commercial:note_text"
-msgstr "* I nogle tilfælde gives information kun efter at have underskrevet en fortrolighedsaftale (NDA)."
+msgstr "* במקרים מסוימים מידע יימסר רק לאחר חתימת הסכם סודיות."
 
 msgid "commercial:note_link"
-msgstr "Download en NDA-skabelon"
+msgstr "הורידו את תבנית הסכם הסודיות"
 
 #. Theme Name of the plugin/theme
 #. Author of the plugin/theme

@@ -2,15 +2,18 @@
     "use strict";
 
     /* Filter toggle */
-    function FilterMenu(type, catogory) {
+    function FilterMenu(type, catogory, rent_category) {
 
         this.filterCurrency = $('#price-currency');
+        this.rentLongBtn = $('#selector-rent-long');
+        this.rentShortBtn = $('#selector-rent-short');
+        this.filterPeriod = $('#price-period');
+        this.rentCategory = rent_category;
 
         var $this = this,
             container = $('.sp-filters'),
             filterToggleBtn = $('.filter-toggle'),
             filterCloseBtn = $('.filter-close'),
-            filterPeriod = $('#price-period'),
             tooltipOpt = {
                 template: '<div class="tooltip tooltip-search" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>',
                 delay: { "show": 200, "hide": 300 }
@@ -20,7 +23,7 @@
                     min: $('#price-min'),
                     max: $('#price-max'),
                     currency: this.filterCurrency,
-                    period: filterPeriod
+                    period: this.filterPeriod
                 },
                 area:  {
                     min: $('#area-min'),
@@ -30,8 +33,6 @@
                 rooms: $('.filter-room'),
                 hd_photos: $('#quality'),
                 persons: $('#persons-max'),
-                short_rent: $('#short-term'),
-                long_rent: $('#long-term'),
                 child_friendly: $('#child-friendly'),
                 pets_allowed: $('#pets-allowed')
 
@@ -107,16 +108,6 @@
             } else {
                 filterInp.persons.val(undefined);
             }
-            if(values.long_rent) {
-                filterInp.long_rent.prop('checked', true);
-            } else {
-                filterInp.long_rent.prop('checked', false);
-            }
-            if(values.short_rent) {
-                filterInp.long_rent.prop('checked', true);
-            } else {
-                filterInp.long_rent.prop('checked', false);
-            }
             if(values.child_friendly) {
                 filterInp.child_friendly.prop('checked', true);
             } else {
@@ -174,8 +165,6 @@
             values.rooms = _.isEmpty(rooms) ? null : rooms;
             if( catogory === 'rent' ) {
                 values.persons = filterInp.persons.val() || null;
-                values.short_rent = filterInp.short_rent.is(':checked');
-                values.long_rent = filterInp.long_rent.is(':checked');
                 values.child_friendly = filterInp.child_friendly.is(':checked');
                 values.pets_allowed = filterInp.pets_allowed.is(':checked');
                 if(price.min || price.max) {
@@ -194,6 +183,13 @@
         this.openFilter = function() {
             filterToggleBtn.addClass('active').tooltip('destroy');
             container.addClass('open');
+
+            //Fix select2 issue with empty value
+
+            if(this.rentCategory === 'long_rent') {
+                this.filterPeriod.val('month').trigger('change');
+            }
+
         };
         function toggleFilter() {
             if(!isFilterActive()) {
@@ -217,11 +213,9 @@
                     containerCssClass: "price-select",
                     dropdownCssClass: "price-select-dropdown"
                 });
-                filterPeriod.select2({
-                    minimumResultsForSearch: Infinity,
-                    containerCssClass: "period-select",
-                    dropdownCssClass: "period-select-dropdown"
-                });
+
+              this.periodFilterInit();
+
                 filterToggleBtn.on('click', function (ev) {
                     ev.preventDefault();
                     toggleFilter();
@@ -233,6 +227,20 @@
             }
         };
     }
+
+    FilterMenu.prototype.periodFilterInit = function(data) {
+      var options = {
+          minimumResultsForSearch: Infinity,
+          containerCssClass: "period-select",
+          dropdownCssClass: "period-select-dropdown",
+          width: '105px'
+      };
+      if(data) {
+          options.data = data;
+          this.filterPeriod.empty();
+      }
+        this.filterPeriod.select2(options);
+    };
 
     window.lpw = window.lpw || {};
     window.lpw.FilterMenu = FilterMenu;

@@ -172,7 +172,15 @@ Number.prototype.formatMoney = function(c, d, t){
     },
     'page_rent': {
         init: function() {
-            var objects = new window.lpw.ObjectList('list', 'rent');
+            var rent_subcat = LpData.rentSubCat ? LpData.rentSubCat : 'long_rent',
+                objects = new window.lpw.ObjectList('list', 'rent', rent_subcat);
+            if(rent_subcat === 'long_rent') {
+                objects.args.long_rent = true;
+                objects.args.short_rent = false;
+            } else {
+                objects.args.long_rent = false;
+                objects.args.short_rent = true;
+            }
 
             if(!window.lpw.Helpers.getParameterByName('filter') && LpData.defaultLocation) {
                 objects.args.location_point = {
@@ -229,7 +237,6 @@ Number.prototype.formatMoney = function(c, d, t){
                 }
 
             }
-
             objects.init();
 
         }
