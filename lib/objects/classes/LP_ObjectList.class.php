@@ -69,7 +69,8 @@ class LP_ObjectList {
             'query' => ''
         ];
         $this->args = array_merge($defaults, $args);
-	    $this->api_url = "https://lpw-public-api.herokuapp.com";
+	    $this->api_url = "https://lpw-public-api-v4.herokuapp.com";
+	    //$this->api_url = "https://lpw-public-api.herokuapp.com";
 	    //$this->api_url = "https://staging-lpw-public-api.herokuapp.com";
 
 
@@ -110,6 +111,9 @@ class LP_ObjectList {
                     $url .= '/property_objects/geo_points';
                 } elseif ($this->args['type'] === 'rent') {
                     $url .= '/property_objects/rent_geo_points';
+                    if($this->args['rent_category']) {
+	                    $url .= '/' . $this->args['rent_category'];
+                    }
                 } elseif ($this->args['type'] === 'invest') {
                     $url .= '/property_objects/invest_geo_points';
                 }

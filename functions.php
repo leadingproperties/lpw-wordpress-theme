@@ -53,7 +53,9 @@ function lpw_set_globals() {
 			$lp_settings['counters'] = [
 				'for_sale'   => ( $counters['global_counters']['for_sale'] ) ? $counters['global_counters']['for_sale'] : '',
 				'for_rent'   => ( $counters['global_counters']['for_rent'] ) ? $counters['global_counters']['for_rent'] : '',
-				'commercial' => ( $counters['global_counters']['commercial'] ) ? $counters['global_counters']['commercial'] : ''
+				'commercial' => ( $counters['global_counters']['commercial'] ) ? $counters['global_counters']['commercial'] : '',
+                'long_rent' => ( $counters['global_counters']['long_rent'] ) ? $counters['global_counters']['long_rent'] : '',
+				'short_rent' => ( $counters['global_counters']['short_rent'] ) ? $counters['global_counters']['short_rent'] : ''
 			];
 		}
 	}
@@ -244,12 +246,19 @@ class T5_Richtext_Excerpt
 	 * @param  string $str
 	 * @return string
 	 */
-	public static function unescape( $str )
-	{
+	public static function unescape( $str ) {
 		return str_replace(
 			array ( '&lt;', '&gt;', '&quot;', '&amp;', '&nbsp;', '&amp;nbsp;' )
 			,   array ( '<',    '>',    '"',      '&',     ' ', ' ' )
 			,   $str
 		);
+	}
+}
+
+function getParametersByName($name) {
+	if(isset($_REQUEST[$name]) && !empty($_REQUEST[$name])) {
+		return json_decode(stripcslashes(urldecode($_GET['filter'])),true);
+	} else {
+		return false;
 	}
 }

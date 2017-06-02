@@ -1,5 +1,5 @@
-.rent-price-wrap {
-  @include clearfix();
+/*.rent-price-wrap {
+  //@include clearfix();
 
   ul.rent-price-list {
     margin: 0 0 10px;
@@ -40,6 +40,36 @@
         li {
           width: 50%;
         }
+      }
+    }
+  }
+
+}*/
+.rent-price-table {
+  font-size: 12px;
+  line-height: 19px;
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 10px;
+  tr {
+    td {
+      padding: 10px 0;
+      border: solid #e6e6e6;
+      border-width: 1px 0;
+      white-space: nowrap;
+      &.rent-price-cell {
+        padding-left: 10px;
+      }
+    }
+  }
+  @media (min-width: $screen370) {
+    font-size: 14px;
+    tr {
+      td {
+        &.rent-date-cell {
+          padding-right: 10px;
+        }
+        width: 50%;
       }
     }
   }

@@ -37,6 +37,7 @@ function ajax_handler() {
 		case 'get_geopoints':
 			$output = ajax_get_geopoints([
 				'type' => $_REQUEST['type'],
+				'rent_category' => ($_REQUEST['rent_category']) ? $_REQUEST['rent_category'] : 'long_rent',
 				'action' => 'get_geopoints'
 			]);
 			break;

@@ -6,17 +6,19 @@
 	 * @param callback - callback function
 	 * @param category -ex. sale, rent, invest
 	 * @param invest - if it is Invest object
+	 * @param rent_category - long or short rent
 	 * @constructor
 	 */
 	function AutoComplete(
 		inputSelectorString,
-		callback, category, invest
+		callback, category, invest, rent_category
 	) {
 		this.jqInput = $(inputSelectorString);
 		this.callback = callback;
 		this.category = category;
 		this.autocompleteSelected = null;
 		this.invest = invest;
+		this.rentCategory = rent_category;
 		this.errors = {
 			google: false
 		};
@@ -28,7 +30,6 @@
 				scope: category === 'rent' ? 'for_rent' : 'for_sale'
 			}
 		};
-
 		try {
 			//https://developers.google.com/maps/documentation/javascript/3.exp/reference#AutocompleteService
 			this.autocompleteService = new google.maps.places.AutocompleteService();
@@ -111,7 +112,7 @@
 		if(this.category === 'sale') {
 			data.scope = 'for_sale';
 		} else if(this.category === 'rent') {
-			data.scope = 'for_rent';
+			data.scope = (this.rentCategory) ? this.rentCategory : 'long_rent';
 		}
 		return $.ajax(
 			{
