@@ -18,8 +18,8 @@ class Tags
     );
 
     public function __construct() {
-	    $this->api_url = "https://lpw-public-api-v4.herokuapp.com";
-        //$this->api_url = 'https://lpw-public-api.herokuapp.com';
+//	    $this->api_url = "https://lpw-public-api-v4.herokuapp.com";
+        $this->api_url = 'http://176-114-250-137.rychlydrat.cz:3006';
         $this->token = get_field('api_key', 'option');
     }
 
