@@ -67,7 +67,7 @@ function lp_rewrite_rule(){
  */
 function assets() {
   global $lp_settings;
-  $ver = "3.3.0";
+  $ver = "3.3.1";
 	  //TODO Check why wp_get_theme()->get('Version'); not working
     if(!is_admin()) {
         wp_enqueue_style( 'lprop/css', Assets\asset_path( 'styles/main.css' ), false, $ver );
