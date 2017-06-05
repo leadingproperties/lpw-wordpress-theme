@@ -115,9 +115,16 @@ function get_floating_bar() {
 	if(!is_404() ) {
 		$return = ' <nav class="floating-bar" role="navigation"><div class="container">
         <ul>';
-		if ( is_page_template('page-buy.php') || is_page_template('page-rent.php') ) {
+		if ( is_page_template('page-buy.php') || is_page_template('page-rent.php') || is_page_template('page-location-buy.php') || is_page_template('page-location-rent.php') ) {
+		    $favLink = '';
+		    if(is_page_template('page-buy.php') || is_page_template('page-location-buy.php')) {
+			    $favLink = $lp_settings['favorites'];
+            } else {
+			    $favLink = $lp_settings['favorites_rent'];
+            }
+
 			$return .= '<li><a href="#" class="search-link"></a></li>
-			            <li><a href="' . $lp_settings['favorites'] . '" class="favorites-link"><sup></sup></a></li>
+			            <li><a href="' . $favLink . '" class="favorites-link"><sup></sup></a></li>
 			            <li><a href="#" class="off-market-link half-opaque" data-type="off_market"><sup></sup></a></li>';
 		}
 		$return .= '<li><a href="#" class="request-link" data-toggle="modal" data-type="default" data-target=".contact-modal"></a></li>

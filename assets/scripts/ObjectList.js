@@ -556,6 +556,21 @@
                 // Do nothing if clicked on active button
                 if( $(this).hasClass('active') ) { return false; }
 
+                //Clear price filter
+                if($this.args.price) {
+                    if($this.args.price.min) {
+                        delete $this.args.price.min;
+                        $this.filter.filterInp.price.min.val(undefined);
+                    }
+                    if($this.args.price.max) {
+                        delete $this.args.price.max;
+                        $this.filter.filterInp.price.max.val(undefined);
+                    }
+                    if($this.args.price.period) {
+                        delete $this.args.price.period;
+                    }
+                }
+
                 //Period select Array
                 var periodSelect = [];
 

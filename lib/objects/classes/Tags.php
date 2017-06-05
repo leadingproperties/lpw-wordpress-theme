@@ -18,7 +18,8 @@ class Tags
     );
 
     public function __construct() {
-        $this->api_url = 'https://lpw-public-api.herokuapp.com';
+	    $this->api_url = "https://lpw-public-api-v4.herokuapp.com";
+        //$this->api_url = 'https://lpw-public-api.herokuapp.com';
         $this->token = get_field('api_key', 'option');
     }
 
@@ -77,7 +78,6 @@ class Tags
 	        ];
         }
         $url = $this->api_url . '/counters?' . preg_replace('/%5B[0-9]+%5D/simU', '%5B%5D', http_build_query($params)) . \LP_ObjectList::add_remote_data('string', '&', $query_text);
-
         $curl_options = [
             CURLOPT_URL => $url,
             CURLOPT_HTTPHEADER => [

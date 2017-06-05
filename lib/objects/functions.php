@@ -296,7 +296,7 @@ function single_object_html($args) {
 									$html .= __('s_object:rent:vat', 'leadingprops') . ' ' . $objects_obj->property_rent->rent_short->vat . '% ' . __('s_object:rent:not_included', 'leadingprops') . '; ';
 								}
 							} else {
-								$html .= __('s_object:rent:vat', 'leadingprops') . __('s_object:rent:included', 'leadingprops') . '; ';
+								$html .= __('s_object:rent:vat', 'leadingprops') . ' ' . __('s_object:rent:included', 'leadingprops') . '; ';
 							}
 							$html .= __('s_object:rent:deposit', 'leadingprops') . ': ';
 							if($objects_obj->property_rent->rent_short->deposit_on_demand === true) {
