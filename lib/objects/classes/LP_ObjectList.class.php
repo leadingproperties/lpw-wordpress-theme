@@ -243,8 +243,10 @@ class LP_ObjectList {
                         $url .= '&order_by[order]=' . $this->args['order_by']['order'];
                     }
                 }
+                break;
 
         }
+
         $curl_options = [
             CURLOPT_URL => $url,
             CURLOPT_HTTPHEADER => [

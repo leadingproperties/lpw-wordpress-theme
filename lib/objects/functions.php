@@ -537,7 +537,7 @@ function get_object_list($args) {
 
 					} elseif ( $object->sub_type === 'short_rent' ) {
 						//Price string definition
-						if($object->parameters->price->on_demand) {
+						if($object->parameters->price->on_demand || !$object->parameters->price->from) {
 							$rent_price = '<span dir="ltr" class="price-onrequest">' . __( 's_object:rent:on_request', 'leadingprops' ) . '</span>';
 						} else {
 							switch($object->parameters->price->period) {
