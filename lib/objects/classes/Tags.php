@@ -162,7 +162,21 @@ class Tags
 
         if($price){
             $suffix   = $price && $price['currency'] ? $this->currencies[$price['currency']] : "EUR";
-            $price_tag_html = '<li>' . $this->get_range_label($price['min'], $price['max'], $suffix) . ' <sup>' . $counters['price']['doc_count'] . '</sup> <span class="tag-remove" data-tag_type="price" data-tag_data="price"></span></li>';
+            $price_tag_html = '<li>' . $this->get_range_label($price['min'], $price['max'], $suffix);
+            if($price['period']) {
+            	switch($price['period']) {
+		            case 'day':
+			            $price_tag_html .= '&nbsp;/&nbsp;' . __( 's_object:rent:day', 'leadingprops' );
+		            	break;
+		            case 'week':
+			            $price_tag_html .= '&nbsp;/&nbsp;' . __( 's_object:rent:week', 'leadingprops' );
+		            	break;
+		            case 'month':
+			            $price_tag_html .= '&nbsp;/&nbsp;' . __( 's_object:rent:month', 'leadingprops' );
+		            	break;
+	            }
+            }
+	        $price_tag_html .= ' <sup>' . $counters['price']['doc_count'] . '</sup> <span class="tag-remove" data-tag_type="price" data-tag_data="price"></span></li>';
         }
 
         return $price_tag_html;
