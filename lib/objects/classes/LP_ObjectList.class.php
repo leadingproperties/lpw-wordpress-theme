@@ -514,7 +514,7 @@ class LP_ObjectList {
         if(!$this->error) {
 	        $countries = json_decode($json, true);
         }
-        return $countries;
+        return ($countries['countries']) ? $countries['countries'] : false;
     }
 
 

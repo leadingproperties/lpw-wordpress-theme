@@ -620,7 +620,7 @@ function get_object_list($args) {
 						$html .= '</span>';
 
 					if ( $object->parameters->rooms->min || $object->parameters->rooms->max ) {
-						$html .= ',&nbsp';
+						$html .= ',&nbsp;';
 					}
 					if ( $object->parameters->rooms->min ) {
 						$html .= '<span>' . $object->parameters->rooms->min . '</span>';
