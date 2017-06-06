@@ -220,7 +220,7 @@ class LP_ObjectList {
                     if ( isset( $this->args['child_friendly'] ) ) {
                         $url .= '&child_friendly=' . $this->args['child_friendly'];
                     }
-                    if ( isset( $this->args['child_friendly'] ) ) {
+                    if ( isset( $this->args['pets_allowed'] ) ) {
                         $url .= '&pets_allowed=' . $this->args['pets_allowed'];
                     }
                     if(isset($this->args['location_point']) && is_array($this->args['location_point'])) {
@@ -510,22 +510,11 @@ class LP_ObjectList {
 
     public function get_countries() {
         $json = $this->get_api_objects();
-        $countries_arr = [];
-        $lang = $this->args['lang'];
+	    $countries = [];
         if(!$this->error) {
-            $counties = json_decode($json);
-            if($counties->countries && is_array($counties->countries)) {
-                foreach($counties->countries as $country) {
-                    $countries_arr[] = [
-                        'name'  => $country->title_translations->en,
-                        'title' => $country->title_translations->$lang ? $country->title_translations->$lang : $country->title_translations->en
-                    ];
-
-                }
-            }
-
+	        $countries = json_decode($json, true);
         }
-        return $countries_arr;
+        return ($countries['countries']) ? $countries['countries'] : false;
     }
 
 

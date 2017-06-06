@@ -556,13 +556,13 @@ function get_object_list($args) {
 						if($object->parameters->min_stay) {
 							switch ( $object->parameters->min_stay_period ) {
 								case 'day':
-									$minStay = $object->parameters->min_stay . __( 's_object:rent:day', 'leadingprops' );
+									$minStay = $object->parameters->min_stay . '&nbsp;' . __( 's_object:rent:day', 'leadingprops' );
 									break;
 								case 'week':
-									$minStay = $object->parameters->min_stay . __( 's_object:rent:week', 'leadingprops' );
+									$minStay = $object->parameters->min_stay . '&nbsp;' . __( 's_object:rent:week', 'leadingprops' );
 									break;
 								default:
-									$minStay = $object->parameters->min_stay . __( 's_object:rent:month', 'leadingprops' );
+									$minStay = $object->parameters->min_stay . '&nbsp;' . __( 's_object:rent:month', 'leadingprops' );
 									break;
 							}
 						}
@@ -620,7 +620,7 @@ function get_object_list($args) {
 						$html .= '</span>';
 
 					if ( $object->parameters->rooms->min || $object->parameters->rooms->max ) {
-						$html .= ',&nbsp';
+						$html .= ',&nbsp;';
 					}
 					if ( $object->parameters->rooms->min ) {
 						$html .= '<span>' . $object->parameters->rooms->min . '</span>';

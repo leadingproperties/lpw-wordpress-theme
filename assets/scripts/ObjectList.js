@@ -393,10 +393,9 @@
                 },
                 complete: function () {
                     loader.hide();
+                    //var limit = (_.isEmpty($this.args.ids)) ? $this.totalObjects : $this.args.ids.length;
 
-                    var limit = (_.isEmpty($this.args.ids)) ? $this.totalObjects : $this.args.ids.length;
-
-                    if( ( limit > $this.onPage )) {
+                    if( ( $this.totalObjects > $this.onPage )) {
                         if( window.lpw.Helpers.isElementIntoView($this.lastItem()) ) {
                             $this.didScroll = false;
                             $this.getObjects();
