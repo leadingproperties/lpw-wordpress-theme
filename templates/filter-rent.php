@@ -54,7 +54,7 @@
 				<div class="sp-filters-group filter-persons">
 					<span class="sp-group-title"><?php _e('search_panel:persons', 'leadingprops'); ?></span>
 					<label for="persons-max" class="sr-only">Persons max</label>
-					<input type="number" min="0" class="filter-input area-input" id="persons-max" placeholder="<?php _e('search_panel:max', 'leadingprops'); ?>">
+					<input type="number" min="0" class="filter-input area-input" id="persons-max">
 				</div>
 				<div class="sp-filters-group filter-conditions">
 					<div class="sp-checkbox">

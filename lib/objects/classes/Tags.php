@@ -152,7 +152,7 @@ class Tags
     function get_hq_photos_tag_html($bool, $counters){
         $hq_photos_tag_html = '';
         if($bool){
-            $hq_photos_tag_html = '<li>' . __('search_panel:hd_photos:tag', 'ledingprops') . ' <sup>' . $counters['hd_photos']['doc_count'] . '</sup> <span class="tag-remove" data-tag_type="quality" data-tag_data="quality"></span></li>';
+            $hq_photos_tag_html = '<li>' . __('search_panel:hd_photos:tag', 'leadingprops') . ' <sup>' . $counters['hd_photos']['doc_count'] . '</sup> <span class="tag-remove" data-tag_type="quality" data-tag_data="quality"></span></li>';
         }
         return $hq_photos_tag_html;
     }

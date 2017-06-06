@@ -84,6 +84,16 @@
                 delete $this.args.similar;
             }
             $this.usedFilters.location = false;
+            if ($this.lpwGoogleMap.map && $this.lpwGoogleMap.map instanceof google.maps.Map) {
+                $this.lpwGoogleMap.map.setCenter({
+                    lat: 49.1651567,
+                    lng: 4.0557516
+                });
+                $this.lpwGoogleMap.map.setZoom(3);
+            } else if ($this.lpwGoogleMap.mapOptions) {
+                $this.lpwGoogleMap.mapOptions.center = new google.maps.LatLng(49.1651567, 4.0557516);
+                $this.lpwGoogleMap.mapOptions.zoom = 3;
+            }
         }
         function clearFilters() {
             if($this.args.price.min) {
@@ -162,6 +172,7 @@
 	                    }
 
                         if ($this.lpwGoogleMap.map && $this.lpwGoogleMap.map instanceof google.maps.Map) {
+
                             $this.lpwGoogleMap.map.setCenter({
                                 lat: data.location_point.lat,
                                 lng: data.location_point.lon
@@ -173,6 +184,8 @@
                         }
                     }
                     if (data && data.location_shape) {
+                        var shape = [],
+                            shapeCenter;
                         $this.args.location_shape = {};
                         if (data.location_shape.country_code) {
                             $this.args.location_shape.country_code = data.location_shape.country_code;
@@ -182,12 +195,29 @@
                                 lat: data.location_shape.bottom_left.lat,
                                 lon: data.location_shape.bottom_left.lon
                             };
+                            shape.push([data.location_shape.bottom_left.lat, data.location_shape.bottom_left.lon]);
                         }
                         if (data.location_shape.top_right && data.location_shape.top_right.lat && data.location_shape.top_right.lon) {
                             $this.args.location_shape.top_right = {
                                 lat: data.location_shape.top_right.lat,
                                 lon: data.location_shape.top_right.lon
                             };
+                            shape.push([data.location_shape.top_right.lat, data.location_shape.top_right.lon]);
+                        }
+                        if(!_.isEmpty(shape)) {
+                            shapeCenter = window.lpw.Helpers.getLatLngCenter(shape);
+                            if(!_.isEmpty(shapeCenter) && shapeCenter[0] && shapeCenter[1]) {
+                                if ($this.lpwGoogleMap.map && $this.lpwGoogleMap.map instanceof google.maps.Map) {
+                                    $this.lpwGoogleMap.map.setCenter({
+                                        lat: shapeCenter[0],
+                                        lng: shapeCenter[1]
+                                    });
+                                    $this.lpwGoogleMap.map.setZoom(9);
+                                } else if ($this.lpwGoogleMap.mapOptions) {
+                                    $this.lpwGoogleMap.mapOptions.center = new google.maps.LatLng(shapeCenter[0], shapeCenter[1]);
+                                    $this.lpwGoogleMap.mapOptions.zoom = 10;
+                                }
+                            }
                         }
                     }
                 }
