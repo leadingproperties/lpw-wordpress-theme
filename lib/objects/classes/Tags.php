@@ -78,6 +78,7 @@ class Tags
 	        ];
         }
         $url = $this->api_url . '/counters?' . preg_replace('/%5B[0-9]+%5D/simU', '%5B%5D', http_build_query($params)) . \LP_ObjectList::add_remote_data('string', '&', $query_text);
+
         $curl_options = [
             CURLOPT_URL => $url,
             CURLOPT_HTTPHEADER => [
@@ -213,7 +214,7 @@ class Tags
     function get_rent_persons_tag($persons, $counters){
         $rent_persons_tag = '';
         if($persons){
-            $rent_persons_tag = '<li>' . __('search_panel:persons', 'leadingprops') . ': ' . $persons . ' <sup>' . $counters['long_rent']['doc_count'] . '</sup> <span class="tag-remove" data-tag_type="persons-max" data-tag_data="persons-max"></span></li>';
+            $rent_persons_tag = '<li>' . __('search_panel:persons', 'leadingprops') . ': ' . $persons . ' <sup>' . $counters['persons']['doc_count'] . '</sup> <span class="tag-remove" data-tag_type="persons-max" data-tag_data="persons-max"></span></li>';
         }
         return $rent_persons_tag;
     }
