@@ -22,6 +22,7 @@
 
 		this.geopointsError = false;
 		this.points = null;
+        this.geoPoints = null;
 		this.markers = [];
 		this.markerCluster = null;
 
@@ -92,7 +93,11 @@
 						$this.mapOptions
 					);
 					if (!$this.geopointsError) {
-						$this.getGeoPointsSuccess($this.geoPoints);
+						if($this.geoPoints) {
+                            $this.getGeoPointsSuccess($this.geoPoints);
+                        } else {
+							$this.setGeoPoints();
+						}
 					}
                     $this.getGeoPoints()
                         .done($this.getGeoPointsSuccess.bind($this))
@@ -271,7 +276,20 @@
                 .fail(this.getGeoPointsError.bind(this));
 		}
 	};
+	Map.prototype.setGeoPoints = function() {
 
+        var $this = this,
+			timeout = setTimeout(function() {
+
+            if($this.geoPoints) {
+                $this.getGeoPointsSuccess($this.geoPoints);
+                clearTimeout(timeout);
+            } else {
+                $this.setGeoPoints();
+			}
+		}, 800);
+
+	};
 	//для доступности в глобальном скоупе
 	window.lpw = window.lpw || {};
 	window.lpw.Map = Map;
