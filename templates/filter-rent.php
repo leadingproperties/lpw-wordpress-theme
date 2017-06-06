@@ -86,7 +86,7 @@
                             <option value="7"<?php if($lp_settings['currency_id'] === 7) echo ' selected'; ?>>AED</option>
                             <option value="8"<?php if($lp_settings['currency_id'] === 8) echo ' selected'; ?>>THB</option>
 						</select>
-						&nbsp;&frasl;&nbsp;
+						<span class="slash-align">&nbsp;&frasl;&nbsp;</span>
 						<select name="period" id="price-period" class="price-input">
                             <?php $rentType = getParametersByName('filter');
                             if ($rentType && isset($rentType['short_rent']) && !empty($rentType['short_rent'])) { ?>

@@ -94,6 +94,9 @@
 					if (!$this.geopointsError) {
 						$this.getGeoPointsSuccess($this.geoPoints);
 					}
+                    $this.getGeoPoints()
+                        .done($this.getGeoPointsSuccess.bind($this))
+                        .fail($this.getGeoPointsError.bind($this));
 				} else {
 					google.maps.event.trigger($this.map, "idle");
 				}
@@ -115,7 +118,6 @@
 	 *
 	 */
 	Map.prototype.setupMarkerCluster = function(){
-		    var $this = this;
 
 		//собираем все поинты в один массив
 		for (var i = 0; i < this.points.length; i++) {
@@ -134,6 +136,7 @@
 			);
 		}
 		//создаем инстанс MarkerClusterer
+	//	console.debug(this.map, this.markers, this.markerClusterOptions);
 		this.markerCluster = new MarkerClusterer(this.map, this.markers, this.markerClusterOptions);
 
 		//цепляем ивент на клик по кластеру на карте
@@ -208,6 +211,7 @@
 		return $.get(LpData.ajaxUrl, data, function(data) {
 			$this.geoPoints = data;
 		});
+
 	};
 
 	/**
