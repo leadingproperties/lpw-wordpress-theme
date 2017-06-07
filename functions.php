@@ -53,7 +53,9 @@ function lpw_set_globals() {
 			$lp_settings['counters'] = [
 				'for_sale'   => ( $counters['global_counters']['for_sale'] ) ? $counters['global_counters']['for_sale'] : '',
 				'for_rent'   => ( $counters['global_counters']['for_rent'] ) ? $counters['global_counters']['for_rent'] : '',
-				'commercial' => ( $counters['global_counters']['commercial'] ) ? $counters['global_counters']['commercial'] : ''
+				'commercial' => ( $counters['global_counters']['commercial'] ) ? $counters['global_counters']['commercial'] : '',
+                'long_rent' => ( $counters['global_counters']['long_rent'] ) ? $counters['global_counters']['long_rent'] : '',
+				'short_rent' => ( $counters['global_counters']['short_rent'] ) ? $counters['global_counters']['short_rent'] : ''
 			];
 		}
 	}
@@ -113,9 +115,16 @@ function get_floating_bar() {
 	if(!is_404() ) {
 		$return = ' <nav class="floating-bar" role="navigation"><div class="container">
         <ul>';
-		if ( is_page_template('page-buy.php') || is_page_template('page-rent.php') ) {
+		if ( is_page_template('page-buy.php') || is_page_template('page-rent.php') || is_page_template('page-location-buy.php') || is_page_template('page-location-rent.php') ) {
+		    $favLink = '';
+		    if(is_page_template('page-buy.php') || is_page_template('page-location-buy.php')) {
+			    $favLink = $lp_settings['favorites'];
+            } else {
+			    $favLink = $lp_settings['favorites_rent'];
+            }
+
 			$return .= '<li><a href="#" class="search-link"></a></li>
-			            <li><a href="' . $lp_settings['favorites'] . '" class="favorites-link"><sup></sup></a></li>
+			            <li><a href="' . $favLink . '" class="favorites-link"><sup></sup></a></li>
 			            <li><a href="#" class="off-market-link half-opaque" data-type="off_market"><sup></sup></a></li>';
 		}
 		$return .= '<li><a href="#" class="request-link" data-toggle="modal" data-type="default" data-target=".contact-modal"></a></li>
@@ -244,12 +253,19 @@ class T5_Richtext_Excerpt
 	 * @param  string $str
 	 * @return string
 	 */
-	public static function unescape( $str )
-	{
+	public static function unescape( $str ) {
 		return str_replace(
 			array ( '&lt;', '&gt;', '&quot;', '&amp;', '&nbsp;', '&amp;nbsp;' )
 			,   array ( '<',    '>',    '"',      '&',     ' ', ' ' )
 			,   $str
 		);
+	}
+}
+
+function getParametersByName($name) {
+	if(isset($_REQUEST[$name]) && !empty($_REQUEST[$name])) {
+		return json_decode(stripcslashes(urldecode($_GET['filter'])),true);
+	} else {
+		return false;
 	}
 }

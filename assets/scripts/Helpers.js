@@ -150,6 +150,34 @@
                 count++;
             });
             return count;
+        },
+        getLatLngCenter: function(latLngInDegr) {
+            function rad2degr(rad) { return rad * 180 / Math.PI; }
+            function degr2rad(degr) { return degr * Math.PI / 180; }
+
+            var LATIDX = 0,
+                LNGIDX = 1,
+                sumX = 0,
+                sumY = 0,
+                sumZ = 0;
+
+            for (var i=0; i<latLngInDegr.length; i++) {
+                sumX += Math.cos(degr2rad(latLngInDegr[i][LATIDX])) * Math.cos(degr2rad(latLngInDegr[i][LNGIDX]));
+                sumY += Math.cos(degr2rad(latLngInDegr[i][LATIDX])) * Math.sin(degr2rad(latLngInDegr[i][LNGIDX]));
+                sumZ += Math.sin(degr2rad(latLngInDegr[i][LATIDX]));
+            }
+
+            var avgX = sumX / latLngInDegr.length;
+            var avgY = sumY / latLngInDegr.length;
+            var avgZ = sumZ / latLngInDegr.length;
+
+            // convert average x, y, z coordinate to latitude and longtitude
+            var lng = Math.atan2(avgY, avgX);
+            var hyp = Math.sqrt(avgX * avgX + avgY * avgY);
+            var lat = Math.atan2(avgZ, hyp);
+
+            return ([rad2degr(lat), rad2degr(lng)]);
+
         }
     };
 

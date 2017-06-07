@@ -67,7 +67,7 @@ function lp_rewrite_rule(){
  */
 function assets() {
   global $lp_settings;
-  $ver = "3.2.5";
+  $ver = "3.3.2";
 	  //TODO Check why wp_get_theme()->get('Version'); not working
     if(!is_admin()) {
         wp_enqueue_style( 'lprop/css', Assets\asset_path( 'styles/main.css' ), false, $ver );
@@ -111,12 +111,15 @@ function assets() {
             'lang'         => $lp_settings['lang'],
             'totalSale'    => $lp_settings['counters']['for_sale'],
             'totalRent'    => $lp_settings['counters']['for_rent'],
+            'totalLongRent'    => $lp_settings['counters']['long_rent'],
+            'totalShortRent'    => $lp_settings['counters']['short_rent'],
             'totalInvest'  => $lp_settings['counters']['commercial'],
 	        'currency_id'   => $lp_settings['currency_id']
         ];
-        $data['totalObjects'] = ( is_page_template( 'page-buy.php' ) ) ? $lp_settings['counters']['for_sale'] : $lp_settings['counters']['for_rent'];
+        $data['totalObjects'] = ( is_page_template( 'page-buy.php' ) ) ? $lp_settings['counters']['for_sale'] : $lp_settings['counters']['long_rent'];
         if ( ( is_page_template( 'page-sharer.php' ) || is_page_template( 'page-sharer-rent.php' ) ) && isset( $_GET['ids'] ) ) {
             $data['ids'] = explode( '.', $_GET['ids'] );
+	        $data['totalObjects'] = count($_GET['ids']);
         }
         if ( is_tag() ) {
             $tag_id            = get_query_var( 'tag_id' );
@@ -132,6 +135,11 @@ function assets() {
             }
         }
         if ( is_page_template( 'page-rent.php' ) ) {
+        	//Check if there are rent filter parameters
+	        $filter = getParametersByName('filter');
+
+	        $data['rentSubCat'] =  ($filter && isset($filter['short_rent']) && !empty($filter['short_rent'])) ? 'short_rent' : 'long_rent';
+
             if ( 1 == lwp_option( 'use_default_rent' ) ) {
                 $data['defaultLocation']   = true;
                 $data['rentDefault']       = lwp_option( 'rent_location' );
@@ -144,6 +152,22 @@ function assets() {
 	        $data['defaultGeoTitle'] = get_field('location', get_queried_object_id());
 	        $data['propertyType']  = get_field('property_type', get_queried_object_id());
 
+        }
+        if( is_page_template( 'page-rent.php' ) || is_page_template('page-location-rent.php')) {
+	        $data['filterPeriod'] = [
+	            [
+					'id' => 'day',
+		            'text'  => __('s_object:rent:day', 'leadingprops')
+	            ],
+		        [
+			        'id' => 'week',
+			        'text'  => __('s_object:rent:week', 'leadingprops')
+		        ],
+		        [
+			        'id' => 'month',
+			        'text'  => __('s_object:rent:month', 'leadingprops')
+		        ]
+	        ];
         }
         wp_localize_script( 'lprop/js', 'LpData', $data );
         wp_enqueue_script( 'lprop/js' );

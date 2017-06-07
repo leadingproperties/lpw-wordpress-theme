@@ -106,12 +106,17 @@
 				<fieldset data-count="3">
 					<div class="request-form-row">
 						<div class="input-group">
+                            <?php $c = $countries->get_countries(); ?>
 							<label class="request-form-label" for="comm-countries"><?php _e('form:country_label', 'leadingprops') ?></label>
 							<select name="countries" class="country-select" id="comm-countries">
 								<option value="All countries"><?php _e('form:country_default', 'leadingprops') ?></option>
-								<?php foreach ( $countries->get_countries() as $country ) {
-									echo '<option value="' . $country['name'] . '">'. $country['title'] . '</option>';
-								}
+								<?php
+                                if($c && is_array($c)) {
+	                                foreach ( $c as $country ) {
+		                                echo '<option value="' . $country['long_name'] . '">' . $country['long_name'] . '</option>';
+	                                }
+                                }
+
 								?>
 							</select>
 						</div>

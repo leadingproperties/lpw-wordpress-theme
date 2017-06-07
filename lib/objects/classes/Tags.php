@@ -18,7 +18,8 @@ class Tags
     );
 
     public function __construct() {
-        $this->api_url = 'https://lpw-public-api.herokuapp.com';
+	    $this->api_url = "https://lpw-public-api-v4.herokuapp.com";
+        //$this->api_url = 'https://lpw-public-api.herokuapp.com';
         $this->token = get_field('api_key', 'option');
     }
 
@@ -152,7 +153,7 @@ class Tags
     function get_hq_photos_tag_html($bool, $counters){
         $hq_photos_tag_html = '';
         if($bool){
-            $hq_photos_tag_html = '<li>' . __('search_panel:hd_photos:tag', 'ledingprops') . ' <sup>' . $counters['hd_photos']['doc_count'] . '</sup> <span class="tag-remove" data-tag_type="quality" data-tag_data="quality"></span></li>';
+            $hq_photos_tag_html = '<li>' . __('search_panel:hd_photos:tag', 'leadingprops') . ' <sup>' . $counters['hd_photos']['doc_count'] . '</sup> <span class="tag-remove" data-tag_type="quality" data-tag_data="quality"></span></li>';
         }
         return $hq_photos_tag_html;
     }
@@ -162,7 +163,21 @@ class Tags
 
         if($price){
             $suffix   = $price && $price['currency'] ? $this->currencies[$price['currency']] : "EUR";
-            $price_tag_html = '<li>' . $this->get_range_label($price['min'], $price['max'], $suffix) . ' <sup>' . $counters['price']['doc_count'] . '</sup> <span class="tag-remove" data-tag_type="price" data-tag_data="price"></span></li>';
+            $price_tag_html = '<li>' . $this->get_range_label($price['min'], $price['max'], $suffix);
+            if($price['period']) {
+            	switch($price['period']) {
+		            case 'day':
+			            $price_tag_html .= '&nbsp;/&nbsp;' . __( 's_object:rent:day', 'leadingprops' );
+		            	break;
+		            case 'week':
+			            $price_tag_html .= '&nbsp;/&nbsp;' . __( 's_object:rent:week', 'leadingprops' );
+		            	break;
+		            case 'month':
+			            $price_tag_html .= '&nbsp;/&nbsp;' . __( 's_object:rent:month', 'leadingprops' );
+		            	break;
+	            }
+            }
+	        $price_tag_html .= ' <sup>' . $counters['price']['doc_count'] . '</sup> <span class="tag-remove" data-tag_type="price" data-tag_data="price"></span></li>';
         }
 
         return $price_tag_html;
@@ -181,12 +196,12 @@ class Tags
 
     function get_rent_bool_tags($params, $counters){
         $rent_bool_tags = '';
-        if($params['long_rent']){
+       /* if($params['long_rent']){
             $rent_bool_tags .= '<li>' . __('search_panel:long_rent', 'leadingprops') . ' <sup>' . $counters['long_rent']['doc_count'] . '</sup> <span class="tag-remove" data-tag_type="long-term" data-tag_data="long-term"></span></li>';
         }
         if($params['short_rent']){
             $rent_bool_tags .= '<li>' . __('search_panel:short_rent', 'leadingprops') . ' <sup>' . $counters['short_rent']['doc_count'] . '</sup> <span class="tag-remove" data-tag_type="short-term" data-tag_data="short-term"></span></li>';
-        }
+        } */
         if($params['child_friendly']){
             $rent_bool_tags .= '<li>' . __('search_panel:child_friendly', 'leadingprops') . ' <sup>' . $counters['child_friendly']['doc_count'] . '</sup> <span class="tag-remove" data-tag_type="child-friendly" data-tag_data="child-friendly"></span></li>';
         }
@@ -199,7 +214,7 @@ class Tags
     function get_rent_persons_tag($persons, $counters){
         $rent_persons_tag = '';
         if($persons){
-            $rent_persons_tag = '<li>' . __('search_panel:persons', 'leadingprops') . ': ' . $persons . ' <sup>' . $counters['long_rent']['doc_count'] . '</sup> <span class="tag-remove" data-tag_type="persons-max" data-tag_data="persons-max"></span></li>';
+            $rent_persons_tag = '<li>' . __('search_panel:persons', 'leadingprops') . ': ' . $persons . ' <sup>' . $counters['persons']['doc_count'] . '</sup> <span class="tag-remove" data-tag_type="persons-max" data-tag_data="persons-max"></span></li>';
         }
         return $rent_persons_tag;
     }

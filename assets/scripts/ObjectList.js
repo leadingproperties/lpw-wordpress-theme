@@ -5,9 +5,10 @@
      * ObjectList
      * @param type - строка c типом листинга list - обычный листинг, favorites - листинг обьектов favorites, share - листинг обьектов share
      * @param category - sale, rent
+     * @param rent_category - 'long_rent', 'short_rent'
      */
 
-    function ObjectList(type, category) {
+    function ObjectList(type, category, rent_category) {
         var $this = this,
             loader = $('.loader'),
             singleObject = new window.lpw.SingleObject(this);
@@ -83,6 +84,16 @@
                 delete $this.args.similar;
             }
             $this.usedFilters.location = false;
+            if ($this.lpwGoogleMap.map && $this.lpwGoogleMap.map instanceof google.maps.Map) {
+                $this.lpwGoogleMap.map.setCenter({
+                    lat: 49.1651567,
+                    lng: 4.0557516
+                });
+                $this.lpwGoogleMap.map.setZoom(3);
+            } else if ($this.lpwGoogleMap.mapOptions) {
+                $this.lpwGoogleMap.mapOptions.center = new google.maps.LatLng(49.1651567, 4.0557516);
+                $this.lpwGoogleMap.mapOptions.zoom = 3;
+            }
         }
         function clearFilters() {
             if($this.args.price.min) {
@@ -109,12 +120,7 @@
             if($this.args.persons) {
                 delete $this.args.persons;
             }
-            if($this.args.long_rent) {
-                delete $this.args.long_rent;
-            }
-            if($this.args.short_rent) {
-                delete $this.args.short_rent;
-            }
+
             if($this.args.child_friendly) {
                 delete $this.args.child_friendly;
             }
@@ -137,7 +143,7 @@
             $this.setUrls($this.args);
         }
 
-        this.filter = new window.lpw.FilterMenu(type, category),
+        this.filter = new window.lpw.FilterMenu(type, category, rent_category);
 
         this.autoSearch = function(data, silent) {
             resetObjects();
@@ -166,6 +172,7 @@
 	                    }
 
                         if ($this.lpwGoogleMap.map && $this.lpwGoogleMap.map instanceof google.maps.Map) {
+
                             $this.lpwGoogleMap.map.setCenter({
                                 lat: data.location_point.lat,
                                 lng: data.location_point.lon
@@ -177,6 +184,8 @@
                         }
                     }
                     if (data && data.location_shape) {
+                        var shape = [],
+                            shapeCenter;
                         $this.args.location_shape = {};
                         if (data.location_shape.country_code) {
                             $this.args.location_shape.country_code = data.location_shape.country_code;
@@ -186,12 +195,29 @@
                                 lat: data.location_shape.bottom_left.lat,
                                 lon: data.location_shape.bottom_left.lon
                             };
+                            shape.push([data.location_shape.bottom_left.lat, data.location_shape.bottom_left.lon]);
                         }
                         if (data.location_shape.top_right && data.location_shape.top_right.lat && data.location_shape.top_right.lon) {
                             $this.args.location_shape.top_right = {
                                 lat: data.location_shape.top_right.lat,
                                 lon: data.location_shape.top_right.lon
                             };
+                            shape.push([data.location_shape.top_right.lat, data.location_shape.top_right.lon]);
+                        }
+                        if(!_.isEmpty(shape)) {
+                            shapeCenter = window.lpw.Helpers.getLatLngCenter(shape);
+                            if(!_.isEmpty(shapeCenter) && shapeCenter[0] && shapeCenter[1]) {
+                                if ($this.lpwGoogleMap.map && $this.lpwGoogleMap.map instanceof google.maps.Map) {
+                                    $this.lpwGoogleMap.map.setCenter({
+                                        lat: shapeCenter[0],
+                                        lng: shapeCenter[1]
+                                    });
+                                    $this.lpwGoogleMap.map.setZoom(9);
+                                } else if ($this.lpwGoogleMap.mapOptions) {
+                                    $this.lpwGoogleMap.mapOptions.center = new google.maps.LatLng(shapeCenter[0], shapeCenter[1]);
+                                    $this.lpwGoogleMap.mapOptions.zoom = 10;
+                                }
+                            }
                         }
                     }
                 }
@@ -208,12 +234,15 @@
             this.autoComplete = new window.lpw.AutoComplete(
                 '#sp-search',
                 $this.autoSearch,
-                category
+                category,
+                null,
+                rent_category
             );
             this.lpwGoogleMap = new window.lpw.Map(
                 '#map-modal',
                 category,
-                $this.autoComplete
+                $this.autoComplete,
+                rent_category
             );
             this.tags = new window.lpw.Tags(
                 LpData.ajaxUrl,
@@ -364,10 +393,9 @@
                 },
                 complete: function () {
                     loader.hide();
+                    //var limit = (_.isEmpty($this.args.ids)) ? $this.totalObjects : $this.args.ids.length;
 
-                    var limit = (_.isEmpty($this.args.ids)) ? $this.totalObjects : $this.args.ids.length;
-
-                    if( ( limit > $this.onPage )) {
+                    if( ( $this.totalObjects > $this.onPage )) {
                         if( window.lpw.Helpers.isElementIntoView($this.lastItem()) ) {
                             $this.didScroll = false;
                             $this.getObjects();
@@ -421,6 +449,17 @@
                             }
 
                         }
+                        if($this.args.short_rent) {
+                            $this.filter.rentLongBtn.removeClass('active');
+                            $this.filter.rentShortBtn.addClass('active');
+                            $this.args.long_rent = false;
+                            $this.args.short_rent = true;
+                        } else {
+                            $this.filter.rentShortBtn.removeClass('active');
+                            $this.filter.rentLongBtn.addClass('active');
+                            $this.args.long_rent = true;
+                            $this.args.short_rent = false;
+                        }
                         resetObjects();
                         $this.getObjects(null, eventtype);
                         $this.filter.setValues(query);
@@ -432,7 +471,12 @@
             } else {
                 if(eventtype === 'popstate' && (window.location.href.search(LpData.propertyPage) === -1)) {
                     clearAllFilters();
-
+                }
+                // Set filter to long rent
+                if($this.args.long_rent) {
+                    $this.filter.rentLongBtn.addClass('active');
+                    $this.filter.rentShortBtn.removeClass('active');
+                    $this.args.short_rent = false;
                 }
                 resetObjects();
                 $this.usedFilters.location = false;
@@ -445,6 +489,7 @@
                 if(window.history.state && window.history.state.action && window.history.state.action === "object-close") {
                     delete window.history.state.action;
                 }
+               // $this.filterPeriod.val('month').trigger('change');
             });
 
             //Clear Filters button
@@ -531,6 +576,54 @@
                     $this.filter.filterCurrency.val(value).trigger('change');
                 }
                 resetObjects();
+                $this.getObjects();
+            });
+
+            // Rent term selectors action
+            $('.btn-term-selector').on('click.lprop', function(ev) {
+                ev.preventDefault();
+                // Do nothing if clicked on active button
+                if( $(this).hasClass('active') ) { return false; }
+
+                //Clear price filter
+                if($this.args.price) {
+                    if($this.args.price.min) {
+                        delete $this.args.price.min;
+                        $this.filter.filterInp.price.min.val(undefined);
+                    }
+                    if($this.args.price.max) {
+                        delete $this.args.price.max;
+                        $this.filter.filterInp.price.max.val(undefined);
+                    }
+                    if($this.args.price.period) {
+                        delete $this.args.price.period;
+                    }
+                }
+
+                //Period select Array
+                var periodSelect = [];
+
+                $('.btn-term-selector').removeClass('active');
+                $(this).addClass('active');
+
+                var term = $(this).data('rent');
+
+                $this.args.long_rent = ( term === 'long' );
+                $this.args.short_rent = ( term === 'short' );
+                resetObjects();
+                $this.totalObjects = ( term === 'long' ) ? parseInt(LpData.totalLongRent) : parseInt(LpData.totalShortRent);
+                if(term === 'long') {
+                    $this.autoComplete.rentCategory = 'long_rent';
+                    $this.filter.rentCategory = 'long_rent';
+                    periodSelect.push(LpData.filterPeriod[2]);
+                } else {
+                    $this.autoComplete.rentCategory = 'short_rent';
+                    $this.filter.rentCategory = 'short_rent';
+                    periodSelect = LpData.filterPeriod;
+                }
+                $this.filter.periodFilterInit(periodSelect);
+                $this.lpwGoogleMap.getNewGeopoints(term);
+
                 $this.getObjects();
             });
 

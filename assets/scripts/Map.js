@@ -11,15 +11,19 @@
 	function Map(
 		mapModal,
 	    category,
-	    autoComplete
+	    autoComplete,
+		rent_category
 	){
 		var $this = this;
 		this.mapModal = $(mapModal);
 		this.category = category;
 		this.autoComplete = autoComplete;
+		this.rent_category = rent_category;
 
 		this.geopointsError = false;
 		this.points = null;
+        this.geoPoints = null;
+		this.markers = [];
 		this.markerCluster = null;
 
 		this.mapOptions = {
@@ -89,8 +93,15 @@
 						$this.mapOptions
 					);
 					if (!$this.geopointsError) {
-						$this.getGeoPointsSuccess($this.geoPoints);
+						if($this.geoPoints) {
+                            $this.getGeoPointsSuccess($this.geoPoints);
+                        } else {
+							$this.setGeoPoints();
+						}
 					}
+                    $this.getGeoPoints()
+                        .done($this.getGeoPointsSuccess.bind($this))
+                        .fail($this.getGeoPointsError.bind($this));
 				} else {
 					google.maps.event.trigger($this.map, "idle");
 				}
@@ -112,14 +123,12 @@
 	 *
 	 */
 	Map.prototype.setupMarkerCluster = function(){
-		var markers = [],
-		    $this = this;
 
 		//собираем все поинты в один массив
 		for (var i = 0; i < this.points.length; i++) {
 			var latLng = new google.maps.LatLng(this.points[i].location.lat, this.points[i].location.lon);
 
-			markers.push(
+			this.markers.push(
 				new google.maps.Marker(
 					{
 						position: latLng,
@@ -132,7 +141,8 @@
 			);
 		}
 		//создаем инстанс MarkerClusterer
-		this.markerCluster = new MarkerClusterer(this.map, markers, this.markerClusterOptions);
+	//	console.debug(this.map, this.markers, this.markerClusterOptions);
+		this.markerCluster = new MarkerClusterer(this.map, this.markers, this.markerClusterOptions);
 
 		//цепляем ивент на клик по кластеру на карте
 		google.maps.event.addListener(this.markerCluster, 'clusterclick', this.onClusterClick.bind(this));
@@ -200,9 +210,13 @@
 			fn: 'get_geopoints',
 			type: this.category
 		};
+		if(this.category === 'rent') {
+			data.rent_category = this.rent_category;
+		}
 		return $.get(LpData.ajaxUrl, data, function(data) {
 			$this.geoPoints = data;
 		});
+
 	};
 
 	/**
@@ -246,6 +260,36 @@
 		this.map.setZoom(this.mapOptions.zoom);
 	};
 
+	Map.prototype.getNewGeopoints = function(term) {
+		this.rent_category = ( term === 'long' ) ? 'long_rent' : 'short_rent';
+		if(this.map) {
+            if (this.markerCluster) {
+                this.markerCluster.clearMarkers();
+            }
+            this.markers = [];
+            this.getGeoPoints()
+                .done(this.getGeoPointsSuccess.bind(this))
+                .fail(this.getGeoPointsError.bind(this));
+            this.mapReset();
+        } else {
+            this.getGeoPoints()
+                .fail(this.getGeoPointsError.bind(this));
+		}
+	};
+	Map.prototype.setGeoPoints = function() {
+
+        var $this = this,
+			timeout = setTimeout(function() {
+
+            if($this.geoPoints) {
+                $this.getGeoPointsSuccess($this.geoPoints);
+                clearTimeout(timeout);
+            } else {
+                $this.setGeoPoints();
+			}
+		}, 800);
+
+	};
 	//для доступности в глобальном скоупе
 	window.lpw = window.lpw || {};
 	window.lpw.Map = Map;
