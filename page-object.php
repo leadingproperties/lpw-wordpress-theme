@@ -20,6 +20,10 @@
             ]
 		]);
 		$objects_obj = $objects->get_objects_array();
+
+		if(isset($objects_obj->redirect)) {
+			header( 'Location: ' . $lp_settings['property_page'] . '/' . $objects_obj->redirect->url, $objects_obj->redirect->redirect_type );
+        }
 	} else {
 		$objects_obj->error = true;
 		$objects_obj->errorMessage  = 'Nothing found';
