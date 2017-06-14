@@ -324,12 +324,18 @@ msgstr "მინ. დარჩენის ვადა"
 msgid "s_object:rent:day"
 msgstr "დღე"
 
+msgid "s_object:rent:days"
+msgstr "დღეები"
+
 #: lib/objects/functions.php:248 lib/objects/functions.php:264
 #: lib/objects/functions.php:281 lib/objects/functions.php:524
 #: page-object.php:237 page-object.php:254 page-object.php:271
 #: page-sharer-rent.php:49
 msgid "s_object:rent:week"
 msgstr "კვირა"
+
+msgid "s_object:rent:weeks"
+msgstr "კვირები"
 
 #: lib/objects/functions.php:252 lib/objects/functions.php:268
 #: lib/objects/functions.php:285 lib/objects/functions.php:526
@@ -339,6 +345,9 @@ msgstr "კვირა"
 #: templates/filter-rent.php:105
 msgid "s_object:rent:month"
 msgstr "თვე"
+
+msgid "s_object:rent:months"
+msgstr "თვეები"
 
 #: lib/objects/functions.php:241 page-object.php:232
 msgid "s_object:rent:low_season"
