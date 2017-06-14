@@ -223,7 +223,7 @@ function single_object_html($args) {
 						 if($objects_obj->property_rent->short_rent === true) {
 						 	$rentMinStay = '';
 						 	$billingPeriod = '';
-						 	if($objects_obj->property_rent->rent_short->min_stay_period_title) {
+						 	if($objects_obj->property_rent->rent_short->min_stay_period_title && $objects_obj->property_rent->rent_short->min_stay) {
 						 		switch($objects_obj->property_rent->rent_short->min_stay_period_title) {
 								    case 'day':
 								    	$rentMinStay = __( 's_object:rent:day', 'leadingprops' );
@@ -239,13 +239,13 @@ function single_object_html($args) {
 							 if($objects_obj->property_rent->rent_short->billing_period_title) {
 								 switch($objects_obj->property_rent->rent_short->billing_period_title) {
 									 case 'day':
-										 $billingPeriod = __( 's_object:rent:day', 'leadingprops' );
+										 $billingPeriod = ((int) $objects_obj->property_rent->rent_short->min_stay === 1) ? $objects_obj->property_rent->rent_short->min_stay .  __( 's_object:rent:day', 'leadingprops' ) : $objects_obj->property_rent->rent_short->min_stay .  __( 's_object:rent:days', 'leadingprops' );
 										 break;
 									 case 'week':
-										 $billingPeriod = __( 's_object:rent:week', 'leadingprops' );
+										 $billingPeriod = ((int) $objects_obj->property_rent->rent_short->min_stay === 1) ? $objects_obj->property_rent->rent_short->min_stay .  __( 's_object:rent:week', 'leadingprops' ) : $objects_obj->property_rent->rent_short->min_stay .  __( 's_object:rent:weeks', 'leadingprops' );
 										 break;
 									 default:
-										 $billingPeriod = __( 's_object:rent:month', 'leadingprops' );
+										 $billingPeriod = ((int) $objects_obj->property_rent->rent_short->min_stay === 1) ? $objects_obj->property_rent->rent_short->min_stay .  __( 's_object:rent:month', 'leadingprops' ) : $objects_obj->property_rent->rent_short->min_stay .  __( 's_object:rent:months', 'leadingprops' );
 										 break;
 								 }
 							 }
@@ -556,13 +556,16 @@ function get_object_list($args) {
 						if($object->parameters->min_stay) {
 							switch ( $object->parameters->min_stay_period ) {
 								case 'day':
-									$minStay = $object->parameters->min_stay . '&nbsp;' . __( 's_object:rent:day', 'leadingprops' );
+									$minStay = $object->parameters->min_stay . '&nbsp;';
+									$minStay .= ((int)$object->parameters->min_stay === 1) ? __( 's_object:rent:day', 'leadingprops' ) : __( 's_object:rent:days', 'leadingprops' );
 									break;
 								case 'week':
-									$minStay = $object->parameters->min_stay . '&nbsp;' . __( 's_object:rent:week', 'leadingprops' );
+									$minStay = $object->parameters->min_stay . '&nbsp;';
+									$minStay .= ((int)$object->parameters->min_stay === 1) ? __( 's_object:rent:week', 'leadingprops' ) : __( 's_object:rent:weeks', 'leadingprops' );
 									break;
 								default:
-									$minStay = $object->parameters->min_stay . '&nbsp;' . __( 's_object:rent:month', 'leadingprops' );
+									$minStay = $object->parameters->min_stay . '&nbsp;';
+									$minStay .= ((int)$object->parameters->min_stay === 1) ? __( 's_object:rent:month', 'leadingprops' ) : __( 's_object:rent:months', 'leadingprops' );
 									break;
 							}
 						}
